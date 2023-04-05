@@ -53,7 +53,7 @@ function chartWelcome() {
     var chart = new ApexCharts(document.querySelector("#chart"), options);
     chart.render();
 
-    var url = 'http://192.81.212.202/api/tipoCambio/history/options';
+    var url = 'https://www.api-dolareros.sbs/api/tipoCambio/history/options';
 
     var params = {
         "token":"dolareros2023secret",
