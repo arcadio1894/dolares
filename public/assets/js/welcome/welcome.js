@@ -68,7 +68,7 @@ function chartWelcome() {
         data: JSON.stringify({
             "token":'dolareros2023secret',
             "option":"d",
-            "nameWeb":"Bloomberg"
+            "nameWeb":"Dolareros"
         }),
         contentType:'application/json; charset=utf-8',
         processData: false,
