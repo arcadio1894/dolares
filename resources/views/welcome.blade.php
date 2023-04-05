@@ -149,6 +149,8 @@ License: For each use you must have a valid license purchased only from above li
     <meta name="description" content="The most advanced Bootstrap Admin Theme on Themeforest trusted by 94,000 beginners and professionals. Multi-demo, Dark Mode, RTL support and complete React, Angular, Vue &amp; Laravel versions. Grab your copy now and get life-time updates for free." />
     <meta name="keywords" content="Metronic, bootstrap, bootstrap 5, Angular, VueJs, React, Laravel, admin themes, web design, figma, web development, free templates, free admin themes, bootstrap theme, bootstrap template, bootstrap dashboard, bootstrap dak mode, bootstrap button, bootstrap datepicker, bootstrap timepicker, fullcalendar, datatables, flaticon" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta charset="utf-8" />
     <meta property="og:locale" content="en_US" />
     <meta property="og:type" content="article" />
@@ -274,12 +276,9 @@ License: For each use you must have a valid license purchased only from above li
                                     {{--<div class="flex-equal text-end ms-1">--}}
                                         <a href="{{ route('login') }}" class="btn btn-primary">Iniciar Sesión</a>
                                     {{--</div>--}}
-                                    @if (Route::has('register'))
-                                        {{--<a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline"></a>--}}
-                                        {{--<div class="flex-equal text-end ms-1">--}}
-                                            <a href="{{ route('register') }}" class="btn btn-primary">Regístrate</a>
-                                        {{--</div>--}}
-                                    @endif
+                                    {{--@if (Route::has('register'))
+                                        <a href="{{ route('register') }}" class="btn btn-primary">Regístrate</a>
+                                    @endif--}}
                                 @endauth
                             {{--</div>--}}
                             </div>
@@ -298,7 +297,7 @@ License: For each use you must have a valid license purchased only from above li
                 <div class="text-center mb-5 mb-lg-10 py-10 py-lg-10">
                     <!--begin::Title-->
                     <div class="row">
-                        <div class="col-xl-8 mt-4">
+                        <div class="col-xl-8 mt-4 d-none d-sm-block">
                             <div class="card card-xl-stretch mb-xl-8">
                                 <!--begin::Header-->
                                 <div class="card-header border-0 pt-5">
