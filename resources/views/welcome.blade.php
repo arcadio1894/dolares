@@ -404,9 +404,16 @@ License: For each use you must have a valid license purchased only from above li
                                                 <i class="fas fa-exclamation-circle text-primary ms-2 fs-7" data-bs-toggle="tooltip" title="Ahorro aprox. frente al tipo de cambio publicado en otras entidades bancarias"></i>
 
                                             </div>
+                                            <div class="fs-2 fw-bold text-muted text-center mt-6">
+                                                <a href="{{ route('register') }}" class="fs-6 fw-bolder">
+                                                    <span class="fs-6 fw-bolder text-muted"> ¿Aun no tienes cuenta en Dolareros? </span>
+                                                    <span class="fs-6 fw-bolder text-primary"> ¡Regístrate! </span>
+                                                </a>
+                                            </div>
                                             <div class="text-center py-5 py-lg-5">
                                                 <a href="{{ route('home') }}" class="btn btn-primary">Iniciar operación</a>
                                             </div>
+
                                         </div>
                                         <!--end::Tab panel-->
                                         <!--begin::Tab panel-->
