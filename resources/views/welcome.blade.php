@@ -146,8 +146,8 @@ License: For each use you must have a valid license purchased only from above li
 <!--begin::Head-->
 <head><base href="">
     <title>{{ env('APP_NAME') }}</title>
-    <meta name="description" content="The most advanced Bootstrap Admin Theme on Themeforest trusted by 94,000 beginners and professionals. Multi-demo, Dark Mode, RTL support and complete React, Angular, Vue &amp; Laravel versions. Grab your copy now and get life-time updates for free." />
-    <meta name="keywords" content="Metronic, bootstrap, bootstrap 5, Angular, VueJs, React, Laravel, admin themes, web design, figma, web development, free templates, free admin themes, bootstrap theme, bootstrap template, bootstrap dashboard, bootstrap dak mode, bootstrap button, bootstrap datepicker, bootstrap timepicker, fullcalendar, datatables, flaticon" />
+    <meta name="description" content="Aplicación para cambiar dolares y soles en un solo click." />
+    <meta name="keywords" content="Dolareros, Tasa de Cambio, Dolares, Soles, Cambiar, Divisas" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -170,6 +170,9 @@ License: For each use you must have a valid license purchased only from above li
         input::-webkit-outer-spin-button,
         input::-webkit-inner-spin-button {
             display: none;
+        }
+        .highSize {
+            font-size: 1.55rem !important;
         }
     </style>
 </head>
@@ -302,15 +305,12 @@ License: For each use you must have a valid license purchased only from above li
                                 <!--begin::Header-->
                                 <div class="card-header border-0 pt-5">
                                     <h3 class="card-title align-items-start flex-column">
-                                        <span class="card-label fw-bolder fs-3 mb-1">Recent Transactions</span>
-                                        <span class="text-muted fw-bold fs-7">More than 1000 new records</span>
+                                        <span class="card-label fw-bolder fs-3 mb-1">Tipo de cambio en tiempo real</span>
+                                        <span class="text-muted fw-bold fs-7">Actualizado cada 1 minuto</span>
                                     </h3>
                                     <!--begin::Toolbar-->
                                     <div class="card-toolbar" data-kt-buttons="true">
-                                        <a class="btn btn-sm btn-color-muted btn-active btn-active-primary px-4" id="kt_charts_widget_3_day_btn">Day</a>
-                                        <a class="btn btn-sm btn-color-muted btn-active btn-active-primary px-4" id="kt_charts_widget_3_week_btn">Week</a>
-                                        <a class="btn btn-sm btn-color-muted btn-active btn-active-primary px-4 me-1" id="kt_charts_widget_3_month_btn">Month</a>
-                                        <a class="btn btn-sm btn-color-muted btn-active btn-active-primary active px-4 me-1" id="kt_charts_widget_3_year_btn">Year</a>
+                                        <a class="btn btn-sm btn-color-muted btn-active btn-active-primary active px-4" id="kt_charts_widget_3_day_btn">Diario</a>
                                     </div>
                                     <!--end::Toolbar-->
                                 </div>
@@ -334,11 +334,12 @@ License: For each use you must have a valid license purchased only from above li
                                     <div class="card-toolbar">
                                         <ul class="nav nav-tabs nav-line-tabs nav-stretch border-transparent fs-5 fw-bolder">
                                             <li class="nav-item">
-                                                <a class="nav-link text-active-primary active" data-kt-countup-tabs="true" data-bs-toggle="tab" id="kt_security_summary_tab_day" href="#kt_security_summary_tab_pane_day">VENTA</a>
+                                                <a class="nav-link text-active-primary active" data-kt-countup-tabs="true" data-bs-toggle="tab" id="btn_buy_tab_panel" data-tab="buy" href="#type_buy_tab_panel">COMPRA</a>
                                             </li>
                                             <li class="nav-item">
-                                                <a class="nav-link text-active-primary " data-kt-countup-tabs="true" data-bs-toggle="tab" href="#kt_security_summary_tab_pane_hours">COMPRA</a>
+                                                <a class="nav-link text-active-primary " data-kt-countup-tabs="true" data-bs-toggle="tab" id="btn_sell_tab_panel" data-tab="sell" href="#type_sell_tab_panel">VENTA</a>
                                             </li>
+
 
                                         </ul>
                                     </div>
@@ -346,10 +347,12 @@ License: For each use you must have a valid license purchased only from above li
                                 <!--end::Header-->
                                 <!--begin::Body-->
                                 <div class="card-body">
-                                    <span class="text-muted fw-bold fs-7">Tipo de cambio en Perú ...</span>
-                                    <div class="tab-content">
+                                    <span class="text-muted fw-bold fs-5">Tipo de cambio hoy en Perú </span><br>
+                                    <span class="text-muted fw-bold fs-5" id="text_buy">Compra: 0 </span> <span class="text-muted fw-bold fs-4"> | </span>
+                                    <span class="text-muted fw-bold fs-5" id="text_sell">Venta: 0</span>
+                                    <div class="tab-content mt-4">
                                         <!--begin::Tab panel-->
-                                        <div class="tab-pane fade " id="kt_security_summary_tab_pane_hours" role="tabpanel">
+                                        <div class="tab-pane fade active show" id="type_buy_tab_panel" role="tabpanel">
                                             <div class="col-md-12 fv-row">
                                                 <!--begin::Label-->
                                                 <label class="d-flex align-items-center fs-6 fw-bold form-label mb-2">
@@ -360,7 +363,7 @@ License: For each use you must have a valid license purchased only from above li
 
                                                 <div class="position-relative">
                                                     <!--begin::Input-->
-                                                    <input type="number" class="form-control form-control-solid" placeholder="" name="card_cvv" value="100.00" />
+                                                    <input type="number" class="form-control form-control-solid highSize" placeholder="" value="100.00" id="sendBuy" />
                                                     <!--end::Input-->
                                                     <!--begin::CVV icon-->
                                                     <div class="position-absolute translate-middle-y top-50 end-0 me-3">
@@ -384,7 +387,7 @@ License: For each use you must have a valid license purchased only from above li
 
                                                 <div class="position-relative">
                                                     <!--begin::Input-->
-                                                    <input type="number" class="form-control form-control-solid" placeholder="" name="card_cvv" value="100.00" />
+                                                    <input type="number" class="form-control form-control-solid highSize" placeholder="" id="getBuy" />
                                                     <!--end::Input-->
                                                     <!--begin::CVV icon-->
                                                     <div class="position-absolute translate-middle-y top-50 end-0 me-3">
@@ -399,17 +402,17 @@ License: For each use you must have a valid license purchased only from above li
                                                 <!--end::Input wrapper-->
                                             </div>
                                             <div class="fs-2 fw-bold text-muted text-center">
-                                                <span class="fs-4 fw-bolder text-primary">Estás ahorrando aprox. S/ </span>
+                                                <span class="fs-4 fw-bolder text-primary" id="ahorroBuy"> </span>
                                                 <i class="fas fa-exclamation-circle text-primary ms-2 fs-7" data-bs-toggle="tooltip" title="Ahorro aprox. frente al tipo de cambio publicado en otras entidades bancarias"></i>
 
                                             </div>
                                             <div class="text-center py-5 py-lg-5">
-                                                <a href="../../demo7/dist/index.html" class="btn btn-primary">Iniciar operación</a>
+                                                <a href="{{ route('home') }}" class="btn btn-primary">Iniciar operación</a>
                                             </div>
                                         </div>
                                         <!--end::Tab panel-->
                                         <!--begin::Tab panel-->
-                                        <div class="tab-pane fade active show" id="kt_security_summary_tab_pane_day" role="tabpanel">
+                                        <div class="tab-pane fade " id="type_sell_tab_panel" role="tabpanel">
                                             <div class="col-md-12 fv-row">
                                                 <!--begin::Label-->
                                                 <label class="d-flex align-items-center fs-6 fw-bold form-label mb-2">
@@ -420,7 +423,7 @@ License: For each use you must have a valid license purchased only from above li
 
                                                 <div class="position-relative">
                                                     <!--begin::Input-->
-                                                    <input type="number" class="form-control form-control-solid" placeholder="" name="card_cvv" value="100.00" />
+                                                    <input type="number" class="form-control form-control-solid highSize" placeholder="" value="100.00" id="sendSell" />
                                                     <!--end::Input-->
                                                     <!--begin::CVV icon-->
                                                     <div class="position-absolute translate-middle-y top-50 end-0 me-3">
@@ -444,7 +447,7 @@ License: For each use you must have a valid license purchased only from above li
 
                                                 <div class="position-relative">
                                                     <!--begin::Input-->
-                                                    <input type="number" class="form-control form-control-solid" placeholder="" name="card_cvv" value="100.00" />
+                                                    <input type="number" class="form-control form-control-solid highSize" placeholder="" id="getSell" />
                                                     <!--end::Input-->
                                                     <!--begin::CVV icon-->
                                                     <div class="position-absolute translate-middle-y top-50 end-0 me-3">
@@ -458,12 +461,12 @@ License: For each use you must have a valid license purchased only from above li
                                                 </div>
                                             </div>
                                             <div class="fs-2 fw-bold text-muted text-center">
-                                                <span class="fs-4 fw-bolder text-primary">Estás ahorrando aprox. S/ </span>
+                                                <span class="fs-4 fw-bolder text-primary" id="ahorroSell">Estás ahorrando aprox. USD </span>
                                                 <i class="fas fa-exclamation-circle text-primary ms-2 fs-7" data-bs-toggle="tooltip" title="Ahorro aprox. frente al tipo de cambio publicado en otras entidades bancarias"></i>
 
                                             </div>
                                             <div class="text-center py-5 py-lg-5">
-                                                <a href="../../demo7/dist/index.html" class="btn btn-primary">Iniciar operación</a>
+                                                <a href="{{ route('home') }}" class="btn btn-primary">Iniciar operación</a>
                                             </div>
 
                                         </div>
