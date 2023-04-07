@@ -146,16 +146,14 @@ License: For each use you must have a valid license purchased only from above li
 <!--begin::Head-->
 <head><base href="">
     <title>{{ env('APP_NAME') }}</title>
-    <meta name="description" content="The most advanced Bootstrap Admin Theme on Themeforest trusted by 94,000 beginners and professionals. Multi-demo, Dark Mode, RTL support and complete React, Angular, Vue &amp; Laravel versions. Grab your copy now and get life-time updates for free." />
-    <meta name="keywords" content="Metronic, bootstrap, bootstrap 5, Angular, VueJs, React, Laravel, admin themes, web design, figma, web development, free templates, free admin themes, bootstrap theme, bootstrap template, bootstrap dashboard, bootstrap dak mode, bootstrap button, bootstrap datepicker, bootstrap timepicker, fullcalendar, datatables, flaticon" />
+    <meta name="description" content="Dolareros es la mejor casa de cambio online, te ofrece el mejor tipo de cambio  &amp; Compra y vente tus dólares online de la manera más rápida y segura." />
+    <meta name="keywords" content="dólares, Casa de cambio, online, tasa de cambio, dollares, euros, cambista, Perú, divisas, dolar hoy, oro, precio del dolar hoy, valor dolar, cotización del dolar, dolar sunat, dolares a soles, dolarhoy, Trujillo, Lima, , dolar precio hoy, cuántos dólares, usd a soles" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta charset="utf-8" />
     <meta property="og:locale" content="en_US" />
     <meta property="og:type" content="article" />
-    <meta property="og:title" content="Metronic - Bootstrap 5 HTML, VueJS, React, Angular &amp; Laravel Admin Dashboard Theme" />
-    <meta property="og:url" content="https://keenthemes.com/metronic" />
-    <meta property="og:site_name" content="Keenthemes | Metronic" />
-    <link rel="canonical" href="https://preview.keenthemes.com/metronic8" />
+    <meta property="og:title" content="Dolareros te ofrece el mejor tipo de cambio &amp; Compra y Vende tus dolares de manera rápida y segura" />
+    <meta property="og:site_name" content="Dolareros | Cambio de dolares" />
     <link rel="shortcut icon" href="{{ asset('assets/media/logos/favicon.ico') }}" />
     <!--begin::Fonts-->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,600,700" />
