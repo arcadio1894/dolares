@@ -21,4 +21,11 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+Route::middleware('auth')->group(function (){
+    Route::prefix('dashboard')->group(function (){
+        Route::get('/perfil', [App\Http\Controllers\UserController::class, 'profile'])
+            ->name('dashboard.profile');
+
+    });
+});
 Route::get('/data', [\App\Http\Controllers\DataController::class, 'getData']);
