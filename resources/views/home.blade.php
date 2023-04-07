@@ -204,5 +204,5 @@
 @endsection
 
 @section('scripts')
-    <script src="{{ asset('assets/js/welcome/welcome.js') }}"></script>
+    <script src="{{ asset('assets/js/home/home.js') }}"></script>
 @endsection
