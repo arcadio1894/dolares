@@ -146,13 +146,8 @@ License: For each use you must have a valid license purchased only from above li
 <!--begin::Head-->
 <head><base href="">
     <title>{{ env('APP_NAME') }}</title>
-<<<<<<< HEAD
     <meta name="description" content="Dolareros es la mejor casa de cambio online, te ofrece el mejor tipo de cambio  &amp; Compra y vente tus dólares online de la manera más rápida y segura." />
     <meta name="keywords" content="dólares, Casa de cambio, online, tasa de cambio, dollares, euros, cambista, Perú, divisas, dolar hoy, oro, precio del dolar hoy, valor dolar, cotización del dolar, dolar sunat, dolares a soles, dolarhoy, Trujillo, Lima, , dolar precio hoy, cuántos dólares, usd a soles" />
-=======
-    <meta name="description" content="Aplicación para cambiar dolares y soles en un solo click." />
-    <meta name="keywords" content="Dolareros, Tasa de Cambio, Dolares, Soles, Cambiar, Divisas" />
->>>>>>> 53a190f120bb6bc9b8742e9ddccd904a9fcaa9c7
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
