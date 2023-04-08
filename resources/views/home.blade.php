@@ -45,7 +45,7 @@
         </div>
     </div>
 </div>--}}
-<div class="col-xl-6 mt-4 offset-3">
+<div class="mt-4 col-xxl-4 offset-xxl-4 col-xl-6 offset-xl-3 col-lg-6 offset-lg-3 col-md-6 offset-md-3 col-sm-6 offset-sm-3 ">
     <div class="card card-xl-stretch mb-xl-8" >
         <!--begin::Header-->
         <div class="card-header border-0 pt-5">
@@ -67,7 +67,7 @@
         </div>
         <!--end::Header-->
         <!--begin::Body-->
-        <div class="card-body">
+        <div class="card-body text-center">
             <span class="text-muted fw-bold fs-5">Tipo de cambio hoy en Perú </span><br>
             <span class="text-muted fw-bold fs-5" id="text_buy">Compra: 0 </span> <span class="text-muted fw-bold fs-4"> | </span>
             <span class="text-muted fw-bold fs-5" id="text_sell">Venta: 0</span>
