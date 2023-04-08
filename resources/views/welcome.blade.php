@@ -205,8 +205,8 @@ License: For each use you must have a valid license purchased only from above li
                             <!--end::Mobile menu toggle-->
                             <!--begin::Logo image-->
                             <a href="../../demo7/dist/landing.html">
-                                <img alt="Logo" src="{{ asset('assets/media/logos/logo-landing.svg') }}" class="logo-default h-25px h-lg-30px" />
-                                <img alt="Logo" src="{{ asset('assets/media/logos/logo-landing-dark.svg') }}" class="logo-sticky h-20px h-lg-25px" />
+                                <img alt="Logo" src="{{ asset('assets/media/logos/logo-landing.png') }}" class="logo-default h-25px h-lg-30px" />
+                                <img alt="Logo" src="{{ asset('assets/media/logos/logo-landing-dark.png') }}" class="logo-sticky h-20px h-lg-25px" />
                             </a>
                             <!--end::Logo image-->
                         </div>
@@ -1320,7 +1320,7 @@ License: For each use you must have a valid license purchased only from above li
                     <div class="d-flex align-items-center order-2 order-md-1">
                         <!--begin::Logo-->
                         <a href="../../demo7/dist/landing.html">
-                            <img alt="Logo" src="{{ asset('assets/media/logos/logo-landing.svg') }}" class="h-15px h-md-20px" />
+                            <img alt="Logo" src="{{ asset('assets/media/logos/logo-landing.png') }}" class="h-15px h-md-20px" />
                         </a>
                         <!--end::Logo image-->
                         <!--begin::Logo image-->
