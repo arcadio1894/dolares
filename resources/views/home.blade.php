@@ -13,6 +13,10 @@
     </ul>
 @endsection
 
+@section('activeTabPanelMenu', 'active')
+@section('activeTabHome', 'active show')
+@section('activeHome', 'text-primary')
+
 @section('styles')
     <style>
         input::-webkit-outer-spin-button,
