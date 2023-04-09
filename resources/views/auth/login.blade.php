@@ -83,11 +83,11 @@
 
                 <div class="mb-10 text-center">
                     <!--begin::Title-->
-                    <h1 class="text-dark mb-3">Sign In to Metronic</h1>
+                    <h1 class="text-dark mb-3">Inicia sesión</h1>
                     <!--end::Title-->
                     <!--begin::Link-->
-                    <div class="text-gray-400 fw-bold fs-4">New Here?
-                        <a href="{{ route('register') }}" class="link-primary fw-bolder">Create an Account</a>
+                    <div class="text-gray-400 fw-bold fs-4">¿No tienes cuenta?
+                        <a href="{{ route('register') }}" class="link-primary fw-bolder">Regístrate aquí</a>
                     </div>
                     <!--end::Link-->
                 </div>
@@ -109,7 +109,7 @@
                             <label class="form-label fw-bolder text-dark fs-6 mb-0">Password</label>
 
                             @if (Route::has('password.request'))
-                            <a href="{{ route('password.request') }}" class="link-primary fs-6 fw-bolder">Forgot Password ?</a>
+                            <a href="{{ route('password.request') }}" class="link-primary fs-6 fw-bolder">¿Olvidaste tu contraseña?</a>
                             @endif
 
                         </div>
@@ -125,7 +125,7 @@
                 </div>
                 <div class="text-center">
                     <button type="submit" id="btn-login" class="btn btn-lg btn-primary">
-                        <span class="indicator-label">Continue</span>
+                        <span class="indicator-label">INICIAR SESIÓN</span>
                     </button>
                 </div>
                 <!--end::Actions-->

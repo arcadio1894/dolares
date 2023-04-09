@@ -204,7 +204,7 @@ License: For each use you must have a valid license purchased only from above li
                             </button>
                             <!--end::Mobile menu toggle-->
                             <!--begin::Logo image-->
-                            <a href="../../demo7/dist/landing.html">
+                            <a href="../../">
                                 <img alt="Logo" src="{{ asset('assets/media/logos/logo-landing.png') }}" class="logo-default h-25px h-lg-30px" />
                                 <img alt="Logo" src="{{ asset('assets/media/logos/logo-landing-dark.png') }}" class="logo-sticky h-20px h-lg-25px" />
                             </a>
@@ -481,42 +481,42 @@ License: For each use you must have a valid license purchased only from above li
                 <div class="d-flex flex-center flex-wrap position-relative px-5">
                     <!--begin::Client-->
                     <div class="d-flex flex-center m-3 m-md-6" data-bs-toggle="tooltip" title="BCP">
-                        <img src="{{ asset('assets/media/svg/brand-logos/logo-bcp.svg') }}" class="mh-30px mh-lg-40px" alt="" />
+                        <img src="{{ asset('assets/media/svg/brand-logos/logo-bcp.png') }}" class="mh-30px mh-lg-40px" alt="" />
                     </div>
                     <!--end::Client-->
                     <!--begin::Client-->
-                    <div class="d-flex flex-center m-3 m-md-6" data-bs-toggle="tooltip" title="Vodafone">
-                        <img src="{{ asset('assets/media/svg/brand-logos/logo-interbank.svg') }}" class="mh-30px mh-lg-40px" alt="" />
+                    <div class="d-flex flex-center m-3 m-md-6" data-bs-toggle="tooltip" title="Interbank">
+                        <img src="{{ asset('assets/media/svg/brand-logos/logo-interbank.png') }}" class="mh-30px mh-lg-40px" alt="" />
                     </div>
                     <!--end::Client-->
                     <!--begin::Client-->
-                    <div class="d-flex flex-center m-3 m-md-6" data-bs-toggle="tooltip" title="KPMG International">
-                        <img src="{{ asset('assets/media/svg/brand-logos/space.svg') }}" class="mh-30px mh-lg-40px" alt="" />
+                    <div class="d-flex flex-center m-3 m-md-6" data-bs-toggle="tooltip" title="GNB">
+                        <img src="{{ asset('assets/media/svg/brand-logos/logo-gnb.png') }}" class="mh-30px mh-lg-40px" alt="" />
                     </div>
                     <!--end::Client-->
                     <!--begin::Client-->
-                    <div class="d-flex flex-center m-3 m-md-6" data-bs-toggle="tooltip" title="Nasa">
-                        <img src="{{ asset('assets/media/svg/brand-logos/logo-banbif.svg') }}" class="mh-30px mh-lg-40px" alt="" />
+                    <div class="d-flex flex-center m-3 m-md-6" data-bs-toggle="tooltip" title="BanBif">
+                        <img src="{{ asset('assets/media/svg/brand-logos/logo-banbif.png') }}" class="mh-30px mh-lg-40px" alt="" />
                     </div>
                     <!--end::Client-->
                     <!--begin::Client-->
-                    <div class="d-flex flex-center m-3 m-md-6" data-bs-toggle="tooltip" title="Aspnetzero">
-                        <img src="{{ asset('assets/media/svg/brand-logos/logo-banco-nacion.svg') }}" class="mh-30px mh-lg-40px" alt="" />
+                    <div class="d-flex flex-center m-3 m-md-6" data-bs-toggle="tooltip" title="BN">
+                        <img src="{{ asset('assets/media/svg/brand-logos/logo-banco-nacion.png') }}" class="mh-30px mh-lg-40px" alt="" />
                     </div>
                     <!--end::Client-->
                     <!--begin::Client-->
-                    <div class="d-flex flex-center m-3 m-md-6" data-bs-toggle="tooltip" title="AON - Empower Results">
-                        <img src="{{ asset('assets/media/svg/brand-logos/logo-bbva.svg') }}" class="mh-30px mh-lg-40px" alt="" />
+                    <div class="d-flex flex-center m-3 m-md-6" data-bs-toggle="tooltip" title="BBVA">
+                        <img src="{{ asset('assets/media/svg/brand-logos/logo-bbva.png') }}" class="mh-30px mh-lg-40px" alt="" />
                     </div>
                     <!--end::Client-->
                     <!--begin::Client-->
-                    <div class="d-flex flex-center m-3 m-md-6" data-bs-toggle="tooltip" title="Hewlett-Packard">
-                        <img src="{{ asset('assets/media/svg/brand-logos/logo-scotia.svg') }}" class="mh-30px mh-lg-40px" alt="" />
+                    <div class="d-flex flex-center m-3 m-md-6" data-bs-toggle="tooltip" title="ScotiaBank">
+                        <img src="{{ asset('assets/media/svg/brand-logos/logo-scotia.png') }}" class="mh-30px mh-lg-40px" alt="" />
                     </div>
                     <!--end::Client-->
                     <!--begin::Client-->
-                    <div class="d-flex flex-center m-3 m-md-6" data-bs-toggle="tooltip" title="Truman">
-                        <img src="{{ asset('assets/media/svg/brand-logos/logo-pichincha.svg') }}" class="mh-30px mh-lg-40px" alt="" />
+                    <div class="d-flex flex-center m-3 m-md-6" data-bs-toggle="tooltip" title="Pichincha">
+                        <img src="{{ asset('assets/media/svg/brand-logos/logo-pichincha.png') }}" class="mh-30px mh-lg-40px" alt="" />
                     </div>
                     <!--end::Client-->
                 </div>
@@ -1186,7 +1186,7 @@ License: For each use you must have a valid license purchased only from above li
                 </div>
                 <!--end::Content-->
                 <!--begin::Link-->
-                <a href="https://1.envato.market/EA4JP" class="btn btn-lg btn-outline border-2 btn-outline-white flex-shrink-0 my-2">Iniciar operación</a>
+                <a href="{{ route('home') }}" class="btn btn-lg btn-outline border-2 btn-outline-white flex-shrink-0 my-2">Iniciar operación</a>
                 <!--end::Link-->
             </div>
             <!--end::Highlight-->
@@ -1319,7 +1319,7 @@ License: For each use you must have a valid license purchased only from above li
                     <!--begin::Copyright-->
                     <div class="d-flex align-items-center order-2 order-md-1">
                         <!--begin::Logo-->
-                        <a href="../../demo7/dist/landing.html">
+                        <a href="../../">
                             <img alt="Logo" src="{{ asset('assets/media/logos/logo-landing.png') }}" class="h-15px h-md-20px" />
                         </a>
                         <!--end::Logo image-->
