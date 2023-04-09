@@ -319,7 +319,7 @@
                                                         <h5 class="custom-list-title fw-bold @yield('activeHome') mb-1">Calculadora</h5>
                                                         <!--end::Title-->
                                                         <!--begin::Link-->
-                                                        <span class="text-gray-400 fw-bold">Mejores tazas</span>
+                                                        <span class="text-gray-400 fw-bold">Mejores tasas</span>
                                                         <!--end::Link-->
                                                     </div>
                                                     <!--begin::Description-->
@@ -386,6 +386,27 @@
                                                     <!--begin::Description-->
                                                 </a>
                                                 --}}<!--end::Item-->
+                                                <!--begin::Item-->
+                                                <a href="{{ route('dashboard.graphs.Dolareros') }}" class="custom-list d-flex align-items-center px-5 py-4">
+                                                    <!--begin::Symbol-->
+                                                    <div class="symbol symbol-40px me-5">
+                                                        <span class="symbol-label">
+                                                            <img src="{{ asset('assets/media/icons/duotune/graphs/gra011.svg') }}" class="h-50 align-self-center" alt="" />
+                                                        </span>
+                                                    </div>
+                                                    <!--end::Symbol-->
+                                                    <!--begin::Description-->
+                                                    <div class="d-flex flex-column flex-grow-1">
+                                                        <!--begin::Title-->
+                                                        <h5 class="custom-list-title fw-bold @yield('activeGraphDolareros', 'text-gray-800') mb-1">Gráficos Dolareros</h5>
+                                                        <!--end::Title-->
+                                                        <!--begin::Link-->
+                                                        <span class="text-gray-400 fw-bold">En tiempo real</span>
+                                                        <!--end::Link-->
+                                                    </div>
+                                                    <!--begin::Description-->
+                                                </a>
+                                                <!--end::Item-->
                                                 <!--begin::Item-->
                                                 <a href="{{ route('dashboard.graphs.Kambista') }}" class="custom-list d-flex align-items-center px-5 py-4">
                                                     <!--begin::Symbol-->

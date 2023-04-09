@@ -25,6 +25,8 @@ Route::middleware('auth')->group(function (){
     Route::prefix('dashboard')->group(function (){
         Route::get('/perfil', [App\Http\Controllers\UserController::class, 'profile'])
             ->name('dashboard.profile');
+        Route::get('/graficos/Dolareros', [App\Http\Controllers\GraphController::class, 'indexDolareros'])
+            ->name('dashboard.graphs.Dolareros');
         Route::get('/graficos/Kambista', [App\Http\Controllers\GraphController::class, 'indexKambista'])
             ->name('dashboard.graphs.Kambista');
         Route::get('/graficos/Bloomberg', [App\Http\Controllers\GraphController::class, 'indexBloomberg'])

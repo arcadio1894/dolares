@@ -1,12 +1,17 @@
-let $optionKambista = "w";
-let $optionBloomberg = "w";
-let $optionGoogle = "w";
-let $optionCocosylucas = "w";
-let $optionTKambio = "w";
-let $optionSecuEx = "w";
+let $optionSecuEx = "d";
+let $params;
+
 $(document).ready(function () {
 
+    $optionSecuEx = $('#statusSecuEx').val();
     chartSecuEx();
+
+    $('#statusSecuEx').on('change', function (e) {
+        var optionSelected = $("option:selected", this);
+        $optionSecuEx = this.value;
+
+        chartSecuEx();
+    });
 
     /*$(document).on('click','[data-tab]', getTipoCambioDolareros);*/
 });
@@ -82,7 +87,7 @@ function chartSecuEx() {
 
     var url = 'https://www.api-dolareros.sbs/api/tipoCambio/history/options';
 
-    var params = {
+    $params = {
         "token":"dolareros2023secret",
         "option":$optionSecuEx,
         "nameWeb":"SecuEx"
@@ -92,14 +97,14 @@ function chartSecuEx() {
         url: url,
         method: 'POST',
         //headers: {'Accept': 'application/json','X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-        data: JSON.stringify(params),
+        data: JSON.stringify($params),
         contentType:'application/json; charset=utf-8',
         processData: false,
         dataType : "json",
         crossDomain: true,
         /* dataType: 'jsonp', */
         success: function(response){
-            console.log(response.data);
+            //console.log(response.data);
             chart.updateOptions({
                 series: [
                     {
@@ -117,7 +122,7 @@ function chartSecuEx() {
             });
         },
         error: function(data){
-            console.log(data);
+            //console.log(data);
         }
     });
 
@@ -127,14 +132,14 @@ function chartSecuEx() {
             url: url,
             method: 'POST',
             headers: {'Accept': 'application/json','X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-            data: JSON.stringify(params),
+            data: JSON.stringify($params),
             contentType:'application/json; charset=utf-8',
             processData: false,
             dataType : "json",
             crossDomain: true,
             /* dataType: 'jsonp', */
             success: function(response){
-                console.log(response.data);
+                //console.log(response.data);
                 chart.updateOptions({
                     series: [
                         {
@@ -152,7 +157,7 @@ function chartSecuEx() {
                 });
             },
             error: function(data){
-                console.log(data);
+                //console.log(data);
             }
         });
     }, 60000);

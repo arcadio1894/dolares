@@ -1,21 +1,22 @@
-let $optionCocosylucas = "d";
+let $optionDolareros = "d";
 let $params;
-
 $(document).ready(function () {
 
-    $optionCocosylucas = $('#statusCocosylucas').val();
-    chartCocosylucas();
+    $optionDolareros = $('#statusDolareros').val();
+    chartDolareros();
 
-    $('#statusCocosylucas').on('change', function (e) {
+    $('#statusDolareros').on('change', function (e) {
         var optionSelected = $("option:selected", this);
-        $optionCocosylucas = this.value;
+        $optionDolareros = this.value;
 
-        chartCocosylucas();
+        chartDolareros();
     });
+
     /*$(document).on('click','[data-tab]', getTipoCambioDolareros);*/
 });
 
-function chartCocosylucas() {
+function chartDolareros() {
+    //console.log($optionDolareros);
     var options = {
         series: [
             /*{
@@ -81,15 +82,15 @@ function chartCocosylucas() {
 
     };
 
-    var chart = new ApexCharts(document.querySelector("#chartCocosylucas"), options);
+    var chart = new ApexCharts(document.querySelector("#chartDolareros"), options);
     chart.render();
 
     var url = 'https://www.api-dolareros.sbs/api/tipoCambio/history/options';
 
     $params = {
         "token":"dolareros2023secret",
-        "option":$optionCocosylucas,
-        "nameWeb":"Cocosylucas"
+        "option":$optionDolareros,
+        "nameWeb":"Dolareros"
     };
 
     $.ajax({
@@ -126,7 +127,7 @@ function chartCocosylucas() {
     });
 
     window.setInterval(function () {
-
+        //console.log($optionDolareros);
         $.ajax({
             url: url,
             method: 'POST',
@@ -161,5 +162,6 @@ function chartCocosylucas() {
         });
     }, 60000);
 }
+
 
 

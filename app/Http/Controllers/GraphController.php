@@ -35,4 +35,9 @@ class GraphController extends Controller
     {
         return view('graph.indexSecuEx');
     }
+
+    public function indexDolareros()
+    {
+        return view('graph.indexDolareros');
+    }
 }

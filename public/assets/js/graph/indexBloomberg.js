@@ -1,13 +1,17 @@
-let $optionKambista = "w";
-let $optionBloomberg = "w";
-let $optionGoogle = "w";
-let $optionCocosylucas = "w";
-let $optionTKambio = "w";
-let $optionSecuEx = "w";
+let $optionBloomberg = "d";
+let $params;
 $(document).ready(function () {
+
+    $optionBloomberg = $('#statusBloomberg').val();
 
     chartBloomberg();
 
+    $('#statusBloomberg').on('change', function (e) {
+        var optionSelected = $("option:selected", this);
+        $optionBloomberg = this.value;
+
+        chartBloomberg();
+    });
     /*$(document).on('click','[data-tab]', getTipoCambioDolareros);*/
 });
 
@@ -82,7 +86,7 @@ function chartBloomberg() {
 
     var url = 'https://www.api-dolareros.sbs/api/tipoCambio/history/options';
 
-    var params = {
+    $params = {
         "token":"dolareros2023secret",
         "option":$optionBloomberg,
         "nameWeb":"Bloomberg"
@@ -92,14 +96,14 @@ function chartBloomberg() {
         url: url,
         method: 'POST',
         //headers: {'Accept': 'application/json','X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-        data: JSON.stringify(params),
+        data: JSON.stringify($params),
         contentType:'application/json; charset=utf-8',
         processData: false,
         dataType : "json",
         crossDomain: true,
         /* dataType: 'jsonp', */
         success: function(response){
-            console.log(response.data);
+            //console.log(response.data);
             chart.updateOptions({
                 series: [
                     {
@@ -117,7 +121,7 @@ function chartBloomberg() {
             });
         },
         error: function(data){
-            console.log(data);
+            //console.log(data);
         }
     });
 
@@ -127,14 +131,14 @@ function chartBloomberg() {
             url: url,
             method: 'POST',
             headers: {'Accept': 'application/json','X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-            data: JSON.stringify(params),
+            data: JSON.stringify($params),
             contentType:'application/json; charset=utf-8',
             processData: false,
             dataType : "json",
             crossDomain: true,
             /* dataType: 'jsonp', */
             success: function(response){
-                console.log(response.data);
+                //console.log(response.data);
                 chart.updateOptions({
                     series: [
                         {
@@ -152,7 +156,7 @@ function chartBloomberg() {
                 });
             },
             error: function(data){
-                console.log(data);
+                //console.log(data);
             }
         });
     }, 60000);

@@ -32,10 +32,10 @@
                     <div class="card-toolbar" data-kt-buttons="true">
 
                         <select id="statusKambista" name="status" data-control="select2" data-hide-search="true" class="form-select form-select-sm form-select-white w-100px">
-                            <option value="Active" selected="selected">Diario</option>
-                            <option value="Approved">Semanal</option>
-                            <option value="Declined">Mensual</option>
-                            <option value="In Progress">Anual</option>
+                            <option value="d" selected="selected">Diario</option>
+                            <option value="w">Semanal</option>
+                            <option value="m">Mensual</option>
+                            <option value="y">Anual</option>
                         </select>
                     </div>
                     <!--end::Toolbar-->

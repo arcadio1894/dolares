@@ -10,13 +10,13 @@
             <a href="{{ route('home') }}" class="text-muted">Inicio</a>
         </li>
         <li class="breadcrumb-item text-muted">Dashboard</li>
-        <li class="breadcrumb-item text-dark">Gráficos CocosyLucas</li>
+        <li class="breadcrumb-item text-dark">Gráficos Dolareros</li>
     </ul>
 @endsection
 
 @section('activeTabPanelGraphs', 'active')
 @section('activeTabGraphs', 'active show')
-@section('activeGraphCocosylucas', 'text-primary')
+@section('activeGraphDolareros', 'text-primary')
 
 @section('content')
     <div class="row">
@@ -25,13 +25,13 @@
                 <!--begin::Header-->
                 <div class="card-header border-0 pt-5">
                     <h3 class="card-title align-items-start flex-column">
-                        <span class="card-label fw-bolder fs-3 mb-1">Tipo de cambio en CocosyLucas</span>
+                        <span class="card-label fw-bolder fs-3 mb-1">Tipo de cambio en Dolareros</span>
                         <span class="text-muted fw-bold fs-7">Actualizado cada 1 minuto</span>
                     </h3>
                     <!--begin::Toolbar-->
                     <div class="card-toolbar" data-kt-buttons="true">
 
-                        <select id="statusCocosylucas" name="status" data-control="select2" data-hide-search="true" class="form-select form-select-sm form-select-white w-100px">
+                        <select id="statusDolareros" name="status" data-control="select2" data-hide-search="true" class="form-select form-select-sm form-select-white w-100px">
                             <option value="d" selected="selected">Diario</option>
                             <option value="w">Semanal</option>
                             <option value="m">Mensual</option>
@@ -44,8 +44,7 @@
                 <!--begin::Body-->
                 <div class="card-body">
                     <!--begin::Chart-->
-                    <div id="chartCocosylucas" style="height: 300px"></div>
-
+                    <div id="chartDolareros" style="height: 300px"></div>
                     <!--end::Chart-->
                 </div>
                 <!--end::Body-->
@@ -55,5 +54,5 @@
 @endsection
 
 @section('scripts')
-    <script src="{{ asset('assets/js/graph/indexCocosylucas.js') }}"></script>
+    <script src="{{ asset('assets/js/graph/indexDolareros.js') }}"></script>
 @endsection

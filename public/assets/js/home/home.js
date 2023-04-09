@@ -23,7 +23,7 @@ function getTipoCambioDolareros() {
     var url = 'https://www.api-dolareros.sbs/api/tipoCambio/retrieve';
     var urlControl = 'https://www.api-dolareros.sbs/api/tipoCambio/retrieve/control';
 
-    $.ajax({
+    var req1 = $.ajax({
         url: urlControl,
         method: 'POST',
         data: JSON.stringify({
@@ -45,7 +45,7 @@ function getTipoCambioDolareros() {
         }
     });
 
-    $.ajax({
+    var req2 = $.ajax({
         url: url,
         method: 'POST',
         data: JSON.stringify({
@@ -57,45 +57,48 @@ function getTipoCambioDolareros() {
         crossDomain: true,
 
         success: function(response){
-            console.log(response.tipoCambio);
-            var buy = response.tipoCambio.buy;
-            var sell = response.tipoCambio.sell;
+            $.when(req1).done(function(){
+                console.log(response.tipoCambio);
+                var buy = response.tipoCambio.buy;
+                var sell = response.tipoCambio.sell;
 
-            $tipoCambioCompra = buy;
-            $tipoCambioVenta = sell;
+                $tipoCambioCompra = buy;
+                $tipoCambioVenta = sell;
 
-            $('#text_buy').html('Compra: '+buy);
-            $('#text_sell').html('Venta: '+sell);
+                $('#text_buy').html('Compra: '+buy);
+                $('#text_sell').html('Venta: '+sell);
 
-            var ref_tab = $("ul.nav-tabs  a.active");
-            console.log(ref_tab.attr('data-tab'));
+                var ref_tab = $("ul.nav-tabs  a.active");
+                console.log(ref_tab.attr('data-tab'));
 
-            var typeTab = ref_tab.attr('data-tab');
+                var typeTab = ref_tab.attr('data-tab');
 
-            if ( typeTab == 'buy' )
-            {
-                $('#text_buy').removeClass('text-muted');
-                $('#text_buy').addClass('text-primary');
-                $('#text_sell').removeClass('text-primary');
-                $('#text_sell').addClass('text-muted');
+                if ( typeTab == 'buy' )
+                {
+                    $('#text_buy').removeClass('text-muted');
+                    $('#text_buy').addClass('text-primary');
+                    $('#text_sell').removeClass('text-primary');
+                    $('#text_sell').addClass('text-muted');
 
-                var sendBuy = parseFloat($('#sendBuy').val());
-                var getBuy = parseFloat(sendBuy*$tipoCambioCompra).toFixed(2);
-                $('#getBuy').val(getBuy);
-                var ahorroBuy = getAhorroBuy(sendBuy);
-                $('#ahorroBuy').html('Estás ahorrando aprox. S/ '+ahorroBuy);
-            } else {
-                $('#text_sell').removeClass('text-muted');
-                $('#text_sell').addClass('text-primary');
-                $('#text_buy').removeClass('text-primary');
-                $('#text_buy').addClass('text-muted');
+                    var sendBuy = parseFloat($('#sendBuy').val());
+                    var getBuy = parseFloat(sendBuy*$tipoCambioCompra).toFixed(2);
+                    $('#getBuy').val(getBuy);
+                    var ahorroBuy = getAhorroBuy(sendBuy);
+                    $('#ahorroBuy').html('Estás ahorrando aprox. S/ '+ahorroBuy);
+                } else {
+                    $('#text_sell').removeClass('text-muted');
+                    $('#text_sell').addClass('text-primary');
+                    $('#text_buy').removeClass('text-primary');
+                    $('#text_buy').addClass('text-muted');
 
-                var sendSell = parseFloat($('#sendSell').val());
-                var getSell = parseFloat(sendSell/$tipoCambioVenta).toFixed(2);
-                $('#getSell').val(getSell);
-                var ahorroSell = getAhorroSell(sendSell);
-                $('#ahorroSell').html('Estás ahorrando aprox. USD '+ahorroSell)
-            }
+                    var sendSell = parseFloat($('#sendSell').val());
+                    var getSell = parseFloat(sendSell/$tipoCambioVenta).toFixed(2);
+                    $('#getSell').val(getSell);
+                    var ahorroSell = getAhorroSell(sendSell);
+                    $('#ahorroSell').html('Estás ahorrando aprox. USD '+ahorroSell)
+                }
+            });
+
         },
         error: function(data){
             console.log(data);

@@ -1,13 +1,17 @@
-let $optionKambista = "w";
-let $optionBloomberg = "w";
-let $optionGoogle = "w";
-let $optionCocosylucas = "w";
-let $optionTKambio = "w";
-let $optionSecuEx = "w";
+let $optionTKambio = "d";
+let $params;
+
 $(document).ready(function () {
 
+    $optionTKambio = $('#statusTKambio').val();
     chartTKambio();
 
+    $('#statusTKambio').on('change', function (e) {
+        var optionSelected = $("option:selected", this);
+        $optionTKambio = this.value;
+
+        chartTKambio();
+    });
     /*$(document).on('click','[data-tab]', getTipoCambioDolareros);*/
 });
 
@@ -82,7 +86,7 @@ function chartTKambio() {
 
     var url = 'https://www.api-dolareros.sbs/api/tipoCambio/history/options';
 
-    var params = {
+    $params = {
         "token":"dolareros2023secret",
         "option":$optionTKambio,
         "nameWeb":"TKambio"
@@ -92,14 +96,14 @@ function chartTKambio() {
         url: url,
         method: 'POST',
         //headers: {'Accept': 'application/json','X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-        data: JSON.stringify(params),
+        data: JSON.stringify($params),
         contentType:'application/json; charset=utf-8',
         processData: false,
         dataType : "json",
         crossDomain: true,
         /* dataType: 'jsonp', */
         success: function(response){
-            console.log(response.data);
+            //console.log(response.data);
             chart.updateOptions({
                 series: [
                     {
@@ -117,7 +121,7 @@ function chartTKambio() {
             });
         },
         error: function(data){
-            console.log(data);
+            //console.log(data);
         }
     });
 
@@ -127,14 +131,14 @@ function chartTKambio() {
             url: url,
             method: 'POST',
             headers: {'Accept': 'application/json','X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-            data: JSON.stringify(params),
+            data: JSON.stringify($params),
             contentType:'application/json; charset=utf-8',
             processData: false,
             dataType : "json",
             crossDomain: true,
             /* dataType: 'jsonp', */
             success: function(response){
-                console.log(response.data);
+                //console.log(response.data);
                 chart.updateOptions({
                     series: [
                         {
@@ -152,7 +156,7 @@ function chartTKambio() {
                 });
             },
             error: function(data){
-                console.log(data);
+                //console.log(data);
             }
         });
     }, 60000);
