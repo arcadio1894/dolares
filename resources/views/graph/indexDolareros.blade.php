@@ -20,7 +20,7 @@
 
 @section('content')
     <div class="row">
-        <div class="col-xl-12 mt-4 d-none d-sm-block">
+        <div class="col-xl-12 mt-4 ">
             <div class="card card-xl-stretch mb-xl-8">
                 <!--begin::Header-->
                 <div class="card-header border-0 pt-5">
