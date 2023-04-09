@@ -57,10 +57,10 @@
                 <!--begin::Heading-->
                 <div class="text-center mb-10">
                     <!--begin::Title-->
-                    <h1 class="text-dark mb-3">Forgot Password ?</h1>
+                    <h1 class="text-dark mb-3">¿Olvidaste tu contraseña?</h1>
                     <!--end::Title-->
                     <!--begin::Link-->
-                    <div class="text-gray-400 fw-bold fs-4">Enter your email to reset your password.</div>
+                    <div class="text-gray-400 fw-bold fs-4">Ingresa un correo válido para resetear tu contraseña</div>
                     <!--end::Link-->
                 </div>
                 <!--begin::Heading-->
@@ -78,9 +78,9 @@
                 <!--begin::Actions-->
                 <div class="d-flex flex-wrap justify-content-center pb-lg-0">
                     <button type="submit" id="btn-reset" class="btn btn-lg btn-primary fw-bolder me-4">
-                        <span class="indicator-label">Send Password Reset Link</span>
+                        <span class="indicator-label">Enviar Link para reseteo</span>
                     </button>
-                    <a href="{{ route('login') }}" class="btn btn-lg btn-light-primary fw-bolder">Cancel</a>
+                    <a href="{{ route('login') }}" class="btn btn-lg btn-light-primary fw-bolder">Cancelar</a>
                 </div>
                 <!--end::Actions-->
             </form>

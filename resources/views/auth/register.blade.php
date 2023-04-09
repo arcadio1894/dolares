@@ -87,11 +87,11 @@
                 <!--begin::Heading-->
                 <div class="mb-10 text-center">
                     <!--begin::Title-->
-                    <h1 class="text-dark mb-3">Create an Account</h1>
+                    <h1 class="text-dark mb-3">¡Regístrate!</h1>
                     <!--end::Title-->
                     <!--begin::Link-->
-                    <div class="text-gray-400 fw-bold fs-4">Already have an account?
-                        <a href="{{ route('login') }}" class="link-primary fw-bolder">Sign in here</a></div>
+                    <div class="text-gray-400 fw-bold fs-4">¿Ya tienes una cuenta?
+                        <a href="{{ route('login') }}" class="link-primary fw-bolder">¡Ingresa aquí!</a></div>
                     <!--end::Link-->
                 </div>
                 <!--end::Heading-->
@@ -99,7 +99,7 @@
                 <div class="row fv-row mb-7">
                     <!--begin::Col-->
                     <div class="col-xl-6">
-                        <label class="form-label fw-bolder text-dark fs-6">First Name</label>
+                        <label class="form-label fw-bolder text-dark fs-6">Nombres</label>
                         <input class="form-control form-control-lg form-control-solid @error('first_name') is-invalid @enderror" type="text" placeholder="" name="first_name" autocomplete="off" required />
                         @error('name')
                         <span class="invalid-feedback" role="alert">
@@ -110,7 +110,7 @@
                     <!--end::Col-->
                     <!--begin::Col-->
                     <div class="col-xl-6">
-                        <label class="form-label fw-bolder text-dark fs-6">Last Name</label>
+                        <label class="form-label fw-bolder text-dark fs-6">Apellidos</label>
                         <input class="form-control form-control-lg form-control-solid @error('last_name') is-invalid @enderror" type="text" placeholder="" name="last_name" autocomplete="off" required />
                         @error('name')
                         <span class="invalid-feedback" role="alert">
@@ -170,7 +170,7 @@
                 <!--end::Input group=-->
                 <!--begin::Input group-->
                 <div class="fv-row mb-5">
-                    <label class="form-label fw-bolder text-dark fs-6">Confirm Password</label>
+                    <label class="form-label fw-bolder text-dark fs-6">Confirmar Password</label>
                     <input class="form-control form-control-lg form-control-solid" type="password" placeholder="" name="password_confirmation" autocomplete="off" required/>
                 </div>
                 <!--end::Input group-->
@@ -178,8 +178,8 @@
                 <div class="fv-row mb-10">
                     <label class="form-check form-check-custom form-check-solid form-check-inline">
                         <input class="form-check-input" type="checkbox" name="toc" value="1" />
-                        <span class="form-check-label fw-bold text-gray-700 fs-6">I Agree
-                            <a href="#" class="ms-1 link-primary">Terms and conditions</a>.
+                        <span class="form-check-label fw-bold text-gray-700 fs-6">Estoy de acuerdo con los
+                            <a href="#" class="ms-1 link-primary">Términos y condiciones</a>.
                         </span>
                     </label>
                 </div>
