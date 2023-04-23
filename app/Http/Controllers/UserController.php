@@ -60,17 +60,17 @@ class UserController extends Controller
     public function renewToken( Request $request )
     {
         $tokens = $request->get('token');
-
+        //dump($tokens);
         $tokenSecure = '';
+        if ( count($tokens) != 4 )
+        {
+            return response()->json([
+                'message' => 'Ingrese 4 números válidos.',
+            ], 422);
+        }
         for ( $i=0; $i<count($tokens); $i++ )
         {
             $tokenSecure = $tokenSecure . $tokens[$i];
-            if ( $tokens[$i] == '' || $tokens[$i] == null )
-            {
-                return response()->json([
-                    'message' => 'Ingrese 4 números válidos',
-                ], 422);
-            }
         }
 
         DB::beginTransaction();

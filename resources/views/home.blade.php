@@ -108,8 +108,8 @@
                             <div class="position-absolute translate-middle-y top-50 end-0 me-3">
                                 <!--begin::Svg Icon | path: icons/duotune/finance/fin002.svg-->
                                 <span class="svg-icon svg-icon-2hx">
-                                                            <img src="https://img.icons8.com/fluency/36/null/usa-circular.png"/>
-                                                        </span>
+                                    <img src="https://img.icons8.com/fluency/36/null/usa-circular.png"/>
+                                </span>
                                 <!--end::Svg Icon-->
                             </div>
                             <!--end::CVV icon-->
@@ -145,7 +145,7 @@
                         <i class="fas fa-exclamation-circle text-primary ms-2 fs-7" data-bs-toggle="tooltip" title="Ahorro aprox. frente al tipo de cambio publicado en otras entidades bancarias"></i>
 
                     </div>
-                    <div class="fs-2 fw-bold text-muted align-left">
+                    <div class="fs-2 fw-bold text-muted align-left" id="div-couponBuy" style="display: none">
                         <span class="fs-5 fw-bolder text-muted" >Nuevo tipo de cambio: </span>
                         <span class="fs-5 fw-bolder text-danger tachado" id="cuponBuyOld">4.00</span>
                         <span class="fs-5 fw-bolder text-primary" id="cuponBuyNew">5.00</span>
@@ -209,7 +209,7 @@
                         <i class="fas fa-exclamation-circle text-primary ms-2 fs-7" data-bs-toggle="tooltip" title="Ahorro aprox. frente al tipo de cambio publicado en otras entidades bancarias"></i>
 
                     </div>
-                    <div class="fs-2 fw-bold text-muted align-left">
+                    <div class="fs-2 fw-bold text-muted align-left" id="div-couponSell" style="display: none">
                         <span class="fs-5 fw-bolder text-muted" >Nuevo tipo de cambio: </span>
                         <span class="fs-5 fw-bolder text-danger tachado" id="cuponSellOld">4.00</span>
                         <span class="fs-5 fw-bolder text-primary" id="cuponSellNew">5.00</span>

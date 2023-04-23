@@ -132,19 +132,20 @@ class HomeController extends Controller
             ], 422);
         }
 
+        // TODO: Esta creacion debe hacerse al culminar la operación con el cupón
+        /*$userCouponNew = UserCoupon::create([
+            'user_id' => Auth::id(),
+            'coupon_id' => $couponComplete->id,
+        ]);*/
+
         DB::beginTransaction();
         try {
-
-            $userCouponNew = UserCoupon::create([
-                'user_id' => Auth::id(),
-                'coupon_id' => $userCoupon->id,
-            ]);
 
             // Actualizar el  StopData si hay
             $stopData = StopData::where('user_id', Auth::id())->first();
             if ( isset($stopData) )
             {
-                $stopData->coupon_id = $userCouponNew->id;
+                $stopData->coupon_id = $couponComplete->id;
                 $stopData->save();
             }
 

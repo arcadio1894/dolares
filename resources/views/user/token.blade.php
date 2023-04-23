@@ -240,7 +240,7 @@
                 <!--begin::Modal header-->
                 <div class="modal-header flex-stack">
                     <!--begin::Title-->
-                    <h2>Contraseña segura</h2>
+                    <h2></h2>
                     <!--end::Title-->
                     <!--begin::Close-->
                     <div class="btn btn-sm btn-icon btn-active-color-primary" data-bs-dismiss="modal">
@@ -276,11 +276,11 @@
                             <div class="fw-bolder text-start text-dark fs-6 mb-1 ms-1">Ingresa tu contraseña</div>
                             <!--end::Label-->
                             <!--begin::Input group-->
-                            <div class="d-flex flex-wrap flex-stack">
-                                <input type="text" data-inputmask="'mask': '9', 'placeholder': ''" maxlength="1" class="form-control form-control-solid h-60px w-60px fs-2qx text-center border-primary border-hover mx-1 my-2" value="" name="token[]" />
-                                <input type="text" data-inputmask="'mask': '9', 'placeholder': ''" maxlength="1" class="form-control form-control-solid h-60px w-60px fs-2qx text-center border-primary border-hover mx-1 my-2" value="" name="token[]" />
-                                <input type="text" data-inputmask="'mask': '9', 'placeholder': ''" maxlength="1" class="form-control form-control-solid h-60px w-60px fs-2qx text-center border-primary border-hover mx-1 my-2" value="" name="token[]" />
-                                <input type="text" data-inputmask="'mask': '9', 'placeholder': ''" maxlength="1" class="form-control form-control-solid h-60px w-60px fs-2qx text-center border-primary border-hover mx-1 my-2" value="" name="token[]" />
+                            <div class="d-flex flex-wrap flex-stack form__pincode1" >
+                                <input type="tel" maxlength="1" pattern="[\d]*" tabindex="1" placeholder="" autocomplete="off" class="form-control form-control-solid h-60px w-60px fs-2qx text-center border-primary border-hover mx-1 my-2" name="pincode-5" />
+                                <input type="tel" maxlength="1" pattern="[\d]*" tabindex="2" placeholder="" autocomplete="off" class="form-control form-control-solid h-60px w-60px fs-2qx text-center border-primary border-hover mx-1 my-2" name="pincode-6" />
+                                <input type="tel" maxlength="1" pattern="[\d]*" tabindex="3" placeholder="" autocomplete="off" class="form-control form-control-solid h-60px w-60px fs-2qx text-center border-primary border-hover mx-1 my-2" name="pincode-7" />
+                                <input type="tel" maxlength="1" pattern="[\d]*" tabindex="4" placeholder="" autocomplete="off" class="form-control form-control-solid h-60px w-60px fs-2qx text-center border-primary border-hover mx-1 my-2" name="pincode-8" />
                             </div>
                             <!--begin::Input group-->
                         </div>
@@ -310,7 +310,7 @@
                 <!--begin::Modal header-->
                 <div class="modal-header flex-stack">
                     <!--begin::Title-->
-                    <h2>Reestablecer contraseña segura</h2>
+                    <h2></h2>
                     <!--end::Title-->
                     <!--begin::Close-->
                     <div class="btn btn-sm btn-icon btn-active-color-primary" data-bs-dismiss="modal">
@@ -346,11 +346,11 @@
                             <div class="fw-bolder text-start text-dark fs-6 mb-1 ms-1">Ingresa tu nueva contraseña</div>
                             <!--end::Label-->
                             <!--begin::Input group-->
-                            <div class="d-flex flex-wrap flex-stack">
-                                <input type="text" data-inputmask="'mask': '9', 'placeholder': ''" maxlength="1" class="form-control form-control-solid h-60px w-60px fs-2qx text-center border-primary border-hover mx-1 my-2" value="" name="token[]" />
-                                <input type="text" data-inputmask="'mask': '9', 'placeholder': ''" maxlength="1" class="form-control form-control-solid h-60px w-60px fs-2qx text-center border-primary border-hover mx-1 my-2" value="" name="token[]" />
-                                <input type="text" data-inputmask="'mask': '9', 'placeholder': ''" maxlength="1" class="form-control form-control-solid h-60px w-60px fs-2qx text-center border-primary border-hover mx-1 my-2" value="" name="token[]" />
-                                <input type="text" data-inputmask="'mask': '9', 'placeholder': ''" maxlength="1" class="form-control form-control-solid h-60px w-60px fs-2qx text-center border-primary border-hover mx-1 my-2" value="" name="token[]" />
+                            <div class="d-flex flex-wrap flex-stack form__pincode1">
+                                <input type="tel" maxlength="1" pattern="[\d]*" tabindex="1" placeholder="" autocomplete="off" class="form-control form-control-solid h-60px w-60px fs-2qx text-center border-primary border-hover mx-1 my-2" name="pincode-1" />
+                                <input type="tel" maxlength="1" pattern="[\d]*" tabindex="2" placeholder="" autocomplete="off" class="form-control form-control-solid h-60px w-60px fs-2qx text-center border-primary border-hover mx-1 my-2" name="pincode-2" />
+                                <input type="tel" maxlength="1" pattern="[\d]*" tabindex="3" placeholder="" autocomplete="off" class="form-control form-control-solid h-60px w-60px fs-2qx text-center border-primary border-hover mx-1 my-2" name="pincode-3" />
+                                <input type="tel" maxlength="1" pattern="[\d]*" tabindex="4" placeholder="" autocomplete="off" class="form-control form-control-solid h-60px w-60px fs-2qx text-center border-primary border-hover mx-1 my-2" name="pincode-4" />
                             </div>
                             <!--begin::Input group-->
                         </div>
@@ -375,5 +375,8 @@
 @endsection
 
 @section('scripts')
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/3.3.4/inputmask/inputmask.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/3.3.4/inputmask/jquery.inputmask.min.js'></script>
+
     <script src="{{ asset('assets/js/token/create.js') }}"></script>
 @endsection
