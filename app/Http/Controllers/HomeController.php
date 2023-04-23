@@ -74,7 +74,7 @@ class HomeController extends Controller
                     'sellStop' => $respRetrieve->tipoCambio->sell,
                     'buyControl' => $respControl->tipoCambio->buy,
                     'sellControl' => $respControl->tipoCambio->sell,
-                    'token' => $lastToken->token
+                    'token' => ($lastToken == null) ? null:$lastToken->token
                 ]);
             } else {
                 $stopData = StopData::create([
@@ -83,7 +83,7 @@ class HomeController extends Controller
                     'sellStop' => $respRetrieve->tipoCambio->sell,
                     'buyControl' => $respControl->tipoCambio->buy,
                     'sellControl' => $respControl->tipoCambio->sell,
-                    'token' => $lastToken->token
+                    'token' => ($lastToken == null) ? null:$lastToken->token
                 ]);
             }
 
