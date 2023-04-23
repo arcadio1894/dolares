@@ -26,6 +26,9 @@
         .highSize {
             font-size: 1.55rem !important;
         }
+        .tachado {
+            text-decoration: line-through;
+        }
     </style>
 @endsection
 
@@ -49,6 +52,17 @@
         </div>
     </div>
 </div>--}}
+@if ($respError != "" || $respError != null)
+    <div class="alert alert-danger" role="alert">
+        Ocurrió un error al obtener las útimas divisas. <a class="fw-bolder" href="#" id="btn-reload">Recargar página</a>
+    </div>
+@endif
+<input type="hidden" id="tipoCambioCompra" value="{{ $stopData->buyStop }}">
+<input type="hidden" id="tipoCambioVenta" value="{{ $stopData->sellStop }}">
+<input type="hidden" id="tipoCambioCompraControl" value="{{ $stopData->buyControl }}">
+<input type="hidden" id="tipoCambioVentaControl" value="{{ $stopData->sellControl }}">
+<input type="hidden" id="token" value="{{ $stopData->token }}">
+
 <div class="mt-4 col-xxl-4 offset-xxl-4 col-xl-6 offset-xl-3 col-lg-6 offset-lg-3 col-md-6 offset-md-3 col-sm-6 offset-sm-3 ">
     <div class="card card-xl-stretch mb-xl-8" >
         <!--begin::Header-->
@@ -118,8 +132,8 @@
                             <div class="position-absolute translate-middle-y top-50 end-0 me-3">
                                 <!--begin::Svg Icon | path: icons/duotune/finance/fin002.svg-->
                                 <span class="svg-icon svg-icon-2hx">
-                                                            <img src="https://img.icons8.com/fluency/36/null/peru-circular.png"/>
-                                                        </span>
+                                    <img src="https://img.icons8.com/fluency/36/null/peru-circular.png"/>
+                                </span>
                                 <!--end::Svg Icon-->
                             </div>
                             <!--end::CVV icon-->
@@ -130,6 +144,11 @@
                         <span class="fs-4 fw-bolder text-primary" id="ahorroBuy"> </span>
                         <i class="fas fa-exclamation-circle text-primary ms-2 fs-7" data-bs-toggle="tooltip" title="Ahorro aprox. frente al tipo de cambio publicado en otras entidades bancarias"></i>
 
+                    </div>
+                    <div class="fs-2 fw-bold text-muted align-left">
+                        <span class="fs-5 fw-bolder text-muted" >Nuevo tipo de cambio: </span>
+                        <span class="fs-5 fw-bolder text-danger tachado" id="cuponBuyOld">4.00</span>
+                        <span class="fs-5 fw-bolder text-primary" id="cuponBuyNew">5.00</span>
                     </div>
                     <div class="text-center py-5 py-lg-5">
                         <a href="{{ route('home') }}" class="btn btn-primary">Iniciar operación</a>
@@ -154,8 +173,8 @@
                             <div class="position-absolute translate-middle-y top-50 end-0 me-3">
                                 <!--begin::Svg Icon | path: icons/duotune/finance/fin002.svg-->
                                 <span class="svg-icon svg-icon-2hx">
-                                                            <img src="https://img.icons8.com/fluency/36/null/peru-circular.png"/>
-                                                        </span>
+                                    <img src="https://img.icons8.com/fluency/36/null/peru-circular.png"/>
+                                </span>
                                 <!--end::Svg Icon-->
                             </div>
                             <!--end::CVV icon-->
@@ -178,8 +197,8 @@
                             <div class="position-absolute translate-middle-y top-50 end-0 me-3">
                                 <!--begin::Svg Icon | path: icons/duotune/finance/fin002.svg-->
                                 <span class="svg-icon svg-icon-2hx">
-                                                            <img src="https://img.icons8.com/fluency/36/null/usa-circular.png"/>
-                                                        </span>
+                                    <img src="https://img.icons8.com/fluency/36/null/usa-circular.png"/>
+                                </span>
                                 <!--end::Svg Icon-->
                             </div>
                             <!--end::CVV icon-->
@@ -190,12 +209,35 @@
                         <i class="fas fa-exclamation-circle text-primary ms-2 fs-7" data-bs-toggle="tooltip" title="Ahorro aprox. frente al tipo de cambio publicado en otras entidades bancarias"></i>
 
                     </div>
+                    <div class="fs-2 fw-bold text-muted align-left">
+                        <span class="fs-5 fw-bolder text-muted" >Nuevo tipo de cambio: </span>
+                        <span class="fs-5 fw-bolder text-danger tachado" id="cuponSellOld">4.00</span>
+                        <span class="fs-5 fw-bolder text-primary" id="cuponSellNew">5.00</span>
+                    </div>
                     <div class="text-center py-5 py-lg-5">
                         <a href="{{ route('home') }}" class="btn btn-primary">Iniciar operación</a>
                     </div>
 
                 </div>
                 <!--end::Tab panel-->
+            </div>
+            <div class="position-relative d-flex align-items-center">
+                <div class="btn-group w-100" data-kt-buttons="true" data-kt-buttons-target="[data-kt-button]">
+                    <!--begin::Icon-->
+                    <div class="position-absolute translate-middle-y top-50 end-3 me-3">
+                        <!--begin::Svg Icon | path: icons/duotune/finance/fin002.svg-->
+                        <span class="svg-icon svg-icon-2hx text-primary">
+                            <img width="30px" src="{{ asset('assets/media/icons/duotune/finance/coupon.svg') }}"/>
+                        </span>
+                        <!--end::Svg Icon-->
+                    </div>
+                    <!--end::Icon-->
+                    <!--begin::Datepicker-->
+                    <input class="form-control form-control-solid ps-12" placeholder="Ingrese cupón" name="coupon" id="coupon" />
+                    <!--end::Datepicker-->
+                    <button class="btn btn-primary" data-url="{{ route('apply.coupon') }}" id="btn-coupon">Aplicar</button>
+
+                </div>
             </div>
         </div>
         <!--end::Body-->

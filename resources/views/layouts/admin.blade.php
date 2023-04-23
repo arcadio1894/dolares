@@ -7,6 +7,7 @@
     <meta name="description" content="Dolareros es la mejor casa de cambio online, te ofrece el mejor tipo de cambio  &amp; Compra y vente tus dólares online de la manera más rápida y segura." />
     <meta name="keywords" content="dólares, Casa de cambio, online, tasa de cambio, dollares, euros, cambista, Perú, divisas, dolar hoy, oro, precio del dolar hoy, valor dolar, cotización del dolar, dolar sunat, dolares a soles, dolarhoy, Trujillo, Lima, , dolar precio hoy, cuántos dólares, usd a soles" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta charset="utf-8" />
     <meta property="og:locale" content="en_US" />
     <meta property="og:type" content="article" />
@@ -324,29 +325,7 @@
                                                     </div>
                                                     <!--begin::Description-->
                                                 </a>
-                                                <!--end::Item-->
-                                                <!--begin::Item-->
-                                                {{--<a href="{{ route('dashboard.graphs') }}" class="custom-list d-flex align-items-center px-5 py-4">
-                                                    <!--begin::Symbol-->
-                                                    <div class="symbol symbol-40px me-5">
-                                                        <span class="symbol-label">
-                                                            <img src="{{ asset('assets/media/icons/duotune/graphs/gra012.svg') }}" class="h-50 align-self-center" alt="" />
-                                                        </span>
-                                                    </div>
-                                                    <!--end::Symbol-->
-                                                    <!--begin::Description-->
-                                                    <div class="d-flex flex-column flex-grow-1">
-                                                        <!--begin::Title-->
-                                                        <h5 class="custom-list-title fw-bold text-gray-800 mb-1">Gráficos</h5>
-                                                        <!--end::Title-->
-                                                        <!--begin::Link-->
-                                                        <span class="text-gray-400 fw-bold">En tiempo real</span>
-                                                        <!--end::Link-->
-                                                    </div>
-                                                    <!--begin::Description-->
-                                                </a>
-                                                --}}<!--end::Item-->
-                                                <!--begin::Item-->
+
                                             </div>
                                             <!--end::Items-->
                                         </div>
@@ -533,6 +512,68 @@
                                                     <!--begin::Description-->
                                                 </a>
                                                 <!--end::Item-->
+                                            </div>
+                                            <!--end::Items-->
+                                        </div>
+                                        <!--end::Projects-->
+                                    </div>
+                                    <!--end::Wrapper-->
+                                </div>
+                                <!--end::Tab pane-->
+
+                                <!--begin::Tab pane-->
+                                <div class="tab-pane fade @yield('activeTabProfile')" id="kt_aside_nav_tab_profile" role="tabpanel">
+                                    <!--begin::Wrapper-->
+                                    <div class="m-0">
+
+                                        <!--begin::Projects-->
+                                        <div class="m-0">
+
+                                            <!--begin::Items-->
+                                            <div class="mb-10">
+                                                <!--begin::Item-->
+                                                <a href="{{ route('dashboard.profile') }}" class="custom-list d-flex align-items-center px-5 py-4">
+                                                    <!--begin::Symbol-->
+                                                    <div class="symbol symbol-40px me-5">
+                                                        <span class="symbol-label">
+                                                            <img src="{{ asset('assets/media/icons/duotune/communication/com013.svg') }}" class="h-50 align-self-center" alt="" />
+                                                        </span>
+                                                    </div>
+                                                    <!--end::Symbol-->
+                                                    <!--begin::Description-->
+                                                    <div class="d-flex flex-column flex-grow-1">
+                                                        <!--begin::Title-->
+                                                        <h5 class="custom-list-title fw-bold @yield('activeProfileInformation', 'text-gray-800') mb-1">Perfil de usuario</h5>
+                                                        <!--end::Title-->
+                                                        <!--begin::Link-->
+                                                        <span class="text-gray-400 fw-bold">Información Personal</span>
+                                                        <!--end::Link-->
+                                                    </div>
+                                                    <!--begin::Description-->
+                                                </a>
+                                                <!--end::Item-->
+                                                <!--begin::Item-->
+                                                <a href="{{ route('dashboard.profile.token') }}" class="custom-list d-flex align-items-center px-5 py-4">
+                                                    <!--begin::Symbol-->
+                                                    <div class="symbol symbol-40px me-5">
+                                                        <span class="symbol-label">
+                                                            <img src="{{ asset('assets/media/icons/duotune/general/gen047.svg') }}" class="h-50 align-self-center" alt="" />
+                                                        </span>
+                                                    </div>
+                                                    <!--end::Symbol-->
+                                                    <!--begin::Description-->
+                                                    <div class="d-flex flex-column flex-grow-1">
+                                                        <!--begin::Title-->
+                                                        <h5 class="custom-list-title fw-bold @yield('activeProfileToken', 'text-gray-800') mb-1">Contraseña Segura</h5>
+                                                        <!--end::Title-->
+                                                        <!--begin::Link-->
+                                                        <span class="text-gray-400 fw-bold">Token personal</span>
+                                                        <!--end::Link-->
+                                                    </div>
+                                                    <!--begin::Description-->
+                                                </a>
+                                                <!--end::Item-->
+
                                             </div>
                                             <!--end::Items-->
                                         </div>

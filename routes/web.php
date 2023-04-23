@@ -17,14 +17,26 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes();
+Auth::routes(['register' => false]);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::middleware('auth')->group(function (){
     Route::prefix('dashboard')->group(function (){
+
+        // TODO: Rutas de Perfil
         Route::get('/perfil', [App\Http\Controllers\UserController::class, 'profile'])
             ->name('dashboard.profile');
+        Route::get('/token/seguro', [App\Http\Controllers\UserController::class, 'token'])
+            ->name('dashboard.profile.token');
+        Route::post('/token/store', [App\Http\Controllers\UserController::class, 'storeToken'])
+            ->name('token.store');
+        Route::post('/token/renew', [App\Http\Controllers\UserController::class, 'renewToken'])
+            ->name('token.renew');
+        Route::post('/apply/coupon', [App\Http\Controllers\HomeController::class, 'applyCoupon'])
+            ->name('apply.coupon');
+
+        // TODO: Rutas de Graficos
         Route::get('/graficos/Dolareros', [App\Http\Controllers\GraphController::class, 'indexDolareros'])
             ->name('dashboard.graphs.Dolareros');
         Route::get('/graficos/Kambista', [App\Http\Controllers\GraphController::class, 'indexKambista'])

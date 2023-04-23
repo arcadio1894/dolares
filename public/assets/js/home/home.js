@@ -3,11 +3,21 @@ let $tipoCambioVenta;
 
 let $tipoCambioCompraControl;
 let $tipoCambioVentaControl;
+
 $(document).ready(function () {
+
+    $tipoCambioCompra = parseFloat($('#tipoCambioCompra').val());
+    $tipoCambioVenta = parseFloat($('#tipoCambioVenta').val());
+    $tipoCambioCompraControl = parseFloat($('#tipoCambioCompraControl').val());
+    $tipoCambioVentaControl = parseFloat($('#tipoCambioVentaControl').val());
 
     getTipoCambioDolareros();
 
-    $(document).on('click','[data-tab]', getTipoCambioDolareros);
+    $('#btn-reload').on('click', reloadPage);
+
+    $('#btn-coupon').on('click', applyCoupon);
+
+    $(document).on('click','[data-tab]', checkTabPane);
 
     $(document).on('input', '#sendBuy', changeSendBuy);
 
@@ -19,8 +29,75 @@ $(document).ready(function () {
 
 });
 
+function applyCoupon() {
+    var urlApply = $(this).attr('data-url');
+    var coupon = $('#coupon').val();
+    var req1 = $.ajax({
+        url: urlApply,
+        method: 'POST',
+        headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+        data: JSON.stringify({
+            "coupon":coupon
+        }),
+        processData:false,
+        contentType:'application/json; charset=utf-8',
+        success: function(response){
+            console.log(response);
+            $tipoCambioCompra = parseFloat($('#tipoCambioCompra').val());
+            $tipoCambioVenta = parseFloat($('#tipoCambioVenta').val());
+            $tipoCambioCompraControl = parseFloat($('#tipoCambioCompraControl').val());
+            $tipoCambioVentaControl = parseFloat($('#tipoCambioVentaControl').val());
+
+        },
+        error: function(data){
+            console.log(data);
+        }
+    });
+}
+
+function reloadPage() {
+    location.reload();
+}
+
+function checkTabPane() {
+    var ref_tab = $("ul.nav-tabs  a.active");
+    console.log(ref_tab.attr('data-tab'));
+
+    var typeTab = ref_tab.attr('data-tab');
+
+    if ( typeTab == 'buy' )
+    {
+        $('#text_buy').removeClass('text-muted');
+        $('#text_buy').addClass('text-primary');
+        $('#text_sell').removeClass('text-primary');
+        $('#text_sell').addClass('text-muted');
+
+        var sendBuy = parseFloat($('#sendBuy').val());
+        var getBuy = parseFloat(sendBuy*$tipoCambioCompra).toFixed(2);
+        $('#getBuy').val(getBuy);
+        var ahorroBuy = getAhorroBuy(sendBuy);
+        $('#ahorroBuy').html('Estás ahorrando aprox. S/ '+ahorroBuy);
+    } else {
+        $('#text_sell').removeClass('text-muted');
+        $('#text_sell').addClass('text-primary');
+        $('#text_buy').removeClass('text-primary');
+        $('#text_buy').addClass('text-muted');
+
+        var sendSell = parseFloat($('#sendSell').val());
+        var getSell = parseFloat(sendSell/$tipoCambioVenta).toFixed(2);
+        $('#getSell').val(getSell);
+        var ahorroSell = getAhorroSell(sendSell);
+        $('#ahorroSell').html('Estás ahorrando aprox. USD '+ahorroSell)
+    }
+}
+
 function getTipoCambioDolareros() {
-    var url = 'https://www.api-dolareros.sbs/api/tipoCambio/retrieve';
+    $('#text_buy').html('Compra: '+$tipoCambioCompra);
+    $('#text_sell').html('Venta: '+$tipoCambioVenta);
+
+    checkTabPane();
+
+    /*var url = 'https://www.api-dolareros.sbs/api/tipoCambio/retrieve';
     var urlControl = 'https://www.api-dolareros.sbs/api/tipoCambio/retrieve/control';
 
     var req1 = $.ajax({
@@ -68,46 +145,18 @@ function getTipoCambioDolareros() {
                 $('#text_buy').html('Compra: '+buy);
                 $('#text_sell').html('Venta: '+sell);
 
-                var ref_tab = $("ul.nav-tabs  a.active");
-                console.log(ref_tab.attr('data-tab'));
-
-                var typeTab = ref_tab.attr('data-tab');
-
-                if ( typeTab == 'buy' )
-                {
-                    $('#text_buy').removeClass('text-muted');
-                    $('#text_buy').addClass('text-primary');
-                    $('#text_sell').removeClass('text-primary');
-                    $('#text_sell').addClass('text-muted');
-
-                    var sendBuy = parseFloat($('#sendBuy').val());
-                    var getBuy = parseFloat(sendBuy*$tipoCambioCompra).toFixed(2);
-                    $('#getBuy').val(getBuy);
-                    var ahorroBuy = getAhorroBuy(sendBuy);
-                    $('#ahorroBuy').html('Estás ahorrando aprox. S/ '+ahorroBuy);
-                } else {
-                    $('#text_sell').removeClass('text-muted');
-                    $('#text_sell').addClass('text-primary');
-                    $('#text_buy').removeClass('text-primary');
-                    $('#text_buy').addClass('text-muted');
-
-                    var sendSell = parseFloat($('#sendSell').val());
-                    var getSell = parseFloat(sendSell/$tipoCambioVenta).toFixed(2);
-                    $('#getSell').val(getSell);
-                    var ahorroSell = getAhorroSell(sendSell);
-                    $('#ahorroSell').html('Estás ahorrando aprox. USD '+ahorroSell)
-                }
+                checkTabPane();
             });
 
         },
         error: function(data){
             console.log(data);
         }
-    });
+    });*/
 }
 
 function changeSendBuy() {
-    var sendBuy = parseFloat($('#sendBuy').val());
+    var sendBuy = parseFloat(($('#sendBuy').val() == '') ? 0:$('#sendBuy').val());
     var getBuy = parseFloat(sendBuy*$tipoCambioCompra).toFixed(2);
     $('#getBuy').val(getBuy);
     var ahorroBuy = getAhorroBuy(sendBuy);
@@ -115,7 +164,7 @@ function changeSendBuy() {
 }
 
 function changeSendSell() {
-    var sendSell = parseFloat($('#sendSell').val());
+    var sendSell = parseFloat(($('#sendSell').val() == '') ? 0:$('#sendSell').val());
     var getSell = parseFloat(sendSell/$tipoCambioVenta).toFixed(2);
     $('#getSell').val(getSell);
     var ahorroSell = getAhorroSell(sendSell);
@@ -123,7 +172,7 @@ function changeSendSell() {
 }
 
 function changeGetBuy() {
-    var getBuy = parseFloat($('#getBuy').val());
+    var getBuy = parseFloat(($('#getBuy').val() == '') ? 0:$('#getBuy').val());
     var sendBuy = parseFloat(getBuy/$tipoCambioCompra).toFixed(2);
     $('#sendBuy').val(sendBuy);
     var ahorroBuy = getAhorroBuy(sendBuy);
@@ -131,7 +180,7 @@ function changeGetBuy() {
 }
 
 function changeGetSell() {
-    var getSell = parseFloat($('#getSell').val());
+    var getSell = parseFloat(($('#getSell').val() == '') ? 0:$('#getSell').val());
     var sendSell = parseFloat(getSell*$tipoCambioVenta).toFixed(2);
     $('#sendSell').val(sendSell);
     var ahorroSell = getAhorroSell(sendSell);

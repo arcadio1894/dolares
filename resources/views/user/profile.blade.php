@@ -14,6 +14,9 @@
     </ul>
 @endsection
 
+@section('activeTabProfile', 'active show')
+@section('activeProfileInformation', 'text-primary')
+
 @section('content')
     <div class="card mb-5 mb-xl-10">
         <div class="card-body pt-9 pb-0">
