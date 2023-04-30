@@ -52,6 +52,29 @@ Route::middleware('auth')->group(function (){
         Route::get('/graficos/SecuEx', [App\Http\Controllers\GraphController::class, 'indexSecuEx'])
             ->name('dashboard.graphs.SecuEx');
 
+        // TODO: Rutas BackOffice - Accounts Dolareros
+        Route::get('/cuentas/dolareros', [App\Http\Controllers\AccountDolareroController::class, 'index'])
+            ->name('accounts.dolareros.index');
+        Route::post('/account/store', [App\Http\Controllers\AccountDolareroController::class, 'store'])
+            ->name('accounts.store');
+        Route::post('/account/update', [App\Http\Controllers\AccountDolareroController::class, 'update'])
+            ->name('accounts.update');
+        Route::post('/account/update/status', [App\Http\Controllers\AccountDolareroController::class, 'updateStatus'])
+            ->name('accounts.update.status');
+        Route::post('/account/destroy/{account_id}', [App\Http\Controllers\AccountDolareroController::class, 'destroy'])
+            ->name('accounts.destroy');
+
+        // TODO: Rutas BackOffice - Banks
+        Route::get('/bancos', [App\Http\Controllers\BankController::class, 'index'])
+            ->name('banks.index');
+        Route::post('/bank/store', [App\Http\Controllers\BankController::class, 'store'])
+            ->name('banks.store');
+        Route::post('/bank/update', [App\Http\Controllers\BankController::class, 'update'])
+            ->name('banks.update');
+        Route::post('/bank/update/status', [App\Http\Controllers\BankController::class, 'updateStatus'])
+            ->name('banks.update.status');
+        Route::post('/bank/destroy/{bank_id}', [App\Http\Controllers\BankController::class, 'destroy'])
+            ->name('banks.destroy');
     });
 });
 Route::get('/data', [\App\Http\Controllers\DataController::class, 'getData']);
