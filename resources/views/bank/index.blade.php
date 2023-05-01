@@ -176,7 +176,7 @@
     <!--end::Card-->
     <!--begin::Modals-->
     <!--begin::Modal - Customers - Add-->
-    <div class="modal fade" id="kt_modal_add_customer" tabindex="-1" aria-hidden="true">
+    <div class="modal fade" id="kt_modal_add_customer" aria-hidden="true">
         <!--begin::Modal dialog-->
         <div class="modal-dialog modal-dialog-centered mw-650px">
             <!--begin::Modal content-->
@@ -255,7 +255,7 @@
     </div>
     <!--end::Modal - Customers - Add-->
     <!--begin::Modal - Customers - Add-->
-    <div class="modal fade" id="kt_modal_edit_customer" tabindex="-1" aria-hidden="true">
+    <div class="modal fade" id="kt_modal_edit_customer" aria-hidden="true">
         <!--begin::Modal dialog-->
         <div class="modal-dialog modal-dialog-centered mw-650px">
             <!--begin::Modal content-->
@@ -381,4 +381,5 @@
     <script src="{{ asset('assets/js/bank/list.js') }}"></script>
     <script src="{{ asset('assets/js/bank/add.js') }}"></script>
     <script src="{{ asset('assets/js/bank/edit.js') }}"></script>
+
 @endsection

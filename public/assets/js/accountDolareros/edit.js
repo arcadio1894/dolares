@@ -191,14 +191,14 @@ function showModalEdit() {
     //$formEdit.querySelector('[name="currency"]').value = 'USD';
 
     let c = $('#currency').select2({
-        minimumResultsForSearch: -1
+        dropdownParent: $("#kt_modal_edit_customer")
     });
 
     c.val(currency);
     c.trigger('change');
 
     let b = $('#bank_id').select2({
-        minimumResultsForSearch: -1
+        dropdownParent: $("#kt_modal_edit_customer")
     });
 
     b.val(idBank);
@@ -210,7 +210,7 @@ function showModalEdit() {
     } else {
         $formEdit.querySelector('[name="statusAccount"]').checked = false;
     }
-
+    $.fn.modal.Constructor.prototype.enforceFocus = function () {};
     $modalEdit.show();
 }
 

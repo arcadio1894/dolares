@@ -658,14 +658,14 @@
                                                             <span class="menu-title">Listado de cuentas</span>
                                                         </a>
                                                     </div>
-                                                    <div class="menu-item">
+                                                    {{--<div class="menu-item">
                                                         <a class="menu-link @yield('activeMenuAccountCreate')" href="#">
                                                             <span class="menu-bullet">
                                                                 <span class="bullet bullet-dot"></span>
                                                             </span>
                                                             <span class="menu-title">Nueva cuenta</span>
                                                         </a>
-                                                    </div>
+                                                    </div>--}}
                                                     {{--<div data-kt-menu-trigger="click" class="menu-item menu-accordion show">
                                                         <span class="menu-link active">
                                                             <span class="menu-bullet">
@@ -1748,8 +1748,8 @@
                 <div class="container-xxl d-flex flex-column flex-md-row flex-stack">
                     <!--begin::Copyright-->
                     <div class="text-dark order-2 order-md-1">
-                        <span class="text-gray-400 fw-bold me-1">Created by</span>
-                        <a href="https://keenthemes.com" target="_blank" class="text-muted text-hover-primary fw-bold me-2 fs-6">Keenthemes</a>
+                        <span class="text-gray-400 fw-bold me-1">Desarrollado por</span>
+                        <a href="https://edesce.com/" target="_blank" class="text-muted text-hover-primary fw-bold me-2 fs-6">EDESCE</a>
                     </div>
                     <!--end::Copyright-->
                     <!--begin::Menu-->

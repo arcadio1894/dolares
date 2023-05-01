@@ -174,7 +174,7 @@
     <!--end::Card-->
     <!--begin::Modals-->
     <!--begin::Modal - Customers - Add-->
-    <div class="modal fade" id="kt_modal_add_customer" tabindex="-1" aria-hidden="true">
+    <div class="modal fade" id="kt_modal_add_customer" aria-hidden="true">
         <!--begin::Modal dialog-->
         <div class="modal-dialog modal-dialog-centered mw-650px">
             <!--begin::Modal content-->
@@ -221,7 +221,7 @@
                                 <label class="required fs-6 fw-bold mb-2">Seleccione un Banco</label>
                                 <!--end::Label-->
                                 <!--begin::Input-->
-                                <select name="bank_id" class="form-select form-select-solid" data-control="select2" data-hide-search="true" data-placeholder="Banco">
+                                <select name="bank_id" id="bank_id_create" class="form-select form-select-solid" data-control="select2" data-hide-search="true" data-placeholder="Banco">
                                     <option></option>
                                     @foreach( $banks as $bank )
                                         <option value="{{ $bank->id }}">{{ $bank->nameBank }}</option>
@@ -236,7 +236,7 @@
                                 <label class="required fs-6 fw-bold mb-2">Moneda de cuenta</label>
                                 <!--end::Label-->
                                 <!--begin::Input-->
-                                <select name="currency" class="form-select form-select-solid" data-control="select2" data-hide-search="true" data-placeholder="Moneda">
+                                <select name="currency" id="currency_create" class="form-select form-select-solid" data-control="select2" data-hide-search="true" data-placeholder="Moneda">
                                     <option></option>
                                     <option value="PEN">Soles</option>
                                     <option value="USD">Dolares</option>
@@ -272,7 +272,7 @@
     </div>
     <!--end::Modal - Customers - Add-->
     <!--begin::Modal - Customers - Add-->
-    <div class="modal fade" id="kt_modal_edit_customer" tabindex="-1" aria-hidden="true">
+    <div class="modal fade" id="kt_modal_edit_customer" aria-hidden="true">
         <!--begin::Modal dialog-->
         <div class="modal-dialog modal-dialog-centered mw-650px">
             <!--begin::Modal content-->
@@ -405,6 +405,17 @@
     <script src="{{ asset('assets/plugins/custom/datatables/datatables.bundle.js') }}"></script>
     <!--end::Page Vendors Javascript-->
     <!--begin::Page Custom Javascript(used by this page)-->
+    <script>
+        $(document).ready(function(){
+            $("#bank_id_create").select2({
+                dropdownParent: $("#kt_modal_add_customer")
+            });
+            $("#currency_create").select2({
+                dropdownParent: $("#kt_modal_add_customer")
+            });
+            $.fn.modal.Constructor.prototype.enforceFocus = function () {};
+        });
+    </script>
     <script src="{{ asset('assets/js/accountDolareros/list.js') }}"></script>
     <script src="{{ asset('assets/js/accountDolareros/add.js') }}"></script>
     <script src="{{ asset('assets/js/accountDolareros/edit.js') }}"></script>
