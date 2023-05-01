@@ -75,6 +75,16 @@ Route::middleware('auth')->group(function (){
             ->name('banks.update.status');
         Route::post('/bank/destroy/{bank_id}', [App\Http\Controllers\BankController::class, 'destroy'])
             ->name('banks.destroy');
+
+        // TODO: Rutas BackOffice - SourceFunds
+        Route::get('/fuente/fondos', [App\Http\Controllers\SourceFundController::class, 'index'])
+            ->name('sourceFunds.index');
+        Route::post('/sourceFund/store', [App\Http\Controllers\SourceFundController::class, 'store'])
+            ->name('sourceFunds.store');
+        Route::post('/sourceFund/update', [App\Http\Controllers\SourceFundController::class, 'update'])
+            ->name('sourceFunds.update');
+        Route::post('/sourceFund/destroy/{source_id}', [App\Http\Controllers\SourceFundController::class, 'destroy'])
+            ->name('sourceFunds.destroy');
     });
 });
 Route::get('/data', [\App\Http\Controllers\DataController::class, 'getData']);
