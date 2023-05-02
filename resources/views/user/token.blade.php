@@ -274,10 +274,10 @@
                             <!--end::Label-->
                             <!--begin::Input group-->
                             <div class="d-flex flex-wrap flex-stack form__pincode1" >
-                                <input type="tel" maxlength="1" pattern="[\d]*" tabindex="1" placeholder="" autocomplete="off" class="form-control form-control-solid h-60px w-60px fs-2qx text-center border-primary border-hover mx-1 my-2" name="pincode-5" />
-                                <input type="tel" maxlength="1" pattern="[\d]*" tabindex="2" placeholder="" autocomplete="off" class="form-control form-control-solid h-60px w-60px fs-2qx text-center border-primary border-hover mx-1 my-2" name="pincode-6" />
-                                <input type="tel" maxlength="1" pattern="[\d]*" tabindex="3" placeholder="" autocomplete="off" class="form-control form-control-solid h-60px w-60px fs-2qx text-center border-primary border-hover mx-1 my-2" name="pincode-7" />
-                                <input type="tel" maxlength="1" pattern="[\d]*" tabindex="4" placeholder="" autocomplete="off" class="form-control form-control-solid h-60px w-60px fs-2qx text-center border-primary border-hover mx-1 my-2" name="pincode-8" />
+                                <input type="tel" maxlength="1" pattern="[\d]*" tabindex="1" placeholder="" autocomplete="off" class="coden form-control form-control-solid h-60px w-60px fs-2qx text-center border-primary border-hover mx-1 my-2" name="pincode-5" />
+                                <input type="tel" maxlength="1" pattern="[\d]*" tabindex="2" placeholder="" autocomplete="off" class="coden form-control form-control-solid h-60px w-60px fs-2qx text-center border-primary border-hover mx-1 my-2" name="pincode-6" />
+                                <input type="tel" maxlength="1" pattern="[\d]*" tabindex="3" placeholder="" autocomplete="off" class="coden form-control form-control-solid h-60px w-60px fs-2qx text-center border-primary border-hover mx-1 my-2" name="pincode-7" />
+                                <input type="tel" maxlength="1" pattern="[\d]*" tabindex="4" placeholder="" autocomplete="off" class="coden form-control form-control-solid h-60px w-60px fs-2qx text-center border-primary border-hover mx-1 my-2" name="pincode-8" />
                             </div>
                             <!--begin::Input group-->
                         </div>
@@ -335,16 +335,31 @@
                         </div>
                         <!--end::Heading-->
                         <!--begin::Section-->
+                            <div class="mb-10 px-md-10">
+                                <!--begin::Label-->
+                                <div class="fw-bolder text-start text-dark fs-6 mb-1 ms-1">Ingresa tu contraseña anterior</div>
+                                <!--end::Label-->
+                                <!--begin::Input group-->
+                                <div class="d-flex flex-wrap flex-stack form__pincodel1">
+                                    <input type="tel" maxlength="1" pattern="[\d]*" tabindex="1" placeholder="" autocomplete="off" class="codel form-control form-control-solid h-60px w-60px fs-2qx text-center border-primary border-hover mx-1 my-2" name="pincodel-1" />
+                                    <input type="tel" maxlength="1" pattern="[\d]*" tabindex="2" placeholder="" autocomplete="off" class="codel form-control form-control-solid h-60px w-60px fs-2qx text-center border-primary border-hover mx-1 my-2" name="pincodel-2" />
+                                    <input type="tel" maxlength="1" pattern="[\d]*" tabindex="3" placeholder="" autocomplete="off" class="codel form-control form-control-solid h-60px w-60px fs-2qx text-center border-primary border-hover mx-1 my-2" name="pincodel-3" />
+                                    <input type="tel" maxlength="1" pattern="[\d]*" tabindex="4" placeholder="" autocomplete="off" class="codel form-control form-control-solid h-60px w-60px fs-2qx text-center border-primary border-hover mx-1 my-2" name="pincodel-4" />
+                                </div>
+                                <!--begin::Input group-->
+                            </div>
+                            <!--end::Section-->
+                        <!--begin::Section-->
                         <div class="mb-10 px-md-10">
                             <!--begin::Label-->
                             <div class="fw-bolder text-start text-dark fs-6 mb-1 ms-1">Ingresa tu nueva contraseña</div>
                             <!--end::Label-->
                             <!--begin::Input group-->
                             <div class="d-flex flex-wrap flex-stack form__pincode1">
-                                <input type="tel" maxlength="1" pattern="[\d]*" tabindex="1" placeholder="" autocomplete="off" class="form-control form-control-solid h-60px w-60px fs-2qx text-center border-primary border-hover mx-1 my-2" name="pincode-1" />
-                                <input type="tel" maxlength="1" pattern="[\d]*" tabindex="2" placeholder="" autocomplete="off" class="form-control form-control-solid h-60px w-60px fs-2qx text-center border-primary border-hover mx-1 my-2" name="pincode-2" />
-                                <input type="tel" maxlength="1" pattern="[\d]*" tabindex="3" placeholder="" autocomplete="off" class="form-control form-control-solid h-60px w-60px fs-2qx text-center border-primary border-hover mx-1 my-2" name="pincode-3" />
-                                <input type="tel" maxlength="1" pattern="[\d]*" tabindex="4" placeholder="" autocomplete="off" class="form-control form-control-solid h-60px w-60px fs-2qx text-center border-primary border-hover mx-1 my-2" name="pincode-4" />
+                                <input type="tel" maxlength="1" pattern="[\d]*" tabindex="1" placeholder="" autocomplete="off" class="code form-control form-control-solid h-60px w-60px fs-2qx text-center border-primary border-hover mx-1 my-2" name="pincode-1" />
+                                <input type="tel" maxlength="1" pattern="[\d]*" tabindex="2" placeholder="" autocomplete="off" class="code form-control form-control-solid h-60px w-60px fs-2qx text-center border-primary border-hover mx-1 my-2" name="pincode-2" />
+                                <input type="tel" maxlength="1" pattern="[\d]*" tabindex="3" placeholder="" autocomplete="off" class="code form-control form-control-solid h-60px w-60px fs-2qx text-center border-primary border-hover mx-1 my-2" name="pincode-3" />
+                                <input type="tel" maxlength="1" pattern="[\d]*" tabindex="4" placeholder="" autocomplete="off" class="code form-control form-control-solid h-60px w-60px fs-2qx text-center border-primary border-hover mx-1 my-2" name="pincode-4" />
                             </div>
                             <!--begin::Input group-->
                         </div>

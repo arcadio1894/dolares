@@ -60,23 +60,53 @@ class UserController extends Controller
     public function renewToken( Request $request )
     {
         $tokens = $request->get('token');
+        $tokensl = $request->get('tokenl');
         //dump($tokens);
-        $tokenSecure = '';
-        if ( count($tokens) != 4 )
+        //dump($tokensl);
+        //dd();
+        $tokenSecurel = '';
+        for ( $i=0; $i<count($tokensl); $i++ )
         {
-            return response()->json([
-                'message' => 'Ingrese 4 números válidos.',
-            ], 422);
+            if ( $tokensl[$i] == '' || $tokensl[$i] == null )
+            {
+                return response()->json([
+                    'message' => 'Ingrese 4 números válidos en la contraseña antigua',
+                ], 422);
+            }
         }
+
+        $tokenSecure = '';
+        for ( $i=0; $i<count($tokens); $i++ )
+        {
+            if ( $tokens[$i] == '' || $tokens[$i] == null )
+            {
+                return response()->json([
+                    'message' => 'Ingrese 4 números válidos en la nueva contraseña',
+                ], 422);
+            }
+        }
+
         for ( $i=0; $i<count($tokens); $i++ )
         {
             $tokenSecure = $tokenSecure . $tokens[$i];
         }
 
+        for ( $i=0; $i<count($tokensl); $i++ )
+        {
+            $tokenSecurel = $tokenSecurel . $tokensl[$i];
+        }
+
+        $userToken = UserToken::where('user_id', Auth::id())->first();
+
+        if ( ! Hash::check($tokenSecurel, $userToken->token) )
+        {
+            return response()->json([
+                'message' => 'La contraseña antigua no coincide con la contraseña indicada.',
+            ], 422);
+        }
+
         DB::beginTransaction();
         try {
-
-            $userToken = UserToken::where('user_id', Auth::id())->first();
 
             $userToken->delete();
 

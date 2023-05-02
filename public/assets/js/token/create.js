@@ -3,6 +3,10 @@ let $modalRefresh;
 let $formCreate;
 let $formRefresh;
 let _pincode;
+let _pincodel;
+let $code = [];
+let $codel = [];
+let $coden = [];
 
 $(document).ready(function () {
     $modalCreate = $('#modalCreate');
@@ -19,6 +23,7 @@ $(document).ready(function () {
 
     // pincode
     _pincode = [];
+    _pincodel = [];
     var debug = false;
 
     // main form
@@ -26,9 +31,11 @@ $(document).ready(function () {
 
     // pincode group
     var $group = $form.find('.form__pincode1');
+    var $groupl = $form.find('.form__pincodel1');
 
     // all input fields
     var $inputs = $group.find(':input');
+    var $inputsl = $groupl.find(':input');
 
     // input fields
     var $first = $form.find('[name=pincode-1]')
@@ -36,6 +43,202 @@ $(document).ready(function () {
         , $third = $form.find('[name=pincode-3]')
         , $fourth = $form.find('[name=pincode-4]');
 
+    var $firstl = $form.find('[name=pincodel-1]')
+        , $secondl = $form.find('[name=pincodel-2]')
+        , $thirdl = $form.find('[name=pincodel-3]')
+        , $fourthl = $form.find('[name=pincodel-4]');
+
+    // all fields
+    $inputsl
+        .on('keyup', function(event) {
+            var code = event.keyCode || event.which;
+
+            if (code === 9 && ! event.shiftKey) {
+                // prevent default event
+                event.preventDefault();
+            }
+        })
+        .inputmask({
+            mask: '9',
+            placeholder: '',
+            showMaskOnHover: false,
+            showMaskOnFocus: false,
+            clearIncomplete: true,
+            onincomplete: function() {
+                ! debug || console.log('inputmask incomplete');
+            },
+            oncleared: function() {
+                var index = $inputsl.index(this)
+                    , prev = index - 1
+                    , next = index + 1;
+
+                if (prev >= 0) {
+                    // clear field
+                    $inputsl.eq(prev).val('');
+
+                    // focus field
+                    $inputsl.eq(prev).focus();
+
+                    // remove last nubmer
+                    _pincodel.splice(-1, 1)
+                } else {
+                    return false;
+                }
+
+                ! debug || console.log('[oncleared]', prev, index, next);
+            },
+            onKeyValidation: function(key, result) {
+                var index = $inputsl.index(this)
+                    , prev = index - 1
+                    , next = index + 1;
+
+                // focus to next field
+                if (prev < 6) {
+                    $inputsl.eq(next).focus();
+                }
+
+                ! debug || console.log('[onKeyValidation]', index, key, result, _pincodel);
+            },
+            onBeforePaste: function (data, opts) {
+                $.each(data.split(''), function(index, value) {
+                    // set value
+                    $inputsl.eq(index).val(value);
+
+                    ! debug || console.log('[onBeforePaste:each]', index, value);
+                });
+
+                return false;
+            }
+        });
+
+    // first field
+    $('[name=pincodel-1]')
+        .on('focus', function(event) {
+            _pincode = [];
+            $inputsl
+                .each(function() {
+                    // clear each field
+                    $(this).val('');
+                });
+            ! debug || console.log('[1:focus]', _pincodel);
+        })
+        .inputmask({
+            oncomplete: function() {
+                // add first character
+                _pincodel.push($(this).val());
+
+                // focus to second field
+                $('[name=pincodel-2]').focus();
+
+                ! debug || console.log('[1:oncomplete]', _pincodel);
+            }
+        });
+
+    // second field
+    $('[name=pincodel-2]')
+        .on('focus', function(event) {
+            if ( ! ($firstl.val().trim() !== '')) {
+                // prevent default
+                event.preventDefault();
+
+                // reset pincode
+                _pincodel = [];
+
+                // handle each field
+                $inputsl
+                    .each(function() {
+                        // clear each field
+                        $(this).val('');
+                    });
+
+                // focus to first field
+                $firstl.focus();
+            }
+
+            ! debug || console.log('[2:focus]', _pincodel);
+        })
+        .inputmask({
+            oncomplete: function() {
+                // add second character
+                _pincodel.push($(this).val());
+
+                // focus to third field
+                $('[name=pincodel-3]').focus();
+
+                ! debug || console.log('[2:oncomplete]', _pincodel);
+            }
+        });
+
+    // third field
+    $('[name=pincodel-3]')
+        .on('focus', function(event) {
+            if ( ! ($firstl.val().trim() !== '' &&
+                $secondl.val().trim() !== '')) {
+                // prevent default
+                event.preventDefault();
+
+                // reset pincode
+                _pincodel = [];
+
+                // handle each field
+                $inputsl
+                    .each(function() {
+                        // clear each field
+                        $(this).val('');
+                    });
+
+                // focus to first field
+                $firstl.focus();
+            }
+
+            ! debug || console.log('[3:focus]', _pincodel);
+        })
+        .inputmask({
+            oncomplete: function() {
+                // add third character
+                _pincodel.push($(this).val());
+
+                // focus to fourth field
+                $('[name=pincodel-4]').focus();
+
+                ! debug || console.log('[3:oncomplete]', _pincodel);
+            }
+        });
+
+    // fourth field
+
+    $('[name=pincodel-4]')
+        .on('focus', function(event) {
+            if ( ! ($firstl.val().trim() !== '' &&
+                $secondl.val().trim() !== '' &&
+                $thirdl.val().trim() !== '')) {
+                // prevent default
+                event.preventDefault();
+
+                // reset pincode
+                _pincodel = [];
+
+                // handle each field
+                $inputsl
+                    .each(function() {
+                        // clear each field
+                        $(this).val('');
+                    });
+
+                // focus to first field
+                $firstl.focus();
+            }
+
+            ! debug || console.log('[4:focus]', _pincodel);
+        })
+        .inputmask({
+            oncomplete: function() {
+                // add fo fourth character
+                _pincodel.push($(this).val());
+
+                ! debug || console.log('[4:oncomplete]', _pincodel);
+            }
+        });
     // all fields
     $inputs
         .on('keyup', function(event) {
@@ -102,6 +305,13 @@ $(document).ready(function () {
     // first field
     $('[name=pincode-1]')
         .on('focus', function(event) {
+            // reset pincode
+            _pincode = [];
+            $inputs
+                .each(function() {
+                    // clear each field
+                    $(this).val('');
+                });
             ! debug || console.log('[1:focus]', _pincode);
         })
         .inputmask({
@@ -122,7 +332,6 @@ $(document).ready(function () {
             if ( ! ($first.val().trim() !== '')) {
                 // prevent default
                 event.preventDefault();
-
                 // reset pincode
                 _pincode = [];
 
@@ -135,7 +344,9 @@ $(document).ready(function () {
 
                 // focus to first field
                 $first.focus();
+
             }
+
 
             ! debug || console.log('[2:focus]', _pincode);
         })
@@ -158,7 +369,6 @@ $(document).ready(function () {
                 $second.val().trim() !== '')) {
                 // prevent default
                 event.preventDefault();
-
                 // reset pincode
                 _pincode = [];
 
@@ -171,6 +381,7 @@ $(document).ready(function () {
 
                 // focus to first field
                 $first.focus();
+
             }
 
             ! debug || console.log('[3:focus]', _pincode);
@@ -209,6 +420,7 @@ $(document).ready(function () {
                 // focus to first field
                 $first.focus();
             }
+
 
             ! debug || console.log('[4:focus]', _pincode);
         })
@@ -302,6 +514,12 @@ $(document).ready(function () {
     // first field
     $('[name=pincode-5]')
         .on('focus', function(event) {
+            _pincode = [];
+            $inputs1
+                .each(function() {
+                    // clear each field
+                    $(this).val('');
+                });
             ! debug || console.log('[1:focus]', _pincode);
         })
         .inputmask({
@@ -424,6 +642,19 @@ $(document).ready(function () {
 
 function refreshToken() {
     event.preventDefault();
+
+    $('.codel').each(function() {
+        $codel.push($(this).val());
+    });
+
+    $('.code').each(function() {
+        $code.push($(this).val());
+    });
+
+    console.log($codel);
+
+    console.log($code);
+
     // Obtener la URL
     $("#btn-renew").attr("disabled", true);
     var createUrl = $formRefresh.data('url');
@@ -432,7 +663,8 @@ function refreshToken() {
         method: 'POST',
         headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
         data: JSON.stringify({
-            "token":_pincode
+            "token":$code,
+            "tokenl":$codel
         }),
         processData:false,
         contentType:'application/json; charset=utf-8',
@@ -460,6 +692,8 @@ function refreshToken() {
             setTimeout( function () {
                 $("#btn-renew").attr("disabled", false);
                 _pincode = [];
+                $code = [];
+                $codel = [];
                 location.reload();
             }, 1500 )
         },
@@ -506,14 +740,20 @@ function refreshToken() {
                     });
             }
             _pincode = [];
+            $code = [];
+            $codel = [];
             $("#btn-renew").attr("disabled", false);
-            location.reload();
+            //location.reload();
 
         },
     });
 }
 
 function saveToken() {
+    $('.coden').each(function() {
+        $coden.push($(this).val());
+    });
+
     event.preventDefault();
     // Obtener la URL
     $("#btn-save").attr("disabled", true);
@@ -523,7 +763,7 @@ function saveToken() {
         method: 'POST',
         headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
         data: JSON.stringify({
-            "token":_pincode
+            "token":$coden
         }),
         processData:false,
         contentType:'application/json; charset=utf-8',
@@ -551,6 +791,7 @@ function saveToken() {
             setTimeout( function () {
                 $("#btn-save").attr("disabled", false);
                 _pincode = [];
+                $coden = [];
                 location.reload();
             }, 1500 )
         },

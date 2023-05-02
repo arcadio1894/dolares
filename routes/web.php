@@ -85,6 +85,9 @@ Route::middleware('auth')->group(function (){
             ->name('sourceFunds.update');
         Route::post('/sourceFund/destroy/{source_id}', [App\Http\Controllers\SourceFundController::class, 'destroy'])
             ->name('sourceFunds.destroy');
+
+
     });
 });
 Route::get('/data', [\App\Http\Controllers\DataController::class, 'getData']);
+Route::get('/get/hash', [\App\Http\Controllers\DataController::class, 'getHash']);
