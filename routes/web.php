@@ -86,6 +86,21 @@ Route::middleware('auth')->group(function (){
         Route::post('/sourceFund/destroy/{source_id}', [App\Http\Controllers\SourceFundController::class, 'destroy'])
             ->name('sourceFunds.destroy');
 
+        // TODO: Rutas de cuentas para clientes
+        Route::get('/verificar/codigo/{id}', [App\Http\Controllers\CodeController::class, 'index'])
+            ->name('code.index');
+
+        Route::post('/verification/code/{url}', [App\Http\Controllers\CodeController::class, 'verification'])
+            ->name('code.verification');
+
+        Route::middleware(['code'])->group(function () {
+            Route::get('/mis/cuentas', [App\Http\Controllers\AccountCustomerController::class, 'index'])
+                ->name('accountCustomer.index');
+            Route::get('/mis/operaciones', [App\Http\Controllers\AccountCustomerController::class, 'operaciones'])
+                ->name('operationCustomer.index');
+        });
+
+
 
     });
 });

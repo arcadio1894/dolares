@@ -325,8 +325,49 @@
                                                     </div>
                                                     <!--begin::Description-->
                                                 </a>
+                                                <a href="{{ (session()->has('codigo_correcto')) ? route('accountCustomer.index') : route('code.index', ['id' => 1]) }}" class="text-primary custom-list d-flex align-items-center px-5 py-4">
+                                                    <!--begin::Symbol-->
+                                                    <div class="symbol symbol-40px me-5">
+                                                        <span class="symbol-label">
+                                                            <img src="{{ asset('assets/media/icons/duotune/finance/fin002.svg') }}" class="h-50 align-self-center" alt="" />
+                                                        </span>
+                                                    </div>
+                                                    <!--end::Symbol-->
+                                                    <!--begin::Description-->
+                                                    <div class="d-flex flex-column flex-grow-1">
+                                                        <!--begin::Title-->
+                                                        <h5 class="custom-list-title fw-bold @yield('activeMyAccount') mb-1">Mis Cuentas</h5>
+                                                        <!--end::Title-->
+                                                        <!--begin::Link-->
+                                                        <span class="text-gray-400 fw-bold">Revisa tus cuentas</span>
+                                                        <!--end::Link-->
+                                                    </div>
+                                                    <!--begin::Description-->
+                                                </a>
+
+                                                <a href="{{ (session()->has('codigo_correcto')) ? route('operationCustomer.index') : route('code.index', ['id' => 2]) }}" class="text-primary custom-list d-flex align-items-center px-5 py-4">
+                                                    <!--begin::Symbol-->
+                                                    <div class="symbol symbol-40px me-5">
+                                                        <span class="symbol-label">
+                                                            <img src="{{ asset('assets/media/icons/duotune/finance/fin002.svg') }}" class="h-50 align-self-center" alt="" />
+                                                        </span>
+                                                    </div>
+                                                    <!--end::Symbol-->
+                                                    <!--begin::Description-->
+                                                    <div class="d-flex flex-column flex-grow-1">
+                                                        <!--begin::Title-->
+                                                        <h5 class="custom-list-title fw-bold @yield('activeMyAccount') mb-1">Mis Operaciones</h5>
+                                                        <!--end::Title-->
+                                                        <!--begin::Link-->
+                                                        <span class="text-gray-400 fw-bold">Revisa tus operaciones</span>
+                                                        <!--end::Link-->
+                                                    </div>
+                                                    <!--begin::Description-->
+                                                </a>
 
                                             </div>
+
+
                                             <!--end::Items-->
                                         </div>
                                         <!--end::Projects-->
