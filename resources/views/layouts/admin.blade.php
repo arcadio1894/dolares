@@ -356,7 +356,7 @@
                                                     <!--begin::Description-->
                                                     <div class="d-flex flex-column flex-grow-1">
                                                         <!--begin::Title-->
-                                                        <h5 class="custom-list-title fw-bold @yield('activeMyAccount') mb-1">Mis Operaciones</h5>
+                                                        <h5 class="custom-list-title fw-bold @yield('activeMyOperation') mb-1">Mis Operaciones</h5>
                                                         <!--end::Title-->
                                                         <!--begin::Link-->
                                                         <span class="text-gray-400 fw-bold">Revisa tus operaciones</span>

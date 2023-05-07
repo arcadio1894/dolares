@@ -96,6 +96,16 @@ Route::middleware('auth')->group(function (){
         Route::middleware(['code'])->group(function () {
             Route::get('/mis/cuentas', [App\Http\Controllers\AccountCustomerController::class, 'index'])
                 ->name('accountCustomer.index');
+            Route::post('/account/customer/store', [App\Http\Controllers\AccountCustomerController::class, 'store'])
+                ->name('accounts.customer.store');
+            Route::post('/account/customer/update', [App\Http\Controllers\AccountCustomerController::class, 'update'])
+                ->name('accounts.customer.update');
+            Route::post('/account/customer/update/status', [App\Http\Controllers\AccountCustomerController::class, 'updateStatus'])
+                ->name('accounts.customer.update.status');
+            Route::post('/account/customer/destroy/{account_id}', [App\Http\Controllers\AccountCustomerController::class, 'destroy'])
+                ->name('accounts.customer.destroy');
+
+
             Route::get('/mis/operaciones', [App\Http\Controllers\AccountCustomerController::class, 'operaciones'])
                 ->name('operationCustomer.index');
         });
