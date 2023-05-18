@@ -27,6 +27,7 @@ class AccountDolarero extends Model
         'numberAccount',
         'currency',
         'status',
+        'department_id',
     ];
 
     protected $dates = ["created_at", "updated_at", "deleted_at"];
@@ -36,5 +37,9 @@ class AccountDolarero extends Model
         return $this->belongsTo('App\Models\Bank', 'bank_id', 'id');
     }
 
+    public function department()
+    {
+        return $this->belongsTo('App\Models\Department', 'department_id', 'id');
+    }
 
 }

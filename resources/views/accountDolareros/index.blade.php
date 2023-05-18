@@ -93,6 +93,7 @@
                     </th>--}}
                     <th class="min-w-125px">Banco</th>
                     <th class="min-w-125px">Cuenta</th>
+                    <th class="min-w-125px">Departamento</th>
                     <th class="min-w-125px">Moneda</th>
                     <th class="min-w-125px">Estado</th>
                     <th class="text-end min-w-70px">Actions</th>
@@ -113,10 +114,13 @@
                     <!--end::Checkbox-->
                         <!--begin::Name=-->
                         <td>
-                            {{ $account->bank->nameBank }}
+                            <img src="{{ asset('assets/images/banks/'.$account->bank->imageBank) }}" alt="{{ $account->bank->name }}" class="img-fluid" style="max-width: 30px;"> {{ $account->bank->name }}
                         </td>
                         <td>
                             {{ $account->numberAccount }}
+                        </td>
+                        <td>
+                            {{ $account->department->name }}
                         </td>
                         <td>
                             {{ ($account->currency == 'PEN') ? 'Soles':'Dólares' }}
@@ -150,7 +154,7 @@
                             <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-bold fs-7 w-125px py-4" data-kt-menu="true">
                                 <!--begin::Menu item-->
                                 <div class="menu-item px-3">
-                                    <a href="#" class="menu-link px-3" data-kt-account="{{ $account->id }}" data-kt-bank="{{ $account->bank->id }}" data-kt-nameBank="{{ $account->bank->nameBank }}" data-kt-status="{{ $account->status }}" data-kt-numberAccount="{{ $account->numberAccount }}" data-kt-currency="{{ $account->currency }}" data-kt-account-action="update_row">Editar</a>
+                                    <a href="#" class="menu-link px-3" data-kt-account="{{ $account->id }}" data-kt-bank="{{ $account->bank->id }}" data-kt-nameBank="{{ $account->bank->nameBank }}" data-kt-department="{{ $account->department->id }}" data-kt-status="{{ $account->status }}" data-kt-numberAccount="{{ $account->numberAccount }}" data-kt-currency="{{ $account->currency }}" data-kt-account-action="update_row">Editar</a>
                                 </div>
                                 <!--end::Menu item-->
                                 <!--begin::Menu item-->
@@ -205,45 +209,74 @@
                     <div class="modal-body py-10 px-lg-17">
                         <!--begin::Scroll-->
                         <div class="scroll-y me-n7 pe-7" id="kt_modal_add_customer_scroll" data-kt-scroll="true" data-kt-scroll-activate="{default: false, lg: true}" data-kt-scroll-max-height="auto" data-kt-scroll-dependencies="#kt_modal_add_customer_header" data-kt-scroll-wrappers="#kt_modal_add_customer_scroll" data-kt-scroll-offset="300px">
-                            <!--begin::Input group-->
-                            <div class="fv-row mb-7">
-                                <!--begin::Label-->
-                                <label class="required fs-6 fw-bold mb-2">Numero de cuenta</label>
-                                <!--end::Label-->
-                                <!--begin::Input-->
-                                <input type="text" class="form-control form-control-solid" placeholder="Número de cuenta" name="numberAccount" value="" />
-                                <!--end::Input-->
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="fv-row mb-7">
+                                        <!--begin::Label-->
+                                        <label class="required fs-6 fw-bold mb-2">Número de cuenta</label>
+                                        <!--end::Label-->
+                                        <!--begin::Input-->
+                                        <input type="text" class="form-control form-control-solid" placeholder="Número de cuenta" name="numberAccount" value="" />
+                                        <!--end::Input-->
+                                    </div>
+                                    <!--end::Input group-->
+                                </div>
+                                <div class="col-lg-6">
+                                    <!--begin::Input group-->
+                                    <div class="fv-row mb-7">
+                                        <!--begin::Label-->
+                                        <label class="required fs-6 fw-bold mb-2">Seleccione un Banco</label>
+                                        <!--end::Label-->
+                                        <!--begin::Input-->
+                                        <select name="bank_id" id="bank_id_create" class="form-select form-select-solid" data-control="select2" data-hide-search="true" data-placeholder="Banco">
+                                            <option></option>
+                                            @foreach( $banks as $bank )
+                                                <option value="{{ $bank->id }}" data-kt-select2-bank="{{ asset('assets/images/banks/'.$bank->imageBank) }}">{{ $bank->name }}</option>
+                                            @endforeach
+                                        </select>
+                                        <!--end::Input-->
+                                    </div>
+                                    <!--end::Input group-->
+                                </div>
                             </div>
-                            <!--end::Input group-->
                             <!--begin::Input group-->
-                            <div class="fv-row mb-7">
-                                <!--begin::Label-->
-                                <label class="required fs-6 fw-bold mb-2">Seleccione un Banco</label>
-                                <!--end::Label-->
-                                <!--begin::Input-->
-                                <select name="bank_id" id="bank_id_create" class="form-select form-select-solid" data-control="select2" data-hide-search="true" data-placeholder="Banco">
-                                    <option></option>
-                                    @foreach( $banks as $bank )
-                                        <option value="{{ $bank->id }}">{{ $bank->nameBank }}</option>
-                                    @endforeach
-                                </select>
-                                <!--end::Input-->
+
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <!--begin::Input group-->
+                                    <div class="fv-row mb-7">
+                                        <!--begin::Label-->
+                                        <label class="required fs-6 fw-bold mb-2">Seleccione un departamento</label>
+                                        <!--end::Label-->
+                                        <!--begin::Input-->
+                                        <select name="department_id" id="department_id_create" class="form-select form-select-solid" data-control="select2" data-hide-search="true" data-placeholder="Banco">
+                                            <option></option>
+                                            @foreach( $departments as $department )
+                                                <option value="{{ $department->id }}">{{ $department->name }}</option>
+                                            @endforeach
+                                        </select>
+                                        <!--end::Input-->
+                                    </div>
+                                    <!--end::Input group-->
+                                </div>
+                                <div class="col-lg-6">
+                                    <!--begin::Input group-->
+                                    <div class="fv-row mb-7">
+                                        <!--begin::Label-->
+                                        <label class="required fs-6 fw-bold mb-2">Seleccione una moneda</label>
+                                        <!--end::Label-->
+                                        <!--begin::Input-->
+                                        <select name="currency" id="currency_create" class="form-select form-select-solid" data-control="select2" data-hide-search="true" data-placeholder="Moneda">
+                                            <option></option>
+                                            <option value="PEN">Soles</option>
+                                            <option value="USD">Dolares</option>
+                                        </select>
+                                        <!--end::Input-->
+                                    </div>
+                                    <!--end::Input group-->
+                                </div>
                             </div>
-                            <!--end::Input group-->
-                            <!--begin::Input group-->
-                            <div class="fv-row mb-7">
-                                <!--begin::Label-->
-                                <label class="required fs-6 fw-bold mb-2">Moneda de cuenta</label>
-                                <!--end::Label-->
-                                <!--begin::Input-->
-                                <select name="currency" id="currency_create" class="form-select form-select-solid" data-control="select2" data-hide-search="true" data-placeholder="Moneda">
-                                    <option></option>
-                                    <option value="PEN">Soles</option>
-                                    <option value="USD">Dolares</option>
-                                </select>
-                                <!--end::Input-->
-                            </div>
-                            <!--end::Input group-->
+
                         </div>
                         <!--end::Scroll-->
 
@@ -271,7 +304,7 @@
         </div>
     </div>
     <!--end::Modal - Customers - Add-->
-    <!--begin::Modal - Customers - Add-->
+    <!--begin::Modal - Customers - Edit-->
     <div class="modal fade" id="kt_modal_edit_customer" aria-hidden="true">
         <!--begin::Modal dialog-->
         <div class="modal-dialog modal-dialog-centered mw-650px">
@@ -304,43 +337,70 @@
                         <!--begin::Scroll-->
                         <div class="scroll-y me-n7 pe-7" id="kt_modal_edit_customer_scroll" data-kt-scroll="true" data-kt-scroll-activate="{default: false, lg: true}" data-kt-scroll-max-height="auto" data-kt-scroll-dependencies="#kt_modal_edit_customer_header" data-kt-scroll-wrappers="#kt_modal_edit_customer_scroll" data-kt-scroll-offset="300px">
                             <input type="hidden" name="account_id">
-                            <!--begin::Input group-->
-                            <div class="fv-row mb-7">
-                                <!--begin::Label-->
-                                <label class="required fs-6 fw-bold mb-2">Numero de cuenta</label>
-                                <!--end::Label-->
-                                <!--begin::Input-->
-                                <input type="text" class="form-control form-control-solid" placeholder="Número de cuenta" name="numberAccount" value="" />
-                                <!--end::Input-->
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <!--begin::Input group-->
+                                    <div class="fv-row mb-7">
+                                        <!--begin::Label-->
+                                        <label class="required fs-6 fw-bold mb-2">Numero de cuenta</label>
+                                        <!--end::Label-->
+                                        <!--begin::Input-->
+                                        <input type="text" class="form-control form-control-solid" placeholder="Número de cuenta" name="numberAccount" value="" />
+                                        <!--end::Input-->
+                                    </div>
+                                    <!--end::Input group-->
+                                </div>
+                                <div class="col-lg-6">
+                                    <!--begin::Input group-->
+                                    <div class="fv-row mb-7">
+                                        <!--begin::Label-->
+                                        <label class="required fs-6 fw-bold mb-2">Seleccione un Banco</label>
+                                        <!--end::Label-->
+                                        <!--begin::Input-->
+                                        <select name="bank_id" id="bank_id" class="form-select form-select-solid" data-control="select2" data-hide-search="true" data-placeholder="Banco">
+                                            @foreach( $banks as $bank )
+                                                <option value="{{ $bank->id }}" data-kt-select2-bank="{{ asset('assets/images/banks/'.$bank->imageBank) }}">{{ $bank->name }}</option>
+                                            @endforeach
+                                        </select>
+                                        <!--end::Input-->
+                                    </div>
+                                    <!--end::Input group-->
+                                </div>
                             </div>
-                            <!--end::Input group-->
-                            <!--begin::Input group-->
-                            <div class="fv-row mb-7">
-                                <!--begin::Label-->
-                                <label class="required fs-6 fw-bold mb-2">Seleccione un Banco</label>
-                                <!--end::Label-->
-                                <!--begin::Input-->
-                                <select name="bank_id" id="bank_id" class="form-select form-select-solid" data-control="select2" data-hide-search="true" data-placeholder="Banco">
-                                    @foreach( $banks as $bank )
-                                        <option value="{{ $bank->id }}">{{ $bank->nameBank }}</option>
-                                    @endforeach
-                                </select>
-                                <!--end::Input-->
+
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <!--begin::Input group-->
+                                    <div class="fv-row mb-7">
+                                        <!--begin::Label-->
+                                        <label class="required fs-6 fw-bold mb-2">Seleccione un departamento</label>
+                                        <!--end::Label-->
+                                        <!--begin::Input-->
+                                        <select name="department_id" id="department_id" class="form-select form-select-solid" data-control="select2" data-hide-search="true" data-placeholder="Departamento">
+                                            @foreach( $departments as $department )
+                                                <option value="{{ $department->id }}">{{ $department->name }}</option>
+                                            @endforeach
+                                        </select>
+                                        <!--end::Input-->
+                                    </div>
+                                    <!--end::Input group-->
+                                </div>
+                                <div class="col-lg-6">
+                                    <!--begin::Input group-->
+                                    <div class="fv-row mb-7">
+                                        <!--begin::Label-->
+                                        <label class="required fs-6 fw-bold mb-2">Moneda de cuenta</label>
+                                        <!--end::Label-->
+                                        <!--begin::Input-->
+                                        <select name="currency" id="currency" class="form-select form-select-solid" data-control="select2" data-hide-search="true" data-placeholder="Moneda">
+                                            <option value="PEN">Soles</option>
+                                            <option value="USD">Dolares</option>
+                                        </select>
+                                        <!--end::Input-->
+                                    </div>
+                                    <!--end::Input group-->
+                                </div>
                             </div>
-                            <!--end::Input group-->
-                            <!--begin::Input group-->
-                            <div class="fv-row mb-7">
-                                <!--begin::Label-->
-                                <label class="required fs-6 fw-bold mb-2">Moneda de cuenta</label>
-                                <!--end::Label-->
-                                <!--begin::Input-->
-                                <select name="currency" id="currency" class="form-select form-select-solid" data-control="select2" data-hide-search="true" data-placeholder="Moneda">
-                                    <option value="PEN">Soles</option>
-                                    <option value="USD">Dolares</option>
-                                </select>
-                                <!--end::Input-->
-                            </div>
-                            <!--end::Input group-->
 
                             <!--begin::Input group-->
                             <div class="fv-row mb-7">
@@ -407,10 +467,35 @@
     <!--begin::Page Custom Javascript(used by this page)-->
     <script>
         $(document).ready(function(){
+            var optionFormat = function(item) {
+                if ( !item.id ) {
+                    return item.text;
+                }
+
+                var span = document.createElement('span');
+                var imgUrl = item.element.getAttribute('data-kt-select2-bank');
+                var template = '';
+
+                template += '<img src="' + imgUrl + '" class="rounded-circle h-20px me-2" alt="image"/>';
+                template += item.text;
+
+                span.innerHTML = template;
+
+                return $(span);
+            };
+
             $("#bank_id_create").select2({
+                templateSelection: optionFormat,
+                templateResult: optionFormat,
+                minimumResultsForSearch: Infinity,
+                dropdownParent: $("#kt_modal_add_customer")
+            });
+            $("#department_id_create").select2({
+                minimumResultsForSearch: Infinity,
                 dropdownParent: $("#kt_modal_add_customer")
             });
             $("#currency_create").select2({
+                minimumResultsForSearch: Infinity,
                 dropdownParent: $("#kt_modal_add_customer")
             });
             $.fn.modal.Constructor.prototype.enforceFocus = function () {};

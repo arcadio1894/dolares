@@ -107,7 +107,7 @@ var KTCustomersList = function () {
             }))
         }))
     };
-    const l = () => {
+    /*const l = () => {
         const t = document.querySelector('[data-kt-customer-table-toolbar="base"]'),
             e = document.querySelector('[data-kt-customer-table-toolbar="selected"]'),
             o = document.querySelector('[data-kt-customer-table-select="selected_count"]'),
@@ -116,7 +116,7 @@ var KTCustomersList = function () {
         c.forEach((t => {
             t.checked && (r = !0, l++)
         })), r ? (o.innerHTML = l, t.classList.add("d-none"), e.classList.remove("d-none")) : (t.classList.remove("d-none"), e.classList.add("d-none"))
-    };
+    };*/
     return {
         init: function () {
             (n = document.querySelector("#kt_customers_table")) && (n.querySelectorAll("tbody tr").forEach((t => {
@@ -125,9 +125,9 @@ var KTCustomersList = function () {
             })), (t = $(n).DataTable({
                 info: !1,
                 order: [],
-                columnDefs: [{orderable: !1, targets: 4}]
+                columnDefs: [{orderable: !1, targets: 7}]
             })).on("draw", (function () {
-                r(), c(), l()
+                r(), c()/*, l()*/
             })), r(), document.querySelector('[data-kt-customer-table-filter="search"]').addEventListener("keyup", (function (e) {
                 t.search(e.target.value).draw()
             })), e = $('[data-kt-customer-table-filter="month"]'), o = document.querySelectorAll('[data-kt-customer-table-filter="payment_type"] [name="payment_type"]'),

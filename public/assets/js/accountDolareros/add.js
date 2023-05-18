@@ -13,6 +13,13 @@ var KTModalCustomersAdd = function () {
                             }
                         }
                     },
+                    department_id: {
+                        validators: {
+                            notEmpty: {
+                                message: 'El departmento es requerido'
+                            }
+                        }
+                    },
                     currency: {
                         validators: {
                             notEmpty: {
@@ -50,7 +57,7 @@ var KTModalCustomersAdd = function () {
                                     }).then((function (e) {
                                         e.isConfirmed && (i.hide(), t.disabled = !1, window.location = r.getAttribute("data-kt-redirect"))
                                     }))
-                                }), 2e3)
+                                }), 1000)
                             },
                             error: function (data) {
                                 if( data.responseJSON.message && !data.responseJSON.errors )

@@ -151,7 +151,7 @@
                         <span class="fs-5 fw-bolder text-primary" id="cuponBuyNew">5.00</span>
                     </div>
                     <div class="text-center py-5 py-lg-5">
-                        <a href="{{ route('home') }}" class="btn btn-primary">Iniciar operación</a>
+                        <button data-generate data-url="{{ route('operation.generate') }}" class="btn btn-primary">Iniciar operación</button>
                     </div>
                 </div>
                 <!--end::Tab panel-->
@@ -215,7 +215,7 @@
                         <span class="fs-5 fw-bolder text-primary" id="cuponSellNew">5.00</span>
                     </div>
                     <div class="text-center py-5 py-lg-5">
-                        <a href="{{ route('home') }}" class="btn btn-primary">Iniciar operación</a>
+                        <button data-generate data-url="{{ route('operation.generate') }}" class="btn btn-primary">Iniciar operación</button>
                     </div>
 
                 </div>

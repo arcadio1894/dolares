@@ -25,8 +25,11 @@ class AccountCustomerStoreRequest extends FormRequest
     {
         return [
             'numberAccount' => 'required|string|max:255|unique:account_customers,numberAccount',
+            'nameAccount' => 'required|string|max:255|unique:account_customers,nameAccount',
             'bank_id' => 'required|exists:banks,id',
+            'department_id' => 'required|exists:departments,id',
             'currency' => 'required',
+            'type_account' => 'required',
         ];
     }
 
@@ -38,9 +41,12 @@ class AccountCustomerStoreRequest extends FormRequest
     public function attributes()
     {
         return [
+            'nameAccount' => 'nombre de la cuenta',
             'numberAccount' => 'número de la cuenta',
             'bank_id' => 'banco de la cuenta',
+            'department_id' => 'departamento de la cuenta',
             'currency' => 'moneda de la cuenta',
+            'type_account' => 'tipo de cuenta'
         ];
     }
 }

@@ -24,9 +24,14 @@ class AccountCustomer extends Model
 
     protected $fillable = [
         'bank_id',
+        'nameAccount',
         'numberAccount',
+        'type_account',
         'currency',
         'status',
+        'property',
+        'user_id',
+        'department_id'
     ];
 
     protected $dates = ["created_at", "updated_at", "deleted_at"];
@@ -34,6 +39,16 @@ class AccountCustomer extends Model
     public function bank()
     {
         return $this->belongsTo('App\Models\Bank', 'bank_id', 'id');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo('App\Models\User', 'user_id', 'id');
+    }
+
+    public function department()
+    {
+        return $this->belongsTo('App\Models\Department', 'department_id', 'id');
     }
 
 }

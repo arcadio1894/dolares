@@ -26,8 +26,11 @@ class AccountCustomerUpdateRequest extends FormRequest
         return [
             'account_id' => 'required|exists:account_customers,id',
             'bank_id' => 'required|exists:banks,id',
+            'department_id' => 'required|exists:departments,id',
             'numberAccount' => 'required|string|max:255|unique:account_customers,numberAccount,'.$this->get('account_id'),
-            'currency' => 'required'
+            'nameAccount' => 'required|string|max:255|unique:account_customers,nameAccount,'.$this->get('account_id'),
+            'currency' => 'required',
+            'type_account' => 'required',
         ];
     }
 
@@ -36,8 +39,11 @@ class AccountCustomerUpdateRequest extends FormRequest
         return [
             'account_id' => 'ID de la cuenta',
             'bank_id' => 'ID del banco',
+            'department_id' => 'ID del departamento',
+            'nameAccount' => 'nombre de la cuenta',
             'numberAccount' => 'número de la cuenta',
-            'currency' => 'moneda de la cuenta'
+            'currency' => 'moneda de la cuenta',
+            'type_account' => 'tipo de la cuenta',
         ];
     }
 }

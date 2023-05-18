@@ -106,11 +106,18 @@ Route::middleware('auth')->group(function (){
                 ->name('accounts.customer.destroy');
 
 
-            Route::get('/mis/operaciones', [App\Http\Controllers\AccountCustomerController::class, 'operaciones'])
+            Route::get('/mis/operaciones', [App\Http\Controllers\OperationController::class, 'index'])
                 ->name('operationCustomer.index');
         });
 
+        Route::post('/generate/operation', [App\Http\Controllers\OperationController::class, 'generate'])
+            ->name('operation.generate');
 
+        Route::get('/crear/operacion', [App\Http\Controllers\OperationController::class, 'create'])
+            ->name('operation.create');
+
+        Route::post('/account/customer/operation/store', [App\Http\Controllers\AccountCustomerController::class, 'store'])
+            ->name('accounts.customer.operation.store');
 
     });
 });

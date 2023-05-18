@@ -16,6 +16,13 @@ $(document).ready(function () {
                     }
                 }
             },
+            department_id: {
+                validators: {
+                    notEmpty: {
+                        message: 'El departamento es requerido'
+                    }
+                }
+            },
             currency: {
                 validators: {
                     notEmpty: {
@@ -176,7 +183,25 @@ function closeModalEdit($buttonSubmit) {
 
 function showModalEdit() {
 
+    var optionFormat = function(item) {
+        if ( !item.id ) {
+            return item.text;
+        }
+
+        var span = document.createElement('span');
+        var imgUrl = item.element.getAttribute('data-kt-select2-bank');
+        var template = '';
+
+        template += '<img src="' + imgUrl + '" class="rounded-circle h-20px me-2" alt="image"/>';
+        template += item.text;
+
+        span.innerHTML = template;
+
+        return $(span);
+    };
+
     let idBank = $(this).attr('data-kt-bank');
+    let idDepartment = $(this).attr('data-kt-department');
     let statusAccount = $(this).attr('data-kt-status');
     let numberAccount = $(this).attr('data-kt-numberAccount');
     let currency = $(this).attr('data-kt-currency');
@@ -191,6 +216,7 @@ function showModalEdit() {
     //$formEdit.querySelector('[name="currency"]').value = 'USD';
 
     let c = $('#currency').select2({
+        minimumResultsForSearch: Infinity,
         dropdownParent: $("#kt_modal_edit_customer")
     });
 
@@ -198,11 +224,22 @@ function showModalEdit() {
     c.trigger('change');
 
     let b = $('#bank_id').select2({
+        templateSelection: optionFormat,
+        templateResult: optionFormat,
+        minimumResultsForSearch: Infinity,
         dropdownParent: $("#kt_modal_edit_customer")
     });
 
     b.val(idBank);
     b.trigger('change');
+
+    let d = $('#department_id').select2({
+        minimumResultsForSearch: Infinity,
+        dropdownParent: $("#kt_modal_edit_customer")
+    });
+
+    d.val(idDepartment);
+    d.trigger('change');
 
     if ( statusAccount == 1 )
     {
@@ -236,7 +273,7 @@ function updateBank() {
                         }).then((function (e) {
                             e.isConfirmed && ($modalEdit.hide(), $buttonSubmit.disabled = !1, window.location = $formEdit.getAttribute("data-kt-redirect"))
                         }))
-                    }), 2e3)
+                    }), 1000)
                 },
                 error: function (data) {
                     if( data.responseJSON.message && !data.responseJSON.errors )

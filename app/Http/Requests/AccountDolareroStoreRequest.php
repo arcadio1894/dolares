@@ -26,6 +26,7 @@ class AccountDolareroStoreRequest extends FormRequest
         return [
             'numberAccount' => 'required|string|max:255|unique:account_dolareros,numberAccount',
             'bank_id' => 'required|exists:banks,id',
+            'department_id' => 'required|exists:departments,id',
             'currency' => 'required',
         ];
     }
@@ -40,6 +41,7 @@ class AccountDolareroStoreRequest extends FormRequest
         return [
             'numberAccount' => 'número de la cuenta',
             'bank_id' => 'banco de la cuenta',
+            'department_id' => 'departemento de la cuenta',
             'currency' => 'moneda de la cuenta',
         ];
     }

@@ -25,8 +25,22 @@ class StopData extends Model
         'sellStop',
         'buyControl',
         'sellControl',
-        'token'
+        'token',
+        'coupon_id',
+        'type',
+        'sendAmount',
+        'getAmount'
     ];
 
     protected $dates = ["created_at", "updated_at"];
+
+    public function coupon()
+    {
+        return $this->belongsTo('App\Models\Coupon', 'coupon_id', 'id');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo('App\Models\User', 'user_id', 'id');
+    }
 }

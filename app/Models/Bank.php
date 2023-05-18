@@ -30,8 +30,21 @@ class Bank extends Model
 
     protected $dates = ["created_at", "updated_at", "deleted_at"];
 
+    public function getNameAttribute()
+    {
+        $completeName = $this->nameBank;
+        $shortName = substr($completeName, 0, strpos($completeName, '-'));
+
+        return strtoupper($shortName);
+    }
+
     public function accounts()
     {
         return $this->hasMany('App\Models\AccountDolarero', 'bank_id', 'id');
+    }
+
+    public function account_customers()
+    {
+        return $this->hasMany('App\Models\AccountCustomer', 'bank_id', 'id');
     }
 }

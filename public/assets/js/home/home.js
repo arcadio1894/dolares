@@ -7,6 +7,9 @@ let $tipoCambioVentaControl;
 let $tipoCambioCompraWithCoupon = 0;
 let $tipoCambioVentaWithCoupon = 0;
 
+let $ahorroBuy = 0;
+let $ahorroSell = 0;
+
 $(document).ready(function () {
 
     $tipoCambioCompra = parseFloat($('#tipoCambioCompra').val());
@@ -33,9 +36,128 @@ $(document).ready(function () {
 
     $(document).on('input', '#getSell', changeGetSell);
 
+    $(document).on('click', '[data-generate]', generateOperation);
+
 });
 
+function generateOperation() {
+    event.preventDefault();
+    var button = $(this);
+    button.prop("disabled", true);
+
+    var urlGenerate = $(this).attr('data-url');
+
+    var ref_tab = $("ul.nav-tabs  a.active");
+
+    var typeTab = ref_tab.attr('data-tab');
+
+    var getAmount = 0;
+    var sendAmount = 0;
+    var type = 0;
+    var ahorro = 0;
+
+    if ( typeTab == 'buy' )
+    {
+        getAmount = $('#getBuy').val();
+        sendAmount = $('#sendBuy').val();
+        type = 'buy';
+        ahorro = $ahorroBuy;
+    } else {
+        getAmount = $('#getSell').val();
+        sendAmount = $('#sendSell').val();
+        type = 'sell';
+        ahorro = $ahorroSell;
+    }
+
+    $.ajax({
+        url: urlGenerate,
+        method: 'POST',
+        headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+        data: JSON.stringify({
+            "getAmount":getAmount,
+            "sendAmount":sendAmount,
+            "type":type,
+            "ahorro":ahorro
+        }),
+        processData:false,
+        contentType:'application/json; charset=utf-8',
+        success: function(response){
+            toastr.success(response.message, 'Éxito',
+                {
+                    "closeButton": true,
+                    "debug": false,
+                    "newestOnTop": false,
+                    "progressBar": true,
+                    "positionClass": "toast-top-right",
+                    "preventDuplicates": false,
+                    "onclick": null,
+                    "showDuration": "300",
+                    "hideDuration": "1000",
+                    "timeOut": "2000",
+                    "extendedTimeOut": "1000",
+                    "showEasing": "swing",
+                    "hideEasing": "linear",
+                    "showMethod": "fadeIn",
+                    "hideMethod": "fadeOut"
+                });
+            setTimeout((function () {
+                button.prop("disabled", false);
+                location.href = response.url;
+            }), 1000)
+
+        },
+        error: function(data){
+            if( data.responseJSON.message && !data.responseJSON.errors )
+            {
+                toastr.error(data.responseJSON.message, 'Error',
+                    {
+                        "closeButton": true,
+                        "debug": false,
+                        "newestOnTop": false,
+                        "progressBar": true,
+                        "positionClass": "toast-top-right",
+                        "preventDuplicates": false,
+                        "onclick": null,
+                        "showDuration": "300",
+                        "hideDuration": "2000",
+                        "timeOut": "2000",
+                        "extendedTimeOut": "1000",
+                        "showEasing": "swing",
+                        "hideEasing": "linear",
+                        "showMethod": "fadeIn",
+                        "hideMethod": "fadeOut"
+                    });
+            }
+            for ( var property in data.responseJSON.errors ) {
+                toastr.error(data.responseJSON.errors[property], 'Error',
+                    {
+                        "closeButton": true,
+                        "debug": false,
+                        "newestOnTop": false,
+                        "progressBar": true,
+                        "positionClass": "toast-top-right",
+                        "preventDuplicates": false,
+                        "onclick": null,
+                        "showDuration": "300",
+                        "hideDuration": "2000",
+                        "timeOut": "2000",
+                        "extendedTimeOut": "1000",
+                        "showEasing": "swing",
+                        "hideEasing": "linear",
+                        "showMethod": "fadeIn",
+                        "hideMethod": "fadeOut"
+                    });
+            }
+
+            button.prop("disabled", false);
+        }
+    });
+}
+
 function applyCoupon() {
+    var button = $(this);
+    button.prop("disabled", true);
+
     var urlApply = $(this).attr('data-url');
     var coupon = $('#coupon').val();
     var req1 = $.ajax({
@@ -50,6 +172,7 @@ function applyCoupon() {
         success: function(response){
             console.log(response.stopData);
             console.log(response.coupon);
+            button.prop("disabled", false);
             toastr.success(response.message, 'Éxito',
                 {
                     "closeButton": true,
@@ -134,6 +257,7 @@ function applyCoupon() {
                         "hideMethod": "fadeOut"
                     });
             }
+            button.prop("disabled", false);
         }
     });
 }
@@ -192,8 +316,8 @@ function checkTabPane() {
         var sendBuy = parseFloat($('#sendBuy').val());
         var getBuy = parseFloat(sendBuy*($tipoCambioCompra+$tipoCambioCompraWithCoupon)).toFixed(2);
         $('#getBuy').val(getBuy);
-        var ahorroBuy = getAhorroBuy(sendBuy);
-        $('#ahorroBuy').html('Estás ahorrando aprox. S/ '+ahorroBuy);
+        $ahorroBuy = getAhorroBuy(sendBuy);
+        $('#ahorroBuy').html('Estás ahorrando aprox. S/ '+$ahorroBuy);
     } else {
         $('#text_sell').removeClass('text-muted');
         $('#text_sell').addClass('text-primary');
@@ -203,8 +327,8 @@ function checkTabPane() {
         var sendSell = parseFloat($('#sendSell').val());
         var getSell = parseFloat(sendSell/($tipoCambioVenta-$tipoCambioVentaWithCoupon)).toFixed(2);
         $('#getSell').val(getSell);
-        var ahorroSell = getAhorroSell(sendSell);
-        $('#ahorroSell').html('Estás ahorrando aprox. USD '+ahorroSell)
+        $ahorroSell = getAhorroSell(sendSell);
+        $('#ahorroSell').html('Estás ahorrando aprox. USD '+$ahorroSell)
     }
 
     checkCoupons();
@@ -223,32 +347,32 @@ function changeSendBuy() {
     var sendBuy = parseFloat(($('#sendBuy').val() == '') ? 0:$('#sendBuy').val());
     var getBuy = parseFloat(sendBuy*($tipoCambioCompra+$tipoCambioCompraWithCoupon)).toFixed(2);
     $('#getBuy').val(getBuy);
-    var ahorroBuy = getAhorroBuy(sendBuy);
-    $('#ahorroBuy').html('Estás ahorrando aprox. S/ '+ahorroBuy);
+    $ahorroBuy = getAhorroBuy(sendBuy);
+    $('#ahorroBuy').html('Estás ahorrando aprox. S/ '+$ahorroBuy);
 }
 
 function changeSendSell() {
     var sendSell = parseFloat(($('#sendSell').val() == '') ? 0:$('#sendSell').val());
     var getSell = parseFloat(sendSell/($tipoCambioVenta-$tipoCambioVentaWithCoupon)).toFixed(2);
     $('#getSell').val(getSell);
-    var ahorroSell = getAhorroSell(sendSell);
-    $('#ahorroSell').html('Estás ahorrando aprox. USD '+ahorroSell)
+    $ahorroSell = getAhorroSell(sendSell);
+    $('#ahorroSell').html('Estás ahorrando aprox. USD '+$ahorroSell)
 }
 
 function changeGetBuy() {
     var getBuy = parseFloat(($('#getBuy').val() == '') ? 0:$('#getBuy').val());
     var sendBuy = parseFloat(getBuy/($tipoCambioCompra+$tipoCambioCompraWithCoupon)).toFixed(2);
     $('#sendBuy').val(sendBuy);
-    var ahorroBuy = getAhorroBuy(sendBuy);
-    $('#ahorroBuy').html('Estás ahorrando aprox. S/ '+ahorroBuy);
+    $ahorroBuy = getAhorroBuy(sendBuy);
+    $('#ahorroBuy').html('Estás ahorrando aprox. S/ '+$ahorroBuy);
 }
 
 function changeGetSell() {
     var getSell = parseFloat(($('#getSell').val() == '') ? 0:$('#getSell').val());
     var sendSell = parseFloat(getSell*($tipoCambioVenta-$tipoCambioVentaWithCoupon)).toFixed(2);
     $('#sendSell').val(sendSell);
-    var ahorroSell = getAhorroSell(sendSell);
-    $('#ahorroSell').html('Estás ahorrando aprox. USD '+ahorroSell)
+    $ahorroSell = getAhorroSell(sendSell);
+    $('#ahorroSell').html('Estás ahorrando aprox. USD '+$ahorroSell)
 }
 
 function getAhorroBuy( sendBuy ) {

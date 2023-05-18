@@ -7,6 +7,7 @@ use App\Http\Requests\AccountDolareroStoreRequest;
 use App\Http\Requests\AccountDolareroUpdateRequest;
 use App\Models\AccountDolarero;
 use App\Models\Bank;
+use App\Models\Department;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -15,9 +16,10 @@ class AccountDolareroController extends Controller
     public function index()
     {
         $banks = Bank::all();
-        $accounts = AccountDolarero::with('bank')->get();
+        $departments = Department::all();
+        $accounts = AccountDolarero::with(['bank', 'department'])->get();
 
-        return view('accountDolareros.index', compact('banks', 'accounts'));
+        return view('accountDolareros.index', compact('banks', 'departments', 'accounts'));
     }
 
     public function create()
@@ -33,6 +35,7 @@ class AccountDolareroController extends Controller
         try {
 
             AccountDolarero::create([
+                'department_id' => $request->get('department_id'),
                 'bank_id' => $request->get('bank_id'),
                 'numberAccount' => $request->get('numberAccount'),
                 'currency' => $request->get('currency'),
@@ -54,7 +57,7 @@ class AccountDolareroController extends Controller
     {
         $validated = $request->validated();
 
-        $accounts = AccountDolarero::where('bank_id', $request->get('bank_id'))
+        /*$accounts = AccountDolarero::where('bank_id', $request->get('bank_id'))
             ->where('currency', $request->get('currency'))
             ->where('id', '<>',$request->get('account_id'))
             ->get();
@@ -63,13 +66,14 @@ class AccountDolareroController extends Controller
             return response()->json([
                 'message' => 'No se puede guardar porque ya hay una cuenta con esa moneda en ese banco.',
             ], 422);
-        }
+        }*/
 
         DB::beginTransaction();
         try {
 
             $account = AccountDolarero::find($request->get('account_id'));
 
+            $account->department_id = $request->get('department_id');
             $account->bank_id = $request->get('bank_id');
             $account->numberAccount = $request->get('numberAccount');
             $account->currency = $request->get('currency');

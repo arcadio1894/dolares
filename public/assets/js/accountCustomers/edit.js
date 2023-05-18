@@ -9,6 +9,7 @@ $(document).ready(function () {
     $formValidation = FormValidation.formValidation($formEdit, {
         fields: {
             numberAccount: {validators: {notEmpty: {message: "El número de cuenta es obligatorio."}}},
+            nameAccount: {validators: {notEmpty: {message: "El nombre de la cuenta es obligatorio."}}},
             bank_id: {
                 validators: {
                     notEmpty: {
@@ -16,10 +17,24 @@ $(document).ready(function () {
                     }
                 }
             },
+            department_id: {
+                validators: {
+                    notEmpty: {
+                        message: 'El departamento es requerido'
+                    }
+                }
+            },
             currency: {
                 validators: {
                     notEmpty: {
                         message: 'La moneda es requerido'
+                    }
+                }
+            },
+            type_account: {
+                validators: {
+                    notEmpty: {
+                        message: 'El tipo de cuenta es requerido'
                     }
                 }
             },
@@ -38,7 +53,7 @@ $(document).ready(function () {
     $(document).on('click', '[data-kt-account-active]', changeStatusAccount);
 
 
-    $buttonSubmit.addEventListener("click", updateBank);
+    $buttonSubmit.addEventListener("click", updateAccount);
 
     $buttonClose.addEventListener("click", closeModalEdit);
 
@@ -176,21 +191,53 @@ function closeModalEdit($buttonSubmit) {
 
 function showModalEdit() {
 
+    var optionFormat = function(item) {
+        if ( !item.id ) {
+            return item.text;
+        }
+
+        var span = document.createElement('span');
+        var imgUrl = item.element.getAttribute('data-kt-select2-bank');
+        var template = '';
+
+        template += '<img src="' + imgUrl + '" class="rounded-circle h-20px me-2" alt="image"/>';
+        template += item.text;
+
+        span.innerHTML = template;
+
+        return $(span);
+    };
+
     let idBank = $(this).attr('data-kt-bank');
+    let idDepartment = $(this).attr('data-kt-department');
     let statusAccount = $(this).attr('data-kt-status');
+    let nameAccount = $(this).attr('data-kt-nameAccount');
+    let property = $(this).attr('data-kt-property');
     let numberAccount = $(this).attr('data-kt-numberAccount');
     let currency = $(this).attr('data-kt-currency');
+    let type_account = $(this).attr('data-kt-type-account');
     let idAccount = $(this).attr('data-kt-account');
 
     $formEdit.querySelector('[name="account_id"]').value = idAccount;
 
     $formEdit.querySelector('[name="numberAccount"]').value = numberAccount;
 
+    $formEdit.querySelector('[name="nameAccount"]').value = nameAccount;
+
     //$formEdit.querySelector('[name="bank_id"]').value = idBank;
 
     //$formEdit.querySelector('[name="currency"]').value = 'USD';
 
+    let t = $('#type_account_update').select2({
+        minimumResultsForSearch: Infinity,
+        dropdownParent: $("#kt_modal_edit_customer")
+    });
+
+    t.val(type_account);
+    t.trigger('change');
+
     let c = $('#currency').select2({
+        minimumResultsForSearch: Infinity,
         dropdownParent: $("#kt_modal_edit_customer")
     });
 
@@ -198,11 +245,22 @@ function showModalEdit() {
     c.trigger('change');
 
     let b = $('#bank_id').select2({
+        templateSelection: optionFormat,
+        templateResult: optionFormat,
+        minimumResultsForSearch: Infinity,
         dropdownParent: $("#kt_modal_edit_customer")
     });
 
     b.val(idBank);
     b.trigger('change');
+
+    let d = $('#department_id').select2({
+        minimumResultsForSearch: Infinity,
+        dropdownParent: $("#kt_modal_edit_customer")
+    });
+
+    d.val(idDepartment);
+    d.trigger('change');
 
     if ( statusAccount == 1 )
     {
@@ -210,11 +268,18 @@ function showModalEdit() {
     } else {
         $formEdit.querySelector('[name="statusAccount"]').checked = false;
     }
+
+    if ( property == 1 )
+    {
+        $formEdit.querySelector('[name="property"]').checked = true;
+    } else {
+        $formEdit.querySelector('[name="property"]').checked = false;
+    }
     $.fn.modal.Constructor.prototype.enforceFocus = function () {};
     $modalEdit.show();
 }
 
-function updateBank() {
+function updateAccount() {
     event.preventDefault();
     $formValidation.validate().then((function (e) {
         console.log("validated!"), "Valid" == e ? ($buttonSubmit.setAttribute("data-kt-indicator", "on"), $buttonSubmit.disabled = !0,

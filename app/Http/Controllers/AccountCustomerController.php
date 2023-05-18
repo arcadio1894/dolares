@@ -7,7 +7,9 @@ use App\Http\Requests\AccountCustomerStoreRequest;
 use App\Http\Requests\AccountCustomerUpdateRequest;
 use App\Models\AccountCustomer;
 use App\Models\Bank;
+use App\Models\Department;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 
@@ -16,9 +18,12 @@ class AccountCustomerController extends Controller
     public function index()
     {
         $banks = Bank::all();
-        $accounts = AccountCustomer::with('bank')->get();
+        $departments = Department::all();
+        $accounts = AccountCustomer::with(['bank','department'])
+            ->where('user_id', Auth::id())
+            ->get();
 
-        return view('accountCustomers.index', compact('banks', 'accounts'));
+        return view('accountCustomers.index', compact('banks', 'departments', 'accounts'));
     }
 
     public function store( AccountCustomerStoreRequest $request )
@@ -29,9 +34,14 @@ class AccountCustomerController extends Controller
         try {
 
             AccountCustomer::create([
+                'department_id' => $request->get('department_id'),
                 'bank_id' => $request->get('bank_id'),
+                'user_id' => Auth::id(),
+                'nameAccount' => $request->get('nameAccount'),
                 'numberAccount' => $request->get('numberAccount'),
+                'type_account' => $request->get('type_account'),
                 'currency' => $request->get('currency'),
+                'property' => ($request->get('property') == 1) ? 1:0,
             ]);
 
             DB::commit();
@@ -50,7 +60,7 @@ class AccountCustomerController extends Controller
     {
         $validated = $request->validated();
 
-        $accounts = AccountCustomer::where('bank_id', $request->get('bank_id'))
+        /*$accounts = AccountCustomer::where('bank_id', $request->get('bank_id'))
             ->where('currency', $request->get('currency'))
             ->where('id', '<>',$request->get('account_id'))
             ->get();
@@ -59,17 +69,21 @@ class AccountCustomerController extends Controller
             return response()->json([
                 'message' => 'No se puede guardar porque ya hay una cuenta con esa moneda en ese banco.',
             ], 422);
-        }
+        }*/
 
         DB::beginTransaction();
         try {
 
             $account = AccountCustomer::find($request->get('account_id'));
 
+            $account->department_id = $request->get('department_id');
             $account->bank_id = $request->get('bank_id');
+            $account->nameAccount = $request->get('nameAccount');
             $account->numberAccount = $request->get('numberAccount');
+            $account->type_account = $request->get('type_account');
             $account->currency = $request->get('currency');
             $account->status = ($request->get('statusAccount') == 1) ? 1:0;
+            $account->property = ($request->get('property') == 1) ? 1:0;
             $account->save();
 
             DB::commit();

@@ -25,6 +25,7 @@ class AccountDolareroUpdateRequest extends FormRequest
     {
         return [
             'account_id' => 'required|exists:account_dolareros,id',
+            'department_id' => 'required|exists:departments,id',
             'bank_id' => 'required|exists:banks,id',
             'numberAccount' => 'required|string|max:255|unique:account_dolareros,numberAccount,'.$this->get('account_id'),
             'currency' => 'required'
@@ -36,6 +37,7 @@ class AccountDolareroUpdateRequest extends FormRequest
         return [
             'account_id' => 'ID de la cuenta',
             'bank_id' => 'ID del banco',
+            'department_id' => 'ID del departmento',
             'numberAccount' => 'número de la cuenta',
             'currency' => 'moneda de la cuenta'
         ];

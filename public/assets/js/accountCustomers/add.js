@@ -6,6 +6,7 @@ var KTModalCustomersAdd = function () {
             i = new bootstrap.Modal(document.querySelector("#kt_modal_add_customer")), r = document.querySelector("#kt_modal_add_customer_form"), t = r.querySelector("#kt_modal_add_customer_submit"), e = r.querySelector("#kt_modal_add_customer_cancel"), o = r.querySelector("#kt_modal_add_customer_close"), n = FormValidation.formValidation(r, {
                 fields: {
                     numberAccount: {validators: {notEmpty: {message: "El número de cuenta es obligatorio."}}},
+                    nameAccount: {validators: {notEmpty: {message: "El nombre de la cuenta es obligatorio."}}},
                     bank_id: {
                         validators: {
                             notEmpty: {
@@ -13,10 +14,24 @@ var KTModalCustomersAdd = function () {
                             }
                         }
                     },
+                    department_id: {
+                        validators: {
+                            notEmpty: {
+                                message: 'El departamento es requerido'
+                            }
+                        }
+                    },
                     currency: {
                         validators: {
                             notEmpty: {
                                 message: 'La moneda es requerido'
+                            }
+                        }
+                    },
+                    type_account: {
+                        validators: {
+                            notEmpty: {
+                                message: 'El tipo de cuenta es requerido'
                             }
                         }
                     },
