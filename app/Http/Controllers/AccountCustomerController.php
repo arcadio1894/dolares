@@ -139,9 +139,13 @@ class AccountCustomerController extends Controller
 
     public function operaciones()
     {
-        /*session(['codigo_correcto' => true]);*/
-        /*Session::forget('codigo_correcto');*/
-        return "Pagina de operaciones";
-        //return view('accountCustomer.index', compact('response'));
+        $banks = Bank::all();
+        $departments = Department::all();
+        $accounts = AccountCustomer::with(['bank','department'])
+            ->where('user_id', Auth::id())
+            ->get();
+
+        return view('accountCustomers.index', compact('banks', 'departments', 'accounts'));
+
     }
 }

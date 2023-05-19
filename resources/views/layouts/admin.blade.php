@@ -296,7 +296,7 @@
                             <!--begin::Tab content-->
                             <div class="tab-content">
                                 <!--begin::Tab pane-->
-                                <div class="tab-pane fade  @yield('activeTabHome')" id="kt_aside_nav_tab_projects" role="tabpanel">
+                                <div class="tab-pane fade @yield('activeTabHome')" id="kt_aside_nav_tab_projects" role="tabpanel">
                                     <!--begin::Wrapper-->
                                     <div class="m-0">
 
@@ -317,7 +317,7 @@
                                                     <!--begin::Description-->
                                                     <div class="d-flex flex-column flex-grow-1">
                                                         <!--begin::Title-->
-                                                        <h5 class="custom-list-title fw-bold @yield('activeHome') mb-1">Calculadora</h5>
+                                                        <h5 class="custom-list-title fw-bold @yield('activeHome', 'text-gray-800') mb-1">Calculadora</h5>
                                                         <!--end::Title-->
                                                         <!--begin::Link-->
                                                         <span class="text-gray-400 fw-bold">Mejores tasas</span>
@@ -325,7 +325,8 @@
                                                     </div>
                                                     <!--begin::Description-->
                                                 </a>
-                                                <a href="{{ (session()->has('codigo_correcto')) ? route('accountCustomer.index') : route('code.index', ['id' => 1]) }}" class="text-primary custom-list d-flex align-items-center px-5 py-4">
+
+                                                <a href="{{ (session()->has('codigo_correcto')) ? route('accountCustomer.index') : route('code.index', 1) }}" class="text-primary custom-list d-flex align-items-center px-5 py-4">
                                                     <!--begin::Symbol-->
                                                     <div class="symbol symbol-40px me-5">
                                                         <span class="symbol-label">
@@ -336,7 +337,7 @@
                                                     <!--begin::Description-->
                                                     <div class="d-flex flex-column flex-grow-1">
                                                         <!--begin::Title-->
-                                                        <h5 class="custom-list-title fw-bold @yield('activeMyAccount') mb-1">Mis Cuentas</h5>
+                                                        <h5 class="custom-list-title fw-bold @yield('activeMyAccount', 'text-gray-800') mb-1">Mis Cuentas</h5>
                                                         <!--end::Title-->
                                                         <!--begin::Link-->
                                                         <span class="text-gray-400 fw-bold">Revisa tus cuentas</span>
@@ -345,7 +346,7 @@
                                                     <!--begin::Description-->
                                                 </a>
 
-                                                <a href="{{ (session()->has('codigo_correcto')) ? route('operationCustomer.index') : route('code.index', ['id' => 2]) }}" class="text-primary custom-list d-flex align-items-center px-5 py-4">
+                                                {{--<a href="{{ (session()->has('codigo_correcto')) ? route('operationCustomer.index') : route('code.index', 2) }}" class="text-primary custom-list d-flex align-items-center px-5 py-4">
                                                     <!--begin::Symbol-->
                                                     <div class="symbol symbol-40px me-5">
                                                         <span class="symbol-label">
@@ -356,7 +357,7 @@
                                                     <!--begin::Description-->
                                                     <div class="d-flex flex-column flex-grow-1">
                                                         <!--begin::Title-->
-                                                        <h5 class="custom-list-title fw-bold @yield('activeMyOperation') mb-1">Mis Operaciones</h5>
+                                                        <h5 class="custom-list-title fw-bold @yield('activeMyOperation', 'text-gray-800') mb-1">Mis Operaciones</h5>
                                                         <!--end::Title-->
                                                         <!--begin::Link-->
                                                         <span class="text-gray-400 fw-bold">Revisa tus operaciones</span>
@@ -364,10 +365,8 @@
                                                     </div>
                                                     <!--begin::Description-->
                                                 </a>
-
+--}}
                                             </div>
-
-
                                             <!--end::Items-->
                                         </div>
                                         <!--end::Projects-->

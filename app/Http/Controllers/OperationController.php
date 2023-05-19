@@ -16,7 +16,14 @@ class OperationController extends Controller
 {
     public function index()
     {
-        return "Pagina de listado de operaciones";
+        $banks = Bank::all();
+        $departments = Department::all();
+        $accounts = AccountCustomer::with(['bank','department'])
+            ->where('user_id', Auth::id())
+            ->get();
+
+        return view('accountCustomers.index', compact('banks', 'departments', 'accounts'));
+
     }
 
     public function generate(Request $request)

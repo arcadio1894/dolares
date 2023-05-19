@@ -7,7 +7,7 @@
 @section('breadcrumb')
     <ul class="breadcrumb fw-bold fs-base my-1">
         <li class="breadcrumb-item text-muted">
-            <a href="../../demo7/dist/index.html" class="text-muted">Inicio</a>
+            <a href="{{ route('home') }}" class="text-muted">Inicio</a>
         </li>
         <li class="breadcrumb-item text-dark">Dashboard</li>
     </ul>
