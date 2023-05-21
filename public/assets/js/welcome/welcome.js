@@ -139,6 +139,7 @@ function chartWelcome() {
             /* dataType: 'jsonp', */
             success: function(response){
                 console.log(response.data);
+                getTipoCambioDolareros();
                 chart.updateOptions({
                     series: [
                         {

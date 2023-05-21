@@ -23,8 +23,20 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::middleware('auth')->group(function (){
     Route::prefix('dashboard')->group(function (){
+
+        // TODO: Rutas de Perfil
         Route::get('/perfil', [App\Http\Controllers\UserController::class, 'profile'])
             ->name('dashboard.profile');
+        Route::get('/token/seguro', [App\Http\Controllers\UserController::class, 'token'])
+            ->name('dashboard.profile.token');
+        Route::post('/token/store', [App\Http\Controllers\UserController::class, 'storeToken'])
+            ->name('token.store');
+        Route::post('/token/renew', [App\Http\Controllers\UserController::class, 'renewToken'])
+            ->name('token.renew');
+        Route::post('/apply/coupon', [App\Http\Controllers\HomeController::class, 'applyCoupon'])
+            ->name('apply.coupon');
+
+        // TODO: Rutas de Graficos
         Route::get('/graficos/Dolareros', [App\Http\Controllers\GraphController::class, 'indexDolareros'])
             ->name('dashboard.graphs.Dolareros');
         Route::get('/graficos/Kambista', [App\Http\Controllers\GraphController::class, 'indexKambista'])
@@ -40,6 +52,74 @@ Route::middleware('auth')->group(function (){
         Route::get('/graficos/SecuEx', [App\Http\Controllers\GraphController::class, 'indexSecuEx'])
             ->name('dashboard.graphs.SecuEx');
 
+        // TODO: Rutas BackOffice - Accounts Dolareros
+        Route::get('/cuentas/dolareros', [App\Http\Controllers\AccountDolareroController::class, 'index'])
+            ->name('accounts.dolareros.index');
+        Route::post('/account/store', [App\Http\Controllers\AccountDolareroController::class, 'store'])
+            ->name('accounts.store');
+        Route::post('/account/update', [App\Http\Controllers\AccountDolareroController::class, 'update'])
+            ->name('accounts.update');
+        Route::post('/account/update/status', [App\Http\Controllers\AccountDolareroController::class, 'updateStatus'])
+            ->name('accounts.update.status');
+        Route::post('/account/destroy/{account_id}', [App\Http\Controllers\AccountDolareroController::class, 'destroy'])
+            ->name('accounts.destroy');
+
+        // TODO: Rutas BackOffice - Banks
+        Route::get('/bancos', [App\Http\Controllers\BankController::class, 'index'])
+            ->name('banks.index');
+        Route::post('/bank/store', [App\Http\Controllers\BankController::class, 'store'])
+            ->name('banks.store');
+        Route::post('/bank/update', [App\Http\Controllers\BankController::class, 'update'])
+            ->name('banks.update');
+        Route::post('/bank/update/status', [App\Http\Controllers\BankController::class, 'updateStatus'])
+            ->name('banks.update.status');
+        Route::post('/bank/destroy/{bank_id}', [App\Http\Controllers\BankController::class, 'destroy'])
+            ->name('banks.destroy');
+
+        // TODO: Rutas BackOffice - SourceFunds
+        Route::get('/fuente/fondos', [App\Http\Controllers\SourceFundController::class, 'index'])
+            ->name('sourceFunds.index');
+        Route::post('/sourceFund/store', [App\Http\Controllers\SourceFundController::class, 'store'])
+            ->name('sourceFunds.store');
+        Route::post('/sourceFund/update', [App\Http\Controllers\SourceFundController::class, 'update'])
+            ->name('sourceFunds.update');
+        Route::post('/sourceFund/destroy/{source_id}', [App\Http\Controllers\SourceFundController::class, 'destroy'])
+            ->name('sourceFunds.destroy');
+
+        // TODO: Rutas de cuentas para clientes
+        Route::get('/verificar/codigo/{id}', [App\Http\Controllers\CodeController::class, 'index'])
+            ->name('code.index');
+
+        Route::post('/verification/code/{url}', [App\Http\Controllers\CodeController::class, 'verification'])
+            ->name('code.verification');
+
+        Route::middleware(['code'])->group(function () {
+            Route::get('/mis/cuentas', [App\Http\Controllers\AccountCustomerController::class, 'index'])
+                ->name('accountCustomer.index');
+            Route::post('/account/customer/store', [App\Http\Controllers\AccountCustomerController::class, 'store'])
+                ->name('accounts.customer.store');
+            Route::post('/account/customer/update', [App\Http\Controllers\AccountCustomerController::class, 'update'])
+                ->name('accounts.customer.update');
+            Route::post('/account/customer/update/status', [App\Http\Controllers\AccountCustomerController::class, 'updateStatus'])
+                ->name('accounts.customer.update.status');
+            Route::post('/account/customer/destroy/{account_id}', [App\Http\Controllers\AccountCustomerController::class, 'destroy'])
+                ->name('accounts.customer.destroy');
+
+
+            Route::get('/mis/operaciones', [App\Http\Controllers\OperationController::class, 'index'])
+                ->name('operationCustomer.index');
+        });
+
+        Route::post('/generate/operation', [App\Http\Controllers\OperationController::class, 'generate'])
+            ->name('operation.generate');
+
+        Route::get('/crear/operacion', [App\Http\Controllers\OperationController::class, 'create'])
+            ->name('operation.create');
+
+        Route::post('/account/customer/operation/store', [App\Http\Controllers\AccountCustomerController::class, 'store'])
+            ->name('accounts.customer.operation.store');
+
     });
 });
 Route::get('/data', [\App\Http\Controllers\DataController::class, 'getData']);
+Route::get('/get/hash', [\App\Http\Controllers\DataController::class, 'getHash']);

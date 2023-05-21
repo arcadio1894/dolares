@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Facades\Hash;
 
 class DataController extends Controller
 {
@@ -28,5 +30,12 @@ class DataController extends Controller
         return response()->json([
             "data" => $data
         ]);
+    }
+
+    public function getHash()
+    {
+        //$hash = Crypt::encrypt('1234');
+        $hash = bcrypt('1234');
+        dd($hash);
     }
 }

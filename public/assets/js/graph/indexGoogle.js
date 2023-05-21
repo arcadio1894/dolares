@@ -110,11 +110,11 @@ function chartGoogle() {
                     {
                         name: "Compra",
                         data: response.data.map((val) => val.x)
-                    },
+                    }/*,
                     {
                         name: "Venta",
                         data: response.data.map((val) => val.x2)
-                    }
+                    }*/
                 ],
                 xaxis: {
                     categories: response.data.map((val) => val.y)
@@ -145,11 +145,11 @@ function chartGoogle() {
                         {
                             name: "Compra",
                             data: response.data.map((val) => val.x)
-                        },
+                        }/*,
                         {
                             name: "Venta",
                             data: response.data.map((val) => val.x2)
-                        }
+                        }*/
                     ],
                     xaxis: {
                         categories: response.data.map((val) => val.y)

@@ -48,6 +48,11 @@ return [
     */
 
     'channels' => [
+        'dolareros' => [
+            'driver' => 'single',
+            'path' => storage_path('logs/dolareros.log'),
+            'level' => 'info',
+        ],
         'stack' => [
             'driver' => 'stack',
             'channels' => ['single'],

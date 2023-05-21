@@ -86,9 +86,9 @@
                     <h1 class="text-dark mb-3">Inicia sesión</h1>
                     <!--end::Title-->
                     <!--begin::Link-->
-                    <div class="text-gray-400 fw-bold fs-4">¿No tienes cuenta?
+                    {{--<div class="text-gray-400 fw-bold fs-4">¿No tienes cuenta?
                         <a href="{{ route('register') }}" class="link-primary fw-bolder">Regístrate aquí</a>
-                    </div>
+                    </div>--}}
                     <!--end::Link-->
                 </div>
 
@@ -139,9 +139,8 @@
     <div class="d-flex flex-center flex-wrap fs-6 p-5 pb-0">
         <!--begin::Links-->
         <div class="d-flex flex-center fw-bold fs-6">
-            <a href="https://keenthemes.com" class="text-muted text-hover-primary px-2" target="_blank">About</a>
-            <a href="https://keenthemes.com/support" class="text-muted text-hover-primary px-2" target="_blank">Support</a>
-            <a href="https://1.envato.market/EA4JP" class="text-muted text-hover-primary px-2" target="_blank">Purchase</a>
+            <a href="https://edesce.com/" class="text-muted text-hover-primary px-2" target="_blank">Edesce</a>
+            <a href="https://edesce.com/" class="text-muted text-hover-primary px-2" target="_blank">Soporte</a>
         </div>
         <!--end::Links-->
     </div>
