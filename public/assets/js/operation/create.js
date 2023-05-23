@@ -10,7 +10,25 @@ var KTCreateAccount = function () {
                 var t = a[e.getCurrentStepIndex() - 1];
                 if ( e.getCurrentStepIndex() != 1 )
                 {
-                    t ? t.validate().then((function (t) {
+                    if ( e.getCurrentStepIndex() == 2 )
+                    {
+                        t ? t.validate().then((function (t) {
+                        console.log("validated!"), "Valid" == t ? ((
+                            showModalSecondStep()
+                        ), KTUtil.scrollTop()) : Swal.fire({
+                            text: "Sorry, looks like there are some errors detected, please try again.",
+                            icon: "error",
+                            buttonsStyling: !1,
+                            confirmButtonText: "Ok, got it!",
+                            customClass: {confirmButton: "btn btn-light"}
+                        }).then((function () {
+                            KTUtil.scrollTop()
+                        }))
+                    })) : ((
+                            showModalSecondStep()
+                        ), KTUtil.scrollTop())
+                    } else {
+                        t ? t.validate().then((function (t) {
                         console.log("validated!"), "Valid" == t ? (e.goNext(), KTUtil.scrollTop()) : Swal.fire({
                             text: "Sorry, looks like there are some errors detected, please try again.",
                             icon: "error",
@@ -21,6 +39,8 @@ var KTCreateAccount = function () {
                             KTUtil.scrollTop()
                         }))
                     })) : (e.goNext(), KTUtil.scrollTop())
+                    }
+
                 } else {
                     t ? t.validate().then((function (t) {
                         console.log("validated!"), "Valid" == t ? ((
@@ -68,11 +88,7 @@ var KTCreateAccount = function () {
                     })
                 }
             })), a.push(FormValidation.formValidation(i, {
-                fields: {
-                    account_team_size: {validators: {notEmpty: {message: "Time size is required"}}},
-                    account_name: {validators: {notEmpty: {message: "Account name is required"}}},
-                    account_plan: {validators: {notEmpty: {message: "Account plan is required"}}}
-                },
+                fields: {},
                 plugins: {
                     trigger: new FormValidation.plugins.Trigger,
                     bootstrap: new FormValidation.plugins.Bootstrap5({
@@ -81,7 +97,7 @@ var KTCreateAccount = function () {
                         eleValidClass: ""
                     })
                 }
-            })), /*a.push(FormValidation.formValidation(i, {
+            })), a.push(FormValidation.formValidation(i, {
                 fields: {
                     business_name: {validators: {notEmpty: {message: "Busines name is required"}}},
                     business_descriptor: {validators: {notEmpty: {message: "Busines descriptor is required"}}},
@@ -102,7 +118,7 @@ var KTCreateAccount = function () {
                         eleValidClass: ""
                     })
                 }
-            })), a.push(FormValidation.formValidation(i, {
+            })), /*a.push(FormValidation.formValidation(i, {
                 fields: {
                     card_name: {validators: {notEmpty: {message: "Name on card is required"}}},
                     card_number: {
@@ -130,7 +146,7 @@ var KTCreateAccount = function () {
                     })
                 }
             })),*/ o.addEventListener("click", (function (e) {
-                a[1].validate().then((function (t) {
+                a[3].validate().then((function (t) {
                     console.log("validated!"), "Valid" == t ? (e.preventDefault(), o.disabled = !0, o.setAttribute("data-kt-indicator", "on"), setTimeout((function () {
                         o.removeAttribute("data-kt-indicator"), o.disabled = !1, $r.goNext()
                     }), 2e3)) : Swal.fire({
@@ -189,4 +205,8 @@ function showModalSummary() {
     $('#nameAccount').html(nameAccount);
 
     $('#kt_modal_summary').modal('show')
+}
+
+function showModalSecondStep() {
+    $('#kt_modal_second_step').modal('show')
 }

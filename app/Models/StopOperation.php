@@ -5,11 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class StopData extends Model
+class StopOperation extends Model
 {
     use HasFactory;
 
-    protected $table = 'stop_datas';
+    protected $table = 'stop_operations';
 
     protected $primaryKey = 'id';
 
@@ -30,6 +30,10 @@ class StopData extends Model
         'type',
         'sendAmount',
         'getAmount',
+        'account_dolarero_id',
+        'nameBankDolarero',
+        'account_customer_id',
+        'source_fund_id',
         'ahorro'
     ];
 
@@ -43,5 +47,20 @@ class StopData extends Model
     public function user()
     {
         return $this->belongsTo('App\Models\User', 'user_id', 'id');
+    }
+
+    public function account_dolarero()
+    {
+        return $this->belongsTo('App\Models\AccountDolarero', 'account_dolarero_id', 'id');
+    }
+
+    public function account_customer()
+    {
+        return $this->belongsTo('App\Models\AccountCustomer', 'account_customer_id', 'id');
+    }
+
+    public function source_fund()
+    {
+        return $this->belongsTo('App\Models\SourceFund', 'source_fund_id', 'id');
     }
 }
