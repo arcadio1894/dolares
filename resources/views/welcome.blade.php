@@ -231,18 +231,7 @@ License: For each use you must have a valid license purchased only from above li
                                     </div>
                                     <!--end::Menu item-->
                                     <!--begin::Menu item-->
-                                    <div class="menu-item">
-                                        <!--begin::Menu link-->
-                                        <a class="menu-link nav-link py-3 px-4 px-xxl-6" href="#achievements" data-kt-scroll-toggle="true" data-kt-drawer-dismiss="true">Conocenos</a>
-                                        <!--end::Menu link-->
-                                    </div>
-                                    <!--end::Menu item-->
-                                    <!--begin::Menu item-->
-                                    <div class="menu-item">
-                                        <!--begin::Menu link-->
-                                        <a class="menu-link nav-link py-3 px-4 px-xxl-6" href="#team" data-kt-scroll-toggle="true" data-kt-drawer-dismiss="true">Equipo</a>
-                                        <!--end::Menu link-->
-                                    </div>
+                                    
                                     <!--end::Menu item-->
                                    
                                 </div>
@@ -487,28 +476,28 @@ License: For each use you must have a valid license purchased only from above li
                 <div class="d-flex flex-center flex-wrap position-relative px-5">
                     <!--begin::Client-->
                     <div class="d-flex flex-center m-3 m-md-6" data-bs-toggle="tooltip" title="BCP">
-                        <img src="{{ asset('assets/media/svg/brand-logos/logo-bcp.png') }}" class="mh-30px mh-lg-40px" alt="" />
+                        <img src="{{ asset('assets/media/svg/brand-logos/logo-bcp5.png') }}" class="mh-30px mh-lg-40px" alt="" />
                     </div>
                     <!--end::Client-->
                     <!--begin::Client-->
                     <div class="d-flex flex-center m-3 m-md-6" data-bs-toggle="tooltip" title="Interbank">
-                        <img src="{{ asset('assets/media/svg/brand-logos/logo-interbank.png') }}" class="mh-30px mh-lg-40px" alt="" />
+                        <img src="{{ asset('assets/media/svg/brand-logos/logo-interbank1.png') }}" class="mh-30px mh-lg-40px" alt="" />
                     </div>
                     <!--end::Client-->
                     <!--begin::Client-->
-                    <div class="d-flex flex-center m-3 m-md-6" data-bs-toggle="tooltip" title="GNB">
+                    <!--<div class="d-flex flex-center m-3 m-md-6" data-bs-toggle="tooltip" title="GNB">
                         <img src="{{ asset('assets/media/svg/brand-logos/logo-gnb.png') }}" class="mh-30px mh-lg-40px" alt="" />
-                    </div>
+                    </div>-->
                     <!--end::Client-->
                     <!--begin::Client-->
-                    <div class="d-flex flex-center m-3 m-md-6" data-bs-toggle="tooltip" title="BanBif">
+                    <!--<div class="d-flex flex-center m-3 m-md-6" data-bs-toggle="tooltip" title="BanBif">
                         <img src="{{ asset('assets/media/svg/brand-logos/logo-banbif.png') }}" class="mh-30px mh-lg-40px" alt="" />
-                    </div>
+                    </div>-->
                     <!--end::Client-->
                     <!--begin::Client-->
-                    <div class="d-flex flex-center m-3 m-md-6" data-bs-toggle="tooltip" title="BN">
+                    <!--<div class="d-flex flex-center m-3 m-md-6" data-bs-toggle="tooltip" title="BN">
                         <img src="{{ asset('assets/media/svg/brand-logos/logo-banco-nacion.png') }}" class="mh-30px mh-lg-40px" alt="" />
-                    </div>
+                    </div>-->
                     <!--end::Client-->
                     <!--begin::Client-->
                     <div class="d-flex flex-center m-3 m-md-6" data-bs-toggle="tooltip" title="BBVA">
@@ -516,14 +505,14 @@ License: For each use you must have a valid license purchased only from above li
                     </div>
                     <!--end::Client-->
                     <!--begin::Client-->
-                    <div class="d-flex flex-center m-3 m-md-6" data-bs-toggle="tooltip" title="ScotiaBank">
+                    <!--<div class="d-flex flex-center m-3 m-md-6" data-bs-toggle="tooltip" title="ScotiaBank">
                         <img src="{{ asset('assets/media/svg/brand-logos/logo-scotia.png') }}" class="mh-30px mh-lg-40px" alt="" />
-                    </div>
+                    </div>-->
                     <!--end::Client-->
                     <!--begin::Client-->
-                    <div class="d-flex flex-center m-3 m-md-6" data-bs-toggle="tooltip" title="Pichincha">
+                    <!--<div class="d-flex flex-center m-3 m-md-6" data-bs-toggle="tooltip" title="Pichincha">
                         <img src="{{ asset('assets/media/svg/brand-logos/logo-pichincha.png') }}" class="mh-30px mh-lg-40px" alt="" />
-                    </div>
+                    </div>-->
                     <!--end::Client-->
                 </div>
                 <!--end::Clients-->
@@ -693,513 +682,8 @@ License: For each use you must have a valid license purchased only from above li
     <!--end::How It Works Section-->
     <!--begin::Statistics Section-->
     <div class="mt-sm-n10">
-        <!--begin::Curve top-->
-        <div class="landing-curve landing-dark-color">
-            <svg viewBox="15 -1 1470 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M1 48C4.93573 47.6644 8.85984 47.3311 12.7725 47H1489.16C1493.1 47.3311 1497.04 47.6644 1501 48V47H1489.16C914.668 -1.34764 587.282 -1.61174 12.7725 47H1V48Z" fill="currentColor"></path>
-            </svg>
-        </div>
-        <!--end::Curve top-->
-        <!--begin::Wrapper-->
-        <div class="pb-15 pt-18 landing-dark-bg">
-            <!--begin::Container-->
-            <div class="container">
-                <!--begin::Heading-->
-                <div class="text-center mt-15 mb-18" id="achievements" data-kt-scroll-offset="{default: 100, lg: 150}">
-                    <!--begin::Title-->
-                    <h3 class="fs-2hx text-white fw-bolder mb-5">Somos dolareros.com</h3>
-                    <!--end::Title-->
-                    <!--begin::Description-->
-                    <div class="fs-5 text-gray-700 fw-bold">Somos una emergente fintech de cambio de moneda extranjera,
-                        <br />tenemos el ADN dolarero desde hace más de 20 años , con nosotros tendrás el mejor precio del mercado.</div>
-                    <!--end::Description-->
-                </div>
-                <!--end::Heading-->
-                <!--begin::Statistics-->
-                <div class="d-flex flex-center">
-                    <!--begin::Items-->
-                    <div class="d-flex flex-wrap flex-center justify-content-lg-between mb-15 mx-auto w-xl-900px">
-                        <!--begin::Item-->
-                        <div class="d-flex flex-column flex-center h-200px w-200px h-lg-250px w-lg-250px m-3 bgi-no-repeat bgi-position-center bgi-size-contain" style="background-image: url('{{ asset('assets/media/svg/misc/octagon.svg') }}')">
-                            <!--begin::Symbol-->
-                            <!--begin::Svg Icon | path: icons/duotune/general/gen025.svg-->
-                            <span class="svg-icon svg-icon-2tx svg-icon-white mb-3">
-										<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-											<rect x="2" y="2" width="9" height="9" rx="2" fill="black" />
-											<rect opacity="0.3" x="13" y="2" width="9" height="9" rx="2" fill="black" />
-											<rect opacity="0.3" x="13" y="13" width="9" height="9" rx="2" fill="black" />
-											<rect opacity="0.3" x="2" y="13" width="9" height="9" rx="2" fill="black" />
-										</svg>
-									</span>
-                            <!--end::Svg Icon-->
-                            <!--end::Symbol-->
-                            <!--begin::Info-->
-                            <div class="mb-0">
-                                <!--begin::Value-->
-                                <div class="fs-lg-2hx fs-2x fw-bolder text-white d-flex flex-center">
-                                    <div class="min-w-70px" data-kt-countup="true" data-kt-countup-value="523" data-kt-countup-suffix="+">0</div>
-                                </div>
-                                <!--end::Value-->
-                                <!--begin::Label-->
-                                <span class="text-gray-600 fw-bold fs-5 lh-0">Empresas aliadas</span>
-                                <!--end::Label-->
-                            </div>
-                            <!--end::Info-->
-                        </div>
-                        <!--end::Item-->
-                        <!--begin::Item-->
-                        <div class="d-flex flex-column flex-center h-200px w-200px h-lg-250px w-lg-250px m-3 bgi-no-repeat bgi-position-center bgi-size-contain" style="background-image: url('{{ asset('assets/media/svg/misc/octagon.svg') }}')">
-                            <!--begin::Symbol-->
-                            <!--begin::Svg Icon | path: icons/duotune/graphs/gra008.svg-->
-                            <span class="svg-icon svg-icon-2tx svg-icon-white mb-3">
-										<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-											<path d="M13 10.9128V3.01281C13 2.41281 13.5 1.91281 14.1 2.01281C16.1 2.21281 17.9 3.11284 19.3 4.61284C20.7 6.01284 21.6 7.91285 21.9 9.81285C22 10.4129 21.5 10.9128 20.9 10.9128H13Z" fill="black" />
-											<path opacity="0.3" d="M13 12.9128V20.8129C13 21.4129 13.5 21.9129 14.1 21.8129C16.1 21.6129 17.9 20.7128 19.3 19.2128C20.7 17.8128 21.6 15.9128 21.9 14.0128C22 13.4128 21.5 12.9128 20.9 12.9128H13Z" fill="black" />
-											<path opacity="0.3" d="M11 19.8129C11 20.4129 10.5 20.9129 9.89999 20.8129C5.49999 20.2129 2 16.5128 2 11.9128C2 7.31283 5.39999 3.51281 9.89999 3.01281C10.5 2.91281 11 3.41281 11 4.01281V19.8129Z" fill="black" />
-										</svg>
-									</span>
-                            <!--end::Svg Icon-->
-                            <!--end::Symbol-->
-                            <!--begin::Info-->
-                            <div class="mb-0">
-                                <!--begin::Value-->
-                                <div class="fs-lg-2hx fs-2x fw-bolder text-white d-flex flex-center">
-                                    <div class="min-w-70px" data-kt-countup="true" data-kt-countup-value="20" data-kt-countup-suffix="+">0</div>
-                                </div>
-                                <!--end::Value-->
-                                <!--begin::Label-->
-                                <span class="text-gray-600 fw-bold fs-5 lh-0">Bancos aliados</span>
-                                <!--end::Label-->
-                            </div>
-                            <!--end::Info-->
-                        </div>
-                        <!--end::Item-->
-                        <!--begin::Item-->
-                        <div class="d-flex flex-column flex-center h-200px w-200px h-lg-250px w-lg-250px m-3 bgi-no-repeat bgi-position-center bgi-size-contain" style="background-image: url('{{ asset('assets/media/svg/misc/octagon.svg') }}')">
-                            <!--begin::Symbol-->
-                            <!--begin::Svg Icon | path: icons/duotune/ecommerce/ecm002.svg-->
-                            <span class="svg-icon svg-icon-2tx svg-icon-white mb-3">
-										<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-											<path d="M21 10H13V11C13 11.6 12.6 12 12 12C11.4 12 11 11.6 11 11V10H3C2.4 10 2 10.4 2 11V13H22V11C22 10.4 21.6 10 21 10Z" fill="black" />
-											<path opacity="0.3" d="M12 12C11.4 12 11 11.6 11 11V3C11 2.4 11.4 2 12 2C12.6 2 13 2.4 13 3V11C13 11.6 12.6 12 12 12Z" fill="black" />
-											<path opacity="0.3" d="M18.1 21H5.9C5.4 21 4.9 20.6 4.8 20.1L3 13H21L19.2 20.1C19.1 20.6 18.6 21 18.1 21ZM13 18V15C13 14.4 12.6 14 12 14C11.4 14 11 14.4 11 15V18C11 18.6 11.4 19 12 19C12.6 19 13 18.6 13 18ZM17 18V15C17 14.4 16.6 14 16 14C15.4 14 15 14.4 15 15V18C15 18.6 15.4 19 16 19C16.6 19 17 18.6 17 18ZM9 18V15C9 14.4 8.6 14 8 14C7.4 14 7 14.4 7 15V18C7 18.6 7.4 19 8 19C8.6 19 9 18.6 9 18Z" fill="black" />
-										</svg>
-									</span>
-                            <!--end::Svg Icon-->
-                            <!--end::Symbol-->
-                            <!--begin::Info-->
-                            <div class="mb-0">
-                                <!--begin::Value-->
-                                <div class="fs-lg-2hx fs-2x fw-bolder text-white d-flex flex-center">
-                                    <div class="min-w-70px" data-kt-countup="true" data-kt-countup-value="3" data-kt-countup-suffix="M+">0</div>
-                                </div>
-                                <!--end::Value-->
-                                <!--begin::Label-->
-                                <span class="text-gray-600 fw-bold fs-5 lh-0">Dólares cambiados</span>
-                                <!--end::Label-->
-                            </div>
-                            <!--end::Info-->
-                        </div>
-                        <!--end::Item-->
-                    </div>
-                    <!--end::Items-->
-                </div>
-                <!--end::Statistics-->
-                <!--begin::Testimonial-->
-                <div class="fs-2 fw-bold text-muted text-center mb-3">
-                    <span class="fs-1 lh-1 text-gray-700">“</span>Nuestros planes a corto plazo son ser la casa de cambio online con mejores tasas del mercado Peruano,
-                    <br />
-                    <span class="text-gray-700 me-1"></span>además ser el pionero en incluir nuevos medios de pago como PayPal*
-                    <span class="fs-1 lh-1 text-gray-700">“</span></div>
-                <!--end::Testimonial-->
-                <!--begin::Author-->
-                <div class="fs-2 fw-bold text-muted text-center">
-                    <a href="../../demo7/dist/account/security.html" class="link-primary fs-4 fw-bolder">Remso Rojas,</a>
-                    <span class="fs-4 fw-bolder text-gray-600">Dolareros CEO</span>
-                </div>
-                <!--end::Author-->
-            </div>
-            <!--end::Container-->
-        </div>
-        <!--end::Wrapper-->
-        <!--begin::Curve bottom-->
-        <div class="landing-curve landing-dark-color">
-            <svg viewBox="15 12 1470 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M0 11C3.93573 11.3356 7.85984 11.6689 11.7725 12H1488.16C1492.1 11.6689 1496.04 11.3356 1500 11V12H1488.16C913.668 60.3476 586.282 60.6117 11.7725 12H0V11Z" fill="currentColor"></path>
-            </svg>
-        </div>
-        <!--end::Curve bottom-->
-    </div>
-    <!--end::Statistics Section-->
-    <!--begin::Team Section-->
-    <div class="py-10 py-lg-20">
-        <!--begin::Container-->
-        <div class="container">
-            <!--begin::Heading-->
-            <div class="text-center mb-12">
-                <!--begin::Title-->
-                <h3 class="fs-2hx text-dark mb-5" id="team" data-kt-scroll-offset="{default: 100, lg: 150}">Conoce a nuestro equipo</h3>
-                <!--end::Title-->
-                <!--begin::Sub-title-->
-                <div class="fs-5 text-muted fw-bold">Estamos orgullos de mostrar a nuestro equipo de trabajo,
-                    <br />cada uno de nosotros trabajamos enfocados en el cliente.</div>
-                <!--end::Sub-title=-->
-            </div>
-            <!--end::Heading-->
-            <!--begin::Slider-->
-            <div class="tns tns-default">
-                <!--begin::Wrapper-->
-                <div data-tns="true" data-tns-loop="true" data-tns-swipe-angle="false" data-tns-speed="2000" data-tns-autoplay="true" data-tns-autoplay-timeout="18000" data-tns-controls="true" data-tns-nav="false" data-tns-items="1" data-tns-center="false" data-tns-dots="false" data-tns-prev-button="#kt_team_slider_prev" data-tns-next-button="#kt_team_slider_next" data-tns-responsive="{1200: {items: 3}, 992: {items: 2}}">
-                    <!--begin::Item-->
-                    <div class="text-center">
-                        <!--begin::Photo-->
-                        <div class="octagon mx-auto mb-5 d-flex w-200px h-200px bgi-no-repeat bgi-size-contain bgi-position-center" style="background-image:url('{{ asset('assets/media/avatars/150-2.jpg') }}')"></div>
-                        <!--end::Photo-->
-                        <!--begin::Person-->
-                        <div class="mb-0">
-                            <!--begin::Name-->
-                            <a href="#" class="text-dark fw-bolder text-hover-primary fs-3">Remso Rojas</a>
-                            <!--end::Name-->
-                            <!--begin::Position-->
-                            <div class="text-muted fs-6 fw-bold mt-1">CEO</div>
-                            <!--begin::Position-->
-                        </div>
-                        <!--end::Person-->
-                    </div>
-                    <!--end::Item-->
-                    <!--begin::Item-->
-                    <div class="text-center">
-                        <!--begin::Photo-->
-                        <div class="octagon mx-auto mb-5 d-flex w-200px h-200px bgi-no-repeat bgi-size-contain bgi-position-center" style="background-image:url('{{ asset('assets/media/avatars/150-6.jpg') }}')"></div>
-                        <!--end::Photo-->
-                        <!--begin::Person-->
-                        <div class="mb-0">
-                            <!--begin::Name-->
-                            <a href="#" class="text-dark fw-bolder text-hover-primary fs-3">Jorge Gonzales</a>
-                            <!--end::Name-->
-                            <!--begin::Position-->
-                            <div class="text-muted fs-6 fw-bold mt-1">CTO</div>
-                            <!--begin::Position-->
-                        </div>
-                        <!--end::Person-->
-                    </div>
-                    <!--end::Item-->
-                    <!--begin::Item-->
-                    <div class="text-center">
-                        <!--begin::Photo-->
-                        <div class="octagon mx-auto mb-5 d-flex w-200px h-200px bgi-no-repeat bgi-size-contain bgi-position-center" style="background-image:url('{{ asset('assets/media/avatars/150-4.jpg') }}')"></div>
-                        <!--end::Photo-->
-                        <!--begin::Person-->
-                        <div class="mb-0">
-                            <!--begin::Name-->
-                            <a href="#" class="text-dark fw-bolder text-hover-primary fs-3">David Nilson</a>
-                            <!--end::Name-->
-                            <!--begin::Position-->
-                            <div class="text-muted fs-6 fw-bold mt-1">CFO</div>
-                            <!--begin::Position-->
-                        </div>
-                        <!--end::Person-->
-                    </div>
-                    <!--end::Item-->
-                    <!--begin::Item-->
-                    <div class="text-center">
-                        <!--begin::Photo-->
-                        <div class="octagon mx-auto mb-5 d-flex w-200px h-200px bgi-no-repeat bgi-size-contain bgi-position-center" style="background-image:url('{{ asset('assets/media/avatars/150-5.jpg') }}')"></div>
-                        <!--end::Photo-->
-                        <!--begin::Person-->
-                        <div class="mb-0">
-                            <!--begin::Name-->
-                            <a href="#" class="text-dark fw-bolder text-hover-primary fs-3">Anne Clarc</a>
-                            <!--end::Name-->
-                            <!--begin::Position-->
-                            <div class="text-muted fs-6 fw-bold mt-1">CMO</div>
-                            <!--begin::Position-->
-                        </div>
-                        <!--end::Person-->
-                    </div>
-                    <!--end::Item-->
-                    <!--begin::Item-->
-                    <div class="text-center">
-                        <!--begin::Photo-->
-                        <div class="octagon mx-auto mb-5 d-flex w-200px h-200px bgi-no-repeat bgi-size-contain bgi-position-center" style="background-image:url('{{ asset('assets/media/avatars/150-6.jpg') }}')"></div>
-                        <!--end::Photo-->
-                        <!--begin::Person-->
-                        <div class="mb-0">
-                            <!--begin::Name-->
-                            <a href="#" class="text-dark fw-bolder text-hover-primary fs-3">Ricky Hunt</a>
-                            <!--end::Name-->
-                            <!--begin::Position-->
-                            <div class="text-muted fs-6 fw-bold mt-1">CCO</div>
-                            <!--begin::Position-->
-                        </div>
-                        <!--end::Person-->
-                    </div>
-                    <!--end::Item-->
-                    <!--begin::Item-->
-                    <div class="text-center">
-                        <!--begin::Photo-->
-                        <div class="octagon mx-auto mb-5 d-flex w-200px h-200px bgi-no-repeat bgi-size-contain bgi-position-center" style="background-image:url('{{ asset('assets/media/avatars/150-7.jpg') }}')"></div>
-                        <!--end::Photo-->
-                        <!--begin::Person-->
-                        <div class="mb-0">
-                            <!--begin::Name-->
-                            <a href="#" class="text-dark fw-bolder text-hover-primary fs-3">Alice Wayde</a>
-                            <!--end::Name-->
-                            <!--begin::Position-->
-                            <div class="text-muted fs-6 fw-bold mt-1">CISO</div>
-                            <!--begin::Position-->
-                        </div>
-                        <!--end::Person-->
-                    </div>
-                    <!--end::Item-->
-                    <!--begin::Item-->
-                    <div class="text-center">
-                        <!--begin::Photo-->
-                        <div class="octagon mx-auto mb-5 d-flex w-200px h-200px bgi-no-repeat bgi-size-contain bgi-position-center" style="background-image:url('{{ asset('assets/media/avatars/150-8.jpg') }}')"></div>
-                        <!--end::Photo-->
-                        <!--begin::Person-->
-                        <div class="mb-0">
-                            <!--begin::Name-->
-                            <a href="#" class="text-dark fw-bolder text-hover-primary fs-3">Carles Puyol</a>
-                            <!--end::Name-->
-                            <!--begin::Position-->
-                            <div class="text-muted fs-6 fw-bold mt-1">QA Managers</div>
-                            <!--begin::Position-->
-                        </div>
-                        <!--end::Person-->
-                    </div>
-                    <!--end::Item-->
-                </div>
-                <!--end::Wrapper-->
-                <!--begin::Button-->
-                <button class="btn btn-icon btn-active-color-primary" id="kt_team_slider_prev">
-                    <!--begin::Svg Icon | path: icons/duotune/arrows/arr074.svg-->
-                    <span class="svg-icon svg-icon-3x">
-								<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-									<path d="M11.2657 11.4343L15.45 7.25C15.8642 6.83579 15.8642 6.16421 15.45 5.75C15.0358 5.33579 14.3642 5.33579 13.95 5.75L8.40712 11.2929C8.01659 11.6834 8.01659 12.3166 8.40712 12.7071L13.95 18.25C14.3642 18.6642 15.0358 18.6642 15.45 18.25C15.8642 17.8358 15.8642 17.1642 15.45 16.75L11.2657 12.5657C10.9533 12.2533 10.9533 11.7467 11.2657 11.4343Z" fill="black" />
-								</svg>
-							</span>
-                    <!--end::Svg Icon-->
-                </button>
-                <!--end::Button-->
-                <!--begin::Button-->
-                <button class="btn btn-icon btn-active-color-primary" id="kt_team_slider_next">
-                    <!--begin::Svg Icon | path: icons/duotune/arrows/arr071.svg-->
-                    <span class="svg-icon svg-icon-3x">
-								<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-									<path d="M12.6343 12.5657L8.45001 16.75C8.0358 17.1642 8.0358 17.8358 8.45001 18.25C8.86423 18.6642 9.5358 18.6642 9.95001 18.25L15.4929 12.7071C15.8834 12.3166 15.8834 11.6834 15.4929 11.2929L9.95001 5.75C9.5358 5.33579 8.86423 5.33579 8.45001 5.75C8.0358 6.16421 8.0358 6.83579 8.45001 7.25L12.6343 11.4343C12.9467 11.7467 12.9467 12.2533 12.6343 12.5657Z" fill="black" />
-								</svg>
-							</span>
-                    <!--end::Svg Icon-->
-                </button>
-                <!--end::Button-->
-            </div>
-            <!--end::Slider-->
-        </div>
-        <!--end::Container-->
-    </div>
-    <!--end::Team Section-->
 
-    <!--begin::Testimonials Section-->
-    <div class="mt-20 mb-n20 position-relative z-index-2">
-        <!--begin::Container-->
-        <div class="container">
-            <!--begin::Heading-->
-            <div class="text-center mb-17">
-                <!--begin::Title-->
-                <h3 class="fs-2hx text-dark mb-5" id="clients" data-kt-scroll-offset="{default: 125, lg: 150}">¿Qué dicen los que ya usaron Dolareros.com?</h3>
-                <!--end::Title-->
-                <!--begin::Description-->
-                <div class="fs-5 text-muted fw-bold">Ahorre en cada una de sus operaciones como todos nuestros clientes.
-                    <br />Te aseguramos que usando dolareros.com tendrás le mejor tasa del mercado.</div>
-                <!--end::Description-->
-            </div>
-            <!--end::Heading-->
-            <!--begin::Row-->
-            <div class="row g-lg-10 mb-10 mb-lg-20">
-                <!--begin::Col-->
-                <div class="col-lg-4">
-                    <!--begin::Testimonial-->
-                    <div class="d-flex flex-column justify-content-between h-lg-100 px-10 px-lg-0 pe-lg-10 mb-15 mb-lg-0">
-                        <!--begin::Wrapper-->
-                        <div class="mb-7">
-                            <!--begin::Rating-->
-                            <div class="rating mb-6">
-                                <div class="rating-label me-2 checked">
-                                    <i class="bi bi-star-fill fs-5"></i>
-                                </div>
-                                <div class="rating-label me-2 checked">
-                                    <i class="bi bi-star-fill fs-5"></i>
-                                </div>
-                                <div class="rating-label me-2 checked">
-                                    <i class="bi bi-star-fill fs-5"></i>
-                                </div>
-                                <div class="rating-label me-2 checked">
-                                    <i class="bi bi-star-fill fs-5"></i>
-                                </div>
-                                <div class="rating-label me-2 checked">
-                                    <i class="bi bi-star-fill fs-5"></i>
-                                </div>
-                            </div>
-                            <!--end::Rating-->
-                            <!--begin::Title-->
-                            <div class="fs-2 fw-bolder text-dark mb-3">This is by far the cleanest template
-                                <br />and the most well structured</div>
-                            <!--end::Title-->
-                            <!--begin::Feedback-->
-                            <div class="text-gray-500 fw-bold fs-4">The most well thought out design theme I have ever used. The codes are up to tandard. The css styles are very clean. In fact the cleanest and the most up to standard I have ever seen.</div>
-                            <!--end::Feedback-->
-                        </div>
-                        <!--end::Wrapper-->
-                        <!--begin::Author-->
-                        <div class="d-flex align-items-center">
-                            <!--begin::Avatar-->
-                            <div class="symbol symbol-circle symbol-50px me-5">
-                                <img src="{{ asset('assets/media/avatars/150-2.jpg') }}" class="" alt="" />
-                            </div>
-                            <!--end::Avatar-->
-                            <!--begin::Name-->
-                            <div class="flex-grow-1">
-                                <a href="#" class="text-dark fw-bolder text-hover-primary fs-6">Paul Miles</a>
-                                <span class="text-muted d-block fw-bold">Development Lead</span>
-                            </div>
-                            <!--end::Name-->
-                        </div>
-                        <!--end::Author-->
-                    </div>
-                    <!--end::Testimonial-->
-                </div>
-                <!--end::Col-->
-                <!--begin::Col-->
-                <div class="col-lg-4">
-                    <!--begin::Testimonial-->
-                    <div class="d-flex flex-column justify-content-between h-lg-100 px-10 px-lg-0 pe-lg-10 mb-15 mb-lg-0">
-                        <!--begin::Wrapper-->
-                        <div class="mb-7">
-                            <!--begin::Rating-->
-                            <div class="rating mb-6">
-                                <div class="rating-label me-2 checked">
-                                    <i class="bi bi-star-fill fs-5"></i>
-                                </div>
-                                <div class="rating-label me-2 checked">
-                                    <i class="bi bi-star-fill fs-5"></i>
-                                </div>
-                                <div class="rating-label me-2 checked">
-                                    <i class="bi bi-star-fill fs-5"></i>
-                                </div>
-                                <div class="rating-label me-2 checked">
-                                    <i class="bi bi-star-fill fs-5"></i>
-                                </div>
-                                <div class="rating-label me-2 checked">
-                                    <i class="bi bi-star-fill fs-5"></i>
-                                </div>
-                            </div>
-                            <!--end::Rating-->
-                            <!--begin::Title-->
-                            <div class="fs-2 fw-bolder text-dark mb-3">This is by far the cleanest template
-                                <br />and the most well structured</div>
-                            <!--end::Title-->
-                            <!--begin::Feedback-->
-                            <div class="text-gray-500 fw-bold fs-4">The most well thought out design theme I have ever used. The codes are up to tandard. The css styles are very clean. In fact the cleanest and the most up to standard I have ever seen.</div>
-                            <!--end::Feedback-->
-                        </div>
-                        <!--end::Wrapper-->
-                        <!--begin::Author-->
-                        <div class="d-flex align-items-center">
-                            <!--begin::Avatar-->
-                            <div class="symbol symbol-circle symbol-50px me-5">
-                                <img src="{{ asset('assets/media/avatars/150-3.jpg') }}" class="" alt="" />
-                            </div>
-                            <!--end::Avatar-->
-                            <!--begin::Name-->
-                            <div class="flex-grow-1">
-                                <a href="#" class="text-dark fw-bolder text-hover-primary fs-6">Janya Clebert</a>
-                                <span class="text-muted d-block fw-bold">Development Lead</span>
-                            </div>
-                            <!--end::Name-->
-                        </div>
-                        <!--end::Author-->
-                    </div>
-                    <!--end::Testimonial-->
-                </div>
-                <!--end::Col-->
-                <!--begin::Col-->
-                <div class="col-lg-4">
-                    <!--begin::Testimonial-->
-                    <div class="d-flex flex-column justify-content-between h-lg-100 px-10 px-lg-0 pe-lg-10 mb-15 mb-lg-0">
-                        <!--begin::Wrapper-->
-                        <div class="mb-7">
-                            <!--begin::Rating-->
-                            <div class="rating mb-6">
-                                <div class="rating-label me-2 checked">
-                                    <i class="bi bi-star-fill fs-5"></i>
-                                </div>
-                                <div class="rating-label me-2 checked">
-                                    <i class="bi bi-star-fill fs-5"></i>
-                                </div>
-                                <div class="rating-label me-2 checked">
-                                    <i class="bi bi-star-fill fs-5"></i>
-                                </div>
-                                <div class="rating-label me-2 checked">
-                                    <i class="bi bi-star-fill fs-5"></i>
-                                </div>
-                                <div class="rating-label me-2 checked">
-                                    <i class="bi bi-star-fill fs-5"></i>
-                                </div>
-                            </div>
-                            <!--end::Rating-->
-                            <!--begin::Title-->
-                            <div class="fs-2 fw-bolder text-dark mb-3">This is by far the cleanest template
-                                <br />and the most well structured</div>
-                            <!--end::Title-->
-                            <!--begin::Feedback-->
-                            <div class="text-gray-500 fw-bold fs-4">The most well thought out design theme I have ever used. The codes are up to tandard. The css styles are very clean. In fact the cleanest and the most up to standard I have ever seen.</div>
-                            <!--end::Feedback-->
-                        </div>
-                        <!--end::Wrapper-->
-                        <!--begin::Author-->
-                        <div class="d-flex align-items-center">
-                            <!--begin::Avatar-->
-                            <div class="symbol symbol-circle symbol-50px me-5">
-                                <img src="{{ asset('assets/media/avatars/150-18.jpg') }}" class="" alt="" />
-                            </div>
-                            <!--end::Avatar-->
-                            <!--begin::Name-->
-                            <div class="flex-grow-1">
-                                <a href="#" class="text-dark fw-bolder text-hover-primary fs-6">Steave Brown</a>
-                                <span class="text-muted d-block fw-bold">Development Lead</span>
-                            </div>
-                            <!--end::Name-->
-                        </div>
-                        <!--end::Author-->
-                    </div>
-                    <!--end::Testimonial-->
-                </div>
-                <!--end::Col-->
-            </div>
-            <!--end::Row-->
-            <!--begin::Highlight-->
-            <div class="d-flex flex-stack flex-wrap flex-md-nowrap card-rounded shadow p-8 p-lg-12 mb-n5 mb-lg-n13" style="background: linear-gradient(90deg, #20AA3E 0%, #03A588 100%);">
-                <!--begin::Content-->
-                <div class="my-2 me-5">
-                    <!--begin::Title-->
-                    <div class="fs-1 fs-lg-2qx fw-bolder text-white mb-2">Cambie hoy con nosotros,
-                        <span class="fw-normal">sienta el ahorro en cada cambio!</span></div>
-                    <!--end::Title-->
-                    <!--begin::Description-->
-                    <div class="fs-6 fs-lg-5 text-white fw-bold opacity-75">Múltiples bancos a tu disposición y tranferencias inmediatas.</div>
-                    <!--end::Description-->
-                </div>
-                <!--end::Content-->
-                <!--begin::Link-->
-                <a href="{{ route('home') }}" class="btn btn-lg btn-outline border-2 btn-outline-white flex-shrink-0 my-2">Iniciar operación</a>
-                <!--end::Link-->
-            </div>
-            <!--end::Highlight-->
-        </div>
-        <!--end::Container-->
-    </div>
-    <!--end::Testimonials Section-->
+
     <!--begin::Footer Section-->
     <div class="mb-0">
         <!--begin::Curve top-->
@@ -1220,22 +704,23 @@ License: For each use you must have a valid license purchased only from above li
                         <!--begin::Block-->
                         <div class="rounded landing-dark-border p-9 mb-10">
                             <!--begin::Title-->
-                            <h2 class="text-white">Would you need a Custom License?</h2>
+                            <h2 class="text-white">¿Tienes más consultas sobre nosotros?</h2>
                             <!--end::Title-->
                             <!--begin::Text-->
-                            <span class="fw-normal fs-4 text-gray-700">Email us to
-									<a href="https://keenthemes.com/support" class="text-white opacity-50 text-hover-primary">support@keenthemes.com</a></span>
+                            <span class="fw-normal fs-4 text-gray-700">Contactanos a
+									<!--<a href="https://keenthemes.com/support" class="text-white opacity-50 text-hover-primary">support@dolareros.com</a></span>-->
+                                    <a href="#" class="text-white opacity-50 text-hover-primary">support@dolareros.com</a></span>
                             <!--end::Text-->
                         </div>
                         <!--end::Block-->
                         <!--begin::Block-->
                         <div class="rounded landing-dark-border p-9">
                             <!--begin::Title-->
-                            <h2 class="text-white">How About a Custom Project?</h2>
+                            <h2 class="text-white">Dolareros S.A.C - RUC 20602155596</h2>
                             <!--end::Title-->
                             <!--begin::Text-->
-                            <span class="fw-normal fs-4 text-gray-700">Use Our Custom Development Service.
-									<a href="../../demo7/dist/pages/profile/overview.html" class="text-white opacity-50 text-hover-primary">Click to Get a Quote</a></span>
+                            <span class="fw-normal fs-4 text-gray-700">Jr Manuel Candamo 820 - Lince - Lima
+									<!--<a href="../../demo7/dist/pages/profile/overview.html" class="text-white opacity-50 text-hover-primary">Click to Get a Quote</a></span>-->
                             <!--end::Text-->
                         </div>
                         <!--end::Block-->
@@ -1248,25 +733,25 @@ License: For each use you must have a valid license purchased only from above li
                             <!--begin::Links-->
                             <div class="d-flex fw-bold flex-column me-20">
                                 <!--begin::Subtitle-->
-                                <h4 class="fw-bolder text-gray-400 mb-6">More for Metronic</h4>
+                                <h4 class="fw-bolder text-gray-400 mb-6">Más información</h4>
                                 <!--end::Subtitle-->
                                 <!--begin::Link-->
-                                <a href="#" class="text-white opacity-50 text-hover-primary fs-5 mb-6">FAQ</a>
+                                <a href="#" class="text-white opacity-50 text-hover-primary fs-5 mb-6">Preguntas Frecuentes</a>
                                 <!--end::Link-->
                                 <!--begin::Link-->
-                                <a href="#" class="text-white opacity-50 text-hover-primary fs-5 mb-6">Documentaions</a>
+                                <a href="#" class="text-white opacity-50 text-hover-primary fs-5 mb-6">Términos y Condiciones</a>
                                 <!--end::Link-->
                                 <!--begin::Link-->
-                                <a href="#" class="text-white opacity-50 text-hover-primary fs-5 mb-6">Video Tuts</a>
+                                <a href="#" class="text-white opacity-50 text-hover-primary fs-5 mb-6">Políticas de Privacidad</a>
                                 <!--end::Link-->
                                 <!--begin::Link-->
-                                <a href="#" class="text-white opacity-50 text-hover-primary fs-5 mb-6">Changelog</a>
+                                <a href="#" class="text-white opacity-50 text-hover-primary fs-5 mb-6">Video Tutoriales</a>
                                 <!--end::Link-->
                                 <!--begin::Link-->
-                                <a href="#" class="text-white opacity-50 text-hover-primary fs-5 mb-6">Github</a>
+                                <a href="#" class="text-white opacity-50 text-hover-primary fs-5 mb-6">Atención al Cliente</a>
                                 <!--end::Link-->
                                 <!--begin::Link-->
-                                <a href="#" class="text-white opacity-50 text-hover-primary fs-5">Tutorials</a>
+                                <a href="#" class="text-white opacity-50 text-hover-primary fs-5">Libro de reclamaciones</a>
                                 <!--end::Link-->
                             </div>
                             <!--end::Links-->
@@ -1283,8 +768,8 @@ License: For each use you must have a valid license purchased only from above li
                                 <!--end::Link-->
                                 <!--begin::Link-->
                                 <a href="#" class="mb-6">
-                                    <img src="{{ asset('assets/media/svg/brand-logos/github.svg') }}" class="h-20px me-2" alt="" />
-                                    <span class="text-white opacity-50 text-hover-primary fs-5 mb-6">Github</span>
+                                    <img src="{{ asset('assets/media/svg/brand-logos/youtube-play.svg') }}" class="h-20px me-2" alt="" />
+                                    <span class="text-white opacity-50 text-hover-primary fs-5 mb-6">YouTube</span>
                                 </a>
                                 <!--end::Link-->
                                 <!--begin::Link-->
@@ -1294,10 +779,10 @@ License: For each use you must have a valid license purchased only from above li
                                 </a>
                                 <!--end::Link-->
                                 <!--begin::Link-->
-                                <a href="#" class="mb-6">
+                                <!--<a href="#" class="mb-6">
                                     <img src="{{ asset('assets/media/svg/brand-logos/dribbble-icon-1.svg') }}" class="h-20px me-2" alt="" />
-                                    <span class="text-white opacity-50 text-hover-primary fs-5 mb-6">Dribbble</span>
-                                </a>
+                                    <span class="text-white opacity-50 text-hover-primary fs-5 mb-6">Linkedin</span>
+                                </a>-->
                                 <!--end::Link-->
                                 <!--begin::Link-->
                                 <a href="#" class="mb-6">
