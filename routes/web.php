@@ -116,9 +116,17 @@ Route::middleware('auth')->group(function (){
         Route::get('/crear/operacion', [App\Http\Controllers\OperationController::class, 'create'])
             ->name('operation.create');
 
-        Route::post('/account/customer/operation/store', [App\Http\Controllers\AccountCustomerController::class, 'store'])
+        Route::post('/save/operation/stop', [App\Http\Controllers\OperationController::class, 'save'])
+            ->name('save.operation.stop');
+
+        Route::post('/account/customer/operation/store', [App\Http\Controllers\OperationController::class, 'store'])
             ->name('accounts.customer.operation.store');
 
+        Route::get('/get/operation/pending', [App\Http\Controllers\OperationController::class, 'getOperationPending'])
+            ->name('get.operation.pending');
+
+        Route::post('/cancel/operation/pending', [App\Http\Controllers\OperationController::class, 'cancelOperationPending'])
+            ->name('cancel.operation.pending');
     });
 });
 Route::get('/data', [\App\Http\Controllers\DataController::class, 'getData']);

@@ -346,7 +346,7 @@
                                                     <!--begin::Description-->
                                                 </a>
 
-                                                {{--<a href="{{ (session()->has('codigo_correcto')) ? route('operationCustomer.index') : route('code.index', 2) }}" class="text-primary custom-list d-flex align-items-center px-5 py-4">
+                                                <a href="{{ (session()->has('codigo_correcto')) ? route('operationCustomer.index') : route('code.index', 2) }}" class="text-primary custom-list d-flex align-items-center px-5 py-4">
                                                     <!--begin::Symbol-->
                                                     <div class="symbol symbol-40px me-5">
                                                         <span class="symbol-label">
@@ -365,7 +365,6 @@
                                                     </div>
                                                     <!--begin::Description-->
                                                 </a>
---}}
                                             </div>
                                             <!--end::Items-->
                                         </div>
@@ -4772,6 +4771,10 @@
 <script src="{{ asset('assets/js/custom/apps/chat/chat.js') }}"></script>
 <script src="{{ asset('assets/js/custom/modals/create-app.js') }}"></script>
 <script src="{{ asset('assets/js/custom/modals/upgrade-plan.js') }}"></script>
+@unless(Route::is('operation.create'))
+    <script src="{{ asset('assets/js/operation/alert.js') }}"></script>
+@endif
+
 <!--end::Page Custom Javascript-->
 @yield('scripts')
 <!--end::Javascript-->
