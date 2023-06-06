@@ -86,11 +86,11 @@ class OperationController extends Controller
 
         $companyName = DataGeneral::where('name', 'companyName')->first();
         $companyRUC = DataGeneral::where('name', 'companyRUC')->first();
-        $currencyAccount = ($accountsDolarero->currency = 'USD') ? 'Dólares':'Soles';
+        $currencyAccount = ($accountsDolarero->currency == 'USD') ? 'Dólares':'Soles';
         $typeAccount = 'Cuenta Corriente';
         $bankAccount = $accountsDolarero->bank->name;
         $numberAccount = $accountsDolarero->numberAccount;
-        $bankCustomer = $accountsCustomer->bank->name;
+        $bankCustomer = $accountsDolarero->bank->name;
         $amountSend = 0;
 
         DB::beginTransaction();
