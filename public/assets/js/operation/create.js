@@ -3,8 +3,15 @@ var KTCreateAccount = function () {
     var e, t, i, o, s, a = [];
     return {
         init: function () {
-            (e = document.querySelector("#kt_modal_create_account")) && new bootstrap.Modal(e), t = document.querySelector("#kt_create_account_stepper"), i = t.querySelector("#kt_create_account_form"), o = t.querySelector('[data-kt-stepper-action="submit"]'), s = t.querySelector('[data-kt-stepper-action="next"]'), ($r = new KTStepper(t)).on("kt.stepper.changed", (function (e) {
-                3 === $r.getCurrentStepIndex() ? (o.classList.remove("d-none"), o.classList.add("d-inline-block"), s.classList.add("d-none")) : 5 === $r.getCurrentStepIndex() ? (o.classList.add("d-none"), s.classList.add("d-none")) : (o.classList.remove("d-inline-block"), o.classList.remove("d-none"), s.classList.remove("d-none"))
+            (e = document.querySelector("#kt_modal_create_account"))
+            &&
+            new bootstrap.Modal(e),
+                t = document.querySelector("#kt_create_account_stepper"),
+                i = t.querySelector("#kt_create_account_form"),
+                o = t.querySelector('[data-kt-stepper-action="submit"]'),
+                s = t.querySelector('[data-kt-stepper-action="next"]'),
+                ($r = new KTStepper(t)).on("kt.stepper.changed", (function (e) {
+                3 === $r.getCurrentStepIndex() ? (o.classList.remove("d-none"), o.classList.add("d-inline-block"), s.classList.add("d-none")) : 4 === $r.getCurrentStepIndex() ? (o.classList.add("d-none"), s.classList.add("d-none")) : (o.classList.remove("d-inline-block"), o.classList.remove("d-none"), s.classList.remove("d-none"))
             })), $r.on("kt.stepper.next", (function (e) {
                 console.log("stepper.next");
                 var t = a[e.getCurrentStepIndex() - 1];
@@ -88,7 +95,9 @@ var KTCreateAccount = function () {
                     })
                 }
             })), a.push(FormValidation.formValidation(i, {
-                fields: {},
+                fields: {
+                    //number_operation : {validators: {notEmpty: {message: "Busines description is required"}}}
+                },
                 plugins: {
                     trigger: new FormValidation.plugins.Trigger,
                     bootstrap: new FormValidation.plugins.Bootstrap5({
@@ -99,16 +108,7 @@ var KTCreateAccount = function () {
                 }
             })), a.push(FormValidation.formValidation(i, {
                 fields: {
-                    business_name: {validators: {notEmpty: {message: "Busines name is required"}}},
-                    business_descriptor: {validators: {notEmpty: {message: "Busines descriptor is required"}}},
-                    business_type: {validators: {notEmpty: {message: "Busines type is required"}}},
-                    business_description: {validators: {notEmpty: {message: "Busines description is required"}}},
-                    business_email: {
-                        validators: {
-                            notEmpty: {message: "Busines email is required"},
-                            emailAddress: {message: "The value is not a valid email address"}
-                        }
-                    }
+                    number_operation : {validators: {notEmpty: {message: "Busines description is required"}}}
                 },
                 plugins: {
                     trigger: new FormValidation.plugins.Trigger,
@@ -118,7 +118,8 @@ var KTCreateAccount = function () {
                         eleValidClass: ""
                     })
                 }
-            })), /*a.push(FormValidation.formValidation(i, {
+            })),
+                /*a.push(FormValidation.formValidation(i, {
                 fields: {
                     card_name: {validators: {notEmpty: {message: "Name on card is required"}}},
                     card_number: {
@@ -146,9 +147,9 @@ var KTCreateAccount = function () {
                     })
                 }
             })),*/ o.addEventListener("click", (function (e) {
-                a[3].validate().then((function (t) {
+                a[2].validate().then((function (t) {
                     console.log("validated!"), "Valid" == t ? (e.preventDefault(), o.disabled = !0, o.setAttribute("data-kt-indicator", "on"), setTimeout((function () {
-                        o.removeAttribute("data-kt-indicator"), o.disabled = !1, $r.goNext()
+                        o.removeAttribute("data-kt-indicator"), o.disabled = !1, showModalFinalStep()
                     }), 2e3)) : Swal.fire({
                         text: "Sorry, looks like there are some errors detected, please try again.",
                         icon: "error",
@@ -159,12 +160,6 @@ var KTCreateAccount = function () {
                         KTUtil.scrollTop()
                     }))
                 }))
-            })), $(i.querySelector('[name="card_expiry_month"]')).on("change", (function () {
-                a[3].revalidateField("card_expiry_month")
-            })), $(i.querySelector('[name="card_expiry_year"]')).on("change", (function () {
-                a[3].revalidateField("card_expiry_year")
-            })), $(i.querySelector('[name="business_type"]')).on("change", (function () {
-                a[2].revalidateField("business_type")
             }))
         }
     }
@@ -209,4 +204,10 @@ function showModalSummary() {
 
 function showModalSecondStep() {
     $('#kt_modal_second_step').modal('show')
+}
+
+function showModalFinalStep() {
+    var codigo = $.trim($("#number_operation").val());
+    $("#numberOperationUser").html(codigo);
+    $('#kt_modal_final_step').modal('show')
 }

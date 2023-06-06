@@ -127,6 +127,9 @@ Route::middleware('auth')->group(function (){
 
         Route::post('/cancel/operation/pending', [App\Http\Controllers\OperationController::class, 'cancelOperationPending'])
             ->name('cancel.operation.pending');
+
+        Route::post('/save/operation/real', [App\Http\Controllers\OperationController::class, 'saveOperationReal'])
+            ->name('save.operation.real');
     });
 });
 Route::get('/data', [\App\Http\Controllers\DataController::class, 'getData']);

@@ -256,8 +256,8 @@
                                         <div class="col-lg-8 offset-lg-2">
                                             <p class="text-muted text-gray-800 fw-bold fs-6">1. Transfiere <strong class="link-primary fw-bolder" id="amountSendOperation"> 00.00 moneda</strong> desde tu banco <strong class="link-primary fw-bolder" id="nameBankOperation">  </strong> a nuestra cuenta. </p>
                                             <p class="text-muted text-gray-800 fw-bold fs-6">2. Guarda el
-                                                <strong class="link-primary fw-bolder" id="amountSendOperation">
-                                                    <a href="#">número de tu operación</a>
+                                                <strong class="link-primary fw-bolder" >
+                                                    <a href="#" id="showModalNumberOperation">número de tu operación</a>
                                                 </strong> para el segundo paso.
                                             </p>
                                             <div class="col-sm-8 offset-sm-2 col-8 offset-2 bg-light-primary rounded border-primary border border-dashed p-6">
@@ -517,47 +517,30 @@
                             <!--begin::Wrapper-->
                             <div class="w-100">
                                 <!--begin::Heading-->
-                                <div class="pb-8 pb-lg-10">
+                                <div class="pb-8 pb-lg-10 text-center">
                                     <!--begin::Title-->
-                                    <h2 class="fw-bolder text-dark">Your Are Done!</h2>
+                                    <h2 class="fw-bolder text-dark">Envía tu constancia</h2>
                                     <!--end::Title-->
                                     <!--begin::Notice-->
                                     <div class="text-muted fw-bold fs-6">If you need more info, please
-                                        <a href="../../demo7/dist/authentication/sign-in/basic.html" class="link-primary fw-bolder">Sign In</a>.</div>
+                                        <a href="#" class="link-primary fw-bolder">Sign In</a>.</div>
                                     <!--end::Notice-->
                                 </div>
                                 <!--end::Heading-->
                                 <!--begin::Body-->
                                 <div class="mb-0">
                                     <!--begin::Text-->
-                                    <div class="fs-6 text-gray-600 mb-5">Writing headlines for blog posts is as much an art as it is a science and probably warrants its own post, but for all advise is with what works for your great &amp; amazing audience.</div>
+                                    <div class="fs-6 text-gray-800 mb-5" >Escribe el número de operación de la transferencia</div>
                                     <!--end::Text-->
                                     <!--begin::Alert-->
                                     <!--begin::Notice-->
-                                    <div class="notice d-flex bg-light-warning rounded border-warning border border-dashed p-6">
-                                        <!--begin::Icon-->
-                                        <!--begin::Svg Icon | path: icons/duotune/general/gen044.svg-->
-                                        <span class="svg-icon svg-icon-2tx svg-icon-warning me-4">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                                <rect opacity="0.3" x="2" y="2" width="20" height="20" rx="10" fill="black" />
-                                                <rect x="11" y="14" width="7" height="2" rx="1" transform="rotate(-90 11 14)" fill="black" />
-                                                <rect x="11" y="17" width="2" height="2" rx="1" transform="rotate(-90 11 17)" fill="black" />
-                                            </svg>
-                                        </span>
-                                        <!--end::Svg Icon-->
-                                        <!--end::Icon-->
-                                        <!--begin::Wrapper-->
-                                        <div class="d-flex flex-stack flex-grow-1">
-                                            <!--begin::Content-->
-                                            <div class="fw-bold">
-                                                <h4 class="text-gray-900 fw-bolder">We need your attention!</h4>
-                                                <div class="fs-6 text-gray-700">To start using great tools, please, please
-                                                    <a href="#" class="fw-bolder">Create Team Platform</a></div>
-                                            </div>
-                                            <!--end::Content-->
-                                        </div>
-                                        <!--end::Wrapper-->
+                                    <div class="fv-row mb-7">
+                                        <input type="number" pattern="[\d]*" autocomplete="off" class="form-control form-control-lg form-control-solid bg-light-primary rounded border-primary border border-dashed text-center" name="number_operation" id="number_operation" placeholder="" value="" />
                                     </div>
+                                    <div class="fs-6 text-gray-800 mt-3 mb-3 text-center">¿Dónde encuentro el <a href="#" id="showModalNumberOperation2" class="link-primary fw-bolder">número de operación</a>?</div>
+                                    <div class="fs-6 text-gray-800 mb-3 text-center">¿Aún no haces la transferencia?</div>
+                                    <div class="fs-6 text-gray-800 mt-10 text-center">Verificaremos tu operación para transferir <strong id="amountSendOperationConstancia">{{ ($stopOperation->type == 'buy') ? 'PEN ':'USD ' }} {{ number_format($stopOperation->getAmount, 2, '.', '') }} </strong> a tu cuenta.</div>
+
                                     <!--end::Notice-->
                                     <!--end::Alert-->
                                 </div>
@@ -578,14 +561,14 @@
                                             <path d="M8.56569 11.4343L12.75 7.25C13.1642 6.83579 13.1642 6.16421 12.75 5.75C12.3358 5.33579 11.6642 5.33579 11.25 5.75L5.70711 11.2929C5.31658 11.6834 5.31658 12.3166 5.70711 12.7071L11.25 18.25C11.6642 18.6642 12.3358 18.6642 12.75 18.25C13.1642 17.8358 13.1642 17.1642 12.75 16.75L8.56569 12.5657C8.25327 12.2533 8.25327 11.7467 8.56569 11.4343Z" fill="black" />
                                         </svg>
                                     </span>
-                                    <!--end::Svg Icon-->Back
+                                    <!--end::Svg Icon-->Regresar
                                 </button>
                             </div>
                             <!--end::Wrapper-->
                             <!--begin::Wrapper-->
                             <div>
                                 <button type="button" class="btn btn-lg btn-primary me-3" data-kt-stepper-action="submit">
-                                    <span class="indicator-label">Submit
+                                    <span class="indicator-label">Enviar constancia
                                         <!--begin::Svg Icon | path: icons/duotune/arrows/arr064.svg-->
                                         <span class="svg-icon svg-icon-3 ms-2 me-0">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -595,11 +578,11 @@
                                         </span>
                                         <!--end::Svg Icon-->
                                     </span>
-                                    <span class="indicator-progress">Please wait...
+                                    <span class="indicator-progress">Espere por favor...
                                         <span class="spinner-border spinner-border-sm align-middle ms-2"></span>
                                     </span>
                                 </button>
-                                <button type="button" class="btn btn-lg btn-primary" data-kt-stepper-action="next">Continue
+                                <button type="button" class="btn btn-lg btn-primary" data-kt-stepper-action="next">Continuar
                                     <!--begin::Svg Icon | path: icons/duotune/arrows/arr064.svg-->
                                     <span class="svg-icon svg-icon-4 ms-1 me-0">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -809,7 +792,7 @@
                             <!--begin::Wrapper-->
                             <div class="w-100">
                                 <!--begin::Heading-->
-                                <div class="pb-10 pb-lg-15 text-center">
+                                <div class="pb-5 pb-lg-5 text-center">
                                     <!--begin::Title-->
                                     <h2 class="fw-bolder text-dark">Transfiere a Dolareros</h2>
                                     <!--end::Title-->
@@ -824,11 +807,13 @@
                                     <div class="row">
                                         <!--begin::Col-->
                                         <div class="col-lg-8 offset-lg-2">
-                                            <h5>1. Transfiere <strong id="amountSendOperation"> 00.00 moneda</strong> desde tu banco <strong id="nameBankOperation">  </strong> a nuestra cuenta. </h5>
-                                            <br>
-                                            <h5>2. Guarda el <strong id="amountSendOperation"> número de tu operación</strong> para el segundo paso. </h5>
-                                            <br>
-                                            <div class="col-sm-8 offset-sm-2 col-8 offset-2 bg-light-warning rounded border-primary border border-dashed">
+                                            <p class="text-muted text-gray-800 fw-bold fs-6">1. Transfiere <strong class="link-primary fw-bolder" id="amountSendOperation"> 00.00 moneda</strong> desde tu banco <strong class="link-primary fw-bolder" id="nameBankOperation">  </strong> a nuestra cuenta. </p>
+                                            <p class="text-muted text-gray-800 fw-bold fs-6">2. Guarda el
+                                                <strong class="link-primary fw-bolder" >
+                                                    <a href="#" id="showModalNumberOperation">número de tu operación</a>
+                                                </strong> para el segundo paso.
+                                            </p>
+                                            <div class="col-sm-8 offset-sm-2 col-8 offset-2 bg-light-primary rounded border-primary border border-dashed p-6">
                                                 <strong class="text-gray-900 ">Banco</strong>
                                                 <p class="text-gray-900 mb-1 ml-5" id="nameBankOperationDeposit">BCP</p>
                                                 <strong class="text-gray-900 ">Número de cuenta</strong>
@@ -1087,47 +1072,30 @@
                             <!--begin::Wrapper-->
                             <div class="w-100">
                                 <!--begin::Heading-->
-                                <div class="pb-8 pb-lg-10">
+                                <div class="pb-8 pb-lg-10 text-center">
                                     <!--begin::Title-->
-                                    <h2 class="fw-bolder text-dark">Your Are Done!</h2>
+                                    <h2 class="fw-bolder text-dark">Envía tu constancia</h2>
                                     <!--end::Title-->
                                     <!--begin::Notice-->
                                     <div class="text-muted fw-bold fs-6">If you need more info, please
-                                        <a href="../../demo7/dist/authentication/sign-in/basic.html" class="link-primary fw-bolder">Sign In</a>.</div>
+                                        <a href="#" class="link-primary fw-bolder">Sign In</a>.</div>
                                     <!--end::Notice-->
                                 </div>
                                 <!--end::Heading-->
                                 <!--begin::Body-->
                                 <div class="mb-0">
                                     <!--begin::Text-->
-                                    <div class="fs-6 text-gray-600 mb-5">Writing headlines for blog posts is as much an art as it is a science and probably warrants its own post, but for all advise is with what works for your great &amp; amazing audience.</div>
+                                    <div class="fs-6 text-gray-800 mb-5" >Escribe el número de operación de la transferencia</div>
                                     <!--end::Text-->
                                     <!--begin::Alert-->
                                     <!--begin::Notice-->
-                                    <div class="notice d-flex bg-light-warning rounded border-warning border border-dashed p-6">
-                                        <!--begin::Icon-->
-                                        <!--begin::Svg Icon | path: icons/duotune/general/gen044.svg-->
-                                        <span class="svg-icon svg-icon-2tx svg-icon-warning me-4">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                            <rect opacity="0.3" x="2" y="2" width="20" height="20" rx="10" fill="black" />
-                                            <rect x="11" y="14" width="7" height="2" rx="1" transform="rotate(-90 11 14)" fill="black" />
-                                            <rect x="11" y="17" width="2" height="2" rx="1" transform="rotate(-90 11 17)" fill="black" />
-                                        </svg>
-                                    </span>
-                                        <!--end::Svg Icon-->
-                                        <!--end::Icon-->
-                                        <!--begin::Wrapper-->
-                                        <div class="d-flex flex-stack flex-grow-1">
-                                            <!--begin::Content-->
-                                            <div class="fw-bold">
-                                                <h4 class="text-gray-900 fw-bolder">We need your attention!</h4>
-                                                <div class="fs-6 text-gray-700">To start using great tools, please, please
-                                                    <a href="#" class="fw-bolder">Create Team Platform</a></div>
-                                            </div>
-                                            <!--end::Content-->
-                                        </div>
-                                        <!--end::Wrapper-->
+                                    <div class="fv-row mb-7">
+                                        <input type="number" pattern="[\d]*" autocomplete="off" class="form-control form-control-lg form-control-solid bg-light-primary rounded border-primary border border-dashed text-center" name="number_operation" id="number_operation" placeholder="" value="" />
                                     </div>
+                                    <div class="fs-6 text-gray-800 mt-3 mb-3 text-center">¿Dónde encuentro el <a href="#" id="showModalNumberOperation2" class="link-primary fw-bolder">número de operación</a>?</div>
+                                    <div class="fs-6 text-gray-800 mb-3 text-center">¿Aún no haces la transferencia?</div>
+                                    <div class="fs-6 text-gray-800 mt-10 text-center">Verificaremos tu operación para transferir <strong id="amountSendOperationConstancia">{{ ($stopData->type == 'buy') ? 'PEN ':'USD ' }} {{ number_format($stopData->getAmount, 2, '.', '') }} </strong> a tu cuenta.</div>
+
                                     <!--end::Notice-->
                                     <!--end::Alert-->
                                 </div>
@@ -1148,14 +1116,14 @@
                                         <path d="M8.56569 11.4343L12.75 7.25C13.1642 6.83579 13.1642 6.16421 12.75 5.75C12.3358 5.33579 11.6642 5.33579 11.25 5.75L5.70711 11.2929C5.31658 11.6834 5.31658 12.3166 5.70711 12.7071L11.25 18.25C11.6642 18.6642 12.3358 18.6642 12.75 18.25C13.1642 17.8358 13.1642 17.1642 12.75 16.75L8.56569 12.5657C8.25327 12.2533 8.25327 11.7467 8.56569 11.4343Z" fill="black" />
                                     </svg>
                                 </span>
-                                    <!--end::Svg Icon-->Back
+                                    <!--end::Svg Icon-->Regresar
                                 </button>
                             </div>
                             <!--end::Wrapper-->
                             <!--begin::Wrapper-->
                             <div>
                                 <button type="button" class="btn btn-lg btn-primary me-3" data-kt-stepper-action="submit">
-                                <span class="indicator-label">Submit
+                                <span class="indicator-label">Enviar constancia
                                     <!--begin::Svg Icon | path: icons/duotune/arrows/arr064.svg-->
                                     <span class="svg-icon svg-icon-3 ms-2 me-0">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -1165,11 +1133,11 @@
                                     </span>
                                     <!--end::Svg Icon-->
                                 </span>
-                                    <span class="indicator-progress">Please wait...
+                                    <span class="indicator-progress">Espere por favor...
                                     <span class="spinner-border spinner-border-sm align-middle ms-2"></span>
                                 </span>
                                 </button>
-                                <button type="button" class="btn btn-lg btn-primary" data-kt-stepper-action="next">Continue
+                                <button type="button" class="btn btn-lg btn-primary" data-kt-stepper-action="next">Continuar
                                     <!--begin::Svg Icon | path: icons/duotune/arrows/arr064.svg-->
                                     <span class="svg-icon svg-icon-4 ms-1 me-0">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -1705,15 +1673,11 @@
                             <h5> ¿Confirmas que ya realizaste la transferencia bancaria? </h5>
                         </div>
                         <div class="row">
-                            <div class="col-sm-10 offset-sm-1 col-8 offset-2 border-dashed">
-                                <p class="text-muted text-gray-800 fw-bold fs-6">Recuerda guardar
-                                    <strong>
-                                        <a href="#">el número de operación </a>
-                                    </strong>
-                                    de tu transferencia para que lo puedes registrar en el siguiente paso.
+                            <div class="col-sm-10 offset-sm-1 col-8 offset-2 border-dashed pt-4">
+                                <p class="text-muted text-gray-800 fw-bold fs-6">Recuerda guardar el número de operación de tu transferencia para que lo puedes registrar en el siguiente paso.
                                 </p>
                                 <p class="text-muted text-gray-800 fw-bold fs-6">
-                                    *Ubica el número de operación en este ejemplo.
+                                    *Ubica el número de operación.
                                 </p>
                             </div>
                         </div>
@@ -1729,6 +1693,129 @@
                     <!--begin::Button-->
                     <button type="button" id="kt_modal_second_step_next" class="btn btn-primary">
                         <span class="indicator-label">Confirmo</span>
+                        <span class="indicator-progress">Por favor espere...
+                            <span class="spinner-border spinner-border-sm align-middle ms-2"></span>
+                        </span>
+                    </button>
+                    <!--end::Button-->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="kt_modal_number_operation" aria-hidden="true">
+        <!--begin::Modal dialog-->
+        <div class="modal-dialog modal-dialog-centered">
+            <!--begin::Modal content-->
+            <div class="modal-content">
+                <div class="modal-header pb-0 border-0 justify-content-end">
+                    <!--begin::Close-->
+                    <div class="btn btn-sm btn-icon btn-active-color-primary" data-bs-dismiss="modal">
+                        <!--begin::Svg Icon | path: icons/duotune/arrows/arr061.svg-->
+                        <span class="svg-icon svg-icon-1">
+								<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+									<rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1" transform="rotate(-45 6 17.3137)" fill="black"></rect>
+									<rect x="7.41422" y="6" width="16" height="2" rx="1" transform="rotate(45 7.41422 6)" fill="black"></rect>
+								</svg>
+							</span>
+                        <!--end::Svg Icon-->
+                    </div>
+                    <!--end::Close-->
+                </div>
+                <!--begin::Modal body-->
+                <div class="modal-body py-10 px-lg-17">
+                    <!--begin::Scroll-->
+                    <div class=" me-n7 pe-7" id="" data-kt-scroll="true" data-kt-scroll-activate="{default: false, lg: true}" data-kt-scroll-max-height="auto" data-kt-scroll-dependencies="#kt_modal_add_customer_header" data-kt-scroll-wrappers="#kt_modal_add_customer_scroll" data-kt-scroll-offset="300px">
+                        <div class="row">
+                            <div class="col-sm-8 offset-sm-2 col-8 offset-2">
+                                <div class="d-flex justify-content-center">
+                                    <img class="img-fluid center" style="height: 100%;max-height: 325px"  src="{{ asset('assets/images/operation/numeroOperacion.jpeg') }}" alt="">
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--end::Scroll-->
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="kt_modal_final_step" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-body py-10 px-lg-17">
+                    <!--begin::Scroll-->
+                    <div class=" me-n7 pe-7" id="kt_modal_add_customer_scroll" data-kt-scroll="true" data-kt-scroll-activate="{default: false, lg: true}" data-kt-scroll-max-height="auto" data-kt-scroll-dependencies="#kt_modal_add_customer_header" data-kt-scroll-wrappers="#kt_modal_add_customer_scroll" data-kt-scroll-offset="300px">
+                        <div class="row pb-1 text-center">
+                            <h5> ¿Confirmas que el número o código de operación ingresado " <strong class="text-muted text-gray-800 fw-bold fs-6" id="numberOperationUser"> </strong> " es correcto? </h5>
+                        </div>
+                    </div>
+                    <!--end::Scroll-->
+
+
+                </div>
+                <div class="modal-footer flex-center">
+                    <!--begin::Button-->
+                    <button type="button" id="kt_modal_final_step_cancel" class="btn btn-light me-3">Regresar</button>
+                    <!--end::Button-->
+                    <!--begin::Button-->
+                    <button type="button" id="kt_modal_final_step_next" class="btn btn-primary" data-url="{{ route('save.operation.real') }}">
+                        <span class="indicator-label">Confirmo</span>
+                        <span class="indicator-progress">Por favor espere...
+                            <span class="spinner-border spinner-border-sm align-middle ms-2"></span>
+                        </span>
+                    </button>
+                    <!--end::Button-->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="kt_modal_success_final" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-body py-10 px-lg-17">
+                    <!--begin::Scroll-->
+                    <div class=" me-n7 pe-7" id="kt_modal_add_customer_scroll" data-kt-scroll="true" data-kt-scroll-activate="{default: false, lg: true}" data-kt-scroll-max-height="auto" data-kt-scroll-dependencies="#kt_modal_add_customer_header" data-kt-scroll-wrappers="#kt_modal_add_customer_scroll" data-kt-scroll-offset="300px">
+                        <div class="row pb-1 text-center">
+                            <h5> Constancia enviada </h5>
+                        </div>
+                    </div>
+                    <!--end::Scroll-->
+                    <div class="row">
+
+                        <div class="bg-light-primary rounded border-primary border border-dashed p-6">
+                            <!--begin::Wrapper-->
+                            <div class="d-flex justify-content-between">
+                                <h5 class="text-gray-700 text-start">Código Dolareros</h5> <h4 class="text-gray-900 fw-bolder text-end" id="code_dolareros"> </h4>
+                            </div>
+                            <div class="d-flex justify-content-between">
+                                <h5 class="text-gray-700 text-start">* Usa tu código para dar siguimiento a tu operación</h5>
+                            </div>
+                            <div class="d-flex justify-content-between">
+                                @if ( $stopOperation != null )
+                                    <h5 class="text-gray-700 text-start">Monto a recibir</h5> <h4 class="text-gray-900 fw-bolder text-end"> {{ ($stopOperation->type == 'buy') ? 'PEN ':'USD ' }} {{ number_format(round($stopOperation->getAmount, 2), 2) }}</h4>
+                                @else
+                                    <h5 class="text-gray-700 text-start">Monto a recibir</h5> <h4 class="text-gray-900 fw-bolder text-end"> {{ ($stopData->type == 'buy') ? 'PEN ':'USD ' }} {{ number_format(round($stopData->getAmount, 2), 2) }}</h4>
+                                @endif
+                            </div>
+                            <div class="d-flex justify-content-between">
+                                <h5 class="text-gray-700 text-start">Tiempo estimado de espera</h5> <h4 class="text-gray-900 fw-bolder text-end"> En próximos 15 min </h4>
+                            </div>
+                            <!--end::Wrapper-->
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer flex-center">
+                    <!--begin::Button-->
+                    <button type="button" id="kt_modal_success_step_home" data-url="{{ route('home') }}" class="btn btn-success me-3">Nueva operación</button>
+                    <!--end::Button-->
+                    <!--begin::Button-->
+                    <button type="button" id="kt_modal_success_step_operations" data-url="{{ (session()->has('codigo_correcto')) ? route('operationCustomer.index') : route('code.index', 2) }}" class="btn btn-primary" >
+                        <span class="indicator-label">Ver Operaciones</span>
                         <span class="indicator-progress">Por favor espere...
                             <span class="spinner-border spinner-border-sm align-middle ms-2"></span>
                         </span>

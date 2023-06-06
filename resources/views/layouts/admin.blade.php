@@ -1956,13 +1956,8 @@
                 <div class="container-xxl d-flex flex-column flex-md-row flex-stack">
                     <!--begin::Copyright-->
                     <div class="text-dark order-2 order-md-1">
-<<<<<<< HEAD
-                        <span class="text-gray-400 fw-bold me-1">Created by</span>
-                        <a href="https://edesce.com" target="_blank" class="text-muted text-hover-primary fw-bold me-2 fs-6">EDESCE Consultora</a>
-=======
                         <span class="text-gray-400 fw-bold me-1">Desarrollado por</span>
                         <a href="https://edesce.com/" target="_blank" class="text-muted text-hover-primary fw-bold me-2 fs-6">EDESCE</a>
->>>>>>> 60cb0d52d050a443589f9e4098399276d51e999d
                     </div>
                     <!--end::Copyright-->
                     <!--begin::Menu-->

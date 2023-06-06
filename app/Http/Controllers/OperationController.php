@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\AccountCustomer;
 use App\Models\AccountDolarero;
 use App\Models\Bank;
+use App\Models\DataGeneral;
 use App\Models\Department;
+use App\Models\Operation;
 use App\Models\SourceFund;
 use App\Models\StopData;
 use App\Models\StopOperation;
@@ -80,6 +82,17 @@ class OperationController extends Controller
             ->where('department_id', $department->id)
             ->first();
 
+        $accountsCustomer = AccountCustomer::find($cuentaDestinoId);
+
+        $companyName = DataGeneral::where('name', 'companyName')->first();
+        $companyRUC = DataGeneral::where('name', 'companyRUC')->first();
+        $currencyAccount = ($accountsDolarero->currency = 'USD') ? 'Dólares':'Soles';
+        $typeAccount = 'Cuenta Corriente';
+        $bankAccount = $accountsDolarero->bank->name;
+        $numberAccount = $accountsDolarero->numberAccount;
+        $bankCustomer = $accountsCustomer->bank->name;
+        $amountSend = 0;
+
         DB::beginTransaction();
         try {
 
@@ -88,7 +101,7 @@ class OperationController extends Controller
             if ( isset($stopOperation) )
             {
                 ///$stopOperation->delete();
-
+                $amountSend = number_format($stopOperation->sendAmount, 2, '.', ' ');
                 //$stopData = StopData::where('user_id', Auth::id())->first();
                 $stopOperation->account_dolarero_id = $accountsDolarero->id;
                 $stopOperation->nameBankDolarero = $bancoOrigen;
@@ -117,6 +130,9 @@ class OperationController extends Controller
                     'account_customer_id' => $cuentaDestinoId,
                     'source_fund_id' => $sourceId,
                 ]);
+
+                $amountSend = number_format($newStopOperation->sendAmount, 2, '.', ' ');
+
             }
 
             DB::commit();
@@ -127,7 +143,15 @@ class OperationController extends Controller
         }
 
         return response()->json([
-            'message' => 'Operación guardada.'
+            'message' => 'Operación guardada.',
+            'companyName' => $companyName->valueText,
+            'companyRUC' => $companyRUC->valueText,
+            'typeAccount' => $typeAccount. ' - ' .$currencyAccount,
+            'bankAccount' => $bankAccount,
+            'numberAccount' => $numberAccount,
+            'currencyAccount' => $currencyAccount,
+            'amountSend' => $amountSend,
+            'bankCustomer' => $bankCustomer
         ], 200);
     }
 
@@ -376,5 +400,64 @@ class OperationController extends Controller
             'url' => route('home')
         ], 200);
 
+    }
+
+    public function saveOperationReal(Request $request)
+    {
+        $number_operation = $request->get('codigo');
+
+        $code_operation = $this->generateRandomString(10);
+
+        DB::beginTransaction();
+        try {
+
+            // Actualizar el  StopData si hay
+            $stopOperation = StopOperation::where('user_id', Auth::id())->first();
+            if ( isset($stopOperation) )
+            {
+                $operation = Operation::create([
+                    'user_id' => $stopOperation->user_id,
+                    'buyStop' => $stopOperation->buyStop,
+                    'sellStop' => $stopOperation->sellStop,
+                    'buyControl' => $stopOperation->buyControl,
+                    'sellControl' => $stopOperation->sellControl,
+                    'token' => $stopOperation->token,
+                    'coupon_id' => $stopOperation->coupon_id,
+                    'type' => $stopOperation->type,
+                    'sendAmount' => $stopOperation->sendAmount,
+                    'getAmount' => $stopOperation->getAmount,
+                    'account_dolarero_id' => $stopOperation->account_dolarero_id,
+                    'nameBankDolarero' => $stopOperation->nameBankDolarero,
+                    'account_customer_id' => $stopOperation->account_customer_id,
+                    'source_fund_id' => $stopOperation->source_fund_id,
+                    'ahorro' => $stopOperation->ahorro,
+                    'number_operation_user' => $number_operation,
+                    'code_operation' => $code_operation
+                ]);
+
+                $stopOperation->delete();
+            }
+
+            DB::commit();
+
+        } catch ( \Throwable $e ) {
+            DB::rollBack();
+            return response()->json(['message' => $e->getMessage()], 422);
+        }
+
+        return response()->json([
+            'message' => 'Operación registrada con éxito.',
+            'code_operation' => $code_operation
+        ], 200);
+    }
+
+    public function generateRandomString($length = 25) {
+        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $charactersLength = strlen($characters);
+        $randomString = '';
+        for ($i = 0; $i < $length; $i++) {
+            $randomString .= $characters[rand(0, $charactersLength - 1)];
+        }
+        return $randomString;
     }
 }
