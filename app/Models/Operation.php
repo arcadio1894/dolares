@@ -67,4 +67,48 @@ class Operation extends Model
     {
         return $this->belongsTo('App\Models\SourceFund', 'source_fund_id', 'id');
     }
+
+    public function getSendAmountListAttribute()
+    {
+        $moneda = ($this->type == 'buy') ? 'USD':'PEN' ;
+        $amount = $moneda. ' '.number_format(round($this->sendAmount, 2), 2);
+
+        return $amount;
+    }
+
+    public function getGetAmountListAttribute()
+    {
+        $moneda = ($this->type == 'buy') ? 'PEN':'USD' ;
+        $amount = $moneda. ' '.number_format(round($this->getAmount, 2), 2);
+
+        return $amount;
+    }
+
+    public function getTypeChangeAttribute()
+    {
+        if ( $this->coupon_id != null )
+        {
+            $amounCoupon = ($this->type == 'buy') ? $this->coupon->amountBuy:$this->coupon->amountSell;
+        } else {
+            $amounCoupon = 0;
+        }
+
+        $change = ($this->type == 'buy') ? $this->buyStop:$this->sellStop;
+        $amount = number_format(round($change+$amounCoupon, 2), 2);
+
+        return $amount;
+    }
+
+    public function getEstadoAttribute()
+    {
+        if ( $this->state == 'refused' ) {
+            $estado = 'RECHAZADO';
+        } elseif ($this->state == 'processing') {
+            $estado = 'PROCESANDO';
+        } else {
+            $estado = 'FINALIZADO';
+        }
+
+        return $estado;
+    }
 }

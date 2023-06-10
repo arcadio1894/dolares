@@ -108,7 +108,7 @@ var KTCreateAccount = function () {
                 }
             })), a.push(FormValidation.formValidation(i, {
                 fields: {
-                    number_operation : {validators: {notEmpty: {message: "Busines description is required"}}}
+                    number_operation : {validators: {notEmpty: {message: "EL código de la operación es obligatorio."}}}
                 },
                 plugins: {
                     trigger: new FormValidation.plugins.Trigger,
@@ -151,10 +151,10 @@ var KTCreateAccount = function () {
                     console.log("validated!"), "Valid" == t ? (e.preventDefault(), o.disabled = !0, o.setAttribute("data-kt-indicator", "on"), setTimeout((function () {
                         o.removeAttribute("data-kt-indicator"), o.disabled = !1, showModalFinalStep()
                     }), 2e3)) : Swal.fire({
-                        text: "Sorry, looks like there are some errors detected, please try again.",
+                        text: "Disculpe, hemos detectado algunos errores, revise que los campos estén llenados correctamente.",
                         icon: "error",
                         buttonsStyling: !1,
-                        confirmButtonText: "Ok, got it!",
+                        confirmButtonText: "Ok, entendido!",
                         customClass: {confirmButton: "btn btn-light"}
                     }).then((function () {
                         KTUtil.scrollTop()

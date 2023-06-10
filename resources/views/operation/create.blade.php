@@ -92,8 +92,8 @@
                                     </h2>
                                     <!--end::Title-->
                                     <!--begin::Notice-->
-                                    <div class="text-muted fw-bold fs-6">If you need more info, please check out
-                                        <a href="#" class="link-primary fw-bolder">Help Page</a>.
+                                    <div class="text-muted fw-bold fs-6">Si deseas cancelar la operación
+                                        <a href="#" class="link-danger fw-bolder">Haz click aquí</a>.
                                     </div>
                                     <!--end::Notice-->
                                 </div>
@@ -142,8 +142,7 @@
                                                     <div class="fw-bold">
                                                         <h6 class="text-gray-900 fw-bolder">Recuerda!</h6>
                                                         <div class="fs-7 text-gray-600">
-                                                            Tiempo estimado de espera BCP, Interbank y Banbif: 15 min <br>
-                                                            (Aplica para cualquier monto). Otros bancos 1 día útil.
+                                                            Tiempo estimado de espera 15 min <br>
                                                         </div>
                                                     </div>
                                                     <!--end::Content-->
@@ -244,8 +243,8 @@
                                     <h2 class="fw-bolder text-dark">Transfiere a Dolareros</h2>
                                     <!--end::Title-->
                                     <!--begin::Notice-->
-                                    <div class="text-muted fw-bold fs-6">If you need more info, please check out
-                                        <a href="#" class="link-primary fw-bolder">Help Page</a>.</div>
+                                    <div class="text-muted fw-bold fs-6">Si deseas cancelar la operaciónt
+                                        <a href="#" class="link-danger fw-bolder">Haz click aquí</a>.</div>
                                     <!--end::Notice-->
                                 </div>
                                 <!--end::Heading-->
@@ -254,7 +253,7 @@
                                     <div class="row">
                                         <!--begin::Col-->
                                         <div class="col-lg-8 offset-lg-2">
-                                            <p class="text-muted text-gray-800 fw-bold fs-6">1. Transfiere <strong class="link-primary fw-bolder" id="amountSendOperation"> 00.00 moneda</strong> desde tu banco <strong class="link-primary fw-bolder" id="nameBankOperation">  </strong> a nuestra cuenta. </p>
+                                            <p class="text-muted text-gray-800 fw-bold fs-6">1. Transfiere <strong class="link-primary fw-bolder" id="amountSendOperation"> 00.00 moneda</strong> desde tu banco <strong class="link-primary fw-bolder" id="nameBankOperation">  </strong>. </p>
                                             <p class="text-muted text-gray-800 fw-bold fs-6">2. Guarda el
                                                 <strong class="link-primary fw-bolder" >
                                                     <a href="#" id="showModalNumberOperation">número de tu operación</a>
@@ -273,7 +272,31 @@
                                                 <p class="text-gray-900 mb-1 ml-5" id="typeAccountOperationDeposit">Cuenta Corriente - Soles</p>
                                             </div>
                                             <br>
-                                            <p class="text-muted text-gray-800 fw-bold fs-6">* Recuerda que Dolareros NO realiza ningún débito automático de tus cuentas. </p>
+                                            <div class="notice d-flex bg-light-warning rounded border-warning border border-dashed p-3">
+                                                <!--begin::Icon-->
+                                                <!--begin::Svg Icon | path: icons/duotune/general/gen044.svg-->
+                                                <span class="svg-icon svg-icon-2tx svg-icon-warning me-4">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                                        <rect opacity="0.3" x="2" y="2" width="20" height="20" rx="10" fill="black" />
+                                                        <rect x="11" y="14" width="7" height="2" rx="1" transform="rotate(-90 11 14)" fill="black" />
+                                                        <rect x="11" y="17" width="2" height="2" rx="1" transform="rotate(-90 11 17)" fill="black" />
+                                                    </svg>
+                                                </span>
+                                                <!--end::Svg Icon-->
+                                                <!--end::Icon-->
+                                                <!--begin::Wrapper-->
+                                                <div class="d-flex flex-stack flex-grow-1">
+                                                    <!--begin::Content-->
+                                                    <div class="fw-bold">
+                                                        <h6 class="text-gray-900 fw-bolder">Recuerda!</h6>
+                                                        <div class="fs-7 text-gray-600">
+                                                            Dolareros NO realiza ningún débito automático de tus cuentas<br>
+                                                        </div>
+                                                    </div>
+                                                    <!--end::Content-->
+                                                </div>
+                                                <!--end::Wrapper-->
+                                            </div>
                                         </div>
                                         <!--end::Col-->
                                     </div>
@@ -522,8 +545,8 @@
                                     <h2 class="fw-bolder text-dark">Envía tu constancia</h2>
                                     <!--end::Title-->
                                     <!--begin::Notice-->
-                                    <div class="text-muted fw-bold fs-6">If you need more info, please
-                                        <a href="#" class="link-primary fw-bolder">Sign In</a>.</div>
+                                    <div class="text-muted fw-bold fs-6">Si deseas cancelar la operación
+                                        <a href="#" class="link-danger fw-bolder">Haz click aquí</a>.</div>
                                     <!--end::Notice-->
                                 </div>
                                 <!--end::Heading-->
@@ -538,7 +561,6 @@
                                         <input type="number" pattern="[\d]*" autocomplete="off" class="form-control form-control-lg form-control-solid bg-light-primary rounded border-primary border border-dashed text-center" name="number_operation" id="number_operation" placeholder="" value="" />
                                     </div>
                                     <div class="fs-6 text-gray-800 mt-3 mb-3 text-center">¿Dónde encuentro el <a href="#" id="showModalNumberOperation2" class="link-primary fw-bolder">número de operación</a>?</div>
-                                    <div class="fs-6 text-gray-800 mb-3 text-center">¿Aún no haces la transferencia?</div>
                                     <div class="fs-6 text-gray-800 mt-10 text-center">Verificaremos tu operación para transferir <strong id="amountSendOperationConstancia">{{ ($stopOperation->type == 'buy') ? 'PEN ':'USD ' }} {{ number_format($stopOperation->getAmount, 2, '.', '') }} </strong> a tu cuenta.</div>
 
                                     <!--end::Notice-->
@@ -568,7 +590,7 @@
                             <!--begin::Wrapper-->
                             <div>
                                 <button type="button" class="btn btn-lg btn-primary me-3" data-kt-stepper-action="submit">
-                                    <span class="indicator-label">Enviar constancia
+                                    <span class="indicator-label">Enviar
                                         <!--begin::Svg Icon | path: icons/duotune/arrows/arr064.svg-->
                                         <span class="svg-icon svg-icon-3 ms-2 me-0">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -644,8 +666,8 @@
                                     </h2>
                                     <!--end::Title-->
                                     <!--begin::Notice-->
-                                    <div class="text-muted fw-bold fs-6">If you need more info, please check out
-                                        <a href="#" class="link-primary fw-bolder">Help Page</a>.
+                                    <div class="text-muted fw-bold fs-6">Si deseas cancelar la operación
+                                        <a href="#" class="link-danger fw-bolder">Haz click aquí</a>.
                                     </div>
                                     <!--end::Notice-->
                                 </div>
@@ -680,12 +702,12 @@
                                                 <!--begin::Icon-->
                                                 <!--begin::Svg Icon | path: icons/duotune/general/gen044.svg-->
                                                 <span class="svg-icon svg-icon-2tx svg-icon-warning me-4">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                                    <rect opacity="0.3" x="2" y="2" width="20" height="20" rx="10" fill="black" />
-                                                    <rect x="11" y="14" width="7" height="2" rx="1" transform="rotate(-90 11 14)" fill="black" />
-                                                    <rect x="11" y="17" width="2" height="2" rx="1" transform="rotate(-90 11 17)" fill="black" />
-                                                </svg>
-                                            </span>
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                                        <rect opacity="0.3" x="2" y="2" width="20" height="20" rx="10" fill="black" />
+                                                        <rect x="11" y="14" width="7" height="2" rx="1" transform="rotate(-90 11 14)" fill="black" />
+                                                        <rect x="11" y="17" width="2" height="2" rx="1" transform="rotate(-90 11 17)" fill="black" />
+                                                    </svg>
+                                                </span>
                                                 <!--end::Svg Icon-->
                                                 <!--end::Icon-->
                                                 <!--begin::Wrapper-->
@@ -694,8 +716,7 @@
                                                     <div class="fw-bold">
                                                         <h6 class="text-gray-900 fw-bolder">Recuerda!</h6>
                                                         <div class="fs-7 text-gray-600">
-                                                            Tiempo estimado de espera BCP, Interbank y Banbif: 15 min <br>
-                                                            (Aplica para cualquier monto). Otros bancos 1 día útil.
+                                                            Tiempo estimado de espera 15 min <br>
                                                         </div>
                                                     </div>
                                                     <!--end::Content-->
@@ -797,8 +818,8 @@
                                     <h2 class="fw-bolder text-dark">Transfiere a Dolareros</h2>
                                     <!--end::Title-->
                                     <!--begin::Notice-->
-                                    <div class="text-muted fw-bold fs-6">If you need more info, please check out
-                                        <a href="#" class="link-primary fw-bolder">Help Page</a>.</div>
+                                    <div class="text-muted fw-bold fs-6">Si deseas cancelar la operación
+                                        <a href="#" class="link-danger fw-bolder">Haz click aquí</a>.</div>
                                     <!--end::Notice-->
                                 </div>
                                 <!--end::Heading-->
@@ -807,7 +828,7 @@
                                     <div class="row">
                                         <!--begin::Col-->
                                         <div class="col-lg-8 offset-lg-2">
-                                            <p class="text-muted text-gray-800 fw-bold fs-6">1. Transfiere <strong class="link-primary fw-bolder" id="amountSendOperation"> 00.00 moneda</strong> desde tu banco <strong class="link-primary fw-bolder" id="nameBankOperation">  </strong> a nuestra cuenta. </p>
+                                            <p class="text-muted text-gray-800 fw-bold fs-6">1. Transfiere <strong class="link-primary fw-bolder" id="amountSendOperation"> 00.00 moneda</strong> desde tu banco <strong class="link-primary fw-bolder" id="nameBankOperation">  </strong> . </p>
                                             <p class="text-muted text-gray-800 fw-bold fs-6">2. Guarda el
                                                 <strong class="link-primary fw-bolder" >
                                                     <a href="#" id="showModalNumberOperation">número de tu operación</a>
@@ -826,8 +847,31 @@
                                                 <p class="text-gray-900 mb-1 ml-5" id="typeAccountOperationDeposit">Cuenta Corriente - Soles</p>
                                             </div>
                                             <br>
-                                            <h5>* Recuerda que Dolareros NO realiza ningún débito automático de tus cuentas. </h5>
-                                            <br>
+                                            <div class="notice d-flex bg-light-warning rounded border-warning border border-dashed p-3">
+                                                <!--begin::Icon-->
+                                                <!--begin::Svg Icon | path: icons/duotune/general/gen044.svg-->
+                                                <span class="svg-icon svg-icon-2tx svg-icon-warning me-4">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                                        <rect opacity="0.3" x="2" y="2" width="20" height="20" rx="10" fill="black" />
+                                                        <rect x="11" y="14" width="7" height="2" rx="1" transform="rotate(-90 11 14)" fill="black" />
+                                                        <rect x="11" y="17" width="2" height="2" rx="1" transform="rotate(-90 11 17)" fill="black" />
+                                                    </svg>
+                                                </span>
+                                                <!--end::Svg Icon-->
+                                                <!--end::Icon-->
+                                                <!--begin::Wrapper-->
+                                                <div class="d-flex flex-stack flex-grow-1">
+                                                    <!--begin::Content-->
+                                                    <div class="fw-bold">
+                                                        <h6 class="text-gray-900 fw-bolder">Recuerda!</h6>
+                                                        <div class="fs-7 text-gray-600">
+                                                            Dolareros NO realiza ningún débito automático de tus cuentas<br>
+                                                        </div>
+                                                    </div>
+                                                    <!--end::Content-->
+                                                </div>
+                                                <!--end::Wrapper-->
+                                            </div>
                                         </div>
                                         <!--end::Col-->
                                     </div>
@@ -1077,8 +1121,8 @@
                                     <h2 class="fw-bolder text-dark">Envía tu constancia</h2>
                                     <!--end::Title-->
                                     <!--begin::Notice-->
-                                    <div class="text-muted fw-bold fs-6">If you need more info, please
-                                        <a href="#" class="link-primary fw-bolder">Sign In</a>.</div>
+                                    <div class="text-muted fw-bold fs-6">Si deseas cancelar la operación
+                                        <a href="#" class="link-danger fw-bolder">Haz click aquí</a>.</div>
                                     <!--end::Notice-->
                                 </div>
                                 <!--end::Heading-->
@@ -1093,7 +1137,6 @@
                                         <input type="number" pattern="[\d]*" autocomplete="off" class="form-control form-control-lg form-control-solid bg-light-primary rounded border-primary border border-dashed text-center" name="number_operation" id="number_operation" placeholder="" value="" />
                                     </div>
                                     <div class="fs-6 text-gray-800 mt-3 mb-3 text-center">¿Dónde encuentro el <a href="#" id="showModalNumberOperation2" class="link-primary fw-bolder">número de operación</a>?</div>
-                                    <div class="fs-6 text-gray-800 mb-3 text-center">¿Aún no haces la transferencia?</div>
                                     <div class="fs-6 text-gray-800 mt-10 text-center">Verificaremos tu operación para transferir <strong id="amountSendOperationConstancia">{{ ($stopData->type == 'buy') ? 'PEN ':'USD ' }} {{ number_format($stopData->getAmount, 2, '.', '') }} </strong> a tu cuenta.</div>
 
                                     <!--end::Notice-->
@@ -1123,7 +1166,7 @@
                             <!--begin::Wrapper-->
                             <div>
                                 <button type="button" class="btn btn-lg btn-primary me-3" data-kt-stepper-action="submit">
-                                <span class="indicator-label">Enviar constancia
+                                <span class="indicator-label">Enviar
                                     <!--begin::Svg Icon | path: icons/duotune/arrows/arr064.svg-->
                                     <span class="svg-icon svg-icon-3 ms-2 me-0">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -1793,7 +1836,7 @@
                                 <h5 class="text-gray-700 text-start">Código Dolareros</h5> <h4 class="text-gray-900 fw-bolder text-end" id="code_dolareros"> </h4>
                             </div>
                             <div class="d-flex justify-content-between">
-                                <h5 class="text-gray-700 text-start">* Usa tu código para dar siguimiento a tu operación</h5>
+                                <h5 class="text-gray-700 text-start">*Código para revisar tu operación</h5>
                             </div>
                             <div class="d-flex justify-content-between">
                                 @if ( $stopOperation != null )
@@ -1803,7 +1846,7 @@
                                 @endif
                             </div>
                             <div class="d-flex justify-content-between">
-                                <h5 class="text-gray-700 text-start">Tiempo estimado de espera</h5> <h4 class="text-gray-900 fw-bolder text-end"> En próximos 15 min </h4>
+                                <h5 class="text-gray-700 text-start">Tiempo estimado de espera</h5> <h4 class="text-gray-900 fw-bolder text-end"> 15 min </h4>
                             </div>
                             <!--end::Wrapper-->
                         </div>

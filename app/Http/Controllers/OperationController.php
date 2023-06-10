@@ -19,14 +19,51 @@ class OperationController extends Controller
 {
     public function index()
     {
-        $banks = Bank::all();
-        $departments = Department::all();
-        $accounts = AccountCustomer::with(['bank','department'])
-            ->where('user_id', Auth::id())
+        $operations = Operation::where('user_id', Auth::id())
+            ->orderBy('state')
             ->get();
 
-        return view('accountCustomers.index', compact('banks', 'departments', 'accounts'));
+        /*$arrayOperations = [];
 
+        foreach ( $operations as $operation )
+        {
+            array_push( $arrayOperations, [
+                "id" => $operation->id,
+                "numberOperation" => $operation->code_operation,
+                "sendAmount" => $operation->send_amount_list,
+                "getAmount" => $operation->getAmountList,
+                "change" => $operation->type_change,
+                "fecha" => $operation->created_at->format('d/m/Y')
+            ]);
+        }*/
+
+        return view('operation.indexCustomer', compact('operations'));
+
+    }
+
+    public function getOperationsCustomers()
+    {
+        $operations = Operation::where('user_id', Auth::id())
+            ->orderBy('state')
+            ->get();
+
+        $arrayOperations = [];
+
+        foreach ( $operations as $operation )
+        {
+            array_push( $arrayOperations, [
+                "id" => $operation->id,
+                "numberOperation" => $operation->code_operation,
+                "sendAmount" => $operation->send_amount_list,
+                "getAmount" => $operation->getAmountList,
+                "change" => $operation->type_change,
+                "fecha" => $operation->created_at->format('d/m/Y')
+            ]);
+        }
+
+        return response()->json([
+            "operations" => $arrayOperations
+        ], 200);
     }
 
     public function generate(Request $request)
