@@ -88,7 +88,7 @@
                                 <div class="pb-10 pb-lg-5 text-center">
                                     <!--begin::Title-->
                                     <h2 class="fw-bolder text-center align-items-center text-dark">Completa los datos de tu operación
-                                        <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip" title="Billing is issued based on your selected account type"></i>
+                                        {{--<i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip" title="Billing is issued based on your selected account type"></i>--}}
                                     </h2>
                                     <!--end::Title-->
                                     <!--begin::Notice-->
@@ -662,7 +662,7 @@
                                 <div class="pb-10 pb-lg-5 text-center">
                                     <!--begin::Title-->
                                     <h2 class="fw-bolder text-center align-items-center text-dark">Completa los datos de tu operación
-                                        <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip" title="Billing is issued based on your selected account type"></i>
+                                        {{--<i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip" title="Billing is issued based on your selected account type"></i>--}}
                                     </h2>
                                     <!--end::Title-->
                                     <!--begin::Notice-->
