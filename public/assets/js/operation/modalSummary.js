@@ -71,11 +71,15 @@ var $stepper2;
 var $modalNumberOperation;
 
 function goToHome() {
-    alert("Se ira al home")
+    //alert("Se ira al home")
+    var url = $("#kt_modal_success_step_home").data('url');
+    location.href = url;
 }
 
 function goToOperations() {
-    alert("Se ira a las operaciones")
+    //alert("Se ira a las operaciones")
+    var url = $("#kt_modal_success_step_operations").data('url');
+    location.href = url;
 }
 
 function sendDataFinalStep() {

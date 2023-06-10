@@ -92,9 +92,9 @@
                                     </h2>
                                     <!--end::Title-->
                                     <!--begin::Notice-->
-                                    <div class="text-muted fw-bold fs-6">Si deseas cancelar la operación
+                                    {{--<div class="text-muted fw-bold fs-6">Si deseas cancelar la operación
                                         <a href="#" class="link-danger fw-bolder">Haz click aquí</a>.
-                                    </div>
+                                    </div>--}}
                                     <!--end::Notice-->
                                 </div>
                                 <!--end::Heading-->
@@ -243,8 +243,8 @@
                                     <h2 class="fw-bolder text-dark">Transfiere a Dolareros</h2>
                                     <!--end::Title-->
                                     <!--begin::Notice-->
-                                    <div class="text-muted fw-bold fs-6">Si deseas cancelar la operaciónt
-                                        <a href="#" class="link-danger fw-bolder">Haz click aquí</a>.</div>
+                                    {{--<div class="text-muted fw-bold fs-6">Si deseas cancelar la operaciónt
+                                        <a href="#" class="link-danger fw-bolder">Haz click aquí</a>.</div>--}}
                                     <!--end::Notice-->
                                 </div>
                                 <!--end::Heading-->
@@ -545,8 +545,8 @@
                                     <h2 class="fw-bolder text-dark">Envía tu constancia</h2>
                                     <!--end::Title-->
                                     <!--begin::Notice-->
-                                    <div class="text-muted fw-bold fs-6">Si deseas cancelar la operación
-                                        <a href="#" class="link-danger fw-bolder">Haz click aquí</a>.</div>
+                                    {{--<div class="text-muted fw-bold fs-6">Si deseas cancelar la operación
+                                        <a href="#" class="link-danger fw-bolder">Haz click aquí</a>.</div>--}}
                                     <!--end::Notice-->
                                 </div>
                                 <!--end::Heading-->
@@ -666,9 +666,9 @@
                                     </h2>
                                     <!--end::Title-->
                                     <!--begin::Notice-->
-                                    <div class="text-muted fw-bold fs-6">Si deseas cancelar la operación
+                                    {{--<div class="text-muted fw-bold fs-6">Si deseas cancelar la operación
                                         <a href="#" class="link-danger fw-bolder">Haz click aquí</a>.
-                                    </div>
+                                    </div>--}}
                                     <!--end::Notice-->
                                 </div>
                                 <!--end::Heading-->
@@ -818,8 +818,8 @@
                                     <h2 class="fw-bolder text-dark">Transfiere a Dolareros</h2>
                                     <!--end::Title-->
                                     <!--begin::Notice-->
-                                    <div class="text-muted fw-bold fs-6">Si deseas cancelar la operación
-                                        <a href="#" class="link-danger fw-bolder">Haz click aquí</a>.</div>
+                                    {{--<div class="text-muted fw-bold fs-6">Si deseas cancelar la operación
+                                        <a href="#" class="link-danger fw-bolder">Haz click aquí</a>.</div>--}}
                                     <!--end::Notice-->
                                 </div>
                                 <!--end::Heading-->
@@ -1121,8 +1121,8 @@
                                     <h2 class="fw-bolder text-dark">Envía tu constancia</h2>
                                     <!--end::Title-->
                                     <!--begin::Notice-->
-                                    <div class="text-muted fw-bold fs-6">Si deseas cancelar la operación
-                                        <a href="#" class="link-danger fw-bolder">Haz click aquí</a>.</div>
+                                    {{--<div class="text-muted fw-bold fs-6">Si deseas cancelar la operación
+                                        <a href="#" class="link-danger fw-bolder">Haz click aquí</a>.</div>--}}
                                     <!--end::Notice-->
                                 </div>
                                 <!--end::Heading-->

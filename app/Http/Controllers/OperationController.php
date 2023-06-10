@@ -21,6 +21,7 @@ class OperationController extends Controller
     {
         $operations = Operation::where('user_id', Auth::id())
             ->orderBy('state')
+            ->orderBy('created_at', 'DESC')
             ->get();
 
         /*$arrayOperations = [];
@@ -45,6 +46,7 @@ class OperationController extends Controller
     {
         $operations = Operation::where('user_id', Auth::id())
             ->orderBy('state')
+            ->orderBy('created_at', 'DESC')
             ->get();
 
         $arrayOperations = [];

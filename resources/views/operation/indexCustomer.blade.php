@@ -218,11 +218,7 @@
                                 <h5 class="text-gray-700 text-start">*Código para revisar tu operación</h5>
                             </div>
                             <div class="d-flex justify-content-between">
-                                @if ( $stopOperation != null )
-                                    <h5 class="text-gray-700 text-start">Monto a recibir</h5> <h4 class="text-gray-900 fw-bolder text-end"> {{ ($stopOperation->type == 'buy') ? 'PEN ':'USD ' }} {{ number_format(round($stopOperation->getAmount, 2), 2) }}</h4>
-                                @else
-                                    <h5 class="text-gray-700 text-start">Monto a recibir</h5> <h4 class="text-gray-900 fw-bolder text-end"> {{ ($stopData->type == 'buy') ? 'PEN ':'USD ' }} {{ number_format(round($stopData->getAmount, 2), 2) }}</h4>
-                                @endif
+                                <h5 class="text-gray-700 text-start">Monto a recibir</h5> <h4 class="text-gray-900 fw-bolder text-end"> </h4>
                             </div>
                             <div class="d-flex justify-content-between">
                                 <h5 class="text-gray-700 text-start">Tiempo estimado de espera</h5> <h4 class="text-gray-900 fw-bolder text-end"> 15 min </h4>
