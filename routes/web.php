@@ -130,6 +130,18 @@ Route::middleware('auth')->group(function (){
 
         Route::post('/save/operation/real', [App\Http\Controllers\OperationController::class, 'saveOperationReal'])
             ->name('save.operation.real');
+
+        Route::get('/get/info/operation/{operation_id}', [App\Http\Controllers\OperationController::class, 'getInfoOperation'])
+            ->name('get.info.operation');
+
+        Route::get('/download/image/operation/{operation_id}', [App\Http\Controllers\OperationController::class, 'downloadImageOperation'])
+            ->name('download.image.operation');
+
+        Route::get('/get/receipt/operation/{operation_id}', [App\Http\Controllers\OperationController::class, 'getReceiptOperation'])
+            ->name('get.receipt.operation');
+
+        Route::get('/get/refused/operation/{operation_id}', [App\Http\Controllers\OperationController::class, 'getRefusedOperation'])
+            ->name('get.refused.operation');
     });
 });
 Route::get('/data', [\App\Http\Controllers\DataController::class, 'getData']);

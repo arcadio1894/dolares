@@ -1,19 +1,305 @@
 $(document).ready(function () {
     $modalDetail = new bootstrap.Modal(document.querySelector("#kt_modal_operation_details"));
     $(document).on('click', '[data-kt-operation-action="show_details"]', showModalDetails);
+
+    $modalDetail1 = document.querySelector("#kt_modal_operation_details");
+
+    $buttonCancel = $modalDetail1.querySelector("#kt_modal_operation_detail_close");
+    $buttonCancel.addEventListener("click", closeModalDetail);
     //$(document).on('click', '[data-kt-account-active]', changeStatusAccount);
 
+    $modalReceipt = new bootstrap.Modal(document.querySelector("#kt_modal_operation_receipt"));
+    $(document).on('click', '[data-kt-operation-action="show_receipt"]', showModalReceipt);
 
+    $modalReceipt1 = document.querySelector("#kt_modal_operation_receipt");
+
+    $buttonCancelReceipt = $modalReceipt1.querySelector("#kt_modal_operation_receipt_close");
+    $buttonCancelReceipt.addEventListener("click", closeModalReceipt);
+
+    $modalRefused = new bootstrap.Modal(document.querySelector("#kt_modal_operation_refused"));
+    $(document).on('click', '[data-kt-operation-action="show_refused"]', showModalRefused);
+
+    $modalRefused1 = document.querySelector("#kt_modal_operation_refused");
+
+    $buttonCancelRefused = $modalRefused1.querySelector("#kt_modal_operation_refused_close");
+    $buttonCancelRefused.addEventListener("click", closeModalRefused);
 });
+
+var $modalRefused;
+var $modalRefused1;
+var $buttonCancelRefused;
+
+var $modalReceipt;
+var $modalReceipt1;
+var $buttonCancelReceipt;
 
 var $formEdit;
 var $modalDetail;
-var $buttonSubmit;
 var $buttonCancel;
-var $buttonClose;
-var $formValidation;
+var $modalDetail1;
+
+function showModalRefused() {
+    var operation_id = $(this).attr('data-kt-operation');
+    $.get('/dashboard/get/refused/operation/'+operation_id, function(data) {
+        // Función de éxito, se ejecuta cuando la solicitud GET es exitosa
+        console.log(data);
+
+        $("#reasonRefused").html(data.reasonRefused);
+
+        $modalRefused.show();
+    }).fail(function(jqXHR, textStatus, errorThrown) {
+        // Función de error, se ejecuta cuando la solicitud GET falla
+        console.error(textStatus, errorThrown);
+        if (jqXHR.responseJSON.message && !jqXHR.responseJSON.errors) {
+            toastr.error(jqXHR.responseJSON.message, 'Error', {
+                "closeButton": true,
+                "debug": false,
+                "newestOnTop": false,
+                "progressBar": true,
+                "positionClass": "toast-top-right",
+                "preventDuplicates": false,
+                "onclick": null,
+                "showDuration": "300",
+                "hideDuration": "1000",
+                "timeOut": "2000",
+                "extendedTimeOut": "1000",
+                "showEasing": "swing",
+                "hideEasing": "linear",
+                "showMethod": "fadeIn",
+                "hideMethod": "fadeOut"
+            });
+        }
+        for (var property in jqXHR.responseJSON.errors) {
+            toastr.error(jqXHR.responseJSON.errors[property], 'Error', {
+                "closeButton": true,
+                "debug": false,
+                "newestOnTop": false,
+                "progressBar": true,
+                "positionClass": "toast-top-right",
+                "preventDuplicates": false,
+                "onclick": null,
+                "showDuration": "300",
+                "hideDuration": "1000",
+                "timeOut": "2000",
+                "extendedTimeOut": "1000",
+                "showEasing": "swing",
+                "hideEasing": "linear",
+                "showMethod": "fadeIn",
+                "hideMethod": "fadeOut"
+            });
+        }
+    }, 'json')
+        .done(function() {
+            // Configuración de encabezados
+            var headers = {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+            };
+
+            $.ajaxSetup({
+                headers: headers
+            });
+        });
+
+}
+
+function closeModalRefused() {
+    Swal.fire({
+        text: "¿Estás seguro de regresar?",
+        icon: "success",
+        buttonsStyling: !1,
+        confirmButtonText: "Si, regresar!",
+        customClass: {confirmButton: "btn btn-primary"}
+    }).then((function () {
+        $modalRefused.hide()
+    }))
+}
+
+function showModalReceipt() {
+    var operation_id = $(this).attr('data-kt-operation');
+    $.get('/dashboard/get/receipt/operation/'+operation_id, function(data) {
+        // Función de éxito, se ejecuta cuando la solicitud GET es exitosa
+        console.log(data);
+
+        $("#rucEmisor").html(data.rucEmisor);
+        $("#numberOperation").html(data.numberOperation);
+        $("#fecha").html(data.fecha);
+        $("#montoEnviadoReceipt").html(data.montoEnviadoReceipt);
+
+        var url = "";
+        url = url + document.location.origin+ '/dashboard/download/image/operation/'+operation_id;
+        $("#imageReceipt").attr("href", url);
+
+        $modalReceipt.show();
+    }).fail(function(jqXHR, textStatus, errorThrown) {
+        // Función de error, se ejecuta cuando la solicitud GET falla
+        console.error(textStatus, errorThrown);
+        if (jqXHR.responseJSON.message && !jqXHR.responseJSON.errors) {
+            toastr.error(jqXHR.responseJSON.message, 'Error', {
+                "closeButton": true,
+                "debug": false,
+                "newestOnTop": false,
+                "progressBar": true,
+                "positionClass": "toast-top-right",
+                "preventDuplicates": false,
+                "onclick": null,
+                "showDuration": "300",
+                "hideDuration": "1000",
+                "timeOut": "2000",
+                "extendedTimeOut": "1000",
+                "showEasing": "swing",
+                "hideEasing": "linear",
+                "showMethod": "fadeIn",
+                "hideMethod": "fadeOut"
+            });
+        }
+        for (var property in jqXHR.responseJSON.errors) {
+            toastr.error(jqXHR.responseJSON.errors[property], 'Error', {
+                "closeButton": true,
+                "debug": false,
+                "newestOnTop": false,
+                "progressBar": true,
+                "positionClass": "toast-top-right",
+                "preventDuplicates": false,
+                "onclick": null,
+                "showDuration": "300",
+                "hideDuration": "1000",
+                "timeOut": "2000",
+                "extendedTimeOut": "1000",
+                "showEasing": "swing",
+                "hideEasing": "linear",
+                "showMethod": "fadeIn",
+                "hideMethod": "fadeOut"
+            });
+        }
+    }, 'json')
+        .done(function() {
+            // Configuración de encabezados
+            var headers = {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+            };
+
+            $.ajaxSetup({
+                headers: headers
+            });
+        });
+
+}
+
+function closeModalReceipt() {
+    Swal.fire({
+        text: "¿Estás seguro de regresar?",
+        icon: "success",
+        buttonsStyling: !1,
+        confirmButtonText: "Si, regresar!",
+        customClass: {confirmButton: "btn btn-primary"}
+    }).then((function () {
+        $modalReceipt.hide()
+    }))
+}
+
+function closeModalDetail() {
+    Swal.fire({
+        text: "¿Estás seguro de regresar?",
+        icon: "success",
+        buttonsStyling: !1,
+        confirmButtonText: "Si, regresar!",
+        customClass: {confirmButton: "btn btn-primary"}
+    }).then((function () {
+        $modalDetail.hide()
+    }))
+}
 
 function showModalDetails() {
+    var operation_id = $(this).attr('data-kt-operation');
+    $.get('/dashboard/get/info/operation/'+operation_id, function(data) {
+        // Función de éxito, se ejecuta cuando la solicitud GET es exitosa
+        console.log(data);
+
+        $("#fechaOperacion").html(data.fechaOperacion);
+        $("#tipoCambio").html(data.tipoCambio);
+        $("#montoEnviado").html(data.montoEnviado);
+        $("#montoRecibido").html(data.montoRecibido);
+        $("#cuentaDolareros").html(data.cuentaDolareros);
+        $("#cuentaDestino").html(data.cuentaDestino);
+
+        if ( data.estadoOperacion == 'PROCESANDO' )
+        {
+            $("#estadoOperacion").html('<i class="fas fa-question" style="color: #ffc107;"></i> ' + data.estadoOperacion);
+            $("#estadoOperacion").removeClass('text-warning');
+            $("#estadoOperacion").removeClass('text-success');
+            $("#estadoOperacion").removeClass('text-danger');
+            $("#estadoOperacion").addClass('text-warning');
+        } else {
+            if (data.estadoOperacion == 'RECHAZADO')
+            {
+                $("#estadoOperacion").html('<i class="fas fa-times" style="color: #dc3545;"></i> ' + data.estadoOperacion);
+                $("#estadoOperacion").removeClass('text-warning');
+                $("#estadoOperacion").removeClass('text-success');
+                $("#estadoOperacion").removeClass('text-danger');
+                $("#estadoOperacion").addClass('text-danger');
+            } else {
+                $("#estadoOperacion").html('<i class="fas fa-check" style="color: #28a745;"></i> ' + data.estadoOperacion);
+                $("#estadoOperacion").removeClass('text-warning');
+                $("#estadoOperacion").removeClass('text-success');
+                $("#estadoOperacion").removeClass('text-danger');
+                $("#estadoOperacion").addClass('text-primary');
+
+            }
+        }
+
+        $modalDetail.show();
+    }).fail(function(jqXHR, textStatus, errorThrown) {
+        // Función de error, se ejecuta cuando la solicitud GET falla
+        console.error(textStatus, errorThrown);
+        if (jqXHR.responseJSON.message && !jqXHR.responseJSON.errors) {
+            toastr.error(jqXHR.responseJSON.message, 'Error', {
+                "closeButton": true,
+                "debug": false,
+                "newestOnTop": false,
+                "progressBar": true,
+                "positionClass": "toast-top-right",
+                "preventDuplicates": false,
+                "onclick": null,
+                "showDuration": "300",
+                "hideDuration": "1000",
+                "timeOut": "2000",
+                "extendedTimeOut": "1000",
+                "showEasing": "swing",
+                "hideEasing": "linear",
+                "showMethod": "fadeIn",
+                "hideMethod": "fadeOut"
+            });
+        }
+        for (var property in jqXHR.responseJSON.errors) {
+            toastr.error(jqXHR.responseJSON.errors[property], 'Error', {
+                "closeButton": true,
+                "debug": false,
+                "newestOnTop": false,
+                "progressBar": true,
+                "positionClass": "toast-top-right",
+                "preventDuplicates": false,
+                "onclick": null,
+                "showDuration": "300",
+                "hideDuration": "1000",
+                "timeOut": "2000",
+                "extendedTimeOut": "1000",
+                "showEasing": "swing",
+                "hideEasing": "linear",
+                "showMethod": "fadeIn",
+                "hideMethod": "fadeOut"
+            });
+        }
+    }, 'json')
+        .done(function() {
+            // Configuración de encabezados
+            var headers = {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+            };
+
+            $.ajaxSetup({
+                headers: headers
+            });
+        });
 
 }
 

@@ -163,7 +163,7 @@
                                         <a href="#" class="menu-link px-3 text-success" data-kt-operation="{{ $operation->id }}" data-kt-operation-action="show_details">Detalles</a>
                                     </div>
                                     <div class="menu-item px-3">
-                                        <a href="#" class="menu-link px-3 text-primary" data-kt-account="" data-kt-customer-table-filter="delete_row">Comprobante</a>
+                                        <a href="#" class="menu-link px-3 text-primary" data-kt-operation="{{ $operation->id }}" data-kt-operation-action="show_receipt">Comprobante</a>
                                     </div>
                                 <!--end::Menu item-->
                                 </div>
@@ -179,7 +179,7 @@
                                         <a href="#" class="menu-link px-3 text-success" data-kt-operation="{{ $operation->id }}" data-kt-operation-action="show_details">Detalles</a>
                                     </div>
                                     <div class="menu-item px-3">
-                                        <a href="#" class="menu-link px-3 text-danger" data-kt-account="" data-kt-customer-table-filter="reason_row">Motivo</a>
+                                        <a href="#" class="menu-link px-3 text-danger" data-kt-operation="{{ $operation->id }}" data-kt-operation-action="show_refused">Motivo</a>
                                     </div>
                                     <!--end::Menu item-->
                                 </div>
@@ -212,16 +212,103 @@
                         <div class="bg-light-primary rounded border-primary border border-dashed p-6">
                             <!--begin::Wrapper-->
                             <div class="d-flex justify-content-between">
-                                <h5 class="text-gray-700 text-start">Código Dolareros</h5> <h4 class="text-gray-900 fw-bolder text-end" id="code_dolareros"> </h4>
+                                <h5 class="text-gray-700 text-start">Fecha de operación</h5> <h4 class="text-gray-900 fw-bolder text-end" id="fechaOperacion"> </h4>
                             </div>
                             <div class="d-flex justify-content-between">
-                                <h5 class="text-gray-700 text-start">*Código para revisar tu operación</h5>
+                                <h5 class="text-gray-700 text-start">Tipo de cambio</h5> <h4 class="text-gray-900 fw-bolder text-end" id="tipoCambio"> </h4>
                             </div>
                             <div class="d-flex justify-content-between">
-                                <h5 class="text-gray-700 text-start">Monto a recibir</h5> <h4 class="text-gray-900 fw-bolder text-end"> </h4>
+                                <h5 class="text-gray-700 text-start">Monto enviado</h5> <h5 class="text-gray-900 fw-bolder text-end" id="montoEnviado"> </h5>
                             </div>
                             <div class="d-flex justify-content-between">
-                                <h5 class="text-gray-700 text-start">Tiempo estimado de espera</h5> <h4 class="text-gray-900 fw-bolder text-end"> 15 min </h4>
+                                <h5 class="text-gray-700 text-start">Monto recibido</h5> <h5 class="text-gray-900 fw-bolder text-end" id="montoRecibido"> </h5>
+                            </div>
+                            <div class="d-flex justify-content-between">
+                                <h5 class="text-gray-700 text-start">Cuenta Dolareros</h5> <h5 class="text-gray-900 fw-bolder text-end" id="cuentaDolareros"> </h5>
+                            </div>
+                            <div class="d-flex justify-content-between">
+                                <h5 class="text-gray-700 text-start">Cuenta destino</h5> <h5 class="text-gray-900 fw-bolder text-end" id="cuentaDestino"> </h5>
+                            </div>
+                            <div class="d-flex justify-content-between">
+                                <h5 class="text-gray-700 text-start">Estado de la operación</h5> <h5 class="fw-bolder text-end " id="estadoOperacion"> </h5>
+                            </div>
+
+                            <!--end::Wrapper-->
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer flex-center">
+                    <!--begin::Button-->
+                    <button type="button" id="kt_modal_operation_detail_close" class="btn btn-secondary me-3">Cerrar</button>
+                    <!--end::Button-->
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="kt_modal_operation_receipt" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-body py-10 px-lg-17">
+                    <!--begin::Scroll-->
+                    <div class=" me-n7 pe-7" id="kt_modal_add_customer_scroll" data-kt-scroll="true" data-kt-scroll-activate="{default: false, lg: true}" data-kt-scroll-max-height="auto" data-kt-scroll-dependencies="#kt_modal_add_customer_header" data-kt-scroll-wrappers="#kt_modal_add_customer_scroll" data-kt-scroll-offset="300px">
+                        <div class="row pb-1 text-center">
+                            <h5> Detalle del comprobante </h5>
+                        </div>
+                    </div>
+                    <!--end::Scroll-->
+                    <div class="row">
+
+                        <div class="bg-light-primary rounded border-primary border border-dashed p-6">
+                            <!--begin::Wrapper-->
+                            <div class="d-flex justify-content-between">
+                                <h5 class="text-gray-700 text-start">RUC del emisor</h5> <h4 class="text-gray-900 fw-bolder text-end" id="rucEmisor"> </h4>
+                            </div>
+                            <div class="d-flex justify-content-between">
+                                <h5 class="text-gray-700 text-start">Numero de operación</h5> <h4 class="text-gray-900 fw-bolder text-end" id="numberOperation"> </h4>
+                            </div>
+                            <div class="d-flex justify-content-between">
+                                <h5 class="text-gray-700 text-start">Fecha</h5> <h5 class="text-gray-900 fw-bolder text-end" id="fecha"> </h5>
+                            </div>
+                            <div class="d-flex justify-content-between">
+                                <h5 class="text-gray-700 text-start">Monto enviado</h5> <h5 class="text-gray-900 fw-bolder text-end" id="montoEnviadoReceipt"> </h5>
+                            </div>
+                            <div class="d-flex justify-content-between">
+                                <h5 class="text-gray-700 text-start">Imagen comprobante</h5> <h5 class="text-gray-900 fw-bolder text-end" > <a href="#" id="imageReceipt" class="btn btn-primary btn-sm">Descargar</a> </h5>
+                            </div>
+
+                            <!--end::Wrapper-->
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer flex-center">
+                    <!--begin::Button-->
+                    <button type="button" id="kt_modal_operation_receipt_close" class="btn btn-secondary me-3">Cerrar</button>
+                    <!--end::Button-->
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="kt_modal_operation_refused" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-body py-10 px-lg-17">
+                    <!--begin::Scroll-->
+                    <div class=" me-n7 pe-7" id="kt_modal_add_customer_scroll" data-kt-scroll="true" data-kt-scroll-activate="{default: false, lg: true}" data-kt-scroll-max-height="auto" data-kt-scroll-dependencies="#kt_modal_add_customer_header" data-kt-scroll-wrappers="#kt_modal_add_customer_scroll" data-kt-scroll-offset="300px">
+                        <div class="row pb-1 text-center">
+                            <h5> Motivo del rechazo </h5>
+                        </div>
+                    </div>
+                    <!--end::Scroll-->
+                    <div class="row">
+
+                        <div class="bg-light-danger rounded border-danger border border-dashed p-6">
+                            <!--begin::Wrapper-->
+                            <div class="d-flex justify-content-center">
+                                <h5 class="text-gray-700 text-center" id="reasonRefused"></h5>
                             </div>
                             <!--end::Wrapper-->
                         </div>
@@ -229,16 +316,9 @@
                 </div>
                 <div class="modal-footer flex-center">
                     <!--begin::Button-->
-                    <button type="button" id="kt_modal_success_step_home" data-url="{{ route('home') }}" class="btn btn-success me-3">Nueva operación</button>
+                    <button type="button" id="kt_modal_operation_refused_close" class="btn btn-secondary me-3">Cerrar</button>
                     <!--end::Button-->
-                    <!--begin::Button-->
-                    <button type="button" id="kt_modal_success_step_operations" data-url="{{ (session()->has('codigo_correcto')) ? route('operationCustomer.index') : route('code.index', 2) }}" class="btn btn-primary" >
-                        <span class="indicator-label">Ver Operaciones</span>
-                        <span class="indicator-progress">Por favor espere...
-                            <span class="spinner-border spinner-border-sm align-middle ms-2"></span>
-                        </span>
-                    </button>
-                    <!--end::Button-->
+
                 </div>
             </div>
         </div>

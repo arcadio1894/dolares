@@ -38,10 +38,17 @@ class Operation extends Model
         'state',
         'number_operation_user',
         'number_operation_dolareros',
-        'code_operation'
+        'code_operation',
+        'rejection_id',
+        'image_receipt'
     ];
 
     protected $dates = ["created_at", "updated_at"];
+
+    public function rejection()
+    {
+        return $this->belongsTo('App\Models\Rejection', 'rejection_id', 'id');
+    }
 
     public function coupon()
     {

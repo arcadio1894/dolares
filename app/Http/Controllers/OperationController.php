@@ -499,4 +499,66 @@ class OperationController extends Controller
         }
         return $randomString;
     }
+
+    public function getInfoOperation($operation_id)
+    {
+        $operation = Operation::find($operation_id);
+
+        if ( isset($operation) )
+        {
+            return response()->json([
+                'fechaOperacion' => $operation->created_at->format('d/m/Y'),
+                'tipoCambio' => $operation->type_change,
+                'montoEnviado' => $operation->send_amount_list,
+                'montoRecibido' => $operation->get_amount_list,
+                'cuentaDolareros' => $operation->account_dolarero->numberAccount,
+                'cuentaDestino' => $operation->account_customer->numberAccount,
+                'estadoOperacion' => $operation->estado
+            ], 200);
+        } else {
+            return response()->json(['message' => "No encontramos la operación indicada."], 422);
+        }
+    }
+
+    public function getReceiptOperation($operation_id)
+    {
+        $operation = Operation::find($operation_id);
+        $companyRUC = DataGeneral::where('name', 'companyRUC')->first();
+
+        if ( isset($operation) )
+        {
+            return response()->json([
+                'rucEmisor' => $companyRUC->valueText,
+                'numberOperation' => $operation->number_operation_dolareros,
+                'fecha' => $operation->created_at->format('d/m/Y'),
+                'montoEnviadoReceipt' => $operation->get_amount_list
+            ], 200);
+        } else {
+            return response()->json(['message' => "No encontramos la operación indicada."], 422);
+        }
+    }
+
+    public function downloadImageOperation($operation_id)
+    {
+        $operation = Operation::find($operation_id);
+
+        $rutaImagen = public_path()."/assets/images/operation/receipts/".$operation->image_receipt;
+        $nombreArchivo = $operation->image_receipt;
+
+        return response()->download($rutaImagen, $nombreArchivo);
+    }
+
+    public function getRefusedOperation($operation_id)
+    {
+        $operation = Operation::find($operation_id);
+
+        if ( isset($operation) )
+        {
+            return response()->json([
+                'reasonRefused' => $operation->rejection->reason
+            ], 200);
+        } else {
+            return response()->json(['message' => "No encontramos la operación indicada."], 422);
+        }
+    }
 }
