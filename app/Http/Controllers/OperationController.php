@@ -8,12 +8,15 @@ use App\Models\Bank;
 use App\Models\DataGeneral;
 use App\Models\Department;
 use App\Models\Operation;
+use App\Models\Rejection;
 use App\Models\SourceFund;
 use App\Models\StopData;
 use App\Models\StopOperation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Intervention\Image\Facades\Image;
+use Illuminate\Support\Facades\Storage;
 
 class OperationController extends Controller
 {
@@ -560,5 +563,157 @@ class OperationController extends Controller
         } else {
             return response()->json(['message' => "No encontramos la operación indicada."], 422);
         }
+    }
+
+    public function indexDolareros()
+    {
+        $operations = Operation::orderBy('state')
+            ->orderBy('created_at', 'DESC')
+            ->get();
+
+        $rejections = Rejection::all();
+
+        return view('operation.indexDolareros', compact('operations', 'rejections'));
+
+    }
+
+    public function saveRefusedOperation( Request $request )
+    {
+        //dd($request->get('rejection_id'));
+        $operation_id = $request->get('operation_id');
+        $rejection_id = $request->get('rejection_id');
+
+        if( $rejection_id == "" || $rejection_id == null )
+        {
+            return response()->json(['message' => "Seleccione un motivo para el rechazo."], 422);
+        }
+
+        DB::beginTransaction();
+        try {
+
+            $operation = Operation::find($operation_id);
+            $operation->rejection_id = $rejection_id;
+            $operation->state = 'refused';
+            $operation->save();
+
+            DB::commit();
+
+        } catch ( \Throwable $e ) {
+            DB::rollBack();
+            return response()->json(['message' => $e->getMessage()], 422);
+        }
+
+        return response()->json([
+            'message' => 'Operación rechazada con éxito.'
+        ], 200);
+    }
+
+    public function saveRegisterReceipt( Request $request )
+    {
+        $operation_id = $request->get('operation_id');
+        $numberOperation = $request->get('number_operation');
+
+        if( $numberOperation == "" || $numberOperation == null )
+        {
+            return response()->json(['message' => "Escriba un número de operación."], 422);
+        }
+
+        if( !$request->hasFile('image_operation') )
+        {
+            return response()->json(['message' => "Suba una imagen o PDF."], 422);
+        }
+
+        DB::beginTransaction();
+        try {
+            $operation = Operation::find($operation_id);
+
+            if ($request->hasFile('image_operation')) {
+                $image = $request->file('image_operation');
+                $path = public_path().'/assets/images/operation/receipts/';
+                $extension = $request->file('image_operation')->getClientOriginalExtension();
+                //$filename = $entry->id . '.' . $extension;
+                if ( strtoupper($extension) != "PDF" )
+                {
+                    $filename = $operation->id.'_' . $this->generateRandomString(20).'.JPG';
+                    $img = Image::make($image);
+                    $img->orientate();
+                    $img->save($path.$filename, 80, 'JPG');
+                    //$request->file('image')->move($path, $filename);
+                    $operation->image_receipt = $filename;
+                    $operation->save();
+                } else {
+                    $filename = 'pdf'.$operation->id . $this->generateRandomString(20) . '.' .$extension;
+                    $request->file('image_operation')->move($path, $filename);
+                    $operation->image_receipt = $filename;
+                    $operation->save();
+                }
+            }
+
+            $operation->number_operation_dolareros = $numberOperation;
+            $operation->rejection_id = null;
+            $operation->state = 'finished';
+            $operation->save();
+
+            DB::commit();
+        } catch ( \Throwable $e ) {
+            DB::rollBack();
+            return response()->json(['message' => $e->getMessage()], 422);
+        }
+
+        return response()->json([
+            'message' => 'Operación finalizada con éxito.'
+        ], 200);
+    }
+
+    public function updateRegisterReceipt( Request $request )
+    {
+        $operation_id = $request->get('operation_id');
+        $numberOperation = $request->get('number_operation');
+
+        if( $numberOperation == "" || $numberOperation == null )
+        {
+            return response()->json(['message' => "Escriba un número de operación."], 422);
+        }
+
+        DB::beginTransaction();
+        try {
+            $operation = Operation::find($operation_id);
+
+            if ($request->hasFile('image_operation')) {
+                $image = $request->file('image_operation');
+                $path = public_path().'/assets/images/operation/receipts/';
+                $extension = $request->file('image_operation')->getClientOriginalExtension();
+                //$filename = $entry->id . '.' . $extension;
+                if ( strtoupper($extension) != "PDF" )
+                {
+                    $filename = $operation->id.'_' . $this->generateRandomString(20).'.JPG';
+                    $img = Image::make($image);
+                    $img->orientate();
+                    $img->save($path.$filename, 80, 'JPG');
+                    //$request->file('image')->move($path, $filename);
+                    $operation->image_receipt = $filename;
+                    $operation->save();
+                } else {
+                    $filename = 'pdf'.$operation->id . $this->generateRandomString(20) . '.' .$extension;
+                    $request->file('image_operation')->move($path, $filename);
+                    $operation->image_receipt = $filename;
+                    $operation->save();
+                }
+            }
+
+            $operation->number_operation_dolareros = $numberOperation;
+            $operation->rejection_id = null;
+            $operation->state = 'finished';
+            $operation->save();
+
+            DB::commit();
+        } catch ( \Throwable $e ) {
+            DB::rollBack();
+            return response()->json(['message' => $e->getMessage()], 422);
+        }
+
+        return response()->json([
+            'message' => 'Operación finalizada con éxito.'
+        ], 200);
     }
 }

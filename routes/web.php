@@ -142,6 +142,18 @@ Route::middleware('auth')->group(function (){
 
         Route::get('/get/refused/operation/{operation_id}', [App\Http\Controllers\OperationController::class, 'getRefusedOperation'])
             ->name('get.refused.operation');
+
+        Route::get('/listado/operaciones', [App\Http\Controllers\OperationController::class, 'indexDolareros'])
+            ->name('operation.dolareros.index');
+
+        Route::post('/save/refused/operation', [App\Http\Controllers\OperationController::class, 'saveRefusedOperation'])
+            ->name('save.refused.operation');
+
+        Route::post('/save/receipt/operation', [App\Http\Controllers\OperationController::class, 'saveRegisterReceipt'])
+            ->name('save.receipt.operation');
+
+        Route::post('/update/receipt/operation', [App\Http\Controllers\OperationController::class, 'updateRegisterReceipt'])
+            ->name('update.receipt.operation');
     });
 });
 Route::get('/data', [\App\Http\Controllers\DataController::class, 'getData']);
