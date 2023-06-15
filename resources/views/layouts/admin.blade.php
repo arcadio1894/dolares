@@ -146,17 +146,17 @@
                             </div>
                             <!--end::Menu item-->
                             <!--begin::Menu item-->
-                            <div class="menu-item px-5">
+                            {{--<div class="menu-item px-5">
                                 <a href="../../demo7/dist/pages/projects/list.html" class="menu-link px-5">
                                     <span class="menu-text">My Projects</span>
                                     <span class="menu-badge">
 												<span class="badge badge-light-danger badge-circle fw-bolder fs-7">3</span>
 											</span>
                                 </a>
-                            </div>
+                            </div>--}}
                             <!--end::Menu item-->
                             <!--begin::Menu item-->
-                            <div class="menu-item px-5" data-kt-menu-trigger="hover" data-kt-menu-placement="right-end">
+                            {{--<div class="menu-item px-5" data-kt-menu-trigger="hover" data-kt-menu-placement="right-end">
                                 <a href="#" class="menu-link px-5">
                                     <span class="menu-title">My Subscription</span>
                                     <span class="menu-arrow"></span>
@@ -200,17 +200,17 @@
                                 </div>
                                 <!--end::Menu sub-->
                             </div>
-                            <!--end::Menu item-->
+                            --}}<!--end::Menu item-->
                             <!--begin::Menu item-->
-                            <div class="menu-item px-5">
+                            {{--<div class="menu-item px-5">
                                 <a href="../../demo7/dist/account/statements.html" class="menu-link px-5">My Statements</a>
-                            </div>
+                            </div>--}}
                             <!--end::Menu item-->
                             <!--begin::Menu separator-->
                             <div class="separator my-2"></div>
                             <!--end::Menu separator-->
                             <!--begin::Menu item-->
-                            <div class="menu-item px-5" data-kt-menu-trigger="hover" data-kt-menu-placement="right-end">
+                            {{--<div class="menu-item px-5" data-kt-menu-trigger="hover" data-kt-menu-placement="right-end">
                                 <a href="#" class="menu-link px-5">
                                     <span class="menu-title position-relative">Language
                                     <span class="fs-8 rounded bg-light px-3 py-2 position-absolute translate-middle-y top-50 end-0">English
@@ -262,11 +262,11 @@
                                 </div>
                                 <!--end::Menu sub-->
                             </div>
-                            <!--end::Menu item-->
+                            --}}<!--end::Menu item-->
                             <!--begin::Menu item-->
-                            <div class="menu-item px-5 my-1">
+                            {{--<div class="menu-item px-5 my-1">
                                 <a href="../../demo7/dist/account/settings.html" class="menu-link px-5">Account Settings</a>
-                            </div>
+                            </div>--}}
                             <!--end::Menu item-->
                             <!--begin::Menu item-->
                             <div class="menu-item px-5">
@@ -1348,7 +1348,7 @@
                                                     </div>--}}
                                                 </div>
                                             </div>
-                                            <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
+                                            {{--<div data-kt-menu-trigger="click" class="menu-item menu-accordion">
                                                 <span class="menu-link">
                                                     <span class="menu-icon">
                                                         <!--begin::Svg Icon | path: icons/duotune/communication/com013.svg-->
@@ -1965,7 +1965,7 @@
                                                         </a>
                                                     </div>
                                                 </div>
-                                            </div>
+                                            </div>--}}
 
                                         </div>
                                     </div>
@@ -2057,7 +2057,7 @@
                     <!--begin::Toolbar wrapper-->
                     <div class="d-flex flex-shrink-0">
                         <!--begin::Invite user-->
-                        <div class="d-flex ms-3">
+                        {{--<div class="d-flex ms-3">
                             <a href="#" class="btn btn-flex flex-center bg-body btn-color-gray-700 btn-active-color-primary w-40px w-md-auto h-40px px-0 px-md-6" tooltip="New Member" data-bs-toggle="modal" data-bs-target="#kt_modal_invite_friends">
                                 <!--begin::Svg Icon | path: icons/duotune/arrows/arr075.svg-->
                                 <span class="svg-icon svg-icon-2 svg-icon-primary me-0 me-md-2">
@@ -2069,10 +2069,10 @@
                                 <!--end::Svg Icon-->
                                 <span class="d-none d-md-inline">New Member</span>
                             </a>
-                        </div>
+                        </div>--}}
                         <!--end::Invite user-->
                         <!--begin::Create app-->
-                        <div class="d-flex ms-3">
+                        {{--<div class="d-flex ms-3">
                             <a href="#" class="btn btn-flex flex-center bg-body btn-color-gray-700 btn-active-color-primary w-40px w-md-auto h-40px px-0 px-md-6" tooltip="New App" data-bs-toggle="modal" data-bs-target="#kt_modal_create_app" id="kt_toolbar_primary_button">
                                 <!--begin::Svg Icon | path: icons/duotune/general/gen005.svg-->
                                 <span class="svg-icon svg-icon-2 svg-icon-primary me-0 me-md-2">
@@ -2084,22 +2084,25 @@
                                 <!--end::Svg Icon-->
                                 <span class="d-none d-md-inline">New App</span>
                             </a>
-                        </div>
+                        </div>--}}
                         <!--end::Create app-->
                         <!--begin::Chat-->
                         <div class="d-flex align-items-center ms-3">
                             <!--begin::Menu wrapper-->
-                            <div class="btn btn-icon btn-primary w-40px h-40px pulse pulse-white" id="kt_drawer_chat_toggle">
+                            <div class="btn btn-icon btn-primary w-40px h-40px pulse pulse-white">
                                 <!--begin::Svg Icon | path: icons/duotune/communication/com012.svg-->
-                                <span class="svg-icon svg-icon-2">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                        <path opacity="0.3" d="M20 3H4C2.89543 3 2 3.89543 2 5V16C2 17.1046 2.89543 18 4 18H4.5C5.05228 18 5.5 18.4477 5.5 19V21.5052C5.5 22.1441 6.21212 22.5253 6.74376 22.1708L11.4885 19.0077C12.4741 18.3506 13.6321 18 14.8167 18H20C21.1046 18 22 17.1046 22 16V5C22 3.89543 21.1046 3 20 3Z" fill="black" />
-                                        <rect x="6" y="12" width="7" height="2" rx="1" fill="black" />
-                                        <rect x="6" y="7" width="12" height="2" rx="1" fill="black" />
-                                    </svg>
-                                </span>
-                                <!--end::Svg Icon-->
-                                <span class="pulse-ring"></span>
+                                <a href="https://wa.link/ojsau0" target="_blank">
+                                    <span class="svg-icon svg-icon-2">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                            <path opacity="0.3" d="M20 3H4C2.89543 3 2 3.89543 2 5V16C2 17.1046 2.89543 18 4 18H4.5C5.05228 18 5.5 18.4477 5.5 19V21.5052C5.5 22.1441 6.21212 22.5253 6.74376 22.1708L11.4885 19.0077C12.4741 18.3506 13.6321 18 14.8167 18H20C21.1046 18 22 17.1046 22 16V5C22 3.89543 21.1046 3 20 3Z" fill="black" />
+                                            <rect x="6" y="12" width="7" height="2" rx="1" fill="black" />
+                                            <rect x="6" y="7" width="12" height="2" rx="1" fill="black" />
+                                        </svg>
+                                    </span>
+                                    <!--end::Svg Icon-->
+                                    <span class="pulse-ring"></span>
+                                </a>
+
                             </div>
                             <!--end::Menu wrapper-->
                         </div>
