@@ -54,7 +54,13 @@ $(document).ready(function () {
     $buttonCancelEditReceipt.addEventListener("click", closeModalEditReceipt);
     $buttonSubmitEditReceipt = $modalEditReceipt1.querySelector("#kt_modal_edit_receipt_submit");
     $buttonSubmitEditReceipt.addEventListener("click", submitEditReceipt);
+
+    $(document).on('click', '[data-image_receipt]', showModalImage);
+
+    $modalImage = new bootstrap.Modal(document.querySelector("#kt_modal_image_receipt"));
 });
+
+var $modalImage;
 
 var $modalEditReceipt;
 var $modalEditReceipt1;
@@ -83,6 +89,14 @@ var $formEdit;
 var $modalDetail;
 var $buttonCancel;
 var $modalDetail1;
+
+function showModalImage() {
+    $modalReceipt.hide();
+    var urlImage = $(this).attr('data-url');
+    console.log(urlImage);
+    $("#showImageReceipt").attr('src', urlImage);
+    $modalImage.show();
+}
 
 function submitEditReceipt() {
     $buttonSubmitEditReceipt.setAttribute("data-kt-indicator", "on");
@@ -496,8 +510,10 @@ function showModalReceipt() {
         $("#montoEnviadoReceipt").html(data.montoEnviadoReceipt);
 
         var url = "";
-        url = url + document.location.origin+ '/dashboard/download/image/operation/'+operation_id;
-        $("#imageReceipt").attr("href", url);
+        //url = url + document.location.origin+ '/dashboard/download/image/operation/'+operation_id;
+        url = url + document.location.origin+ '/assets/images/operation/receipts/'+data.imageReceipt;
+        //$("#imageReceipt").attr("href", url);
+        $("#imageReceipt").attr("data-url", url);
 
         $modalReceipt.show();
     }).fail(function(jqXHR, textStatus, errorThrown) {

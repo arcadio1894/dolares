@@ -23,7 +23,14 @@ $(document).ready(function () {
 
     $buttonCancelRefused = $modalRefused1.querySelector("#kt_modal_operation_refused_close");
     $buttonCancelRefused.addEventListener("click", closeModalRefused);
+
+    $(document).on('click', '[data-image_receipt]', showModalImage);
+
+    $modalImage = new bootstrap.Modal(document.querySelector("#kt_modal_image_receipt"));
+
 });
+
+var $modalImage;
 
 var $modalRefused;
 var $modalRefused1;
@@ -37,6 +44,14 @@ var $formEdit;
 var $modalDetail;
 var $buttonCancel;
 var $modalDetail1;
+
+function showModalImage() {
+    $modalReceipt.hide();
+    var urlImage = $(this).attr('data-url');
+    console.log(urlImage);
+    $("#showImageReceipt").attr('src', urlImage);
+    $modalImage.show();
+}
 
 function showModalRefused() {
     var operation_id = $(this).attr('data-kt-operation');
@@ -126,9 +141,10 @@ function showModalReceipt() {
         $("#montoEnviadoReceipt").html(data.montoEnviadoReceipt);
 
         var url = "";
-        url = url + document.location.origin+ '/dashboard/download/image/operation/'+operation_id;
-        $("#imageReceipt").attr("href", url);
-
+        //url = url + document.location.origin+ '/dashboard/download/image/operation/'+operation_id;
+        url = url + document.location.origin+ '/assets/images/operation/receipts/'+data.imageReceipt;
+        //$("#imageReceipt").attr("href", url);
+        $("#imageReceipt").attr("data-url", url);
         $modalReceipt.show();
     }).fail(function(jqXHR, textStatus, errorThrown) {
         // Función de error, se ejecuta cuando la solicitud GET falla

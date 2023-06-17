@@ -535,7 +535,8 @@ class OperationController extends Controller
                 'rucEmisor' => $companyRUC->valueText,
                 'numberOperation' => $operation->number_operation_dolareros,
                 'fecha' => $operation->created_at->format('d/m/Y'),
-                'montoEnviadoReceipt' => $operation->get_amount_list
+                'montoEnviadoReceipt' => $operation->get_amount_list,
+                'imageReceipt' => $operation->image_receipt
             ], 200);
         } else {
             return response()->json(['message' => "No encontramos la operación indicada."], 422);

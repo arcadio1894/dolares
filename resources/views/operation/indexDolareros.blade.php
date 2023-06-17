@@ -298,7 +298,7 @@
                                 <h5 class="text-gray-700 text-start">Monto enviado</h5> <h5 class="text-gray-900 fw-bolder text-end" id="montoEnviadoReceipt"> </h5>
                             </div>
                             <div class="d-flex justify-content-between">
-                                <h5 class="text-gray-700 text-start">Imagen comprobante</h5> <h5 class="text-gray-900 fw-bolder text-end" > <a href="#" id="imageReceipt" class="btn btn-primary btn-sm">Descargar</a> </h5>
+                                <h5 class="text-gray-700 text-start">Imagen comprobante</h5> <h5 class="text-gray-900 fw-bolder text-end" > <button data-image_receipt id="imageReceipt" data-url="" class="btn btn-primary btn-sm">Descargar</button> </h5>
                             </div>
 
                             <!--end::Wrapper-->
@@ -488,6 +488,48 @@
                             <span class="spinner-border spinner-border-sm align-middle ms-2"></span>
                         </span>
                     </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="kt_modal_image_receipt" aria-hidden="true">
+        <!--begin::Modal dialog-->
+        <div class="modal-dialog modal-dialog-centered">
+            <!--begin::Modal content-->
+            <div class="modal-content">
+                <div class="modal-header pb-0 border-0 justify-content-end">
+
+                    <!--begin::Close-->
+                    <div class="btn btn-sm btn-icon btn-active-color-primary" data-bs-dismiss="modal">
+                        <!--begin::Svg Icon | path: icons/duotune/arrows/arr061.svg-->
+                        <span class="svg-icon svg-icon-1">
+								<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+									<rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1" transform="rotate(-45 6 17.3137)" fill="black"></rect>
+									<rect x="7.41422" y="6" width="16" height="2" rx="1" transform="rotate(45 7.41422 6)" fill="black"></rect>
+								</svg>
+							</span>
+                        <!--end::Svg Icon-->
+                    </div>
+                    <!--end::Close-->
+                </div>
+                <!--begin::Modal body-->
+                <div class="modal-body pb-10 pt-0 px-lg-17">
+                    <!--begin::Scroll-->
+                    <div class=" me-n7 pe-7" id="" data-kt-scroll="true" data-kt-scroll-activate="{default: false, lg: true}" data-kt-scroll-max-height="auto" data-kt-scroll-dependencies="#kt_modal_add_customer_header" data-kt-scroll-wrappers="#kt_modal_add_customer_scroll" data-kt-scroll-offset="300px">
+
+                        <div class="row">
+                            <div class="col-sm-8 offset-sm-2 col-8 offset-2">
+                                <div class="d-flex justify-content-center">
+                                    <img class="img-fluid center" style="height: 100%;max-height: 325px" id="showImageReceipt" src="#" alt="">
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--end::Scroll-->
+
+
                 </div>
             </div>
         </div>
