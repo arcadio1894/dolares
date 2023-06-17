@@ -403,7 +403,7 @@
                             <label class="required fs-6 fw-bold mb-2">Número de operación</label>
                             <!--end::Label-->
                             <!--begin::Input-->
-                            <input type="tel" class="form-control form-control-solid" placeholder="Número de operación" name="numberOperationDolareros" id="numberOperationDolareros" value="" />
+                            <input type="number" class="form-control form-control-solid" placeholder="Número de operación" name="numberOperationDolareros" id="numberOperationDolareros" value="" />
                             <!--end::Input-->
 
                         </div>

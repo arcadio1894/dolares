@@ -634,7 +634,7 @@ class OperationController extends Controller
                 //$filename = $entry->id . '.' . $extension;
                 if ( strtoupper($extension) != "PDF" )
                 {
-                    $filename = $operation->id.'_' . $this->generateRandomString(20).'.JPG';
+                    $filename = $operation->id.'_' . $this->generateRandomString(20).'.jpg';
                     $img = Image::make($image);
                     $img->orientate();
                     $img->save($path.$filename, 80, 'jpg');
