@@ -89,6 +89,7 @@
                             <input class="form-check-input" type="checkbox" data-kt-check="true" data-kt-check-target="#kt_customers_table .form-check-input" value="1" />
                         </div>
                     </th>--}}
+                    <th class="min-w-125px">Código</th>
                     <th class="min-w-125px">N° de Operación</th>
                     <th class="min-w-125px">Enviado</th>
                     <th class="min-w-125px">Recibido</th>
@@ -106,6 +107,9 @@
                     <tr>
                         <td>
                             {{ $operation->code_operation }}
+                        </td>
+                        <td>
+                            {{ ($operation->number_operation_user == null) ? 'Pendiente': $operation->number_operation_user }}
                         </td>
                         <td>
                             {{ $operation->send_amount_list }}
@@ -229,6 +233,9 @@
                             <!--begin::Wrapper-->
                             <div class="d-flex justify-content-between">
                                 <h5 class="text-gray-700 text-start">Fecha de operación</h5> <h4 class="text-gray-900 fw-bolder text-end" id="fechaOperacion"> </h4>
+                            </div>
+                            <div class="d-flex justify-content-between">
+                                <h5 class="text-gray-700 text-start">N° de operación</h5> <h4 class="text-gray-900 fw-bolder text-end" id="numeroOperacion"> </h4>
                             </div>
                             <div class="d-flex justify-content-between">
                                 <h5 class="text-gray-700 text-start">Tipo de cambio</h5> <h4 class="text-gray-900 fw-bolder text-end" id="tipoCambio"> </h4>

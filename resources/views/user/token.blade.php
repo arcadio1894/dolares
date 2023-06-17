@@ -285,7 +285,7 @@
                         <!--begin::Submit-->
                         <div class="d-flex flex-center">
                             <button type="button" id="btn-save" class="btn btn-lg btn-primary fw-bolder">
-                                <span class="indicator-label">Ingresar contraseña</span>
+                                <span class="indicator-label">Guardar contraseña</span>
                             </button>
                         </div>
                         <!--end::Submit-->

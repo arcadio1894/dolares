@@ -229,6 +229,18 @@ License: For each use you must have a valid license purchased only from above li
                                         <a class="menu-link nav-link py-3 px-4 px-xxl-6" href="#how-it-works" data-kt-scroll-toggle="true" data-kt-drawer-dismiss="true">¿Cómo cambiar?</a>
                                         <!--end::Menu link-->
                                     </div>
+
+                                    @auth
+                                        <div class="menu-item">
+                                            <!--begin::Menu link-->
+                                            <a class="menu-link nav-link py-3 px-4 px-xxl-6" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();" >Cerrar sesión</a>
+                                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                                @csrf
+                                            </form>
+                                            <!--end::Menu link-->
+
+                                        </div>
+                                    @endauth
                                     <!--end::Menu item-->
                                     <!--begin::Menu item-->
                                     
@@ -246,7 +258,7 @@ License: For each use you must have a valid license purchased only from above li
                                 @auth
                                     {{--<a href="{{ url('/home') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Home</a>--}}
 
-                                    <a href="{{ url('/home') }}" class="btn btn-success">Dashboard</a>
+                                    <a href="{{ url('/home') }}" class="btn btn-success">Acceder</a>
 
                                 @else
                                     {{--<a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline"></a>--}}

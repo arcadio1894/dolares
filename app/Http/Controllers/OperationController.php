@@ -511,6 +511,7 @@ class OperationController extends Controller
         {
             return response()->json([
                 'fechaOperacion' => $operation->created_at->format('d/m/Y'),
+                'numeroOperacion' => $operation->number_operation_user,
                 'tipoCambio' => $operation->type_change,
                 'montoEnviado' => $operation->send_amount_list,
                 'montoRecibido' => $operation->get_amount_list,

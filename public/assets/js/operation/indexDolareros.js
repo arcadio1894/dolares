@@ -586,6 +586,7 @@ function showModalDetails() {
         console.log(data);
 
         $("#fechaOperacion").html(data.fechaOperacion);
+        $("#numeroOperacion").html(data.numeroOperacion);
         $("#tipoCambio").html(data.tipoCambio);
         $("#montoEnviado").html(data.montoEnviado);
         $("#montoRecibido").html(data.montoRecibido);
