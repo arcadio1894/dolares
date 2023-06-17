@@ -142,7 +142,7 @@
                             <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-bold fs-7 w-125px py-4" data-kt-menu="true">
                                 <!--begin::Menu item-->
                                 <div class="menu-item px-3">
-                                    <a href="https://wa.link/ojsau0" target="_blank" class="menu-link px-3" ><i class="fab fa-whatsapp fs-4" style="margin-right: 5px;color: #14ad33;"></i> Ayuda</a>
+                                    <a href="https://api.whatsapp.com/send?phone=51921867035&text=Hola%20necesito%20ayuda" target="_blank" class="menu-link px-3" ><i class="fab fa-whatsapp fs-4" style="margin-right: 5px;color: #14ad33;"></i> Ayuda</a>
                                 </div>
                                 <!--end::Menu item-->
                                 <!--begin::Menu item-->
@@ -155,7 +155,7 @@
                                 <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-bold fs-7 w-125px py-4" data-kt-menu="true">
                                     <!--begin::Menu item-->
                                     <div class="menu-item px-3">
-                                        <a href="https://wa.link/ojsau0" target="_blank" class="menu-link px-3" ><i class="fab fa-whatsapp fs-4" style="margin-right: 5px;color: #14ad33;"></i> Ayuda</a>
+                                        <a href="https://api.whatsapp.com/send?phone=51921867035&text=Hola%20necesito%20ayuda" target="_blank" class="menu-link px-3" ><i class="fab fa-whatsapp fs-4" style="margin-right: 5px;color: #14ad33;"></i> Ayuda</a>
                                     </div>
                                     <!--end::Menu item-->
                                     <!--begin::Menu item-->
@@ -171,7 +171,7 @@
                                 <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-bold fs-7 w-125px py-4" data-kt-menu="true">
                                     <!--begin::Menu item-->
                                     <div class="menu-item px-3">
-                                        <a href="https://wa.link/ojsau0" target="_blank" class="menu-link px-3" ><i class="fab fa-whatsapp fs-4" style="margin-right: 5px;color: #14ad33;"></i> Ayuda</a>
+                                        <a href="https://api.whatsapp.com/send?phone=51921867035&text=Hola%20necesito%20ayuda" target="_blank" class="menu-link px-3" ><i class="fab fa-whatsapp fs-4" style="margin-right: 5px;color: #14ad33;"></i> Ayuda</a>
                                     </div>
                                     <!--end::Menu item-->
                                     <!--begin::Menu item-->
