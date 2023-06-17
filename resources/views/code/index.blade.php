@@ -46,7 +46,7 @@
                     <h1 class="text-dark mb-3">Ingrese contraseña segura</h1>
                     <!--end::Title-->
                     <!--begin::Sub-title-->
-                    <div class="text-muted fw-bold fs-5 mb-5">Contraseña de 4 dígitos</div>
+                    <div class="text-muted fw-bold fs-5 mb-5">Si no tiene una contraseña, <a class="fw-bolder" href="{{ route('dashboard.profile.token') }}">ingrese aquí</a></div>
                     <!--end::Sub-title-->
                 </div>
                 <!--end::Heading-->
@@ -68,7 +68,7 @@
                 <!--begin::Submit-->
                 <div class="d-flex flex-center">
                     <button type="button" id="btn-save" class="btn btn-lg btn-primary fw-bolder">
-                        <span class="indicator-label">Guardar contraseña</span>
+                        <span class="indicator-label">Ingresar contraseña</span>
                     </button>
                 </div>
                 <!--end::Submit-->

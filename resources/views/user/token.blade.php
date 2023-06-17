@@ -263,7 +263,7 @@
                             <h1 class="text-dark mb-3">Ingrese contraseña segura</h1>
                             <!--end::Title-->
                             <!--begin::Sub-title-->
-                            <div class="text-muted fw-bold fs-5 mb-5">Contraseña de 4 dígitos</div>
+                            <div class="text-muted fw-bold fs-5 mb-5">Esta contraseña segura ayudará a proteger tu información y así nos aseguramos que solo tú puedas tener acceso</div>
                             <!--end::Sub-title-->
                         </div>
                         <!--end::Heading-->
@@ -330,7 +330,7 @@
                             <h1 class="text-dark mb-3">Ingrese nueva contraseña segura</h1>
                             <!--end::Title-->
                             <!--begin::Sub-title-->
-                            <div class="text-muted fw-bold fs-5 mb-5">Contraseña de 4 dígitos</div>
+                            <div class="text-muted fw-bold fs-5 mb-5">Esta contraseña segura ayudará a proteger tu información y así nos aseguramos que solo tú puedas tener acceso</div>
                             <!--end::Sub-title-->
                         </div>
                         <!--end::Heading-->

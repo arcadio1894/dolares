@@ -1717,14 +1717,11 @@
                     <!--begin::Scroll-->
                     <div class=" me-n7 pe-7" id="kt_modal_add_customer_scroll" data-kt-scroll="true" data-kt-scroll-activate="{default: false, lg: true}" data-kt-scroll-max-height="auto" data-kt-scroll-dependencies="#kt_modal_add_customer_header" data-kt-scroll-wrappers="#kt_modal_add_customer_scroll" data-kt-scroll-offset="300px">
                         <div class="row pb-1 text-center">
-                            <h5> ¿Confirmas que ya realizaste la transferencia bancaria? </h5>
+                            <h4> ¿Confirmas que ya realizaste la transferencia bancaria? </h4>
                         </div>
                         <div class="row">
-                            <div class="col-sm-10 offset-sm-1 col-8 offset-2 border-dashed pt-4">
+                            <div class="col-sm-10 offset-sm-1 col-8 offset-2 text-center pt-4">
                                 <p class="text-muted text-gray-800 fw-bold fs-6">Recuerda guardar el número de operación de tu transferencia para que lo puedes registrar en el siguiente paso.
-                                </p>
-                                <p class="text-muted text-gray-800 fw-bold fs-6">
-                                    *Ubica el número de operación.
                                 </p>
                             </div>
                         </div>
@@ -1756,6 +1753,7 @@
             <!--begin::Modal content-->
             <div class="modal-content">
                 <div class="modal-header pb-0 border-0 justify-content-end">
+
                     <!--begin::Close-->
                     <div class="btn btn-sm btn-icon btn-active-color-primary" data-bs-dismiss="modal">
                         <!--begin::Svg Icon | path: icons/duotune/arrows/arr061.svg-->
@@ -1770,9 +1768,13 @@
                     <!--end::Close-->
                 </div>
                 <!--begin::Modal body-->
-                <div class="modal-body py-10 px-lg-17">
+                <div class="modal-body pb-10 pt-0 px-lg-17">
                     <!--begin::Scroll-->
+                    <div class="row pb-1 text-center">
+                        <h4> EJEMPLO </h4>
+                    </div>
                     <div class=" me-n7 pe-7" id="" data-kt-scroll="true" data-kt-scroll-activate="{default: false, lg: true}" data-kt-scroll-max-height="auto" data-kt-scroll-dependencies="#kt_modal_add_customer_header" data-kt-scroll-wrappers="#kt_modal_add_customer_scroll" data-kt-scroll-offset="300px">
+
                         <div class="row">
                             <div class="col-sm-8 offset-sm-2 col-8 offset-2">
                                 <div class="d-flex justify-content-center">

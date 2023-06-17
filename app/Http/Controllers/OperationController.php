@@ -637,7 +637,7 @@ class OperationController extends Controller
                     $filename = $operation->id.'_' . $this->generateRandomString(20).'.JPG';
                     $img = Image::make($image);
                     $img->orientate();
-                    $img->save($path.$filename, 80, 'JPG');
+                    $img->save($path.$filename, 80, 'jpg');
                     //$request->file('image')->move($path, $filename);
                     $operation->image_receipt = $filename;
                     $operation->save();

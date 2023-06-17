@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
 
 class AccountCustomerStoreRequest extends FormRequest
 {
@@ -25,7 +26,7 @@ class AccountCustomerStoreRequest extends FormRequest
     {
         return [
             'numberAccount' => 'required|string|max:255|unique:account_customers,numberAccount',
-            'nameAccount' => 'required|string|max:255|unique:account_customers,nameAccount',
+            'nameAccount' => 'required|string|max:255|unique:account_customers,nameAccount,'.Auth::id(),
             'bank_id' => 'required|exists:banks,id',
             'department_id' => 'required|exists:departments,id',
             'currency' => 'required',
