@@ -1307,6 +1307,8 @@
                                             <label class="required fs-6 fw-bold mb-2">Moneda de cuenta</label>
                                             <!--end::Label-->
                                             <!--begin::Input-->
+                                            <input type="hidden" name="currency" value="{{ ($stopOperation->type == 'buy') ? 'PEN':'USD'}}">
+
                                             <select name="currency" disabled id="currency_create" class="form-select form-select-solid" data-control="select2" data-hide-search="true" data-placeholder="Moneda">
                                                 <option></option>
                                                 <option value="PEN" {{ ($stopOperation->type == 'buy') ? 'selected':''}}>Soles</option>
@@ -1494,6 +1496,8 @@
                                             <label class="required fs-6 fw-bold mb-2">Moneda de cuenta</label>
                                             <!--end::Label-->
                                             <!--begin::Input-->
+                                            <input type="hidden" name="currency" value="{{ ($stopData->type == 'buy') ? 'PEN':'USD'}}">
+
                                             <select name="currency" disabled id="currency_create" class="form-select form-select-solid" data-control="select2" data-hide-search="true" data-placeholder="Moneda">
                                                 <option></option>
                                                 <option value="PEN" {{ ($stopData->type == 'buy') ? 'selected':''}}>Soles</option>

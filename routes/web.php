@@ -119,7 +119,7 @@ Route::middleware('auth')->group(function (){
         Route::post('/save/operation/stop', [App\Http\Controllers\OperationController::class, 'save'])
             ->name('save.operation.stop');
 
-        Route::post('/account/customer/operation/store', [App\Http\Controllers\OperationController::class, 'store'])
+        Route::post('/account/customer/operation/store', [App\Http\Controllers\AccountCustomerController::class, 'store'])
             ->name('accounts.customer.operation.store');
 
         Route::get('/get/operation/pending', [App\Http\Controllers\OperationController::class, 'getOperationPending'])

@@ -1,6 +1,6 @@
 "use strict";
 var KTModalCustomersAdd = function () {
-    var t, e, o, n, r, i;
+    var t, e, o, n, r, i, selectDeshabilitado;
     return {
         init: function () {
             i = new bootstrap.Modal(document.querySelector("#kt_modal_add_customer")), r = document.querySelector("#kt_modal_add_customer_form"), t = r.querySelector("#kt_modal_add_customer_submit"), e = r.querySelector("#kt_modal_add_customer_cancel"), o = r.querySelector("#kt_modal_add_customer_close"), n = FormValidation.formValidation(r, {
@@ -38,8 +38,8 @@ var KTModalCustomersAdd = function () {
                 }
             }), t.addEventListener("click", (function (e) {
                 e.preventDefault(), n && n.validate().then((function (e) {
-                    console.log("validated!"), "Valid" == e ? (t.setAttribute("data-kt-indicator", "on"), t.disabled = !0,
-                        $.ajax({
+                    console.log("validated!"), "Valid" == e ? (t.setAttribute("data-kt-indicator", "on"), t.disabled = !0, selectDeshabilitado = document.getElementById('currency_create'), selectDeshabilitado.disabled = false,
+                    $.ajax({
                             url: $('#kt_modal_add_customer_form').attr('data-kt-action'),
                             method: 'POST',
                             data: new FormData($('#kt_modal_add_customer_form')[0]),
