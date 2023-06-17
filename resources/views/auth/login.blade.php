@@ -86,9 +86,9 @@
                     <h1 class="text-dark mb-3">Inicia sesión</h1>
                     <!--end::Title-->
                     <!--begin::Link-->
-                    {{--<div class="text-gray-400 fw-bold fs-4">¿No tienes cuenta?
+                    <div class="text-gray-400 fw-bold fs-4">¿No tienes cuenta?
                         <a href="{{ route('register') }}" class="link-primary fw-bolder">Regístrate aquí</a>
-                    </div>--}}
+                    </div>
                     <!--end::Link-->
                 </div>
 
