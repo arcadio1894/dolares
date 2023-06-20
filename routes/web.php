@@ -154,6 +154,16 @@ Route::middleware('auth')->group(function (){
 
         Route::post('/update/receipt/operation', [App\Http\Controllers\OperationController::class, 'updateRegisterReceipt'])
             ->name('update.receipt.operation');
+
+        // TODO: Rutas BackOffice - Permissions
+        Route::get('/permisos', [App\Http\Controllers\PermissionController::class, 'index'])
+            ->name('permissions.index');
+        Route::post('/permission/store', [App\Http\Controllers\PermissionController::class, 'store'])
+            ->name('permissions.store');
+        Route::post('/permission/update', [App\Http\Controllers\PermissionController::class, 'update'])
+            ->name('permissions.update');
+        Route::post('/permission/destroy/{permission_id}', [App\Http\Controllers\PermissionController::class, 'destroy'])
+            ->name('permission.destroy');
     });
 });
 Route::get('/data', [\App\Http\Controllers\DataController::class, 'getData']);
