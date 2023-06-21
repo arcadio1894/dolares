@@ -29,12 +29,15 @@ class PermissionController extends Controller
             'name' => $request->get('permission_name'),
             'description' => $request->get('permission_description'),
         ]);
-
-        if ( $request->get('permissions_core') )
+        //dump($request->get('permissions_core') );
+        if ( $request->has('permissions_core') )
         {
+            //dump('Ingrese');
             $adminRole = Role::findByName('admin');
+            //dump('adminRole');
             if ($adminRole && $permission) {
-                $adminRole->givePermissionTo($permission);
+                //('Ingrese 2');
+                $adminRole->givePermissionTo($permission->name);
             }
         }
 

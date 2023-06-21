@@ -164,6 +164,20 @@ Route::middleware('auth')->group(function (){
             ->name('permissions.update');
         Route::post('/permission/destroy/{permission_id}', [App\Http\Controllers\PermissionController::class, 'destroy'])
             ->name('permission.destroy');
+
+        // TODO: Rutas BackOffice - Roles
+        Route::get('/roles', [App\Http\Controllers\RoleController::class, 'index'])
+            ->name('roles.index');
+        Route::get('/crear/rol', [App\Http\Controllers\RoleController::class, 'create'])
+            ->name('roles.create');
+        Route::get('/modificar/rol/{role_id}', [App\Http\Controllers\RoleController::class, 'edit'])
+            ->name('roles.edit');
+        Route::post('/role/store', [App\Http\Controllers\RoleController::class, 'store'])
+            ->name('roles.store');
+        Route::post('/role/update', [App\Http\Controllers\RoleController::class, 'update'])
+            ->name('roles.update');
+        Route::post('/role/destroy/{role_id}', [App\Http\Controllers\RoleController::class, 'destroy'])
+            ->name('roles.destroy');
     });
 });
 Route::get('/data', [\App\Http\Controllers\DataController::class, 'getData']);

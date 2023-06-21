@@ -1992,7 +1992,7 @@
                                                         </a>
                                                     </div>
                                                     <div class="menu-item">
-                                                        <a class="menu-link" @yield('activeMenuRoleList') href="{{ route('operation.dolareros.index') }}">
+                                                        <a class="menu-link @yield('activeMenuRoleList')"  href="{{ route('roles.index') }}">
                                                             <span class="menu-bullet">
                                                                 <span class="bullet bullet-dot"></span>
                                                             </span>
@@ -2000,7 +2000,7 @@
                                                         </a>
                                                     </div>
                                                     <div class="menu-item">
-                                                        <a class="menu-link" @yield('activeMenuPermissionList') href="{{ route('permissions.index') }}">
+                                                        <a class="menu-link @yield('activeMenuPermissionList')"  href="{{ route('permissions.index') }}">
                                                             <span class="menu-bullet">
                                                                 <span class="bullet bullet-dot"></span>
                                                             </span>
