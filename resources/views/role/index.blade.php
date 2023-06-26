@@ -54,7 +54,7 @@
                 <!--begin::Card body-->
                 <div class="card-body pt-1">
                     <!--begin::Users-->
-                    <div class="fw-bolder text-gray-600 mb-5">N° de usuarios con este rol: {{ ($arrayRoles[$i]['role']['cantUsers'] > 0) ? $arrayRoles[$i]['role']['cantUsers'] : 0 }}</div>
+                    <div class="fw-bolder text-gray-600 mb-5">N° de usuarios con este rol: {{ ($arrayRoles[$i]['cantUsers'] > 0) ? $arrayRoles[$i]['cantUsers'] : 0 }}</div>
                     <!--end::Users-->
                     <!--begin::Permissions-->
                     <div class="d-flex flex-column text-gray-600">

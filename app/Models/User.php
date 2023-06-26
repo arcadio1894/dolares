@@ -28,6 +28,7 @@ class User extends Authenticatable
         'password',
         'phone',
         'document',
+        'last_login'
     ];
 
     /**
@@ -48,4 +49,18 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    protected $dates = [
+        'last_login', 'created_at'
+    ];
+
+    public function setLastLogin($value)
+    {
+        $this->attributes['last_login'] = $value;
+    }
+
+    public function getLastLogin()
+    {
+        return $this->last_login;
+    }
 }

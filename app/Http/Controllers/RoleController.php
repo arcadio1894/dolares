@@ -43,7 +43,8 @@ class RoleController extends Controller
         {
             $cantTotal = $role->permissions()->count();
             $permissions = $role->permissions;
-            $userCount = User::role($role->name)->count();
+            $userCount = $role->users()->count();
+            //dd($userCount);
             array_push($arrayRoles, [
                 'role' => $role,
                 'permissions' => $permissions,

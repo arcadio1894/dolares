@@ -178,6 +178,18 @@ Route::middleware('auth')->group(function (){
             ->name('roles.update');
         Route::post('/role/destroy/{role_id}', [App\Http\Controllers\RoleController::class, 'destroy'])
             ->name('roles.destroy');
+
+        // TODO: Rutas BackOffice - Users
+        Route::get('/usuarios/activos', [App\Http\Controllers\UserController::class, 'index'])
+            ->name('users.index');
+        Route::post('/user/store', [App\Http\Controllers\UserController::class, 'store'])
+            ->name('users.store');
+        Route::post('/user/update', [App\Http\Controllers\UserController::class, 'update'])
+            ->name('users.update');
+        Route::post('/user/destroy/{user_id}', [App\Http\Controllers\UserController::class, 'destroy'])
+            ->name('users.destroy');
+        Route::get('/usuario/detalles/{user_id}', [App\Http\Controllers\UserController::class, 'show'])
+            ->name('users.show');
     });
 });
 Route::get('/data', [\App\Http\Controllers\DataController::class, 'getData']);
