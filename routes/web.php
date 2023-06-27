@@ -21,6 +21,10 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+// TODO: Rutas extras de departamentos/Provincias/Distritos
+Route::get('/get/province/of/department/{department_id}', [App\Http\Controllers\UserController::class, 'getProvincesOfDepartment']);
+Route::get('/get/district/of/province/{province_id}', [App\Http\Controllers\UserController::class, 'getDistrictsOfProvince']);
+
 Route::middleware('auth')->group(function (){
     Route::prefix('dashboard')->group(function (){
 
@@ -190,6 +194,8 @@ Route::middleware('auth')->group(function (){
             ->name('users.destroy');
         Route::get('/usuario/detalles/{user_id}', [App\Http\Controllers\UserController::class, 'show'])
             ->name('users.show');
+
+
     });
 });
 Route::get('/data', [\App\Http\Controllers\DataController::class, 'getData']);

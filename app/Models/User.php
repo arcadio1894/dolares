@@ -28,7 +28,24 @@ class User extends Authenticatable
         'password',
         'phone',
         'document',
-        'last_login'
+        'last_login',
+        'account_type',
+        'business_name',
+        'department_id',
+        'province_id',
+        'district_id',
+        'direction',
+        'name_legal_representative',
+        'dni_legal_representative',
+        'profession',
+        'economic_activity_id',
+        'economic_sector_id',
+        'constitution_date',
+        'state_company',
+        'front_image',
+        'reverse_image',
+        'flag_front',
+        'flag_reverse'
     ];
 
     /**

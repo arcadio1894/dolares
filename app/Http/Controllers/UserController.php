@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Http\Requests\DeleteUserRequest;
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
+use App\Models\District;
 use App\Models\Operation;
+use App\Models\Province;
 use App\Models\StopData;
 use App\Models\StopOperation;
 use App\Models\User;
@@ -304,5 +306,19 @@ class UserController extends Controller
         ];
 
         return view('user.show', compact('userData'));
+    }
+
+    public function getProvincesOfDepartment($department_id)
+    {
+        $provinces = Province::where('department_id', $department_id)->get();
+
+        return $provinces;
+    }
+
+    public function getDistrictsOfProvince($province_id)
+    {
+        $districts = District::where('province_id', $province_id)->get();
+
+        return $districts;
     }
 }

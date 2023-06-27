@@ -73,6 +73,7 @@
 {{--<script src="assets/js/custom/authentication/sign-in/general.js"></script>--}}
 <!--end::Page Custom Javascript-->
 <!--end::Javascript-->
+@yield('scripts')
 </body>
 <!--end::Body-->
 </html>
