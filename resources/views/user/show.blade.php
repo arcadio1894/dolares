@@ -144,23 +144,134 @@
                     <div class="separator"></div>
                     <!--begin::Details content-->
                     <div id="kt_user_view_details" class="collapse show">
-                        <div class="pb-5 fs-6">
-                            <div class="fw-bolder mt-5">Correo electrónico</div>
-                            <div class="text-gray-600">{{ $userData['email'] }}</div>
+                        @if ( Auth::user()->account_type == 'p' )
+                            <div class="pb-5 fs-6">
+                                <div class="fw-bolder mt-5">Correo electrónico</div>
+                                <div class="text-gray-600">{{ $userData['email'] }}</div>
 
-                            <div class="fw-bolder mt-5">Documento</div>
-                            <div class="text-gray-600">{{ $userData['document'] }}</div>
+                                <div class="fw-bolder mt-5">DNI/CE</div>
+                                <div class="text-gray-600">{{ $userData['document'] }}</div>
 
-                            <div class="fw-bolder mt-5">Teléfono</div>
-                            <div class="text-gray-600">{{ $userData['phone'] }}</div>
+                                <div class="fw-bolder mt-5">Teléfono</div>
+                                <div class="text-gray-600">{{ $userData['phone'] }}</div>
 
-                            <div class="fw-bolder mt-5">Fecha de registro</div>
-                            <div class="text-gray-600">{{ $userData['joined_date'] }}</div>
+                                <div class="fw-bolder mt-5">Dirección</div>
+                                <div class="text-gray-600">{{ $userData['direction'] }}</div>
 
-                            <div class="fw-bolder mt-5">Ultima sesión</div>
-                            <div class="text-gray-600">{{ $userData['last_login'] }}</div>
+                                <div class="fw-bolder mt-5">Profesión</div>
+                                <div class="text-gray-600">{{ $userData['profession'] }}</div>
 
-                        </div>
+                                <div class="fw-bolder mt-5">Fecha de registro</div>
+                                <div class="text-gray-600">{{ $userData['joined_date'] }}</div>
+
+                                <div class="fw-bolder mt-5">Ultima sesión</div>
+                                <div class="text-gray-600">{{ $userData['last_login'] }}</div>
+
+                                <div class="fw-bolder mt-5">Archivos</div>
+                                <div class="text-gray-600">
+                                    <div class="text-center notice d-flex bg-light-primary rounded border-success border border-dashed p-3 mb-5">
+                                        <div class="row text-center">
+                                            <label class="col-lg-12 fw-bolder fs-7 text-gray-800">Imagen frontal del documento</label>
+                                            <br>
+                                            @if ( substr($userData['imageFront'],-3) === 'pdf' )
+                                                <div class="col-lg-12">
+                                                    <a target="_blank" href="{{ asset('assets/images/user/documents/'.$userData['imageFront']) }}" class="btn btn-success col-lg-12">Ver PDF</a>
+                                                </div>
+                                            @else
+                                                <img class="img-fluid" src="{{ asset('assets/images/user/documents/'.$userData['imageFront']) }}" alt="Imagen frontal de documento" width="40px">
+                                            @endif
+                                            <br>
+                                        </div>
+
+                                    </div>
+                                    <div class="text-center notice d-flex bg-light-primary rounded border-success border border-dashed p-3 mb-5">
+                                        <div class="row">
+                                            <label class="col-lg-12 fw-bolder fs-7 text-gray-800">Imagen reverso del documento</label>
+                                            <br>
+                                            @if ( substr($userData['imageReverse'],-3) == 'pdf' )
+                                                <a target="_blank" href="{{ asset('assets/images/user/documents/'.$userData['imageReverse']) }}" class="btn btn-outline-success">Ver PDF</a>
+                                            @else
+                                                <img class="img-fluid" src="{{ asset('assets/images/user/documents/'.$userData['imageReverse']) }}" alt="Imagen frontal de documento" width="40px">
+                                            @endif
+                                            <br>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                            </div>
+                        @else
+                            <div class="pb-5 fs-6">
+                                <div class="fw-bolder mt-5">Correo electrónico</div>
+                                <div class="text-gray-600">{{ $userData['email'] }}</div>
+
+                                <div class="fw-bolder mt-5">RUC</div>
+                                <div class="text-gray-600">{{ $userData['document'] }}</div>
+
+                                <div class="fw-bolder mt-5">Teléfono</div>
+                                <div class="text-gray-600">{{ $userData['phone'] }}</div>
+
+                                <div class="fw-bolder mt-5">Dirección Fiscal</div>
+                                <div class="text-gray-600">{{ $userData['direction'] }}</div>
+
+                                <div class="fw-bolder mt-5">Nombre del representante legal</div>
+                                <div class="text-gray-600">{{ $userData['name_legal_representative'] }}</div>
+
+                                <div class="fw-bolder mt-5">DNI del representante legal</div>
+                                <div class="text-gray-600">{{ $userData['dni_legal_representative'] }}</div>
+
+                                <div class="fw-bolder mt-5">Sector económico</div>
+                                <div class="text-gray-600">{{ $userData['economic_sector'] }}</div>
+
+                                <div class="fw-bolder mt-5">Actividad económica</div>
+                                <div class="text-gray-600">{{ $userData['economic_activity'] }}</div>
+
+                                <div class="fw-bolder mt-5">Fecha de constitución</div>
+                                <div class="text-gray-600">{{ $userData['constitution_date'] }}</div>
+
+                                <div class="fw-bolder mt-5">¿Es empresa estatal?</div>
+                                <div class="text-gray-600">{{ $userData['state_company'] }}</div>
+
+                                <div class="fw-bolder mt-5">Fecha de registro</div>
+                                <div class="text-gray-600">{{ $userData['joined_date'] }}</div>
+
+                                <div class="fw-bolder mt-5">Ultima sesión</div>
+                                <div class="text-gray-600">{{ $userData['last_login'] }}</div>
+
+                                <div class="fw-bolder mt-5">Archivos</div>
+                                <div class="text-gray-600">
+                                    <div class="text-center notice d-flex bg-light-primary rounded border-success border border-dashed p-3 mb-5">
+                                        <div class="row text-center">
+                                            <label class="col-lg-12 fw-bolder fs-7 text-gray-800">Imagen frontal del documento</label>
+                                            <br>
+                                            @if ( substr($userData['imageFront'],-3) === 'pdf' )
+                                                <div class="col-lg-12">
+                                                    <a target="_blank" href="{{ asset('assets/images/user/documents/'.$userData['imageFront']) }}" class="btn btn-success col-lg-12">Ver PDF</a>
+                                                </div>
+                                            @else
+                                                <img class="img-fluid" src="{{ asset('assets/images/user/documents/'.$userData['imageFront']) }}" alt="Imagen frontal de documento" width="40px">
+                                            @endif
+                                            <br>
+                                        </div>
+
+                                    </div>
+                                    <div class="text-center notice d-flex bg-light-primary rounded border-success border border-dashed p-3 mb-5">
+                                        <div class="row">
+                                            <label class="col-lg-12 fw-bolder fs-7 text-gray-800">Imagen reverso del documento</label>
+                                            <br>
+                                            @if ( substr($userData['imageReverse'],-3) == 'pdf' )
+                                                <a target="_blank" href="{{ asset('assets/images/user/documents/'.$userData['imageReverse']) }}" class="btn btn-outline-success">Ver PDF</a>
+                                            @else
+                                                <img class="img-fluid" src="{{ asset('assets/images/user/documents/'.$userData['imageReverse']) }}" alt="Imagen frontal de documento" width="40px">
+                                            @endif
+                                            <br>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                            </div>
+                        @endif
                     </div>
                     <!--end::Details content-->
                 </div>

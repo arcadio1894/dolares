@@ -171,12 +171,26 @@ class UserController extends Controller
                 $diferencia = $fechaBD->diffForHumans();
             }
 
+            if ($user->account_type == 'p')
+            {
+                $avatar = strtoupper(substr($user->first_name, 0, 1).substr($user->last_name, 0, 1));
+            } else {
+                $avatar = strtoupper(substr($user->business_name, 0, 1));
+            }
+
+            if ($user->account_type == 'p')
+            {
+                $name = $user->first_name . " " . $user->last_name;
+            } else {
+                $name = $user->business_name;
+            }
+
             array_push($arrayUsers, [
-                "name" => $user->first_name . " " . $user->last_name,
+                "name" => $name,
                 "first_name" => $user->first_name,
                 "last_name" => $user->last_name,
                 "email" => $user->email,
-                "avatar" => strtoupper(substr($user->first_name, 0, 1).substr($user->last_name, 0, 1)),
+                "avatar" => $avatar,
                 "role_name" => $rol,
                 "last_login" => $diferencia,
                 "joined_date" => $user->created_at->format('d M Y, g:i a'),
@@ -288,13 +302,35 @@ class UserController extends Controller
         $operationsRefuse = Operation::where('user_id', $user->id)
             ->where('state', 'refused')->get();
 
+        if ($user->account_type == 'p')
+        {
+            $avatar = strtoupper(substr($user->first_name, 0, 1).substr($user->last_name, 0, 1));
+        } else {
+            $avatar = strtoupper(substr($user->business_name, 0, 1));
+        }
+
+        if ($user->account_type == 'p')
+        {
+            $name = $user->first_name . " " . $user->last_name;
+        } else {
+            $name = $user->business_name;
+        }
+
         $userData = [
-            "name" => $user->first_name . " " . $user->last_name,
+            "name" => $name,
             "first_name" => $user->first_name,
             "last_name" => $user->last_name,
             "email" => $user->email,
-            "avatar" => strtoupper(substr($user->first_name, 0, 1).substr($user->last_name, 0, 1)),
+            "avatar" => $avatar,
             "role_name" => $rol,
+            "direction" => $user->department->name . ','. $user->province->name . ',' . $user->district->name . ' ' . $user->direction,
+            "profession" => $user->profession,
+            "name_legal_representative" => $user->name_legal_representative,
+            "dni_legal_representative" => $user->dni_legal_representative,
+            "economic_sector" => ($user->economic_sector_id == null) ? null: $user->economic_sector->description,
+            "economic_activity" => ($user->economic_activity_id == null) ? null:$user->economic_activity->description,
+            "constitution_date" => ($user->constitution_date == null) ? null: $user->constitution_date->format('d/m/Y'),
+            "state_company" => ($user->state_company == 1) ? 'SI': 'NO',
             "last_login" => $diferencia,
             "joined_date" => $user->created_at->format('d M Y, g:i a'),
             "id" => $user->id,
@@ -304,7 +340,9 @@ class UserController extends Controller
             "role_description" => (isset($role)) ? $role->description:"Sin rol",
             "cantProcessing" => count($operationsPending),
             "cantFinish" => count($operationsFinish),
-            "cantRefuse" => count($operationsRefuse)
+            "cantRefuse" => count($operationsRefuse),
+            "imageFront" => ($user->front_image == null) ? 'front.png': $user->front_image,
+            "imageReverse" => ($user->reverse_image == null) ? 'back.png': $user->reverse_image
         ];
 
         return view('user.show', compact('userData'));
@@ -335,14 +373,6 @@ class UserController extends Controller
         try {
             $user = User::find(Auth::id());
 
-            if ( $user->front_image != null )
-            {
-                $image_path = public_path().'/assets/images/user/documents/'.$user->front_image;
-                if (file_exists($image_path)) {
-                    unlink($image_path);
-                }
-            }
-
             if ($request->hasFile('image_front')) {
                 $image = $request->file('image_front');
                 $path = public_path().'/assets/images/user/documents/';
@@ -350,17 +380,41 @@ class UserController extends Controller
                 //$filename = $entry->id . '.' . $extension;
                 if ( strtoupper($extension) != "PDF" )
                 {
+                    if ( strtolower($extension) != 'jpg' && strtolower($extension) != 'png' && strtolower($extension) != 'jpeg' )
+                    {
+                        return response()->json(['message' => "El formato de la imagen es incorrecto.".$extension], 422);
+                    }
                     $filename = $user->id.'_front_' . $this->generateRandomString(20).'.jpg';
                     $img = Image::make($image);
                     $img->orientate();
                     $img->save($path.$filename, 80, 'jpg');
                     //$request->file('image')->move($path, $filename);
+                    if ( $user->front_image != null )
+                    {
+                        $image_path = public_path().'/assets/images/user/documents/'.$user->front_image;
+                        if (file_exists($image_path)) {
+                            unlink($image_path);
+                        }
+                    }
                     $user->front_image = $filename;
                     $user->flag_front = null;
                     $user->save();
                 } else {
+
+                    if ( $user->account_type == 'p' )
+                    {
+                        return response()->json(['message' => "Suba una imagen no se permite pdf."], 422);
+                    }
+
                     $filename = 'pdf_front_'.$user->id . $this->generateRandomString(20) . '.' .$extension;
                     $request->file('image_front')->move($path, $filename);
+                    if ( $user->front_image != null )
+                    {
+                        $image_path = public_path().'/assets/images/user/documents/'.$user->front_image;
+                        if (file_exists($image_path)) {
+                            unlink($image_path);
+                        }
+                    }
                     $user->front_image = $filename;
                     $user->flag_front = null;
                     $user->save();
@@ -388,14 +442,6 @@ class UserController extends Controller
         try {
             $user = User::find(Auth::id());
 
-            if ( $user->front_image != null )
-            {
-                $image_path = public_path().'/assets/images/user/documents/'.$user->front_image;
-                if (file_exists($image_path)) {
-                    unlink($image_path);
-                }
-            }
-
             if ($request->hasFile('image_reverse')) {
                 $image = $request->file('image_reverse');
                 $path = public_path().'/assets/images/user/documents/';
@@ -403,17 +449,41 @@ class UserController extends Controller
                 //$filename = $entry->id . '.' . $extension;
                 if ( strtoupper($extension) != "PDF" )
                 {
+                    if ( strtolower($extension) != 'jpg' && strtolower($extension) != 'png' && strtolower($extension) != 'jpeg' )
+                    {
+                        return response()->json(['message' => "El formato de la imagen es incorrecto."], 422);
+                    }
+
                     $filename = $user->id.'_reverse_' . $this->generateRandomString(20).'.jpg';
                     $img = Image::make($image);
                     $img->orientate();
                     $img->save($path.$filename, 80, 'jpg');
                     //$request->file('image')->move($path, $filename);
+                    if ( $user->front_image != null )
+                    {
+                        $image_path = public_path().'/assets/images/user/documents/'.$user->front_image;
+                        if (file_exists($image_path)) {
+                            unlink($image_path);
+                        }
+                    }
                     $user->reverse_image = $filename;
                     $user->flag_reverse = null;
                     $user->save();
                 } else {
+                    if ( $user->account_type == 'p' )
+                    {
+                        return response()->json(['message' => "Suba una imagen no se permite pdf."], 422);
+                    }
+
                     $filename = 'pdf_reverse_'.$user->id . $this->generateRandomString(20) . '.' .$extension;
                     $request->file('image_reverse')->move($path, $filename);
+                    if ( $user->front_image != null )
+                    {
+                        $image_path = public_path().'/assets/images/user/documents/'.$user->front_image;
+                        if (file_exists($image_path)) {
+                            unlink($image_path);
+                        }
+                    }
                     $user->reverse_image = $filename;
                     $user->flag_reverse = null;
                     $user->save();

@@ -566,7 +566,421 @@
                     <!--begin::Label-->
                     <!--begin::Label-->
                     <div class="col-lg-8">
-                        <span class="fw-bold fs-6 text-gray-800">Yes</span>
+                        @if (empty(Auth::user()->front_image) && empty(Auth::user()->reverse_image))
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="text-center notice d-flex bg-secondary rounded border-secondary border border-dashed p-3 mb-5">
+                                        <div class="row">
+                                            <label class="col-lg-12 fw-bolder fs-7 text-gray-800">Imagen frontal del documento</label>
+                                            <br>
+                                            <img class="img-fluid gray-image" src="{{ asset('assets/media/document/front.png') }}" alt="Imagen frontal de documento" width="40px">
+                                            <div class="form-group mt-3">
+                                                <div class="input-group">
+                                                    <input type="file" class="form-control form-control-sm" id="front_image" placeholder="Imagen" accept=".jpg, .jpeg, .png, .pdf">
+                                                    <div class="input-group-append">
+                                                        <button class="btn btn-bg-warning btn-sm" type="button" id="btn_front_image" data-url="{{ route('submit.image.front') }}"><i class="fas fa-save text-success fs-3"></i></button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="text-center notice d-flex bg-secondary rounded border-secondary border border-dashed p-3 mb-5">
+                                        <div class="row">
+                                            <label class="col-lg-12 fw-bolder fs-7 text-gray-800">Imagen reverso del documento</label>
+                                            <br>
+                                            <img class="img-fluid gray-image" src="{{ asset('assets/media/document/back.png') }}" alt="Imagen reverso de documento" width="40px">
+                                            <div class="form-group mt-3">
+                                                <div class="input-group">
+                                                    <input type="file" class="form-control form-control-sm" id="reverse_image" placeholder="Imagen" accept=".jpg, .jpeg, .png, .pdf">
+                                                    <div class="input-group-append">
+                                                        <button class="btn btn-bg-warning btn-sm" type="button" id="btn_reverse_image" data-url="{{ route('submit.image.reverse') }}"><i class="fas fa-save text-success fs-3"></i></button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        @else
+                            @if (is_null(Auth::user()->flag_front) && is_null(Auth::user()->flag_reverse))
+                                @if (!is_null(Auth::user()->front_image) && is_null(Auth::user()->reverse_image))
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="text-center notice d-flex bg-light-warning rounded border-warning border border-dashed p-3 mb-5">
+                                                <div class="row">
+                                                    <label class="col-lg-12 fw-bolder fs-7 text-gray-800">Imagen frontal del documento</label>
+                                                    <br>
+                                                    <img class="img-fluid yellow-image" src="{{ asset('assets/media/document/front.png') }}" alt="Imagen frontal de documento" width="40px">
+                                                    <br>
+                                                    <label class="col-lg-12 fw-bolder fs-7 text-gray-800">Estamos validando sus documentos. Espere unos minutos</label>
+
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="text-center notice d-flex bg-secondary rounded border-secondary border border-dashed p-3 mb-5">
+                                                <div class="row">
+                                                    <label class="col-lg-12 fw-bolder fs-7 text-gray-800">Imagen reverso del documento</label>
+                                                    <br>
+                                                    <img class="img-fluid gray-image" src="{{ asset('assets/media/document/back.png') }}" alt="Imagen reverso de documento" width="40px">
+                                                    <div class="form-group mt-3">
+                                                        <div class="input-group">
+                                                            <input type="file" class="form-control form-control-sm" id="reverse_image" placeholder="Imagen" accept=".jpg, .jpeg, .png, .pdf">
+                                                            <div class="input-group-append">
+                                                                <button class="btn btn-bg-warning btn-sm" type="button" id="btn_reverse_image" data-url="{{ route('submit.image.reverse') }}"><i class="fas fa-save text-success fs-3"></i></button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                @elseif (!is_null(Auth::user()->reverse_image) && is_null(Auth::user()->front_image))
+                                    {{--<p>Estamos verificando la reversa y debe subir la frontal.</p>--}}
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="text-center notice d-flex bg-secondary rounded border-secondary border border-dashed p-3 mb-5">
+                                                <div class="row">
+                                                    <label class="col-lg-12 fw-bolder fs-7 text-gray-800">Imagen frontal del documento</label>
+                                                    <br>
+                                                    <img class="img-fluid gray-image" src="{{ asset('assets/media/document/front.png') }}" alt="Imagen frontal de documento" width="40px">
+                                                    <div class="form-group mt-3">
+                                                        <div class="input-group">
+                                                            <input type="file" class="form-control form-control-sm" id="front_image" placeholder="Imagen" accept=".jpg, .jpeg, .png, .pdf">
+                                                            <div class="input-group-append">
+                                                                <button class="btn btn-bg-warning btn-sm" type="button" id="btn_front_image" data-url="{{ route('submit.image.front') }}"><i class="fas fa-save text-success fs-3"></i></button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="text-center notice d-flex bg-light-warning rounded border-warning border border-dashed p-3 mb-5">
+                                                <div class="row">
+                                                    <label class="col-lg-12 fw-bolder fs-7 text-gray-800">Imagen reverso del documento</label>
+                                                    <br>
+                                                    <img class="img-fluid yellow-image" src="{{ asset('assets/media/document/back.png') }}" alt="Imagen frontal de documento" width="40px">
+                                                    <br>
+                                                    <label class="col-lg-12 fw-bolder fs-7 text-gray-800">Estamos validando sus documentos. Espere unos minutos</label>
+
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                @else
+                                    {{--<p>Estamos verificando sus imágenes.</p>--}}
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="text-center notice d-flex bg-light-warning rounded border-warning border border-dashed p-3 mb-5">
+                                                <div class="row">
+                                                    <label class="col-lg-12 fw-bolder fs-7 text-gray-800">Imagen frontal del documento</label>
+                                                    <br>
+                                                    <img class="img-fluid yellow-image" src="{{ asset('assets/media/document/front.png') }}" alt="Imagen frontal de documento" width="40px">
+                                                    <br>
+                                                    <label class="col-lg-12 fw-bolder fs-7 text-gray-800">Estamos validando sus documentos. Espere unos minutos</label>
+
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="text-center notice d-flex bg-light-warning rounded border-warning border border-dashed p-3 mb-5">
+                                                <div class="row">
+                                                    <label class="col-lg-12 fw-bolder fs-7 text-gray-800">Imagen reverso del documento</label>
+                                                    <br>
+                                                    <img class="img-fluid yellow-image" src="{{ asset('assets/media/document/back.png') }}" alt="Imagen frontal de documento" width="40px">
+                                                    <br>
+                                                    <label class="col-lg-12 fw-bolder fs-7 text-gray-800">Estamos validando sus documentos. Espere unos minutos</label>
+
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endif
+                            @elseif (Auth::user()->flag_front === 1 && is_null(Auth::user()->flag_reverse))
+                                {{--<p>Hemos aceptado la frontal y estamos ferificando la reversa.</p>--}}
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="text-center notice d-flex bg-light-primary rounded border-success border border-dashed p-3 mb-5">
+                                            <div class="row">
+                                                <label class="col-lg-12 fw-bolder fs-7 text-gray-800">Imagen frontal del documento</label>
+                                                <br>
+                                                <img class="img-fluid green-image" src="{{ asset('assets/media/document/front.png') }}" alt="Imagen frontal de documento" width="40px">
+                                                <br>
+                                                <label class="col-lg-12 fw-bolder fs-7 text-gray-800 mt-5">Validación correcta</label>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="text-center notice d-flex bg-light-warning rounded border-warning border border-dashed p-3 mb-5">
+                                            <div class="row">
+                                                <label class="col-lg-12 fw-bolder fs-7 text-gray-800">Imagen reverso del documento</label>
+                                                <br>
+                                                <img class="img-fluid yellow-image" src="{{ asset('assets/media/document/back.png') }}" alt="Imagen frontal de documento" width="40px">
+                                                <br>
+                                                <label class="col-lg-12 fw-bolder fs-7 text-gray-800">Estamos validando sus documentos. Espere unos minutos</label>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            @elseif (Auth::user()->flag_front === 0 && is_null(Auth::user()->flag_reverse))
+                                {{--<p>Hemos rechazado la frontal y estamos ferificando la reversa.</p>--}}
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="text-center notice d-flex bg-light-danger rounded border-danger border border-dashed p-3 mb-5">
+                                            <div class="row">
+                                                <label class="col-lg-12 fw-bolder fs-7 text-gray-800">Imagen frontal del documento</label>
+                                                <br>
+                                                <img class="img-fluid red-image" src="{{ asset('assets/media/document/front.png') }}" alt="Imagen frontal de documento" width="40px">
+                                                <div class="form-group mt-3">
+                                                    <div class="input-group">
+                                                        <input type="file" class="form-control form-control-sm" id="front_image" placeholder="Imagen" accept=".jpg, .jpeg, .png, .pdf">
+                                                        <div class="input-group-append">
+                                                            <button class="btn btn-bg-warning btn-sm" type="button" id="btn_front_image" data-url="{{ route('submit.image.front') }}"><i class="fas fa-save text-success fs-3"></i></button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="text-center notice d-flex bg-light-warning rounded border-warning border border-dashed p-3 mb-5">
+                                            <div class="row">
+                                                <label class="col-lg-12 fw-bolder fs-7 text-gray-800">Imagen reverso del documento</label>
+                                                <br>
+                                                <img class="img-fluid yellow-image" src="{{ asset('assets/media/document/back.png') }}" alt="Imagen frontal de documento" width="40px">
+                                                <br>
+                                                <label class="col-lg-12 fw-bolder fs-7 text-gray-800">Estamos validando sus documentos. Espere unos minutos</label>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            @elseif (Auth::user()->flag_reverse === 1 && is_null(Auth::user()->flag_front))
+                                {{--<p>Hemos aceptado la reversa y estamos ferificando la frontal.</p>--}}
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="text-center notice d-flex bg-light-warning rounded border-warning border border-dashed p-3 mb-5">
+                                            <div class="row">
+                                                <label class="col-lg-12 fw-bolder fs-7 text-gray-800">Imagen frontal del documento</label>
+                                                <br>
+                                                <img class="img-fluid yellow-image" src="{{ asset('assets/media/document/front.png') }}" alt="Imagen frontal de documento" width="40px">
+                                                <br>
+                                                <label class="col-lg-12 fw-bolder fs-7 text-gray-800">Estamos validando sus documentos. Espere unos minutos</label>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="text-center notice d-flex bg-light-primary rounded border-success border border-dashed p-3 mb-5">
+                                            <div class="row">
+                                                <label class="col-lg-12 fw-bolder fs-7 text-gray-800">Imagen reverso del documento</label>
+                                                <br>
+                                                <img class="img-fluid green-image" src="{{ asset('assets/media/document/back.png') }}" alt="Imagen frontal de documento" width="40px">
+                                                <br>
+                                                <label class="col-lg-12 fw-bolder fs-7 text-gray-800 mt-5">Validación correcta</label>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            @elseif (Auth::user()->flag_reverse === 0 && is_null(Auth::user()->flag_front))
+                                {{--<p>Hemos rechazado la reversa y estamos ferificando la frontal.</p>--}}
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="text-center notice d-flex bg-light-warning rounded border-warning border border-dashed p-3 mb-5">
+                                            <div class="row">
+                                                <label class="col-lg-12 fw-bolder fs-7 text-gray-800">Imagen frontal del documento</label>
+                                                <br>
+                                                <img class="img-fluid yellow-image" src="{{ asset('assets/media/document/front.png') }}" alt="Imagen frontal de documento" width="40px">
+                                                <br>
+                                                <label class="col-lg-12 fw-bolder fs-7 text-gray-800">Estamos validando sus documentos. Espere unos minutos</label>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="text-center notice d-flex bg-light-danger rounded border-danger border border-dashed p-3 mb-5">
+                                            <div class="row">
+                                                <label class="col-lg-12 fw-bolder fs-7 text-gray-800">Imagen reverso del documento</label>
+                                                <br>
+                                                <img class="img-fluid red-image" src="{{ asset('assets/media/document/back.png') }}" alt="Imagen reverso de documento" width="40px">
+                                                <div class="form-group mt-3">
+                                                    <div class="input-group">
+                                                        <input type="file" class="form-control form-control-sm" id="reverse_image" placeholder="Imagen" accept=".jpg, .jpeg, .png, .pdf">
+                                                        <div class="input-group-append">
+                                                            <button class="btn btn-bg-warning btn-sm" type="button" id="btn_reverse_image" data-url="{{ route('submit.image.reverse') }}"><i class="fas fa-save text-success fs-3"></i></button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            @elseif (Auth::user()->flag_front === 1 && Auth::user()->flag_reverse === 0)
+                                {{--<p>Hemos aceptado la frontal y hemos rechazado la reversa.</p>--}}
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="text-center notice d-flex bg-light-primary rounded border-primary border border-dashed p-3 mb-5">
+                                            <div class="row">
+                                                <label class="col-lg-12 fw-bolder fs-7 text-gray-800">Imagen frontal del documento</label>
+                                                <br>
+                                                <img class="img-fluid green-image" src="{{ asset('assets/media/document/front.png') }}" alt="Imagen frontal de documento" width="40px">
+                                                <br>
+                                                <label class="col-lg-12 fw-bolder fs-7 text-gray-800 mt-5">Validación correcta</label>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="text-center notice d-flex bg-light-danger rounded border-danger border border-dashed p-3 mb-5">
+                                            <div class="row">
+                                                <label class="col-lg-12 fw-bolder fs-7 text-gray-800">Imagen reverso del documento</label>
+                                                <br>
+                                                <img class="img-fluid red-image" src="{{ asset('assets/media/document/back.png') }}" alt="Imagen reverso de documento" width="40px">
+                                                <div class="form-group mt-3">
+                                                    <div class="input-group">
+                                                        <input type="file" class="form-control form-control-sm" id="reverse_image" placeholder="Imagen" accept=".jpg, .jpeg, .png, .pdf">
+                                                        <div class="input-group-append">
+                                                            <button class="btn btn-bg-warning btn-sm" type="button" id="btn_reverse_image" data-url="{{ route('submit.image.reverse') }}"><i class="fas fa-save text-success fs-3"></i></button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            @elseif (Auth::user()->flag_front === 0 && Auth::user()->flag_reverse === 1)
+                                {{--<p>Hemos aceptado la reversa y hemos rechazado la frontal.</p>--}}
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="text-center notice d-flex bg-light-danger rounded border-danger border border-dashed p-3 mb-5">
+                                            <div class="row">
+                                                <label class="col-lg-12 fw-bolder fs-7 text-gray-800">Imagen frontal del documento</label>
+                                                <br>
+                                                <img class="img-fluid red-image" src="{{ asset('assets/media/document/front.png') }}" alt="Imagen frontal de documento" width="40px">
+                                                <div class="form-group mt-3">
+                                                    <div class="input-group">
+                                                        <input type="file" class="form-control form-control-sm" id="front_image" placeholder="Imagen" accept=".jpg, .jpeg, .png, .pdf">
+                                                        <div class="input-group-append">
+                                                            <button class="btn btn-bg-warning btn-sm" type="button" id="btn_front_image" data-url="{{ route('submit.image.front') }}"><i class="fas fa-save text-success fs-3"></i></button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="text-center notice d-flex bg-light-primary rounded border-success border border-dashed p-3 mb-5">
+                                            <div class="row">
+                                                <label class="col-lg-12 fw-bolder fs-7 text-gray-800">Imagen frontal del documento</label>
+                                                <br>
+                                                <img class="img-fluid green-image" src="{{ asset('assets/media/document/back.png') }}" alt="Imagen frontal de documento" width="40px">
+                                                <br>
+                                                <label class="col-lg-12 fw-bolder fs-7 text-gray-800 mt-5">Validación correcta</label>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            @elseif (Auth::user()->flag_front === 1 && Auth::user()->flag_reverse === 1)
+                                {{--<p>Las imágenes han sido validadas.</p>--}}
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="text-center notice d-flex bg-light-primary rounded border-success border border-dashed p-3 mb-5">
+                                            <div class="row">
+                                                <label class="col-lg-12 fw-bolder fs-7 text-gray-800">Imagen frontal del documento</label>
+                                                <br>
+                                                <img class="img-fluid green-image" src="{{ asset('assets/media/document/front.png') }}" alt="Imagen frontal de documento" width="40px">
+                                                <br>
+                                                <label class="col-lg-12 fw-bolder fs-7 text-gray-800 mt-5">Validación correcta</label>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="text-center notice d-flex bg-light-primary rounded border-success border border-dashed p-3 mb-5">
+                                            <div class="row">
+                                                <label class="col-lg-12 fw-bolder fs-7 text-gray-800">Imagen reverso del documento</label>
+                                                <br>
+                                                <img class="img-fluid green-image" src="{{ asset('assets/media/document/back.png') }}" alt="Imagen frontal de documento" width="40px">
+                                                <br>
+                                                <label class="col-lg-12 fw-bolder fs-7 text-gray-800 mt-5">Validación correcta</label>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            @elseif (Auth::user()->flag_front === 0 && Auth::user()->flag_reverse === 0)
+                                {{--<p>Ambas imágenes han sido rechazadas.</p>--}}
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="text-center notice d-flex bg-light-danger rounded border-danger border border-dashed p-3 mb-5">
+                                            <div class="row">
+                                                <label class="col-lg-12 fw-bolder fs-7 text-gray-800">Imagen frontal del documento</label>
+                                                <br>
+                                                <img class="img-fluid red-image" src="{{ asset('assets/media/document/front.png') }}" alt="Imagen frontal de documento" width="40px">
+                                                <div class="form-group mt-3">
+                                                    <div class="input-group">
+                                                        <input type="file" class="form-control form-control-sm" id="front_image" placeholder="Imagen" accept=".jpg, .jpeg, .png, .pdf">
+                                                        <div class="input-group-append">
+                                                            <button class="btn btn-bg-warning btn-sm" type="button" id="btn_front_image" data-url="{{ route('submit.image.front') }}"><i class="fas fa-save text-success fs-3"></i></button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="text-center notice d-flex bg-light-danger rounded border-danger border border-dashed p-3 mb-5">
+                                            <div class="row">
+                                                <label class="col-lg-12 fw-bolder fs-7 text-gray-800">Imagen reverso del documento</label>
+                                                <br>
+                                                <img class="img-fluid red-image" src="{{ asset('assets/media/document/back.png') }}" alt="Imagen reverso de documento" width="40px">
+                                                <div class="form-group mt-3">
+                                                    <div class="input-group">
+                                                        <input type="file" class="form-control form-control-sm" id="reverse_image" placeholder="Imagen" accept=".jpg, .jpeg, .png, .pdf">
+                                                        <div class="input-group-append">
+                                                            <button class="btn btn-bg-warning btn-sm" type="button" id="btn_reverse_image" data-url="{{ route('submit.image.reverse') }}"><i class="fas fa-save text-success fs-3"></i></button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            @else
+                                <p>Estado de verificación desconocido.</p>
+                            @endif
+                        @endif
                     </div>
                     <!--begin::Label-->
                 </div>
@@ -720,7 +1134,7 @@
                                         <img class="img-fluid gray-image" src="{{ asset('assets/media/document/front.png') }}" alt="Imagen frontal de documento" width="40px">
                                         <div class="form-group mt-3">
                                             <div class="input-group">
-                                                <input type="file" class="form-control form-control-sm" id="front_image" placeholder="Imagen">
+                                                <input type="file" class="form-control form-control-sm" id="front_image" placeholder="Imagen" accept=".jpg, .jpeg, .png, .pdf">
                                                 <div class="input-group-append">
                                                     <button class="btn btn-bg-warning btn-sm" type="button" id="btn_front_image" data-url="{{ route('submit.image.front') }}"><i class="fas fa-save text-success fs-3"></i></button>
                                                 </div>
@@ -738,7 +1152,7 @@
                                         <img class="img-fluid gray-image" src="{{ asset('assets/media/document/back.png') }}" alt="Imagen reverso de documento" width="40px">
                                         <div class="form-group mt-3">
                                             <div class="input-group">
-                                                <input type="file" class="form-control form-control-sm" id="reverse_image" placeholder="Imagen">
+                                                <input type="file" class="form-control form-control-sm" id="reverse_image" placeholder="Imagen" accept=".jpg, .jpeg, .png, .pdf">
                                                 <div class="input-group-append">
                                                     <button class="btn btn-bg-warning btn-sm" type="button" id="btn_reverse_image" data-url="{{ route('submit.image.reverse') }}"><i class="fas fa-save text-success fs-3"></i></button>
                                                 </div>
@@ -774,7 +1188,7 @@
                                                 <img class="img-fluid gray-image" src="{{ asset('assets/media/document/back.png') }}" alt="Imagen reverso de documento" width="40px">
                                                 <div class="form-group mt-3">
                                                     <div class="input-group">
-                                                        <input type="file" class="form-control form-control-sm" id="reverse_image" placeholder="Imagen">
+                                                        <input type="file" class="form-control form-control-sm" id="reverse_image" placeholder="Imagen" accept=".jpg, .jpeg, .png, .pdf">
                                                         <div class="input-group-append">
                                                             <button class="btn btn-bg-warning btn-sm" type="button" id="btn_reverse_image" data-url="{{ route('submit.image.reverse') }}"><i class="fas fa-save text-success fs-3"></i></button>
                                                         </div>
@@ -796,7 +1210,7 @@
                                                 <img class="img-fluid gray-image" src="{{ asset('assets/media/document/front.png') }}" alt="Imagen frontal de documento" width="40px">
                                                 <div class="form-group mt-3">
                                                     <div class="input-group">
-                                                        <input type="file" class="form-control form-control-sm" id="front_image" placeholder="Imagen">
+                                                        <input type="file" class="form-control form-control-sm" id="front_image" placeholder="Imagen" accept=".jpg, .jpeg, .png, .pdf">
                                                         <div class="input-group-append">
                                                             <button class="btn btn-bg-warning btn-sm" type="button" id="btn_front_image" data-url="{{ route('submit.image.front') }}"><i class="fas fa-save text-success fs-3"></i></button>
                                                         </div>
@@ -892,7 +1306,7 @@
                                             <img class="img-fluid red-image" src="{{ asset('assets/media/document/front.png') }}" alt="Imagen frontal de documento" width="40px">
                                             <div class="form-group mt-3">
                                                 <div class="input-group">
-                                                    <input type="file" class="form-control form-control-sm" id="front_image" placeholder="Imagen">
+                                                    <input type="file" class="form-control form-control-sm" id="front_image" placeholder="Imagen" accept=".jpg, .jpeg, .png, .pdf">
                                                     <div class="input-group-append">
                                                         <button class="btn btn-bg-warning btn-sm" type="button" id="btn_front_image" data-url="{{ route('submit.image.front') }}"><i class="fas fa-save text-success fs-3"></i></button>
                                                     </div>
@@ -970,7 +1384,7 @@
                                             <img class="img-fluid red-image" src="{{ asset('assets/media/document/back.png') }}" alt="Imagen reverso de documento" width="40px">
                                             <div class="form-group mt-3">
                                                 <div class="input-group">
-                                                    <input type="file" class="form-control form-control-sm" id="reverse_image" placeholder="Imagen">
+                                                    <input type="file" class="form-control form-control-sm" id="reverse_image" placeholder="Imagen" accept=".jpg, .jpeg, .png, .pdf">
                                                     <div class="input-group-append">
                                                         <button class="btn btn-bg-warning btn-sm" type="button" id="btn_reverse_image" data-url="{{ route('submit.image.reverse') }}"><i class="fas fa-save text-success fs-3"></i></button>
                                                     </div>
@@ -1005,7 +1419,7 @@
                                             <img class="img-fluid red-image" src="{{ asset('assets/media/document/back.png') }}" alt="Imagen reverso de documento" width="40px">
                                             <div class="form-group mt-3">
                                                 <div class="input-group">
-                                                    <input type="file" class="form-control form-control-sm" id="reverse_image" placeholder="Imagen">
+                                                    <input type="file" class="form-control form-control-sm" id="reverse_image" placeholder="Imagen" accept=".jpg, .jpeg, .png, .pdf">
                                                     <div class="input-group-append">
                                                         <button class="btn btn-bg-warning btn-sm" type="button" id="btn_reverse_image" data-url="{{ route('submit.image.reverse') }}"><i class="fas fa-save text-success fs-3"></i></button>
                                                     </div>
@@ -1027,7 +1441,7 @@
                                             <img class="img-fluid red-image" src="{{ asset('assets/media/document/front.png') }}" alt="Imagen frontal de documento" width="40px">
                                             <div class="form-group mt-3">
                                                 <div class="input-group">
-                                                    <input type="file" class="form-control form-control-sm" id="front_image" placeholder="Imagen">
+                                                    <input type="file" class="form-control form-control-sm" id="front_image" placeholder="Imagen" accept=".jpg, .jpeg, .png, .pdf">
                                                     <div class="input-group-append">
                                                         <button class="btn btn-bg-warning btn-sm" type="button" id="btn_front_image" data-url="{{ route('submit.image.front') }}"><i class="fas fa-save text-success fs-3"></i></button>
                                                     </div>
@@ -1092,7 +1506,7 @@
                                             <img class="img-fluid red-image" src="{{ asset('assets/media/document/front.png') }}" alt="Imagen frontal de documento" width="40px">
                                             <div class="form-group mt-3">
                                                 <div class="input-group">
-                                                    <input type="file" class="form-control form-control-sm" id="front_image" placeholder="Imagen">
+                                                    <input type="file" class="form-control form-control-sm" id="front_image" placeholder="Imagen" accept=".jpg, .jpeg, .png, .pdf">
                                                     <div class="input-group-append">
                                                         <button class="btn btn-bg-warning btn-sm" type="button" id="btn_front_image" data-url="{{ route('submit.image.front') }}"><i class="fas fa-save text-success fs-3"></i></button>
                                                     </div>
@@ -1110,7 +1524,7 @@
                                             <img class="img-fluid red-image" src="{{ asset('assets/media/document/back.png') }}" alt="Imagen reverso de documento" width="40px">
                                             <div class="form-group mt-3">
                                                 <div class="input-group">
-                                                    <input type="file" class="form-control form-control-sm" id="reverse_image" placeholder="Imagen">
+                                                    <input type="file" class="form-control form-control-sm" id="reverse_image" placeholder="Imagen" accept=".jpg, .jpeg, .png, .pdf">
                                                     <div class="input-group-append">
                                                         <button class="btn btn-bg-warning btn-sm" type="button" id="btn_reverse_image" data-url="{{ route('submit.image.reverse') }}"><i class="fas fa-save text-success fs-3"></i></button>
                                                     </div>
