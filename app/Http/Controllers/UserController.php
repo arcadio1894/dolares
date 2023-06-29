@@ -459,9 +459,9 @@ class UserController extends Controller
                     $img->orientate();
                     $img->save($path.$filename, 80, 'jpg');
                     //$request->file('image')->move($path, $filename);
-                    if ( $user->front_image != null )
+                    if ( $user->reverse_image != null )
                     {
-                        $image_path = public_path().'/assets/images/user/documents/'.$user->front_image;
+                        $image_path = public_path().'/assets/images/user/documents/'.$user->reverse_image;
                         if (file_exists($image_path)) {
                             unlink($image_path);
                         }
@@ -509,4 +509,79 @@ class UserController extends Controller
         }
         return $randomString;
     }
+
+    public function indexUserVerificationImages()
+    {
+        $users = User::whereNotNull('front_image')
+            ->whereNotNull('reverse_image')
+            ->whereNull('flag_front')
+            ->orWhere('flag_front', 0)
+            ->whereNull('flag_reverse')
+            ->orWhere('flag_reverse', 0)
+            ->get();
+
+        $arrayUsers = [];
+
+        foreach ( $users as $user )
+        {
+            $rol = $user->getRoleNames()->first();
+            $role = Role::where('name', $rol)->first();
+            if (!$rol)
+            {
+                $rol = "Sin Rol";
+            }
+
+            $diferencia = "";
+            if ( isset($user->last_login) )
+            {
+                $fechaBD = Carbon::parse($user->last_login);
+
+                $diferencia = $fechaBD->diffForHumans();
+            }
+
+            if ($user->account_type == 'p')
+            {
+                $avatar = strtoupper(substr($user->first_name, 0, 1).substr($user->last_name, 0, 1));
+            } else {
+                $avatar = strtoupper(substr($user->business_name, 0, 1));
+            }
+
+            if ($user->account_type == 'p')
+            {
+                $name = $user->first_name . " " . $user->last_name;
+            } else {
+                $name = $user->business_name;
+            }
+
+            array_push($arrayUsers, [
+                "name" => $name,
+                "first_name" => $user->first_name,
+                "last_name" => $user->last_name,
+                "email" => $user->email,
+                "avatar" => $avatar,
+                "role_name" => $rol,
+                "last_login" => $diferencia,
+                "joined_date" => $user->created_at->format('d M Y, g:i a'),
+                "id" => $user->id,
+                "phone" => $user->phone,
+                "document" => $user->document,
+                "role_id" => (isset($role)) ? $role->name:"",
+                "role_description" => (isset($role)) ? $role->description:"Sin rol",
+                "direction" => $user->department->name . ','. $user->province->name . ',' . $user->district->name . ' ' . $user->direction,
+                "profession" => $user->profession,
+                "name_legal_representative" => $user->name_legal_representative,
+                "dni_legal_representative" => $user->dni_legal_representative,
+                "economic_sector" => ($user->economic_sector_id == null) ? null: $user->economic_sector->description,
+                "economic_activity" => ($user->economic_activity_id == null) ? null:$user->economic_activity->description,
+                "constitution_date" => ($user->constitution_date == null) ? null: $user->constitution_date->format('d/m/Y'),
+                "state_company" => ($user->state_company == 1) ? 'SI': 'NO',
+                "imageFront" => ($user->front_image == null) ? 'front.png': $user->front_image,
+                "imageReverse" => ($user->reverse_image == null) ? 'back.png': $user->reverse_image
+            ]);
+        }
+
+        return view('user.verifyImages', compact('arrayUsers'));
+    }
+
+
 }
