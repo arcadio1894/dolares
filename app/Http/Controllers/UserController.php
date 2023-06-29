@@ -477,9 +477,9 @@ class UserController extends Controller
 
                     $filename = 'pdf_reverse_'.$user->id . $this->generateRandomString(20) . '.' .$extension;
                     $request->file('image_reverse')->move($path, $filename);
-                    if ( $user->front_image != null )
+                    if ( $user->reverse_image != null )
                     {
-                        $image_path = public_path().'/assets/images/user/documents/'.$user->front_image;
+                        $image_path = public_path().'/assets/images/user/documents/'.$user->reverse_image;
                         if (file_exists($image_path)) {
                             unlink($image_path);
                         }
