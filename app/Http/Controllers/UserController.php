@@ -17,6 +17,7 @@ use http\Env\Response;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Role;
 
@@ -24,7 +25,8 @@ class UserController extends Controller
 {
     public function profile()
     {
-        return view('user.profile');
+        $token = UserToken::where('user_id', Auth::id())->first();
+        return view('user.profile', compact('token'));
     }
 
     public function token()
@@ -320,5 +322,121 @@ class UserController extends Controller
         $districts = District::where('province_id', $province_id)->get();
 
         return $districts;
+    }
+
+    public function submitImageFront( Request $request )
+    {
+        if( !$request->hasFile('image_front') )
+        {
+            return response()->json(['message' => "Suba una imagen o PDF."], 422);
+        }
+
+        DB::beginTransaction();
+        try {
+            $user = User::find(Auth::id());
+
+            if ( $user->front_image != null )
+            {
+                $image_path = public_path().'/assets/images/user/documents/'.$user->front_image;
+                if (file_exists($image_path)) {
+                    unlink($image_path);
+                }
+            }
+
+            if ($request->hasFile('image_front')) {
+                $image = $request->file('image_front');
+                $path = public_path().'/assets/images/user/documents/';
+                $extension = $request->file('image_front')->getClientOriginalExtension();
+                //$filename = $entry->id . '.' . $extension;
+                if ( strtoupper($extension) != "PDF" )
+                {
+                    $filename = $user->id.'_front_' . $this->generateRandomString(20).'.jpg';
+                    $img = Image::make($image);
+                    $img->orientate();
+                    $img->save($path.$filename, 80, 'jpg');
+                    //$request->file('image')->move($path, $filename);
+                    $user->front_image = $filename;
+                    $user->flag_front = null;
+                    $user->save();
+                } else {
+                    $filename = 'pdf_front_'.$user->id . $this->generateRandomString(20) . '.' .$extension;
+                    $request->file('image_front')->move($path, $filename);
+                    $user->front_image = $filename;
+                    $user->flag_front = null;
+                    $user->save();
+                }
+            }
+            DB::commit();
+        } catch ( \Throwable $e ) {
+            DB::rollBack();
+            return response()->json(['message' => $e->getMessage()], 422);
+        }
+
+        return response()->json([
+            'message' => 'Imagen frontal guardada con éxito.'
+        ], 200);
+    }
+
+    public function submitImageReverse( Request $request )
+    {
+        if( !$request->hasFile('image_reverse') )
+        {
+            return response()->json(['message' => "Suba una imagen o PDF."], 422);
+        }
+
+        DB::beginTransaction();
+        try {
+            $user = User::find(Auth::id());
+
+            if ( $user->front_image != null )
+            {
+                $image_path = public_path().'/assets/images/user/documents/'.$user->front_image;
+                if (file_exists($image_path)) {
+                    unlink($image_path);
+                }
+            }
+
+            if ($request->hasFile('image_reverse')) {
+                $image = $request->file('image_reverse');
+                $path = public_path().'/assets/images/user/documents/';
+                $extension = $request->file('image_reverse')->getClientOriginalExtension();
+                //$filename = $entry->id . '.' . $extension;
+                if ( strtoupper($extension) != "PDF" )
+                {
+                    $filename = $user->id.'_reverse_' . $this->generateRandomString(20).'.jpg';
+                    $img = Image::make($image);
+                    $img->orientate();
+                    $img->save($path.$filename, 80, 'jpg');
+                    //$request->file('image')->move($path, $filename);
+                    $user->reverse_image = $filename;
+                    $user->flag_reverse = null;
+                    $user->save();
+                } else {
+                    $filename = 'pdf_reverse_'.$user->id . $this->generateRandomString(20) . '.' .$extension;
+                    $request->file('image_reverse')->move($path, $filename);
+                    $user->reverse_image = $filename;
+                    $user->flag_reverse = null;
+                    $user->save();
+                }
+            }
+            DB::commit();
+        } catch ( \Throwable $e ) {
+            DB::rollBack();
+            return response()->json(['message' => $e->getMessage()], 422);
+        }
+
+        return response()->json([
+            'message' => 'Imagen de reverso guardada con éxito.'
+        ], 200);
+    }
+
+    public function generateRandomString($length = 25) {
+        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $charactersLength = strlen($characters);
+        $randomString = '';
+        for ($i = 0; $i < $length; $i++) {
+            $randomString .= $characters[rand(0, $charactersLength - 1)];
+        }
+        return $randomString;
     }
 }

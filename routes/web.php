@@ -195,6 +195,11 @@ Route::middleware('auth')->group(function (){
         Route::get('/usuario/detalles/{user_id}', [App\Http\Controllers\UserController::class, 'show'])
             ->name('users.show');
 
+        // TODO: Rutas de Imagenes de documentos de Usuarios
+        Route::post('/submit/image/front/', [App\Http\Controllers\UserController::class, 'submitImageFront'])
+            ->name('submit.image.front');
+        Route::post('/submit/image/reverse/', [App\Http\Controllers\UserController::class, 'submitImageReverse'])
+            ->name('submit.image.reverse');
 
     });
 });

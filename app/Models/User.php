@@ -48,6 +48,31 @@ class User extends Authenticatable
         'flag_reverse'
     ];
 
+    public function department()
+    {
+        return $this->belongsTo('App\Models\Department', 'department_id', 'id');
+    }
+
+    public function province()
+    {
+        return $this->belongsTo('App\Models\Province', 'province_id', 'id');
+    }
+
+    public function district()
+    {
+        return $this->belongsTo('App\Models\District', 'district_id', 'id');
+    }
+
+    public function economic_activity()
+    {
+        return $this->belongsTo('App\Models\EconomicActivity', 'economic_activity_id', 'id');
+    }
+
+    public function economic_sector()
+    {
+        return $this->belongsTo('App\Models\EconomicSector', 'economic_sector_id', 'id');
+    }
+
     /**
      * The attributes that should be hidden for serialization.
      *
@@ -68,7 +93,7 @@ class User extends Authenticatable
     ];
 
     protected $dates = [
-        'last_login', 'created_at'
+        'last_login', 'created_at', 'constitution_date'
     ];
 
     public function setLastLogin($value)
