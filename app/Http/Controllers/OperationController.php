@@ -12,6 +12,7 @@ use App\Models\Rejection;
 use App\Models\SourceFund;
 use App\Models\StopData;
 use App\Models\StopOperation;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -77,6 +78,26 @@ class OperationController extends Controller
         $sendAmount = $request->get('sendAmount');
         $type = $request->get('type');
         $ahorro = $request->get('ahorro');
+
+        $user = User::find(Auth::id());
+
+        if ( $user->front_image == null && $user->reverse_image==null )
+        {
+            $ruta = route("dashboard.profile");
+            return response()->json([
+                'error' => '<p>Falta completar tus datos, </p>'.'<a class="fw-bolder" href="'. $ruta .'">redirígete a esta pantalla</a>'.'<p> para continuar. </p>',
+                'flag' => false
+            ], 200);
+        }
+
+        if ( $user->flag_front != 1 && $user->flag_reverse != 1 )
+        {
+            $ruta = route("dashboard.profile");
+            return response()->json([
+                'error' => '<p>Falta completar tus datos, </p>'.'<a class="fw-bolder" href="'. $ruta .'">redirígete a esta pantalla</a>'.'<p> para continuar. </p>',
+                'flag' => false
+            ], 200);
+        }
 
         DB::beginTransaction();
         try {
