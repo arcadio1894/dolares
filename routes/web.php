@@ -206,6 +206,14 @@ Route::middleware('auth')->group(function (){
             ->name('verification.images.users');
         Route::get('/verificar/usuarios/imagenes/{user_id}', [App\Http\Controllers\UserController::class, 'userVerificationImages'])
             ->name('users.showImages');
+        Route::post('/verify/image/front/{user_id}', [App\Http\Controllers\UserController::class, 'verifyImageFront'])
+            ->name('verify.image.front');
+        Route::post('/verify/image/reverse/{user_id}', [App\Http\Controllers\UserController::class, 'verifyImageReverse'])
+            ->name('verify.image.reverse');
+        Route::post('/refuse/image/front/{user_id}', [App\Http\Controllers\UserController::class, 'refuseImageFront'])
+            ->name('refuse.image.front');
+        Route::post('/refuse/image/reverse/{user_id}', [App\Http\Controllers\UserController::class, 'refuseImageReverse'])
+            ->name('refuse.image.reverse');
 
     });
 });

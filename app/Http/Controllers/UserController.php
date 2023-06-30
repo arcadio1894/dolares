@@ -398,6 +398,7 @@ class UserController extends Controller
                     }
                     $user->front_image = $filename;
                     $user->flag_front = null;
+                    $user->reason_refuse_front = null;
                     $user->save();
                 } else {
 
@@ -417,6 +418,7 @@ class UserController extends Controller
                     }
                     $user->front_image = $filename;
                     $user->flag_front = null;
+                    $user->reason_refuse_front = null;
                     $user->save();
                 }
             }
@@ -468,6 +470,7 @@ class UserController extends Controller
                     }
                     $user->reverse_image = $filename;
                     $user->flag_reverse = null;
+                    $user->reason_refuse_reverse = null;
                     $user->save();
                 } else {
                     if ( $user->account_type == 'p' )
@@ -486,6 +489,7 @@ class UserController extends Controller
                     }
                     $user->reverse_image = $filename;
                     $user->flag_reverse = null;
+                    $user->reason_refuse_reverse = null;
                     $user->save();
                 }
             }
@@ -583,5 +587,96 @@ class UserController extends Controller
         return view('user.verifyImages', compact('arrayUsers'));
     }
 
+    public function userVerificationImages($user_id)
+    {
+        $user = User::find($user_id);
 
+        return view('user.verifyImageUser', compact('user'));
+    }
+
+    public function verifyImageFront($user_id)
+    {
+        DB::beginTransaction();
+        try {
+            $user = User::find($user_id);
+            $user->flag_front = 1;
+            $user->reason_refuse_front = null;
+            $user->save();
+            DB::commit();
+        } catch ( \Throwable $e ) {
+            DB::rollBack();
+            return response()->json(['message' => $e->getMessage()], 422);
+        }
+
+        return response()->json([
+            'message' => 'Imagen frontal verificada con éxito.'
+        ], 200);
+    }
+
+    public function verifyImageReverse($user_id)
+    {
+        DB::beginTransaction();
+        try {
+            $user = User::find($user_id);
+            $user->flag_reverse = 1;
+            $user->reason_refuse_reverse = null;
+            $user->save();
+            DB::commit();
+        } catch ( \Throwable $e ) {
+            DB::rollBack();
+            return response()->json(['message' => $e->getMessage()], 422);
+        }
+
+        return response()->json([
+            'message' => 'Imagen de reverso verificada con éxito.'
+        ], 200);
+    }
+
+    public function refuseImageFront(Request $request, $user_id)
+    {
+        if ( $request->get('reason') == "" )
+        {
+            return response()->json(['message' => "Ingrese una razón de rechazo del archivo."], 422);
+        }
+
+        DB::beginTransaction();
+        try {
+            $user = User::find($user_id);
+            $user->flag_front = 0;
+            $user->reason_refuse_front = $request->get('reason');
+            $user->save();
+            DB::commit();
+        } catch ( \Throwable $e ) {
+            DB::rollBack();
+            return response()->json(['message' => $e->getMessage()], 422);
+        }
+
+        return response()->json([
+            'message' => 'Imagen frontal rechazada con éxito.'
+        ], 200);
+    }
+
+    public function refuseImageReverse(Request $request, $user_id)
+    {
+        if ( $request->get('reason') == "" )
+        {
+            return response()->json(['message' => "Ingrese una razón de rechazo del archivo."], 422);
+        }
+
+        DB::beginTransaction();
+        try {
+            $user = User::find($user_id);
+            $user->flag_reverse = 0;
+            $user->reason_refuse_reverse = $request->get('reason');
+            $user->save();
+            DB::commit();
+        } catch ( \Throwable $e ) {
+            DB::rollBack();
+            return response()->json(['message' => $e->getMessage()], 422);
+        }
+
+        return response()->json([
+            'message' => 'Imagen de reverso rechazada con éxito.'
+        ], 200);
+    }
 }

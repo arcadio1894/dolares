@@ -260,7 +260,9 @@
                                             <label class="col-lg-12 fw-bolder fs-7 text-gray-800">Imagen reverso del documento</label>
                                             <br>
                                             @if ( substr($userData['imageReverse'],-3) == 'pdf' )
-                                                <a target="_blank" href="{{ asset('assets/images/user/documents/'.$userData['imageReverse']) }}" class="btn btn-outline-success">Ver PDF</a>
+                                                <div class="col-lg-12">
+                                                    <a target="_blank" href="{{ asset('assets/images/user/documents/'.$userData['imageReverse']) }}" class="btn btn-outline-success col-lg-12">Ver PDF</a>
+                                                </div>
                                             @else
                                                 <img class="img-fluid" src="{{ asset('assets/images/user/documents/'.$userData['imageReverse']) }}" alt="Imagen frontal de documento" width="40px">
                                             @endif

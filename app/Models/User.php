@@ -45,7 +45,9 @@ class User extends Authenticatable
         'front_image',
         'reverse_image',
         'flag_front',
-        'flag_reverse'
+        'flag_reverse',
+        'reason_refuse_front',
+        'reason_refuse_reverse'
     ];
 
     public function department()
