@@ -654,14 +654,10 @@ License: For each use you must have a valid license purchased only from above li
                     <!--end::Item-->
                     <!--begin::Item-->
                     <div class="text-center px-5 pt-5 pt-lg-10 px-lg-10">
-                        <img src="{{ asset('assets/media/product-demos/demo4.png') }}" class="card-rounded shadow mw-100" alt="" />
+                        <img src="{{ asset('assets/media/product-demos/demo3.png') }}" class="card-rounded shadow mw-100" alt="" />
                     </div>
                     <!--end::Item-->
-                    <!--begin::Item-->
-                    <div class="text-center px-5 pt-5 pt-lg-10 px-lg-10">
-                        <img src="{{ asset('assets/media/product-demos/demo5.png') }}" class="card-rounded shadow mw-100" alt="" />
-                    </div>
-                    <!--end::Item-->
+                    
                 </div>
                 <!--end::Slider-->
                 <!--begin::Slider button-->
@@ -771,31 +767,31 @@ License: For each use you must have a valid license purchased only from above li
                                     <h4 class="fw-bolder text-gray-400 mb-6">Stay Connected</h4>
                                     <!--end::Subtitle-->
                                     <!--begin::Link-->
-                                    <a href="#" class="mb-6">
+                                    <a href="https://www.facebook.com/profile.php?id=100091569067559" class="mb-6" target="_blank">
                                         <img src="{{ asset('assets/media/svg/brand-logos/facebook-4.svg') }}" class="h-20px me-2" alt="" />
                                         <span class="text-white opacity-50 text-hover-primary fs-5 mb-6">Facebook</span>
                                     </a>
                                     <!--end::Link-->
                                     <!--begin::Link-->
-                                    <a href="#" class="mb-6">
+                                    <a href="https://www.youtube.com/@Dolareros" class="mb-6" target="_blank">
                                         <img src="{{ asset('assets/media/svg/brand-logos/youtube-play.svg') }}" class="h-20px me-2" alt="" />
                                         <span class="text-white opacity-50 text-hover-primary fs-5 mb-6">YouTube</span>
                                     </a>
                                     <!--end::Link-->
                                     <!--begin::Link-->
-                                    <a href="#" class="mb-6">
+                                    <a href="https://twitter.com/dolareros" class="mb-6" target="_blank">
                                         <img src="{{ asset('assets/media/svg/brand-logos/twitter.svg') }}" class="h-20px me-2" alt="" />
                                         <span class="text-white opacity-50 text-hover-primary fs-5 mb-6">Twitter</span>
                                     </a>
                                     <!--end::Link-->
                                     <!--begin::Link-->
-                                    <!--<a href="#" class="mb-6">
-                                        <img src="{{ asset('assets/media/svg/brand-logos/dribbble-icon-1.svg') }}" class="h-20px me-2" alt="" />
-                                        <span class="text-white opacity-50 text-hover-primary fs-5 mb-6">Linkedin</span>
-                                    </a>-->
+                                    <a href="#" class="mb-6">
+                                        <img src="{{ asset('assets/media/svg/brand-logos/linkedin.png') }}" class="h-20px me-2" alt="" />
+                                        <span class="text-white opacity-50 text-hover-primary fs-5 mb-6">LinkedIn</span>
+                                    </a>
                                     <!--end::Link-->
                                     <!--begin::Link-->
-                                    <a href="#" class="mb-6">
+                                    <a href="https://www.instagram.com/dolareros/" class="mb-6" target="_blank">
                                         <img src="{{ asset('assets/media/svg/brand-logos/instagram-2-1.svg') }}" class="h-20px me-2" alt="" />
                                         <span class="text-white opacity-50 text-hover-primary fs-5 mb-6">Instagram</span>
                                     </a>
@@ -830,7 +826,7 @@ License: For each use you must have a valid license purchased only from above li
                         </div>
                         <!--end::Copyright-->
                         <!--begin::Menu-->
-                        <ul class="menu menu-gray-600 menu-hover-primary fw-bold fs-6 fs-md-5 order-1 mb-5 mb-md-0">
+                        <!--<ul class="menu menu-gray-600 menu-hover-primary fw-bold fs-6 fs-md-5 order-1 mb-5 mb-md-0">
                             <li class="menu-item">
                                 <a href="https://keenthemes.com" target="_blank" class="menu-link px-2">About</a>
                             </li>
@@ -840,7 +836,7 @@ License: For each use you must have a valid license purchased only from above li
                             <li class="menu-item">
                                 <a href="" target="_blank" class="menu-link px-2">Purchase</a>
                             </li>
-                        </ul>
+                        </ul>-->
                         <!--end::Menu-->
                     </div>
                     <!--end::Wrapper-->
