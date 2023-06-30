@@ -20,6 +20,8 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/preguntas/frecuentes', [App\Http\Controllers\LandingController::class, 'faqs'])
+    ->name('faqs');
 
 // TODO: Rutas extras de departamentos/Provincias/Distritos
 Route::get('/get/province/of/department/{department_id}', [App\Http\Controllers\UserController::class, 'getProvincesOfDepartment']);

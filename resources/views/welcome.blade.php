@@ -742,7 +742,7 @@ License: For each use you must have a valid license purchased only from above li
                                     <h4 class="fw-bolder text-gray-400 mb-6">Más información</h4>
                                     <!--end::Subtitle-->
                                     <!--begin::Link-->
-                                    <a href="#" class="text-white opacity-50 text-hover-primary fs-5 mb-6">Preguntas Frecuentes</a>
+                                    <a href="{{ route('faqs') }}" class="text-white opacity-50 text-hover-primary fs-5 mb-6">Preguntas Frecuentes</a>
                                     <!--end::Link-->
                                     <!--begin::Link-->
                                     <a href="#" class="text-white opacity-50 text-hover-primary fs-5 mb-6">Términos y Condiciones</a>
