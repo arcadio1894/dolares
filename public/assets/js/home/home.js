@@ -87,10 +87,13 @@ function generateOperation() {
             {
                 Swal.fire({
                     text: response.error,
-                    icon: "success",
+                    icon: "error",
                     buttonsStyling: !1,
+                    confirmButtonText: "Ok, entendido!",
                     customClass: {confirmButton: "btn btn-primary"}
                 }).then((function (e) {
+                    button.prop("disabled", false);
+                    location.href = response.url;
                 }))
             } else {
                 toastr.success(response.message, 'Éxito',

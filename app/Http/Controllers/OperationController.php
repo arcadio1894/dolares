@@ -85,8 +85,9 @@ class OperationController extends Controller
         {
             $ruta = route("dashboard.profile");
             return response()->json([
-                'error' => '<p>Falta completar tus datos, </p>'.'<a class="fw-bolder" href="'. $ruta .'">redirígete a esta pantalla</a>'.'<p> para continuar. </p>',
-                'flag' => false
+                'error' => 'Falta completar tus datos, dirígete a tu perfil para continuar.',
+                'flag' => false,
+                'url' => $ruta
             ], 200);
         }
 
@@ -94,8 +95,9 @@ class OperationController extends Controller
         {
             $ruta = route("dashboard.profile");
             return response()->json([
-                'error' => '<p>Falta completar tus datos, </p>'.'<a class="fw-bolder" href="'. $ruta .'">redirígete a esta pantalla</a>'.'<p> para continuar. </p>',
-                'flag' => false
+                'error' => 'Estamos validando tu información personal, éste paso sélo nos tomará unos minutos, Dirígete a tu paerfil para dar seguimiento a tu solicitud.',
+                'flag' => false,
+                'url' => $ruta
             ], 200);
         }
 
