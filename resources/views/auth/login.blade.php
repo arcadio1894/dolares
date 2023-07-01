@@ -140,7 +140,7 @@
         <!--begin::Links-->
         <div class="d-flex flex-center fw-bold fs-6">
             <a href="https://dolareros.com/" class="text-muted text-hover-primary px-2" target="_blank">Dolareros</a>
-            <a href="https://dolareros.com/" class="text-muted text-hover-primary px-2" target="_blank">Dolareros</a>
+            <a href="https://api.whatsapp.com/send?phone=51921867035&amp;text=Hola%20necesito%20ayuda" class="text-muted text-hover-primary px-2" target="_blank">Soporte</a>
         </div>
         <!--end::Links-->
     </div>

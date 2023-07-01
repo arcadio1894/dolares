@@ -2341,11 +2341,11 @@
                     <!--begin::Copyright-->
                     <div class="text-dark order-2 order-md-1">
                         <span class="text-gray-400 fw-bold me-1">Desarrollado por</span>
-                        <a href="https://edesce.com/" target="_blank" class="text-muted text-hover-primary fw-bold me-2 fs-6">EDESCE</a>
+                        <a href="https://dolareros.com/" target="_blank" class="text-muted text-hover-primary fw-bold me-2 fs-6">Dolareros</a>
                     </div>
                     <!--end::Copyright-->
                     <!--begin::Menu-->
-                    <ul class="menu menu-gray-600 menu-hover-primary fw-bold order-1">
+                    <!--<ul class="menu menu-gray-600 menu-hover-primary fw-bold order-1">
                         <li class="menu-item">
                             <a href="https://keenthemes.com" target="_blank" class="menu-link px-2">About</a>
                         </li>
@@ -2355,7 +2355,7 @@
                         <li class="menu-item">
                             <a href="https://1.envato.market/EA4JP" target="_blank" class="menu-link px-2">Purchase</a>
                         </li>
-                    </ul>
+                    </ul>-->
                     <!--end::Menu-->
                 </div>
                 <!--end::Container-->
