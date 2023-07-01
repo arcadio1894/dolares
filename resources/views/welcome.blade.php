@@ -229,6 +229,11 @@ License: For each use you must have a valid license purchased only from above li
                                         <a class="menu-link nav-link py-3 px-4 px-xxl-6" href="#how-it-works" data-kt-scroll-toggle="true" data-kt-drawer-dismiss="true">¿Cómo cambiar?</a>
                                         <!--end::Menu link-->
                                     </div>
+                                    <div class="menu-item">
+                                    <!--begin::Menu link-->
+                                        <a class="menu-link nav-link py-3 px-4 px-xxl-6" href="{{ route('faqs') }}" data-kt-scroll-toggle="true" data-kt-drawer-dismiss="true">FAQS</a>
+                                    <!--end::Menu link-->
+                                </div>
 
                                     @auth
                                         <div class="menu-item">
@@ -745,19 +750,19 @@ License: For each use you must have a valid license purchased only from above li
                                     <a href="{{ route('faqs') }}" class="text-white opacity-50 text-hover-primary fs-5 mb-6">Preguntas Frecuentes</a>
                                     <!--end::Link-->
                                     <!--begin::Link-->
-                                    <a href="#" class="text-white opacity-50 text-hover-primary fs-5 mb-6">Términos y Condiciones</a>
+                                    <a href="{{ route('faqs') }}" class="text-white opacity-50 text-hover-primary fs-5 mb-6">Términos y Condiciones</a>
                                     <!--end::Link-->
                                     <!--begin::Link-->
-                                    <a href="#" class="text-white opacity-50 text-hover-primary fs-5 mb-6">Políticas de Privacidad</a>
+                                    <a href="{{ route('faqs') }}" class="text-white opacity-50 text-hover-primary fs-5 mb-6">Políticas de Privacidad</a>
                                     <!--end::Link-->
                                     <!--begin::Link-->
-                                    <a href="#" class="text-white opacity-50 text-hover-primary fs-5 mb-6">Video Tutoriales</a>
+                                    <a href="{{ route('faqs') }}" class="text-white opacity-50 text-hover-primary fs-5 mb-6">Video Tutoriales</a>
                                     <!--end::Link-->
                                     <!--begin::Link-->
-                                    <a href="#" class="text-white opacity-50 text-hover-primary fs-5 mb-6">Atención al Cliente</a>
+                                    <a href="{{ route('faqs') }}" class="text-white opacity-50 text-hover-primary fs-5 mb-6">Atención al Cliente</a>
                                     <!--end::Link-->
                                     <!--begin::Link-->
-                                    <a href="#" class="text-white opacity-50 text-hover-primary fs-5">Libro de reclamaciones</a>
+                                    <a href="{{ route('faqs') }}" class="text-white opacity-50 text-hover-primary fs-5">Libro de reclamaciones</a>
                                     <!--end::Link-->
                                 </div>
                                 <!--end::Links-->
@@ -785,7 +790,7 @@ License: For each use you must have a valid license purchased only from above li
                                     </a>
                                     <!--end::Link-->
                                     <!--begin::Link-->
-                                    <a href="#" class="mb-6">
+                                    <a href="https://www.linkedin.com/company/dolareros" class="mb-6">
                                         <img src="{{ asset('assets/media/svg/brand-logos/linkedin.png') }}" class="h-20px me-2" alt="" />
                                         <span class="text-white opacity-50 text-hover-primary fs-5 mb-6">LinkedIn</span>
                                     </a>
@@ -821,7 +826,7 @@ License: For each use you must have a valid license purchased only from above li
                             </a>
                             <!--end::Logo image-->
                             <!--begin::Logo image-->
-                            <span class="mx-5 fs-6 fw-bold text-gray-600 pt-1" href="https://edesce.com">© 2023 EDESCE Consultora.</span>
+                            <span class="mx-5 fs-6 fw-bold text-gray-600 pt-1" href="https://edesce.com">© 2023 Dolareros.</span>
                             <!--end::Logo image-->
                         </div>
                         <!--end::Copyright-->
