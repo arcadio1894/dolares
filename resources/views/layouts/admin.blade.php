@@ -52,6 +52,7 @@
                         <!--begin::Nav-->
                         <ul class="nav flex-column">
                             <!--begin::Nav item-->
+                            @can('enable_menuPrincipal')
                             <li class="nav-item mb-2" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-placement="right" data-bs-dismiss="click" title="Menú principal">
                                 <!--begin::Nav link-->
                                 <a class="nav-link btn btn-icon btn-active-color-primary btn-color-gray-400 btn-active-light @yield('activeTabPanelMenu')" data-bs-toggle="tab" href="#kt_aside_nav_tab_projects">
@@ -68,8 +69,10 @@
                                 </a>
                                 <!--end::Nav link-->
                             </li>
+                            @endcan
                             <!--end::Nav item-->
                             <!--begin::Nav item-->
+                            @can('enable_menuGraphs')
                             <li class="nav-item mb-2" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-placement="right" data-bs-dismiss="click" title="Gráficos">
                                 <!--begin::Nav link-->
                                 <a class="nav-link btn btn-icon btn-active-color-primary btn-color-gray-400 btn-active-light @yield('activeTabPanelGraphs')" data-bs-toggle="tab" href="#kt_aside_nav_tab_graphs">
@@ -86,8 +89,10 @@
                                 </a>
                                 <!--end::Nav link-->
                             </li>
+                            @endcan
                             <!--end::Nav item-->
                             <!--begin::Nav item-->
+                            @can('enable_menuAdmin')
                             <li class="nav-item mb-2" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-placement="right" data-bs-dismiss="click" title="Menu Admin">
                                 <!--begin::Nav link-->
                                 <a class="nav-link btn btn-icon btn-active-color-primary btn-color-gray-400 btn-active-light @yield('activeTabPanelAdmin')" data-bs-toggle="tab" href="#kt_aside_nav_tab_menu">
@@ -102,6 +107,7 @@
                                 </a>
                                 <!--end::Nav link-->
                             </li>
+                            @endcan
                             <!--end::Nav item-->
                         </ul>
                         <!--end::Tabs-->
@@ -296,6 +302,7 @@
                             <!--begin::Tab content-->
                             <div class="tab-content">
                                 <!--begin::Tab pane-->
+                                @can('enable_menuPrincipal')
                                 <div class="tab-pane fade @yield('activeTabHome')" id="kt_aside_nav_tab_projects" role="tabpanel">
                                     <!--begin::Wrapper-->
                                     <div class="m-0">
@@ -306,6 +313,7 @@
                                             <!--begin::Items-->
                                             <div class="mb-10">
                                                 <!--begin::Item-->
+                                                @can('calculator_menuPrincipal')
                                                 <a href="{{ route('home') }}" class="text-primary custom-list d-flex align-items-center px-5 py-4">
                                                     <!--begin::Symbol-->
                                                     <div class="symbol symbol-40px me-5">
@@ -325,7 +333,8 @@
                                                     </div>
                                                     <!--begin::Description-->
                                                 </a>
-
+                                                @endcan
+                                                @can('myAccounts_menuPrincipal')
                                                 <a href="{{ (session()->has('codigo_correcto')) ? route('accountCustomer.index') : route('code.index', 1) }}" class="text-primary custom-list d-flex align-items-center px-5 py-4">
                                                     <!--begin::Symbol-->
                                                     <div class="symbol symbol-40px me-5">
@@ -345,7 +354,8 @@
                                                     </div>
                                                     <!--begin::Description-->
                                                 </a>
-
+                                                @endcan
+                                                @can('myOperations_menuPrincipal')
                                                 <a href="{{ (session()->has('codigo_correcto')) ? route('operationCustomer.index') : route('code.index', 2) }}" class="text-primary custom-list d-flex align-items-center px-5 py-4">
                                                     <!--begin::Symbol-->
                                                     <div class="symbol symbol-40px me-5">
@@ -365,6 +375,7 @@
                                                     </div>
                                                     <!--begin::Description-->
                                                 </a>
+                                                @endcan
                                             </div>
                                             <!--end::Items-->
                                         </div>
@@ -372,8 +383,10 @@
                                     </div>
                                     <!--end::Wrapper-->
                                 </div>
+                                @endcan
                                 <!--end::Tab pane-->
                                 <!--begin::Tab pane-->
+                                @can('enable_menuGraphs')
                                 <div class="tab-pane fade @yield('activeTabGraphs')" id="kt_aside_nav_tab_graphs" role="tabpanel">
                                     <!--begin::Wrapper-->
                                     <div class="m-0">
@@ -405,6 +418,7 @@
                                                 </a>
                                                 --}}<!--end::Item-->
                                                 <!--begin::Item-->
+                                                @can('dolareros_menuGraphs')
                                                 <a href="{{ route('dashboard.graphs.Dolareros') }}" class="custom-list d-flex align-items-center px-5 py-4">
                                                     <!--begin::Symbol-->
                                                     <div class="symbol symbol-40px me-5">
@@ -424,8 +438,10 @@
                                                     </div>
                                                     <!--begin::Description-->
                                                 </a>
+                                                @endcan
                                                 <!--end::Item-->
                                                 <!--begin::Item-->
+                                                @can('kambista_menuGraphs')
                                                 <a href="{{ route('dashboard.graphs.Kambista') }}" class="custom-list d-flex align-items-center px-5 py-4">
                                                     <!--begin::Symbol-->
                                                     <div class="symbol symbol-40px me-5">
@@ -445,8 +461,10 @@
                                                     </div>
                                                     <!--begin::Description-->
                                                 </a>
+                                                @endcan
                                                 <!--end::Item-->
                                                 <!--begin::Item-->
+                                                @can('bloomberg_menuGraphs')
                                                 <a href="{{ route('dashboard.graphs.Bloomberg') }}" class="custom-list d-flex align-items-center px-5 py-4">
                                                     <!--begin::Symbol-->
                                                     <div class="symbol symbol-40px me-5">
@@ -466,8 +484,10 @@
                                                     </div>
                                                     <!--begin::Description-->
                                                 </a>
+                                                @endcan
                                                 <!--end::Item-->
                                                 <!--begin::Item-->
+                                                @can('google_menuGraphs')
                                                 <a href="{{ route('dashboard.graphs.Google') }}" class="custom-list d-flex align-items-center px-5 py-4">
                                                     <!--begin::Symbol-->
                                                     <div class="symbol symbol-40px me-5">
@@ -487,8 +507,10 @@
                                                     </div>
                                                     <!--begin::Description-->
                                                 </a>
+                                                @endcan
                                                 <!--end::Item-->
                                                 <!--begin::Item-->
+                                                @can('cocosylucas_menuGraphs')
                                                 <a href="{{ route('dashboard.graphs.Cocosylucas') }}" class="custom-list d-flex align-items-center px-5 py-4">
                                                     <!--begin::Symbol-->
                                                     <div class="symbol symbol-40px me-5">
@@ -508,8 +530,10 @@
                                                     </div>
                                                     <!--begin::Description-->
                                                 </a>
+                                                @endcan
                                                 <!--end::Item-->
                                                 <!--begin::Item-->
+                                                @can('tkambio_menuGraphs')
                                                 <a href="{{ route('dashboard.graphs.TKambio') }}" class="custom-list d-flex align-items-center px-5 py-4">
                                                     <!--begin::Symbol-->
                                                     <div class="symbol symbol-40px me-5">
@@ -529,8 +553,10 @@
                                                     </div>
                                                     <!--begin::Description-->
                                                 </a>
+                                                @endcan
                                                 <!--end::Item-->
                                                 <!--begin::Item-->
+                                                @can('secuEx_menuGraphs')
                                                 <a href="{{ route('dashboard.graphs.SecuEx') }}" class="custom-list d-flex align-items-center px-5 py-4">
                                                     <!--begin::Symbol-->
                                                     <div class="symbol symbol-40px me-5">
@@ -550,6 +576,7 @@
                                                     </div>
                                                     <!--begin::Description-->
                                                 </a>
+                                                @endcan
                                                 <!--end::Item-->
                                             </div>
                                             <!--end::Items-->
@@ -559,7 +586,7 @@
                                     <!--end::Wrapper-->
                                 </div>
                                 <!--end::Tab pane-->
-
+                                @endcan
                                 <!--begin::Tab pane-->
                                 <div class="tab-pane fade @yield('activeTabProfile')" id="kt_aside_nav_tab_profile" role="tabpanel">
                                     <!--begin::Wrapper-->
@@ -623,6 +650,7 @@
                                 <!--end::Tab pane-->
 
                                 <!--begin::Tab pane-->
+                                @can('enable_menuAdmin')
                                 <div class="tab-pane fade @yield('activeTabAdmin')" id="kt_aside_nav_tab_menu" role="tabpanel">
                                     <!--begin::Menu-->
                                     <div class="menu menu-column menu-fit menu-rounded menu-title-gray-600 menu-icon-gray-400 menu-state-primary menu-state-icon-primary menu-state-bullet-primary menu-arrow-gray-500 fw-bold fs-5 px-6 my-5 my-lg-0" id="kt_aside_menu" data-kt-menu="true">
@@ -666,12 +694,12 @@
                                                 </a>
                                             </div>--}}
 
-
                                             <div class="menu-item">
                                                 <div class="menu-content pt-8 pb-2">
-                                                    <span class="menu-section text-muted text-uppercase fs-8 ls-1">BANCOS Y CUENTAS</span>
+                                                    <span class="menu-section text-muted text-uppercase fs-8 ls-1">OPCIONES DE ADMINISTRADOR</span>
                                                 </div>
                                             </div>
+                                            @can('enable_accountDolareros')
                                             <div data-kt-menu-trigger="click" class="menu-item menu-accordion @yield('showMenuAccordionAccounts') {{--show--}}">
                                                 <span class="menu-link @yield('activeMenuAccordionAccounts') {{--active--}}">
                                                     <span class="menu-icon">
@@ -697,150 +725,10 @@
                                                             <span class="menu-title">Listado de cuentas</span>
                                                         </a>
                                                     </div>
-                                                    {{--<div class="menu-item">
-                                                        <a class="menu-link @yield('activeMenuAccountCreate')" href="#">
-                                                            <span class="menu-bullet">
-                                                                <span class="bullet bullet-dot"></span>
-                                                            </span>
-                                                            <span class="menu-title">Nueva cuenta</span>
-                                                        </a>
-                                                    </div>--}}
-                                                    {{--<div data-kt-menu-trigger="click" class="menu-item menu-accordion show">
-                                                        <span class="menu-link active">
-                                                            <span class="menu-bullet">
-                                                                <span class="bullet bullet-dot"></span>
-                                                            </span>
-                                                            <span class="menu-title">Profile</span>
-                                                            <span class="menu-arrow"></span>
-                                                        </span>
-                                                        <div class="menu-sub menu-sub-accordion menu-active-bg">
-                                                            <div class="menu-item">
-                                                                <a class="menu-link active" href="../../demo7/dist/pages/profile/overview.html">
-                                                                    <span class="menu-bullet">
-                                                                        <span class="bullet bullet-dot"></span>
-                                                                    </span>
-                                                                    <span class="menu-title">Overview</span>
-                                                                </a>
-                                                            </div>
-                                                            <div class="menu-item">
-                                                                <a class="menu-link" href="../../demo7/dist/pages/profile/projects.html">
-                                                                    <span class="menu-bullet">
-                                                                        <span class="bullet bullet-dot"></span>
-                                                                    </span>
-                                                                    <span class="menu-title">Projects</span>
-                                                                </a>
-                                                            </div>
-                                                            <div class="menu-item">
-                                                                <a class="menu-link" href="../../demo7/dist/pages/profile/campaigns.html">
-																			<span class="menu-bullet">
-																				<span class="bullet bullet-dot"></span>
-																			</span>
-                                                                    <span class="menu-title">Campaigns</span>
-                                                                </a>
-                                                            </div>
-                                                            <div class="menu-item">
-                                                                <a class="menu-link" href="../../demo7/dist/pages/profile/documents.html">
-																			<span class="menu-bullet">
-																				<span class="bullet bullet-dot"></span>
-																			</span>
-                                                                    <span class="menu-title">Documents</span>
-                                                                </a>
-                                                            </div>
-                                                            <div class="menu-item">
-                                                                <a class="menu-link" href="../../demo7/dist/pages/profile/connections.html">
-																			<span class="menu-bullet">
-																				<span class="bullet bullet-dot"></span>
-																			</span>
-                                                                    <span class="menu-title">Connections</span>
-                                                                </a>
-                                                            </div>
-                                                            <div class="menu-item">
-                                                                <a class="menu-link" href="../../demo7/dist/pages/profile/activity.html">
-																			<span class="menu-bullet">
-																				<span class="bullet bullet-dot"></span>
-																			</span>
-                                                                    <span class="menu-title">Activity</span>
-                                                                </a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
-                                                        <span class="menu-link">
-                                                            <span class="menu-bullet">
-                                                                <span class="bullet bullet-dot"></span>
-                                                            </span>
-                                                            <span class="menu-title">Projects</span>
-                                                            <span class="menu-arrow"></span>
-                                                        </span>
-                                                        <div class="menu-sub menu-sub-accordion menu-active-bg">
-                                                            <div class="menu-item">
-                                                                <a class="menu-link" href="../../demo7/dist/pages/projects/list.html">
-																			<span class="menu-bullet">
-																				<span class="bullet bullet-dot"></span>
-																			</span>
-                                                                    <span class="menu-title">My Projects</span>
-                                                                </a>
-                                                            </div>
-                                                            <div class="menu-item">
-                                                                <a class="menu-link" href="../../demo7/dist/pages/projects/project.html">
-																			<span class="menu-bullet">
-																				<span class="bullet bullet-dot"></span>
-																			</span>
-                                                                    <span class="menu-title">View Project</span>
-                                                                </a>
-                                                            </div>
-                                                            <div class="menu-item">
-                                                                <a class="menu-link" href="../../demo7/dist/pages/projects/targets.html">
-																			<span class="menu-bullet">
-																				<span class="bullet bullet-dot"></span>
-																			</span>
-                                                                    <span class="menu-title">Targets</span>
-                                                                </a>
-                                                            </div>
-                                                            <div class="menu-item">
-                                                                <a class="menu-link" href="../../demo7/dist/pages/projects/budget.html">
-																			<span class="menu-bullet">
-																				<span class="bullet bullet-dot"></span>
-																			</span>
-                                                                    <span class="menu-title">Budget</span>
-                                                                </a>
-                                                            </div>
-                                                            <div class="menu-item">
-                                                                <a class="menu-link" href="../../demo7/dist/pages/projects/users.html">
-																			<span class="menu-bullet">
-																				<span class="bullet bullet-dot"></span>
-																			</span>
-                                                                    <span class="menu-title">Users</span>
-                                                                </a>
-                                                            </div>
-                                                            <div class="menu-item">
-                                                                <a class="menu-link" href="../../demo7/dist/pages/projects/files.html">
-																			<span class="menu-bullet">
-																				<span class="bullet bullet-dot"></span>
-																			</span>
-                                                                    <span class="menu-title">Files</span>
-                                                                </a>
-                                                            </div>
-                                                            <div class="menu-item">
-                                                                <a class="menu-link" href="../../demo7/dist/pages/projects/activity.html">
-																			<span class="menu-bullet">
-																				<span class="bullet bullet-dot"></span>
-																			</span>
-                                                                    <span class="menu-title">Activity</span>
-                                                                </a>
-                                                            </div>
-                                                            <div class="menu-item">
-                                                                <a class="menu-link" href="../../demo7/dist/pages/projects/settings.html">
-																			<span class="menu-bullet">
-																				<span class="bullet bullet-dot"></span>
-																			</span>
-                                                                    <span class="menu-title">Settings</span>
-                                                                </a>
-                                                            </div>
-                                                        </div>
-                                                    </div>--}}
                                                 </div>
                                             </div>
+                                            @endcan
+                                            @can('enable_banks')
                                             <div data-kt-menu-trigger="click" class="menu-item menu-accordion @yield('showMenuAccordionBanks') {{--show--}}">
                                                 <span class="menu-link @yield('activeMenuAccordionBanks') {{--active--}}">
                                                     <span class="menu-icon">
@@ -866,150 +754,10 @@
                                                             <span class="menu-title">Listado de bancos</span>
                                                         </a>
                                                     </div>
-                                                    {{--<div class="menu-item">
-                                                        <a class="menu-link @yield('activeMenuBankCreate')" href="#">
-                                                            <span class="menu-bullet">
-                                                                <span class="bullet bullet-dot"></span>
-                                                            </span>
-                                                            <span class="menu-title">Nuevo banco</span>
-                                                        </a>
-                                                    </div>--}}
-                                                    {{--<div data-kt-menu-trigger="click" class="menu-item menu-accordion show">
-                                                        <span class="menu-link active">
-                                                            <span class="menu-bullet">
-                                                                <span class="bullet bullet-dot"></span>
-                                                            </span>
-                                                            <span class="menu-title">Profile</span>
-                                                            <span class="menu-arrow"></span>
-                                                        </span>
-                                                        <div class="menu-sub menu-sub-accordion menu-active-bg">
-                                                            <div class="menu-item">
-                                                                <a class="menu-link active" href="../../demo7/dist/pages/profile/overview.html">
-                                                                    <span class="menu-bullet">
-                                                                        <span class="bullet bullet-dot"></span>
-                                                                    </span>
-                                                                    <span class="menu-title">Overview</span>
-                                                                </a>
-                                                            </div>
-                                                            <div class="menu-item">
-                                                                <a class="menu-link" href="../../demo7/dist/pages/profile/projects.html">
-                                                                    <span class="menu-bullet">
-                                                                        <span class="bullet bullet-dot"></span>
-                                                                    </span>
-                                                                    <span class="menu-title">Projects</span>
-                                                                </a>
-                                                            </div>
-                                                            <div class="menu-item">
-                                                                <a class="menu-link" href="../../demo7/dist/pages/profile/campaigns.html">
-																			<span class="menu-bullet">
-																				<span class="bullet bullet-dot"></span>
-																			</span>
-                                                                    <span class="menu-title">Campaigns</span>
-                                                                </a>
-                                                            </div>
-                                                            <div class="menu-item">
-                                                                <a class="menu-link" href="../../demo7/dist/pages/profile/documents.html">
-																			<span class="menu-bullet">
-																				<span class="bullet bullet-dot"></span>
-																			</span>
-                                                                    <span class="menu-title">Documents</span>
-                                                                </a>
-                                                            </div>
-                                                            <div class="menu-item">
-                                                                <a class="menu-link" href="../../demo7/dist/pages/profile/connections.html">
-																			<span class="menu-bullet">
-																				<span class="bullet bullet-dot"></span>
-																			</span>
-                                                                    <span class="menu-title">Connections</span>
-                                                                </a>
-                                                            </div>
-                                                            <div class="menu-item">
-                                                                <a class="menu-link" href="../../demo7/dist/pages/profile/activity.html">
-																			<span class="menu-bullet">
-																				<span class="bullet bullet-dot"></span>
-																			</span>
-                                                                    <span class="menu-title">Activity</span>
-                                                                </a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
-                                                        <span class="menu-link">
-                                                            <span class="menu-bullet">
-                                                                <span class="bullet bullet-dot"></span>
-                                                            </span>
-                                                            <span class="menu-title">Projects</span>
-                                                            <span class="menu-arrow"></span>
-                                                        </span>
-                                                        <div class="menu-sub menu-sub-accordion menu-active-bg">
-                                                            <div class="menu-item">
-                                                                <a class="menu-link" href="../../demo7/dist/pages/projects/list.html">
-																			<span class="menu-bullet">
-																				<span class="bullet bullet-dot"></span>
-																			</span>
-                                                                    <span class="menu-title">My Projects</span>
-                                                                </a>
-                                                            </div>
-                                                            <div class="menu-item">
-                                                                <a class="menu-link" href="../../demo7/dist/pages/projects/project.html">
-																			<span class="menu-bullet">
-																				<span class="bullet bullet-dot"></span>
-																			</span>
-                                                                    <span class="menu-title">View Project</span>
-                                                                </a>
-                                                            </div>
-                                                            <div class="menu-item">
-                                                                <a class="menu-link" href="../../demo7/dist/pages/projects/targets.html">
-																			<span class="menu-bullet">
-																				<span class="bullet bullet-dot"></span>
-																			</span>
-                                                                    <span class="menu-title">Targets</span>
-                                                                </a>
-                                                            </div>
-                                                            <div class="menu-item">
-                                                                <a class="menu-link" href="../../demo7/dist/pages/projects/budget.html">
-																			<span class="menu-bullet">
-																				<span class="bullet bullet-dot"></span>
-																			</span>
-                                                                    <span class="menu-title">Budget</span>
-                                                                </a>
-                                                            </div>
-                                                            <div class="menu-item">
-                                                                <a class="menu-link" href="../../demo7/dist/pages/projects/users.html">
-																			<span class="menu-bullet">
-																				<span class="bullet bullet-dot"></span>
-																			</span>
-                                                                    <span class="menu-title">Users</span>
-                                                                </a>
-                                                            </div>
-                                                            <div class="menu-item">
-                                                                <a class="menu-link" href="../../demo7/dist/pages/projects/files.html">
-																			<span class="menu-bullet">
-																				<span class="bullet bullet-dot"></span>
-																			</span>
-                                                                    <span class="menu-title">Files</span>
-                                                                </a>
-                                                            </div>
-                                                            <div class="menu-item">
-                                                                <a class="menu-link" href="../../demo7/dist/pages/projects/activity.html">
-																			<span class="menu-bullet">
-																				<span class="bullet bullet-dot"></span>
-																			</span>
-                                                                    <span class="menu-title">Activity</span>
-                                                                </a>
-                                                            </div>
-                                                            <div class="menu-item">
-                                                                <a class="menu-link" href="../../demo7/dist/pages/projects/settings.html">
-																			<span class="menu-bullet">
-																				<span class="bullet bullet-dot"></span>
-																			</span>
-                                                                    <span class="menu-title">Settings</span>
-                                                                </a>
-                                                            </div>
-                                                        </div>
-                                                    </div>--}}
                                                 </div>
                                             </div>
+                                            @endcan
+                                            @can('enable_sourceFunds')
                                             <div data-kt-menu-trigger="click" class="menu-item menu-accordion @yield('showMenuAccordionSources') {{--show--}}">
                                                 <span class="menu-link @yield('activeMenuAccordionSources') {{--active--}}">
                                                     <span class="menu-icon">
@@ -1179,6 +927,8 @@
                                                     </div>--}}
                                                 </div>
                                             </div>
+                                            @endcan
+                                            @can('enable_manageOperations')
                                             <div data-kt-menu-trigger="click" class="menu-item menu-accordion @yield('showMenuAccordionOperations') {{--show--}}">
                                                 <span class="menu-link @yield('activeMenuAccordionOperations') {{--active--}}">
                                                     <span class="menu-icon">
@@ -1348,6 +1098,8 @@
                                                     </div>--}}
                                                 </div>
                                             </div>
+                                            @endcan
+
                                             {{--<div data-kt-menu-trigger="click" class="menu-item menu-accordion">
                                                 <span class="menu-link">
                                                     <span class="menu-icon">
@@ -1966,6 +1718,7 @@
                                                     </div>
                                                 </div>
                                             </div>--}}
+                                            @can('enable_rolePermission')
                                             <div data-kt-menu-trigger="click" class="menu-item menu-accordion @yield('showMenuAccordionRolePermissions') {{--show--}}">
                                                 <span class="menu-link @yield('activeMenuAccordionRolePermissions') {{--active--}}">
                                                     <span class="menu-icon">
@@ -1983,6 +1736,7 @@
                                                     <span class="menu-arrow"></span>
                                                 </span>
                                                 <div class="menu-sub menu-sub-accordion menu-active-bg">
+                                                    @can('enable_user')
                                                     <div class="menu-item">
                                                         <a class="menu-link @yield('activeMenuUserList')" href="{{ route('users.index') }}">
                                                             <span class="menu-bullet">
@@ -1991,6 +1745,8 @@
                                                             <span class="menu-title">Usuarios</span>
                                                         </a>
                                                     </div>
+                                                    @endcan
+                                                    @can('enable_role')
                                                     <div class="menu-item">
                                                         <a class="menu-link @yield('activeMenuRoleList')"  href="{{ route('roles.index') }}">
                                                             <span class="menu-bullet">
@@ -1999,6 +1755,8 @@
                                                             <span class="menu-title">Roles</span>
                                                         </a>
                                                     </div>
+                                                    @endcan
+                                                    @can('enable_permission')
                                                     <div class="menu-item">
                                                         <a class="menu-link @yield('activeMenuPermissionList')"  href="{{ route('permissions.index') }}">
                                                             <span class="menu-bullet">
@@ -2007,6 +1765,7 @@
                                                             <span class="menu-title">Permisos</span>
                                                         </a>
                                                     </div>
+                                                    @endcan
                                                     {{--<div class="menu-item">
                                                         <a class="menu-link @yield('activeMenuBankCreate')" href="#">
                                                             <span class="menu-bullet">
@@ -2151,6 +1910,8 @@
                                                     </div>--}}
                                                 </div>
                                             </div>
+                                            @endcan
+                                            @can('enable_menuAdmin')
                                             <div data-kt-menu-trigger="click" class="menu-item menu-accordion @yield('showMenuAccordionVerificationUsers') {{--show--}}">
                                                 <span class="menu-link @yield('activeMenuAccordionVerificationUsers') {{--active--}}">
                                                     <span class="menu-icon">
@@ -2178,13 +1939,13 @@
                                                     </div>
                                                 </div>
                                             </div>
-
+                                            @endcan
                                         </div>
                                     </div>
                                     <!--end::Menu-->
                                 </div>
+                                @endcan
                                 <!--end::Tab pane-->
-
                             </div>
                             <!--end::Tab content-->
                         </div>
