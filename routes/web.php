@@ -276,6 +276,9 @@ Route::middleware('auth')->group(function (){
         Route::post('/refuse/image/reverse/{user_id}', [App\Http\Controllers\UserController::class, 'refuseImageReverse'])
             ->name('refuse.image.reverse');
 
+        // TODO: Ruta de verificacion de usuario al ingresar
+        Route::get('/get/user/alert', [App\Http\Controllers\UserController::class, 'getUserAlert'])
+            ->name('get.user.alert');
     });
 });
 Route::get('/data', [\App\Http\Controllers\DataController::class, 'getData']);

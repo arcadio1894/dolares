@@ -247,8 +247,41 @@
 
     <!--end::Action-->
 </div>
+
+<div class="modal fade" id="kt_modal_alert" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-body py-10 px-lg-17">
+                <!--begin::Scroll-->
+                <div class=" me-n7 pe-7" id="kt_modal_add_customer_scroll" data-kt-scroll="true" data-kt-scroll-activate="{default: false, lg: true}" data-kt-scroll-max-height="auto" data-kt-scroll-dependencies="#kt_modal_add_customer_header" data-kt-scroll-wrappers="#kt_modal_add_customer_scroll" data-kt-scroll-offset="300px">
+                    <div class="row pb-1 text-center px-4">
+                        <h4> <strong id="first_text"> Hola Remso Rojas, estas a un solo paso de poder cambiar dolares de la manera más rápida y segura. </strong></h4>
+                        <h5 class="text-muted"> Ingresa a tu PERFIL para que puedas completar el registro de tus documentos.</h5>
+                        <img class="img-fluid" src="{{ asset('assets/media/document/alert.png') }}" alt="">
+                        <h5 class="text-muted"> Este proceso es muy rápido y ayudará a mantener tu cuenta más segura.</h5>
+                    </div>
+                </div>
+                <!--end::Scroll-->
+            </div>
+            <div class="modal-footer flex-center">
+                <!--begin::Button-->
+                <button type="button" id="kt_modal_alert_cancel" class="btn btn-light me-3">Continuar</button>
+                <!--end::Button-->
+                <!--begin::Button-->
+                <button type="button" id="kt_modal_alert_next" class="btn btn-primary" data-url="">
+                    <span class="indicator-label">Completar mi perfil</span>
+                    <span class="indicator-progress">Por favor espere...
+                        <span class="spinner-border spinner-border-sm align-middle ms-2"></span>
+                    </span>
+                </button>
+                <!--end::Button-->
+            </div>
+        </div>
+    </div>
+</div>
 @endsection
 
 @section('scripts')
+    <script src="{{ asset('assets/js/user/alert.js') }}"></script>
     <script src="{{ asset('assets/js/home/home.js') }}"></script>
 @endsection

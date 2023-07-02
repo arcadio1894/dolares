@@ -619,7 +619,7 @@
                                                 </a>
                                                 <!--end::Item-->
                                                 <!--begin::Item-->
-                                                <a href="{{ route('dashboard.profile.token') }}" class="custom-list d-flex align-items-center px-5 py-4">
+                                                {{--<a href="{{ route('dashboard.profile.token') }}" class="custom-list d-flex align-items-center px-5 py-4">
                                                     <!--begin::Symbol-->
                                                     <div class="symbol symbol-40px me-5">
                                                         <span class="symbol-label">
@@ -638,7 +638,7 @@
                                                     </div>
                                                     <!--begin::Description-->
                                                 </a>
-                                                <!--end::Item-->
+                                                --}}<!--end::Item-->
 
                                             </div>
                                             <!--end::Items-->

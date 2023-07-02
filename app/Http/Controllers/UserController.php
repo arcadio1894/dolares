@@ -679,4 +679,21 @@ class UserController extends Controller
             'message' => 'Imagen de reverso rechazada con éxito.'
         ], 200);
     }
+
+    public function getUserAlert()
+    {
+        $user = User::find(Auth::id());
+        $name = ($user->business_name == null) ? $user->first_name." ".$user->last_name:$user->business_name ;
+        $alert = null;
+
+        if ( $user->front_image == null && $user->reverse_image == null )
+        {
+            $alert = "Hola " .$name. " estás a un sólo paso de poder cambiar dolares de la manera más rápida y segura. <br>";
+        }
+
+        return response()->json([
+            'alert' => $alert,
+            'url' => route('dashboard.profile')
+        ], 200);
+    }
 }

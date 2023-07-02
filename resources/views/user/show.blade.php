@@ -167,7 +167,7 @@
                                 <div class="fw-bolder mt-5">Ultima sesión</div>
                                 <div class="text-gray-600">{{ $userData['last_login'] }}</div>
 
-                                <div class="fw-bolder mt-5">Archivos</div>
+                                <div class="fw-bolder mt-5">Documentos personales</div>
                                 <div class="text-gray-600">
                                     <div class="text-center notice d-flex bg-light-primary rounded border-success border border-dashed p-3 mb-5">
                                         <div class="row text-center">
@@ -238,7 +238,7 @@
                                 <div class="fw-bolder mt-5">Ultima sesión</div>
                                 <div class="text-gray-600">{{ $userData['last_login'] }}</div>
 
-                                <div class="fw-bolder mt-5">Archivos</div>
+                                <div class="fw-bolder mt-5">Documentos personales</div>
                                 <div class="text-gray-600">
                                     <div class="text-center notice d-flex bg-light-primary rounded border-success border border-dashed p-3 mb-5">
                                         <div class="row text-center">

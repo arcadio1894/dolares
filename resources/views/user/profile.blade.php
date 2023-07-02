@@ -107,7 +107,7 @@
                     <!--end::Title-->
                     <!--begin::Stats-->
                     <!--begin::Notice-->
-                    <div class="notice d-flex bg-light-warning rounded border-warning border border-dashed p-6">
+                    {{--<div class="notice d-flex bg-light-warning rounded border-warning border border-dashed p-6">
                         <!--begin::Icon-->
                         <!--begin::Svg Icon | path: icons/duotune/general/gen044.svg-->
                         <span class="svg-icon svg-icon-2tx svg-icon-warning me-4">
@@ -131,8 +131,7 @@
                         </div>
                         <!--end::Wrapper-->
                     </div>
-                    <!--end::Notice-->
-                    <br>
+                    --}}<!--end::Notice-->
                     @if(!isset($token))
                         <div class="notice d-flex bg-light-warning rounded border-warning border border-dashed p-6">
                             <!--begin::Icon-->
@@ -562,7 +561,7 @@
                 <!--begin::Input group-->
                 <div class="row mb-10">
                     <!--begin::Label-->
-                    <label class="col-lg-4 fw-bold text-muted">Archivos</label>
+                    <label class="col-lg-4 fw-bold text-muted">Documentos personales</label>
                     <!--begin::Label-->
                     <!--begin::Label-->
                     <div class="col-lg-8">
@@ -1120,7 +1119,7 @@
                 <!--begin::Input group-->
                 <div class="row mb-10">
                     <!--begin::Label-->
-                    <label class="col-lg-4 fw-bold text-muted">Archivos</label>
+                    <label class="col-lg-4 fw-bold text-muted">Documentos personales</label>
                     <!--begin::Label-->
                     <!--begin::Label-->
                     <div class="col-lg-8">
