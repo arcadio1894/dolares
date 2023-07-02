@@ -77,44 +77,26 @@ License: For each use you must have a valid license purchased only from above li
                                 <!--begin::Menu item-->
                                 <div class="menu-item">
                                     <!--begin::Menu link-->
-                                    <a class="menu-link nav-link {{--active--}} @yield('activeNavHome') py-3 px-4 px-xxl-6" href="{{ url('/') }}" data-kt-scroll-toggle="true" data-kt-drawer-dismiss="true">Inicio</a>
+                                    <a class="menu-link nav-link {{--active--}} @yield('activeNavHome') py-3 px-4 px-xxl-6" href="{{ url('/') }}" data-kt-scroll-toggle="true" data-kt-drawer-dismiss="true">Home</a>
                                     <!--end::Menu link-->
                                 </div>
                                 <!--end::Menu item-->
                                 <!--begin::Menu item-->
                                 <div class="menu-item">
                                     <!--begin::Menu link-->
-                                    <a class="menu-link nav-link @yield('activeNavFaqs') py-3 px-4 px-xxl-6" href="{{ route('faqs') }}" data-kt-scroll-toggle="true" data-kt-drawer-dismiss="true">FAQS</a>
+                                    <a class="menu-link nav-link @yield('activeNavFaqs') py-3 px-4 px-xxl-6" href="#how-it-works" data-kt-scroll-toggle="true" data-kt-drawer-dismiss="true">¿Cómo cambiar?</a>
                                     <!--end::Menu link-->
                                 </div>
                                 <!--end::Menu item-->
                                 <!--begin::Menu item-->
                                 <div class="menu-item">
                                     <!--begin::Menu link-->
-                                    <a class="menu-link nav-link py-3 px-4 px-xxl-6" href="#achievements" data-kt-scroll-toggle="true" data-kt-drawer-dismiss="true">Achievements</a>
+                                    <a class="menu-link nav-link py-3 px-4 px-xxl-6" href="{{ route('faqs') }}" data-kt-scroll-toggle="true" data-kt-drawer-dismiss="true">FAQS</a>
                                     <!--end::Menu link-->
                                 </div>
                                 <!--end::Menu item-->
                                 <!--begin::Menu item-->
-                                <div class="menu-item">
-                                    <!--begin::Menu link-->
-                                    <a class="menu-link nav-link py-3 px-4 px-xxl-6" href="#team" data-kt-scroll-toggle="true" data-kt-drawer-dismiss="true">Team</a>
-                                    <!--end::Menu link-->
-                                </div>
-                                <!--end::Menu item-->
-                                <!--begin::Menu item-->
-                                <div class="menu-item">
-                                    <!--begin::Menu link-->
-                                    <a class="menu-link nav-link py-3 px-4 px-xxl-6" href="#portfolio" data-kt-scroll-toggle="true" data-kt-drawer-dismiss="true">Portfolio</a>
-                                    <!--end::Menu link-->
-                                </div>
-                                <!--end::Menu item-->
-                                <!--begin::Menu item-->
-                                <div class="menu-item">
-                                    <!--begin::Menu link-->
-                                    <a class="menu-link nav-link py-3 px-4 px-xxl-6" href="#pricing" data-kt-scroll-toggle="true" data-kt-drawer-dismiss="true">Pricing</a>
-                                    <!--end::Menu link-->
-                                </div>
+                                
                                 <!--end::Menu item-->
                                 @auth
                                     <div class="menu-item">
@@ -200,21 +182,11 @@ License: For each use you must have a valid license purchased only from above li
                     <!--begin::Copyright-->
                     <div class="text-dark order-2 order-md-1">
                         <span class="text-gray-400 fw-bold me-1">Created by</span>
-                        <a href="https://keenthemes.com" target="_blank" class="text-muted text-hover-primary fw-bold me-2 fs-6">Keenthemes</a>
+                        <a href="https://dolareros.com" target="_blank" class="text-muted text-hover-primary fw-bold me-2 fs-6">Dolareros</a>
                     </div>
                     <!--end::Copyright-->
                     <!--begin::Menu-->
-                    <ul class="menu menu-gray-600 menu-hover-primary fw-bold order-1">
-                        <li class="menu-item">
-                            <a href="https://keenthemes.com" target="_blank" class="menu-link px-2">About</a>
-                        </li>
-                        <li class="menu-item">
-                            <a href="https://keenthemes.com/support" target="_blank" class="menu-link px-2">Support</a>
-                        </li>
-                        <li class="menu-item">
-                            <a href="https://1.envato.market/EA4JP" target="_blank" class="menu-link px-2">Purchase</a>
-                        </li>
-                    </ul>
+                    
                     <!--end::Menu-->
                 </div>
                 <!--end::Container-->
@@ -1215,9 +1187,9 @@ License: For each use you must have a valid license purchased only from above li
 </div>
 <!--end::Chat drawer-->
 <!--begin::Exolore drawer toggle-->
-<button id="kt_explore_toggle" class="explore-toggle btn btn-sm bg-body btn-color-gray-700 btn-active-primary shadow-sm position-fixed px-5 fw-bolder zindex-2 top-50 mt-10 end-0 transform-90 fs-6 rounded-top-0" title="Explore Metronic" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-trigger="hover">
+<!--<button id="kt_explore_toggle" class="explore-toggle btn btn-sm bg-body btn-color-gray-700 btn-active-primary shadow-sm position-fixed px-5 fw-bolder zindex-2 top-50 mt-10 end-0 transform-90 fs-6 rounded-top-0" title="Explore Metronic" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-trigger="hover">
     <span id="kt_explore_toggle_label">Explore</span>
-</button>
+</button>-->
 <!--end::Exolore drawer toggle-->
 <!--begin::Exolore drawer-->
 <div id="kt_explore" class="bg-body" data-kt-drawer="true" data-kt-drawer-name="explore" data-kt-drawer-activate="true" data-kt-drawer-overlay="true" data-kt-drawer-width="{default:'350px', 'lg': '475px'}" data-kt-drawer-direction="end" data-kt-drawer-toggle="#kt_explore_toggle" data-kt-drawer-close="#kt_explore_close">
