@@ -127,7 +127,7 @@
 
                     <div class="col-xl-4">
                         <label class="form-label fw-bolder text-dark fs-6" >Departamento</label>
-                        <select name="department" id="department" class="form-select form-select-solid @error('department') is-invalid @enderror" data-control="select2" data-hide-search="true" data-placeholder="Departamento">
+                        <select name="department" id="department" class="form-select form-select-solid @error('department') is-invalid @enderror" data-control="select2" data-hide-search="true" data-placeholder="Departamento" required>
                             <option></option>
                             @foreach ($departments as $department)
                                 <option value="{{ $department->id }}">{{ $department->name }}</option>
@@ -141,7 +141,7 @@
                     </div>
                     <div class="col-xl-4">
                         <label class="form-label fw-bolder text-dark fs-6">Provincia</label>
-                        <select name="province" disabled id="province" class="form-select form-select-solid @error('province') is-invalid @enderror" data-control="select2" data-hide-search="true" data-placeholder="Provincia">
+                        <select name="province" disabled id="province" class="form-select form-select-solid @error('province') is-invalid @enderror" data-control="select2" data-hide-search="true" data-placeholder="Provincia" required>
                             <option></option>
                         </select>
                         @error('province')
@@ -152,7 +152,7 @@
                     </div>
                     <div class="col-xl-4">
                         <label class="form-label fw-bolder text-dark fs-6">Distrito</label>
-                        <select name="district" disabled id="district" class="form-select form-select-solid @error('district') is-invalid @enderror" data-control="select2" data-hide-search="true" data-placeholder="Distrito">
+                        <select name="district" disabled id="district" class="form-select form-select-solid @error('district') is-invalid @enderror" data-control="select2" data-hide-search="true" data-placeholder="Distrito" required>
                             <option></option>
                         </select>
                         @error('district')
@@ -210,7 +210,7 @@
                 <div class="row fv-row mb-7" id="economic_activity_div" {{--style="display: none"--}}>
                     <div class="col-xl-12">
                         <label class="form-label fw-bolder text-dark fs-6">Actividad económica</label>
-                        <select name="economic_activity" id="economic_activity" class="form-select form-select-solid @error('economic_activity') is-invalid @enderror" data-control="select2" data-hide-search="true" data-placeholder="Actividad económica">
+                        <select name="economic_activity" id="economic_activity" class="form-select form-select-solid @error('economic_activity') is-invalid @enderror" data-control="select2" data-hide-search="true" data-placeholder="Actividad económica" required>
                             <option></option>
                             @foreach ($activities as $activity)
                             <option value="{{$activity->id}}">{{ $activity->description }}</option>
@@ -227,7 +227,7 @@
                 <div class="row fv-row mb-7" id="economic_sector_div" {{--style="display: none"--}}>
                     <div class="col-xl-12">
                         <label class="form-label fw-bolder text-dark fs-6">Sector económico</label>
-                        <select name="economic_sector" id="economic_sector" class="form-select form-select-solid @error('economic_sector') is-invalid @enderror" data-control="select2" data-hide-search="true" data-placeholder="Sector económico">
+                        <select name="economic_sector" id="economic_sector" class="form-select form-select-solid @error('economic_sector') is-invalid @enderror" data-control="select2" data-hide-search="true" data-placeholder="Sector económico" required>
                             <option></option>
                             @foreach ($sectors as $sector)
                                 <option value="{{$sector->id}}">{{ $sector->description }}</option>
@@ -244,9 +244,14 @@
                 <div class="row fv-row mb-7" id="constitution_date" {{--style="display: none"--}}>
                     <div class="col-xl-6">
                         <label class="form-label fw-bolder text-dark fs-6">Fecha de constitución</label>
+                        @error('constitution_date')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                        @enderror
                         <div class="position-relative d-flex align-items-center">
                             <!--begin::Datepicker-->
-                            <input class="form-control form-control-white fw-bolder pe-5" placeholder="Seleccione fecha" name="constitution_date" id="const_date" />
+                            <input class="form-control form-control-white fw-bolder pe-5 @error('constitution_date') is-invalid @enderror" placeholder="Seleccione fecha" name="constitution_date" id="const_date" required/>
                             <!--end::Datepicker-->
                             <!--begin::Icon-->
                             <!--begin::Svg Icon | path: icons/duotune/arrows/arr072.svg-->
@@ -258,11 +263,7 @@
                             <!--end::Svg Icon-->
                             <!--end::Icon-->
                         </div>
-                        @error('constitution_date')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                        @enderror
+
                     </div>
                     <div class="col-xl-6">
                         <div class="d-flex flex-stack">
@@ -414,7 +415,8 @@
 
             $("#const_date").flatpickr({
                 enableTime: !1,
-                dateFormat: "d/m/Y"
+                dateFormat: "d/m/Y",
+                required: true,
             });
 
             $('input[name="account_type"]').change(function() {

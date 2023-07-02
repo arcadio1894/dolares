@@ -1099,7 +1099,7 @@
                     <!--end::Label-->
                     <!--begin::Col-->
                     <div class="col-lg-8">
-                        <span class="fw-bolder fs-6 text-gray-800">{{ Auth::user()->constitution_date->format('d/m/Y') }}</span>
+                        <span class="fw-bolder fs-6 text-gray-800">{{ (Auth::user()->constitution_date == null) ? '': Auth::user()->constitution_date->format('d/m/Y') }}</span>
                     </div>
                     <!--end::Col-->
                 </div>

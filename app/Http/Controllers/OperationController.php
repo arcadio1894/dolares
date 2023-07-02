@@ -95,7 +95,7 @@ class OperationController extends Controller
         {
             $ruta = route("dashboard.profile");
             return response()->json([
-                'error' => 'Estamos validando tu información personal, éste paso sélo nos tomará unos minutos, Dirígete a tu paerfil para dar seguimiento a tu solicitud.',
+                'error' => 'Estamos validando tu información personal, éste paso sólo nos tomará unos minutos, Dirígete a tu perfil para dar seguimiento a tu solicitud.',
                 'flag' => false,
                 'url' => $ruta
             ], 200);
