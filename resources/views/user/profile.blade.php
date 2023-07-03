@@ -574,12 +574,10 @@
                                             <br>
                                             <img class="img-fluid gray-image" src="{{ asset('assets/media/document/front.png') }}" alt="Imagen frontal de documento" width="40px">
                                             <div class="form-group mt-3">
-                                                <div class="input-group">
-                                                    <input type="file" class="form-control form-control-sm" id="front_image" placeholder="Imagen" accept=".jpg, .jpeg, .png, .pdf">
-                                                    <div class="input-group-append">
-                                                        <button class="btn btn-bg-warning btn-sm" type="button" id="btn_front_image" data-url="{{ route('submit.image.front') }}"><i class="fas fa-save text-success fs-3"></i></button>
-                                                    </div>
-                                                </div>
+                                                <input type="file" class="form-control form-control-sm" id="front_image" placeholder="Imagen" accept=".jpg, .jpeg, .png, .pdf">
+
+                                                <button class="btn btn-bg-warning btn-sm col-lg-12 mt-2" type="button" id="btn_front_image" disabled data-url="{{ route('submit.image.front') }}">GUARDAR IMAGEN FRONTAL <i class="fas fa-save text-success fs-3"></i></button>
+
                                             </div>
                                         </div>
 
@@ -592,12 +590,9 @@
                                             <br>
                                             <img class="img-fluid gray-image" src="{{ asset('assets/media/document/back.png') }}" alt="Imagen reverso de documento" width="40px">
                                             <div class="form-group mt-3">
-                                                <div class="input-group">
-                                                    <input type="file" class="form-control form-control-sm" id="reverse_image" placeholder="Imagen" accept=".jpg, .jpeg, .png, .pdf">
-                                                    <div class="input-group-append">
-                                                        <button class="btn btn-bg-warning btn-sm" type="button" id="btn_reverse_image" data-url="{{ route('submit.image.reverse') }}"><i class="fas fa-save text-success fs-3"></i></button>
-                                                    </div>
-                                                </div>
+                                                <input type="file" class="form-control form-control-sm" id="reverse_image" placeholder="Imagen" accept=".jpg, .jpeg, .png, .pdf">
+
+                                                <button class="btn btn-bg-warning btn-sm col-lg-12 mt-2" type="button" id="btn_reverse_image" disabled data-url="{{ route('submit.image.reverse') }}">GUARDAR IMAGEN POSTERIOR <i class="fas fa-save text-success fs-3"></i></button>
                                             </div>
                                         </div>
 
@@ -628,12 +623,9 @@
                                                     <br>
                                                     <img class="img-fluid gray-image" src="{{ asset('assets/media/document/back.png') }}" alt="Imagen reverso de documento" width="40px">
                                                     <div class="form-group mt-3">
-                                                        <div class="input-group">
-                                                            <input type="file" class="form-control form-control-sm" id="reverse_image" placeholder="Imagen" accept=".jpg, .jpeg, .png, .pdf">
-                                                            <div class="input-group-append">
-                                                                <button class="btn btn-bg-warning btn-sm" type="button" id="btn_reverse_image" data-url="{{ route('submit.image.reverse') }}"><i class="fas fa-save text-success fs-3"></i></button>
-                                                            </div>
-                                                        </div>
+                                                        <input type="file" class="form-control form-control-sm" id="reverse_image" placeholder="Imagen" accept=".jpg, .jpeg, .png, .pdf">
+
+                                                        <button class="btn btn-bg-warning btn-sm col-lg-12 mt-2" type="button" id="btn_reverse_image" disabled data-url="{{ route('submit.image.reverse') }}">GUARDAR IMAGEN POSTERIOR <i class="fas fa-save text-success fs-3"></i></button>
                                                     </div>
                                                 </div>
 
@@ -650,12 +642,10 @@
                                                     <br>
                                                     <img class="img-fluid gray-image" src="{{ asset('assets/media/document/front.png') }}" alt="Imagen frontal de documento" width="40px">
                                                     <div class="form-group mt-3">
-                                                        <div class="input-group">
-                                                            <input type="file" class="form-control form-control-sm" id="front_image" placeholder="Imagen" accept=".jpg, .jpeg, .png, .pdf">
-                                                            <div class="input-group-append">
-                                                                <button class="btn btn-bg-warning btn-sm" type="button" id="btn_front_image" data-url="{{ route('submit.image.front') }}"><i class="fas fa-save text-success fs-3"></i></button>
-                                                            </div>
-                                                        </div>
+                                                        <input type="file" class="form-control form-control-sm" id="front_image" placeholder="Imagen" accept=".jpg, .jpeg, .png, .pdf">
+
+                                                        <button class="btn btn-bg-warning btn-sm col-lg-12 mt-2" type="button" id="btn_front_image" disabled data-url="{{ route('submit.image.front') }}">GUARDAR IMAGEN FRONTAL <i class="fas fa-save text-success fs-3"></i></button>
+
                                                     </div>
                                                 </div>
 
@@ -746,12 +736,10 @@
                                                 <br>
                                                 <img class="img-fluid red-image" src="{{ asset('assets/media/document/front.png') }}" alt="Imagen frontal de documento" width="40px">
                                                 <div class="form-group mt-3">
-                                                    <div class="input-group">
-                                                        <input type="file" class="form-control form-control-sm" id="front_image" placeholder="Imagen" accept=".jpg, .jpeg, .png, .pdf">
-                                                        <div class="input-group-append">
-                                                            <button class="btn btn-bg-warning btn-sm" type="button" id="btn_front_image" data-url="{{ route('submit.image.front') }}"><i class="fas fa-save text-success fs-3"></i></button>
-                                                        </div>
-                                                    </div>
+                                                    <input type="file" class="form-control form-control-sm" id="front_image" placeholder="Imagen" accept=".jpg, .jpeg, .png, .pdf">
+
+                                                    <button class="btn btn-bg-warning btn-sm col-lg-12 mt-2" type="button" id="btn_front_image" disabled data-url="{{ route('submit.image.front') }}">GUARDAR IMAGEN FRONTAL <i class="fas fa-save text-success fs-3"></i></button>
+
                                                 </div>
                                             </div>
 
@@ -824,12 +812,9 @@
                                                 <br>
                                                 <img class="img-fluid red-image" src="{{ asset('assets/media/document/back.png') }}" alt="Imagen reverso de documento" width="40px">
                                                 <div class="form-group mt-3">
-                                                    <div class="input-group">
-                                                        <input type="file" class="form-control form-control-sm" id="reverse_image" placeholder="Imagen" accept=".jpg, .jpeg, .png, .pdf">
-                                                        <div class="input-group-append">
-                                                            <button class="btn btn-bg-warning btn-sm" type="button" id="btn_reverse_image" data-url="{{ route('submit.image.reverse') }}"><i class="fas fa-save text-success fs-3"></i></button>
-                                                        </div>
-                                                    </div>
+                                                    <input type="file" class="form-control form-control-sm" id="reverse_image" placeholder="Imagen" accept=".jpg, .jpeg, .png, .pdf">
+
+                                                    <button class="btn btn-bg-warning btn-sm col-lg-12 mt-2" type="button" id="btn_reverse_image" disabled data-url="{{ route('submit.image.reverse') }}">GUARDAR IMAGEN POSTERIOR <i class="fas fa-save text-success fs-3"></i></button>
                                                 </div>
                                             </div>
 
@@ -859,12 +844,9 @@
                                                 <br>
                                                 <img class="img-fluid red-image" src="{{ asset('assets/media/document/back.png') }}" alt="Imagen reverso de documento" width="40px">
                                                 <div class="form-group mt-3">
-                                                    <div class="input-group">
-                                                        <input type="file" class="form-control form-control-sm" id="reverse_image" placeholder="Imagen" accept=".jpg, .jpeg, .png, .pdf">
-                                                        <div class="input-group-append">
-                                                            <button class="btn btn-bg-warning btn-sm" type="button" id="btn_reverse_image" data-url="{{ route('submit.image.reverse') }}"><i class="fas fa-save text-success fs-3"></i></button>
-                                                        </div>
-                                                    </div>
+                                                    <input type="file" class="form-control form-control-sm" id="reverse_image" placeholder="Imagen" accept=".jpg, .jpeg, .png, .pdf">
+
+                                                    <button class="btn btn-bg-warning btn-sm col-lg-12 mt-2" type="button" id="btn_reverse_image" disabled data-url="{{ route('submit.image.reverse') }}">GUARDAR IMAGEN POSTERIOR <i class="fas fa-save text-success fs-3"></i></button>
                                                 </div>
                                             </div>
 
@@ -881,12 +863,10 @@
                                                 <br>
                                                 <img class="img-fluid red-image" src="{{ asset('assets/media/document/front.png') }}" alt="Imagen frontal de documento" width="40px">
                                                 <div class="form-group mt-3">
-                                                    <div class="input-group">
-                                                        <input type="file" class="form-control form-control-sm" id="front_image" placeholder="Imagen" accept=".jpg, .jpeg, .png, .pdf">
-                                                        <div class="input-group-append">
-                                                            <button class="btn btn-bg-warning btn-sm" type="button" id="btn_front_image" data-url="{{ route('submit.image.front') }}"><i class="fas fa-save text-success fs-3"></i></button>
-                                                        </div>
-                                                    </div>
+                                                    <input type="file" class="form-control form-control-sm" id="front_image" placeholder="Imagen" accept=".jpg, .jpeg, .png, .pdf">
+
+                                                    <button class="btn btn-bg-warning btn-sm col-lg-12 mt-2" type="button" id="btn_front_image" disabled data-url="{{ route('submit.image.front') }}">GUARDAR IMAGEN FRONTAL <i class="fas fa-save text-success fs-3"></i></button>
+
                                                 </div>
                                             </div>
 
@@ -946,12 +926,10 @@
                                                 <br>
                                                 <img class="img-fluid red-image" src="{{ asset('assets/media/document/front.png') }}" alt="Imagen frontal de documento" width="40px">
                                                 <div class="form-group mt-3">
-                                                    <div class="input-group">
-                                                        <input type="file" class="form-control form-control-sm" id="front_image" placeholder="Imagen" accept=".jpg, .jpeg, .png, .pdf">
-                                                        <div class="input-group-append">
-                                                            <button class="btn btn-bg-warning btn-sm" type="button" id="btn_front_image" data-url="{{ route('submit.image.front') }}"><i class="fas fa-save text-success fs-3"></i></button>
-                                                        </div>
-                                                    </div>
+                                                    <input type="file" class="form-control form-control-sm" id="front_image" placeholder="Imagen" accept=".jpg, .jpeg, .png, .pdf">
+
+                                                    <button class="btn btn-bg-warning btn-sm col-lg-12 mt-2" type="button" id="btn_front_image" disabled data-url="{{ route('submit.image.front') }}">GUARDAR IMAGEN FRONTAL <i class="fas fa-save text-success fs-3"></i></button>
+
                                                 </div>
                                             </div>
 
@@ -964,12 +942,10 @@
                                                 <br>
                                                 <img class="img-fluid red-image" src="{{ asset('assets/media/document/back.png') }}" alt="Imagen reverso de documento" width="40px">
                                                 <div class="form-group mt-3">
-                                                    <div class="input-group">
-                                                        <input type="file" class="form-control form-control-sm" id="reverse_image" placeholder="Imagen" accept=".jpg, .jpeg, .png, .pdf">
-                                                        <div class="input-group-append">
-                                                            <button class="btn btn-bg-warning btn-sm" type="button" id="btn_reverse_image" data-url="{{ route('submit.image.reverse') }}"><i class="fas fa-save text-success fs-3"></i></button>
-                                                        </div>
-                                                    </div>
+                                                    <input type="file" class="form-control form-control-sm" id="reverse_image" placeholder="Imagen" accept=".jpg, .jpeg, .png, .pdf">
+
+                                                    <button class="btn btn-bg-warning btn-sm col-lg-12 mt-2" type="button" id="btn_reverse_image" disabled data-url="{{ route('submit.image.reverse') }}">GUARDAR IMAGEN POSTERIOR <i class="fas fa-save text-success fs-3"></i></button>
+
                                                 </div>
                                             </div>
 
@@ -1132,12 +1108,10 @@
                                         <br>
                                         <img class="img-fluid gray-image" src="{{ asset('assets/media/document/front.png') }}" alt="Imagen frontal de documento" width="40px">
                                         <div class="form-group mt-3">
-                                            <div class="input-group">
-                                                <input type="file" class="form-control form-control-sm" id="front_image" placeholder="Imagen" accept=".jpg, .jpeg, .png, .pdf">
-                                                <div class="input-group-append">
-                                                    <button class="btn btn-bg-warning btn-sm" type="button" id="btn_front_image" data-url="{{ route('submit.image.front') }}"><i class="fas fa-save text-success fs-3"></i></button>
-                                                </div>
-                                            </div>
+                                            <input type="file" class="form-control form-control-sm" id="front_image" placeholder="Imagen" accept=".jpg, .jpeg, .png, .pdf">
+
+                                            <button class="btn btn-bg-warning btn-sm col-lg-12 mt-2" type="button" id="btn_front_image" disabled data-url="{{ route('submit.image.front') }}">GUARDAR IMAGEN FRONTAL <i class="fas fa-save text-success fs-3"></i></button>
+
                                         </div>
                                     </div>
 
@@ -1150,12 +1124,10 @@
                                         <br>
                                         <img class="img-fluid gray-image" src="{{ asset('assets/media/document/back.png') }}" alt="Imagen reverso de documento" width="40px">
                                         <div class="form-group mt-3">
-                                            <div class="input-group">
-                                                <input type="file" class="form-control form-control-sm" id="reverse_image" placeholder="Imagen" accept=".jpg, .jpeg, .png, .pdf">
-                                                <div class="input-group-append">
-                                                    <button class="btn btn-bg-warning btn-sm" type="button" id="btn_reverse_image" data-url="{{ route('submit.image.reverse') }}"><i class="fas fa-save text-success fs-3"></i></button>
-                                                </div>
-                                            </div>
+                                            <input type="file" class="form-control form-control-sm" id="reverse_image" placeholder="Imagen" accept=".jpg, .jpeg, .png, .pdf">
+
+                                            <button class="btn btn-bg-warning btn-sm col-lg-12 mt-2" type="button" id="btn_reverse_image" disabled data-url="{{ route('submit.image.reverse') }}">GUARDAR IMAGEN POSTERIOR <i class="fas fa-save text-success fs-3"></i></button>
+
                                         </div>
                                     </div>
 
@@ -1186,12 +1158,10 @@
                                                 <br>
                                                 <img class="img-fluid gray-image" src="{{ asset('assets/media/document/back.png') }}" alt="Imagen reverso de documento" width="40px">
                                                 <div class="form-group mt-3">
-                                                    <div class="input-group">
-                                                        <input type="file" class="form-control form-control-sm" id="reverse_image" placeholder="Imagen" accept=".jpg, .jpeg, .png, .pdf">
-                                                        <div class="input-group-append">
-                                                            <button class="btn btn-bg-warning btn-sm" type="button" id="btn_reverse_image" data-url="{{ route('submit.image.reverse') }}"><i class="fas fa-save text-success fs-3"></i></button>
-                                                        </div>
-                                                    </div>
+                                                    <input type="file" class="form-control form-control-sm" id="reverse_image" placeholder="Imagen" accept=".jpg, .jpeg, .png, .pdf">
+
+                                                    <button class="btn btn-bg-warning btn-sm col-lg-12 mt-2" type="button" id="btn_reverse_image" disabled data-url="{{ route('submit.image.reverse') }}">GUARDAR IMAGEN POSTERIOR <i class="fas fa-save text-success fs-3"></i></button>
+
                                                 </div>
                                             </div>
 
@@ -1208,12 +1178,10 @@
                                                 <br>
                                                 <img class="img-fluid gray-image" src="{{ asset('assets/media/document/front.png') }}" alt="Imagen frontal de documento" width="40px">
                                                 <div class="form-group mt-3">
-                                                    <div class="input-group">
-                                                        <input type="file" class="form-control form-control-sm" id="front_image" placeholder="Imagen" accept=".jpg, .jpeg, .png, .pdf">
-                                                        <div class="input-group-append">
-                                                            <button class="btn btn-bg-warning btn-sm" type="button" id="btn_front_image" data-url="{{ route('submit.image.front') }}"><i class="fas fa-save text-success fs-3"></i></button>
-                                                        </div>
-                                                    </div>
+                                                    <input type="file" class="form-control form-control-sm" id="front_image" placeholder="Imagen" accept=".jpg, .jpeg, .png, .pdf">
+
+                                                    <button class="btn btn-bg-warning btn-sm col-lg-12 mt-2" type="button" id="btn_front_image" disabled data-url="{{ route('submit.image.front') }}">GUARDAR IMAGEN FRONTAL <i class="fas fa-save text-success fs-3"></i></button>
+
                                                 </div>
                                             </div>
 
@@ -1304,12 +1272,10 @@
                                             <br>
                                             <img class="img-fluid red-image" src="{{ asset('assets/media/document/front.png') }}" alt="Imagen frontal de documento" width="40px">
                                             <div class="form-group mt-3">
-                                                <div class="input-group">
-                                                    <input type="file" class="form-control form-control-sm" id="front_image" placeholder="Imagen" accept=".jpg, .jpeg, .png, .pdf">
-                                                    <div class="input-group-append">
-                                                        <button class="btn btn-bg-warning btn-sm" type="button" id="btn_front_image" data-url="{{ route('submit.image.front') }}"><i class="fas fa-save text-success fs-3"></i></button>
-                                                    </div>
-                                                </div>
+                                                <input type="file" class="form-control form-control-sm" id="front_image" placeholder="Imagen" accept=".jpg, .jpeg, .png, .pdf">
+
+                                                <button class="btn btn-bg-warning btn-sm col-lg-12 mt-2" type="button" id="btn_front_image" disabled data-url="{{ route('submit.image.front') }}">GUARDAR IMAGEN FRONTAL <i class="fas fa-save text-success fs-3"></i></button>
+
                                             </div>
                                         </div>
 
@@ -1382,12 +1348,10 @@
                                             <br>
                                             <img class="img-fluid red-image" src="{{ asset('assets/media/document/back.png') }}" alt="Imagen reverso de documento" width="40px">
                                             <div class="form-group mt-3">
-                                                <div class="input-group">
-                                                    <input type="file" class="form-control form-control-sm" id="reverse_image" placeholder="Imagen" accept=".jpg, .jpeg, .png, .pdf">
-                                                    <div class="input-group-append">
-                                                        <button class="btn btn-bg-warning btn-sm" type="button" id="btn_reverse_image" data-url="{{ route('submit.image.reverse') }}"><i class="fas fa-save text-success fs-3"></i></button>
-                                                    </div>
-                                                </div>
+                                                <input type="file" class="form-control form-control-sm" id="reverse_image" placeholder="Imagen" accept=".jpg, .jpeg, .png, .pdf">
+
+                                                <button class="btn btn-bg-warning btn-sm col-lg-12 mt-2" type="button" id="btn_reverse_image" disabled data-url="{{ route('submit.image.reverse') }}">GUARDAR IMAGEN POSTERIOR <i class="fas fa-save text-success fs-3"></i></button>
+
                                             </div>
                                         </div>
 
@@ -1417,12 +1381,10 @@
                                             <br>
                                             <img class="img-fluid red-image" src="{{ asset('assets/media/document/back.png') }}" alt="Imagen reverso de documento" width="40px">
                                             <div class="form-group mt-3">
-                                                <div class="input-group">
-                                                    <input type="file" class="form-control form-control-sm" id="reverse_image" placeholder="Imagen" accept=".jpg, .jpeg, .png, .pdf">
-                                                    <div class="input-group-append">
-                                                        <button class="btn btn-bg-warning btn-sm" type="button" id="btn_reverse_image" data-url="{{ route('submit.image.reverse') }}"><i class="fas fa-save text-success fs-3"></i></button>
-                                                    </div>
-                                                </div>
+                                                <input type="file" class="form-control form-control-sm" id="reverse_image" placeholder="Imagen" accept=".jpg, .jpeg, .png, .pdf">
+
+                                                <button class="btn btn-bg-warning btn-sm col-lg-12 mt-2" type="button" id="btn_reverse_image" disabled data-url="{{ route('submit.image.reverse') }}">GUARDAR IMAGEN POSTERIOR <i class="fas fa-save text-success fs-3"></i></button>
+
                                             </div>
                                         </div>
 
@@ -1439,12 +1401,10 @@
                                             <br>
                                             <img class="img-fluid red-image" src="{{ asset('assets/media/document/front.png') }}" alt="Imagen frontal de documento" width="40px">
                                             <div class="form-group mt-3">
-                                                <div class="input-group">
-                                                    <input type="file" class="form-control form-control-sm" id="front_image" placeholder="Imagen" accept=".jpg, .jpeg, .png, .pdf">
-                                                    <div class="input-group-append">
-                                                        <button class="btn btn-bg-warning btn-sm" type="button" id="btn_front_image" data-url="{{ route('submit.image.front') }}"><i class="fas fa-save text-success fs-3"></i></button>
-                                                    </div>
-                                                </div>
+                                                <input type="file" class="form-control form-control-sm" id="front_image" placeholder="Imagen" accept=".jpg, .jpeg, .png, .pdf">
+
+                                                <button class="btn btn-bg-warning btn-sm col-lg-12 mt-2" type="button" id="btn_front_image" disabled data-url="{{ route('submit.image.front') }}">GUARDAR IMAGEN FRONTAL <i class="fas fa-save text-success fs-3"></i></button>
+
                                             </div>
                                         </div>
 
@@ -1504,12 +1464,10 @@
                                             <br>
                                             <img class="img-fluid red-image" src="{{ asset('assets/media/document/front.png') }}" alt="Imagen frontal de documento" width="40px">
                                             <div class="form-group mt-3">
-                                                <div class="input-group">
-                                                    <input type="file" class="form-control form-control-sm" id="front_image" placeholder="Imagen" accept=".jpg, .jpeg, .png, .pdf">
-                                                    <div class="input-group-append">
-                                                        <button class="btn btn-bg-warning btn-sm" type="button" id="btn_front_image" data-url="{{ route('submit.image.front') }}"><i class="fas fa-save text-success fs-3"></i></button>
-                                                    </div>
-                                                </div>
+                                                <input type="file" class="form-control form-control-sm" id="front_image" placeholder="Imagen" accept=".jpg, .jpeg, .png, .pdf">
+
+                                                <button class="btn btn-bg-warning btn-sm col-lg-12 mt-2" type="button" id="btn_front_image" disabled data-url="{{ route('submit.image.front') }}">GUARDAR IMAGEN FRONTAL <i class="fas fa-save text-success fs-3"></i></button>
+
                                             </div>
                                         </div>
 
@@ -1522,12 +1480,9 @@
                                             <br>
                                             <img class="img-fluid red-image" src="{{ asset('assets/media/document/back.png') }}" alt="Imagen reverso de documento" width="40px">
                                             <div class="form-group mt-3">
-                                                <div class="input-group">
-                                                    <input type="file" class="form-control form-control-sm" id="reverse_image" placeholder="Imagen" accept=".jpg, .jpeg, .png, .pdf">
-                                                    <div class="input-group-append">
-                                                        <button class="btn btn-bg-warning btn-sm" type="button" id="btn_reverse_image" data-url="{{ route('submit.image.reverse') }}"><i class="fas fa-save text-success fs-3"></i></button>
-                                                    </div>
-                                                </div>
+                                                <input type="file" class="form-control form-control-sm" id="reverse_image" placeholder="Imagen" accept=".jpg, .jpeg, .png, .pdf">
+
+                                                <button class="btn btn-bg-warning btn-sm col-lg-12 mt-2" type="button" id="btn_reverse_image" disabled data-url="{{ route('submit.image.reverse') }}">GUARDAR IMAGEN POSTERIOR <i class="fas fa-save text-success fs-3"></i></button>
                                             </div>
                                         </div>
 

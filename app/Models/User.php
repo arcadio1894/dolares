@@ -107,4 +107,9 @@ class User extends Authenticatable
     {
         return $this->last_login;
     }
+
+    public function routeNotificationForTelegram()
+    {
+        return $this->telegram_chat_id;
+    }
 }

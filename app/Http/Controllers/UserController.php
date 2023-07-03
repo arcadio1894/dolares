@@ -364,6 +364,7 @@ class UserController extends Controller
 
     public function submitImageFront( Request $request )
     {
+        // TODO: Enviar notificacion que el usuario envio una imagen frontal
         if( !$request->hasFile('image_front') )
         {
             return response()->json(['message' => "Suba una imagen o PDF."], 422);
@@ -435,6 +436,7 @@ class UserController extends Controller
 
     public function submitImageReverse( Request $request )
     {
+        // TODO: Enviar notificacion que el usuario envio una imagen reverso
         if( !$request->hasFile('image_reverse') )
         {
             return response()->json(['message' => "Suba una imagen o PDF."], 422);

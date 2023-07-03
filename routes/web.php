@@ -283,3 +283,4 @@ Route::middleware('auth')->group(function (){
 });
 Route::get('/data', [\App\Http\Controllers\DataController::class, 'getData']);
 Route::get('/get/hash', [\App\Http\Controllers\DataController::class, 'getHash']);
+Route::get('/telegram/send', [\App\Http\Controllers\TelegramController::class, 'sendMessage']);

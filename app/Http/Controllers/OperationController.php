@@ -469,6 +469,7 @@ class OperationController extends Controller
 
     public function saveOperationReal(Request $request)
     {
+        // TODO: Enviar la notificacion al admin por telegram
         $number_operation = $request->get('codigo');
 
         $code_operation = $this->generateRandomString(10);

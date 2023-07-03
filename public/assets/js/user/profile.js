@@ -3,6 +3,22 @@ $(document).ready(function () {
     $("#btn_front_image").on('click', submitFrontImage);
     $("#btn_reverse_image").on('click', submitReverseImage);
 
+    $("#front_image").on('change', function() {
+        if ($(this).val()) {
+            $('#btn_front_image').prop('disabled', false);
+        } else {
+            $('#btn_front_image').prop('disabled', true);
+        }
+    });
+
+    $("#reverse_image").on('change', function() {
+        if ($(this).val()) {
+            $('#btn_reverse_image').prop('disabled', false);
+        } else {
+            $('#btn_reverse_image').prop('disabled', true);
+        }
+    });
+
 });
 
 var $modalImage;
@@ -34,17 +50,17 @@ function submitFrontImage() {
                 customClass: {confirmButton: "btn btn-primary"}
             }).then((function (e) {
                 button.attr('disabled', false);
-                button.parent().parent().parent().prev().removeClass('gray-image');
-                button.parent().parent().parent().prev().removeClass('red-image');
-                button.parent().parent().parent().prev().addClass('yellow-image');
-                button.parent().parent().parent().parent().parent().removeClass('bg-secondary');
-                button.parent().parent().parent().parent().parent().removeClass('border-secondary');
-                button.parent().parent().parent().parent().parent().removeClass('bg-light-danger');
-                button.parent().parent().parent().parent().parent().removeClass('border-danger');
-                button.parent().parent().parent().parent().parent().addClass('bg-light-warning');
-                button.parent().parent().parent().parent().parent().addClass('border-warning');
-                button.parent().parent().parent().prev().after('<label class="col-lg-12 fw-bolder fs-7 text-gray-800">Estamos validando sus documentos. Espere unos minutos</label>');
-                button.parent().parent().parent().remove();
+                button.parent().prev().removeClass('gray-image');
+                button.parent().prev().removeClass('red-image');
+                button.parent().prev().addClass('yellow-image');
+                button.parent().parent().parent().removeClass('bg-secondary');
+                button.parent().parent().parent().removeClass('border-secondary');
+                button.parent().parent().parent().removeClass('bg-light-danger');
+                button.parent().parent().parent().removeClass('border-danger');
+                button.parent().parent().parent().addClass('bg-light-warning');
+                button.parent().parent().parent().addClass('border-warning');
+                button.parent().prev().after('<label class="col-lg-12 fw-bolder fs-7 text-gray-800">Estamos validando sus documentos. Espere unos minutos</label>');
+                button.parent().remove();
             }))
 
         },
@@ -121,17 +137,17 @@ function submitReverseImage() {
                 customClass: {confirmButton: "btn btn-primary"}
             }).then((function (e) {
                 button.attr('disabled', false);
-                button.parent().parent().parent().prev().removeClass('gray-image');
-                button.parent().parent().parent().prev().removeClass('red-image');
-                button.parent().parent().parent().prev().addClass('yellow-image');
-                button.parent().parent().parent().parent().parent().removeClass('bg-secondary');
-                button.parent().parent().parent().parent().parent().removeClass('border-secondary');
-                button.parent().parent().parent().parent().parent().removeClass('bg-light-danger');
-                button.parent().parent().parent().parent().parent().removeClass('border-danger');
-                button.parent().parent().parent().parent().parent().addClass('bg-light-warning');
-                button.parent().parent().parent().parent().parent().addClass('border-warning');
-                button.parent().parent().parent().prev().after('<label class="col-lg-12 fw-bolder fs-7 text-gray-800">Estamos validando sus documentos. Espere unos minutos</label>');
-                button.parent().parent().parent().remove();
+                button.parent().prev().removeClass('gray-image');
+                button.parent().prev().removeClass('red-image');
+                button.parent().prev().addClass('yellow-image');
+                button.parent().parent().parent().removeClass('bg-secondary');
+                button.parent().parent().parent().removeClass('border-secondary');
+                button.parent().parent().parent().removeClass('bg-light-danger');
+                button.parent().parent().parent().removeClass('border-danger');
+                button.parent().parent().parent().addClass('bg-light-warning');
+                button.parent().parent().parent().addClass('border-warning');
+                button.parent().prev().after('<label class="col-lg-12 fw-bolder fs-7 text-gray-800">Estamos validando sus documentos. Espere unos minutos</label>');
+                button.parent().remove();
             }))
 
         },
