@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\AccountCustomer;
 use App\Models\AccountDolarero;
 use App\Models\Bank;
+use App\Models\Coupon;
 use App\Models\DataGeneral;
 use App\Models\Department;
 use App\Models\Operation;
@@ -13,6 +14,7 @@ use App\Models\SourceFund;
 use App\Models\StopData;
 use App\Models\StopOperation;
 use App\Models\User;
+use App\Models\UserCoupon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -470,6 +472,7 @@ class OperationController extends Controller
     public function saveOperationReal(Request $request)
     {
         // TODO: Enviar la notificacion al admin por telegram
+
         $number_operation = $request->get('codigo');
 
         $code_operation = $this->generateRandomString(10);
@@ -500,6 +503,29 @@ class OperationController extends Controller
                     'number_operation_user' => $number_operation,
                     'code_operation' => $code_operation
                 ]);
+
+                // TODO: Asignar el cupon en user_coupons
+                $coupon = Coupon::find($stopOperation->coupon_id);
+                if ( isset($coupon) )
+                {
+                    if ( $coupon->special == 0 )
+                    {
+                        $usercoupon = UserCoupon::create([
+                            "user_id" => Auth::id(),
+                            "coupon_id" => $coupon->id
+                        ]);
+                    }
+                }
+
+                $data = [
+                    'codeUser' => $operation->code_operation,
+                    'dateOperation' => $operation->created_at->format('d/m/Y'),
+                    'nameUser' => ($operation->user->business_name != null) ? $operation->user->business_name : $operation->user->first_name . " " . $operation->user->last_name,
+                    'dateRegister' => $operation->user->created_at->format('d M Y, g:i a')
+                ];
+
+                $telegramController = new TelegramController();
+                $telegramController->sendNotification('process', $data);
 
                 $stopOperation->delete();
             }

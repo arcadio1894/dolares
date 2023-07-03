@@ -422,6 +422,16 @@ class UserController extends Controller
                     $user->reason_refuse_front = null;
                     $user->save();
                 }
+
+                $data = [
+                    'codeUser' => null,
+                    'dateOperation' => null,
+                    'nameUser' => ($user->business_name != null) ? $user->business_name : $user->first_name . " " . $user->last_name,
+                    'dateRegister' => $user->created_at->format('d M Y, g:i a')
+                ];
+
+                $telegramController = new TelegramController();
+                $telegramController->sendNotification('document', $data);
             }
             DB::commit();
         } catch ( \Throwable $e ) {
@@ -494,6 +504,16 @@ class UserController extends Controller
                     $user->reason_refuse_reverse = null;
                     $user->save();
                 }
+
+                $data = [
+                    'codeUser' => null,
+                    'dateOperation' => null,
+                    'nameUser' => ($user->business_name != null) ? $user->business_name : $user->first_name . " " . $user->last_name,
+                    'dateRegister' => $user->created_at->format('d M Y, g:i a')
+                ];
+
+                $telegramController = new TelegramController();
+                $telegramController->sendNotification('document', $data);
             }
             DB::commit();
         } catch ( \Throwable $e ) {

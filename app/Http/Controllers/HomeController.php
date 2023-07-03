@@ -121,15 +121,29 @@ class HomeController extends Controller
             ], 422);
         }
 
-        $userCoupon = UserCoupon::where('user_id', Auth::id())
-            ->where('coupon_id', $couponComplete->id)
-            ->first();
-
-        if ( isset($userCoupon) )
+        if ( $couponComplete->special == 1 )
         {
-            return response()->json([
-                "message" => 'Este cupón ya fue utilizado, por favor ingrese otro cupón.'
-            ], 422);
+            $userCoupon = UserCoupon::where('user_id', Auth::id())
+                ->where('coupon_id', $couponComplete->id)
+                ->first();
+
+            if ( !isset($userCoupon) )
+            {
+                return response()->json([
+                    "message" => 'Este cupón es especial y no fue asignado a su usuario, ingrese otro cupón.'
+                ], 422);
+            }
+        } else {
+            $userCoupon = UserCoupon::where('user_id', Auth::id())
+                ->where('coupon_id', $couponComplete->id)
+                ->first();
+
+            if ( isset($userCoupon) )
+            {
+                return response()->json([
+                    "message" => 'Este cupón ya fue utilizado, por favor ingrese otro cupón.'
+                ], 422);
+            }
         }
 
         // TODO: Esta creacion debe hacerse al culminar la operación con el cupón
