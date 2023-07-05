@@ -39,6 +39,7 @@ var KTCustomersList = function () {
                                     customClass: {confirmButton: "btn fw-bold btn-primary"}
                                 }).then((function () {
                                     t.row($(o)).remove().draw();
+                                    location.reload();
                                 }))
 
                             },

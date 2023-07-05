@@ -5,7 +5,7 @@
 @section('page-title', 'Cuentas Bancarias')
 
 @section('breadcrumb')
-    <ul class="breadcrumb fw-bold fs-base my-1">
+    <ul class="breadcrumb fw-bold fs-base my-1 float-left">
         <li class="breadcrumb-item text-muted">
             <a href="{{ route('home') }}" class="text-muted">Dashboard</a>
         </li>
@@ -34,7 +34,7 @@
 
 @section('content')
     <!--begin::Card-->
-    <div class="card">
+    <div class="card d-none d-sm-block">
         <!--begin::Card header-->
         <div class="card-header border-0 pt-6">
             <!--begin::Card title-->
@@ -143,6 +143,41 @@
 
             </table>
         </div>
+    </div>
+
+    <div class="d-sm-none">
+        <div class="d-flex justify-content-center mb-5" data-kt-customer-table-toolbar="base">
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#kt_modal_add_customer">Agregar Cuenta</button>
+        </div>
+
+        @foreach( $accounts as $account )
+            <div class="card mb-4">
+                <div class="card-body p-5">
+                    <div class="d-flex">
+                        <div class="col-sm-3 ">
+                            <img src="{{ asset('assets/images/banks/'.$account->bank->imageBank) }}" alt="{{ $account->bank->name }}" class="img-fluid" style="max-width: 40px;">
+
+                        </div>
+                        <div class="col-sm-7 mx-3">
+                            <p class="mb-1">{{ $account->nameAccount }}</p>
+                            <p class="mb-1">{{ $account->bank->name }}</p>
+                        </div>
+
+                        <button class="p-0 btn btn-lg btn-flex btn-link btn-color-gray-800 ms-auto" data-kt-account="{{ $account->id }}" data-kt-bank="{{ $account->bank->id }}" data-kt-department="{{ $account->department->id }}" data-kt-nameBank="{{ $account->bank->name }}" data-kt-status="{{ $account->status }}" data-kt-numberAccount="{{ $account->numberAccount }}" data-kt-currency="{{ $account->currency }}" data-kt-nameAccount="{{ $account->nameAccount }}" data-kt-type-account="{{ $account->type_account }}" data-kt-property="{{ $account->property }}" data-kt-account-action="update_row"><i class="p-2 far fa-edit"></i></button>
+
+                    </div>
+                    <hr>
+                    <div style="display: flex; justify-content: space-between;">
+                        <div class="col-sm-7 mx-3">
+                            <p class="mb-1">{{ ($account->currency == 'PEN') ? 'Soles':'Dólares' }} - {{ ($account->type_account == 'a') ? 'Ahorros':'Corriente' }}</p>
+                            <p class="mb-1">{{ $account->numberAccount }}</p>
+                        </div>
+
+                        <button class="p-0 btn btn-lg btn-flex btn-link btn-color-gray-800 ms-auto" data-kt-account="{{ $account->id }}" data-kt-numberAccount="{{ $account->numberAccount }}" data-kt-account-action="delete_row"><i class="p-2 far fa-trash-alt fa-lg"></i></button>
+                    </div>
+                </div>
+            </div>
+        @endforeach
     </div>
 
     <div class="modal fade" id="kt_modal_add_customer" aria-hidden="true">
@@ -603,4 +638,5 @@
     <script src="{{ asset('assets/js/accountCustomers/list.js') }}"></script>
     <script src="{{ asset('assets/js/accountCustomers/add.js') }}"></script>
     <script src="{{ asset('assets/js/accountCustomers/edit.js') }}"></script>
+    <script src="{{ asset('assets/js/accountCustomers/delete.js') }}"></script>
 @endsection
