@@ -219,7 +219,293 @@
     </div>
 
     <div class="d-sm-none">
-        @foreach( $operations as $operation )
+        <div class="card-header border-0 mb-5">
+            <h3 class="card-title align-items-start flex-column">
+            </h3>
+            <div class="card-toolbar">
+                <ul class="nav">
+                    <li class="nav-item">
+                        <a class="nav-link btn btn-sm btn-color-muted btn-active btn-active-dark fw-bolder px-4 me-1 active" data-bs-toggle="tab" href="#kt_table_widget_5_tab_1">En proceso</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link btn btn-sm btn-color-muted btn-active btn-active-dark fw-bolder px-4 me-1" data-bs-toggle="tab" href="#kt_table_widget_5_tab_2">Finalizadas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link btn btn-sm btn-color-muted btn-active btn-active-dark fw-bolder px-4" data-bs-toggle="tab" href="#kt_table_widget_5_tab_3">Rechazadas</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="card-body py-3">
+            <div class="tab-content">
+                <div class="tab-pane fade active show" id="kt_table_widget_5_tab_1">
+                    @foreach( $operations as $operation )
+                        @if ( $operation->state == 'processing' )
+                        <div class="card mb-4">
+                            <div class="card-body p-5">
+                                <div style="display: flex; justify-content: space-between;">
+                                    <span>N° de operación {{ $operation->code_operation }}</span>
+                                    <span class="right-aligned"> {{ $operation->estado}} </span>
+                                </div>
+                                <hr>
+                                <table class="table custom-table">
+                                    <tbody>
+                                    <tr>
+                                        <td class="pb-1" style="display: flex; justify-content: space-between;">Enviado <span class="right-aligned">{{ $operation->send_amount_list }}</span></td>
+                                        <td class="pb-1">Tipo de Cambio </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="pt-1" style="display: flex; justify-content: space-between;">Recibido <span class="right-aligned">{{ $operation->get_amount_list }}</span></td>
+                                        <td class="pt-1">{{ $operation->type_change }}</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                                <hr>
+                                <div style="display: flex; justify-content: space-between;">
+
+                                    <span>{{ $operation->created_at->format('d/m/Y') }}</span>
+                                    <a href="#" class="btn btn-sm btn-light btn-active-light-primary right-aligned" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">Elegir
+                                        <!--begin::Svg Icon | path: icons/duotune/arrows/arr072.svg-->
+                                        <span class="svg-icon svg-icon-5 m-0">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                    <path d="M11.4343 12.7344L7.25 8.55005C6.83579 8.13583 6.16421 8.13584 5.75 8.55005C5.33579 8.96426 5.33579 9.63583 5.75 10.05L11.2929 15.5929C11.6834 15.9835 12.3166 15.9835 12.7071 15.5929L18.25 10.05C18.6642 9.63584 18.6642 8.96426 18.25 8.55005C17.8358 8.13584 17.1642 8.13584 16.75 8.55005L12.5657 12.7344C12.2533 13.0468 11.7467 13.0468 11.4343 12.7344Z" fill="black" />
+                                </svg>
+                            </span>
+                                        <!--end::Svg Icon--></a>
+                                    <!--begin::Menu-->
+                                    @if ( $operation->estado === 'PROCESANDO' )
+                                        <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-bold fs-7 w-125px py-4" data-kt-menu="true">
+                                            <!--begin::Menu item-->
+                                            <div class="menu-item px-3">
+                                                <a href="https://api.whatsapp.com/send?phone=51921867035&text=Hola%20necesito%20ayuda" target="_blank" class="menu-link px-3" ><i class="fab fa-whatsapp fs-4" style="margin-right: 5px;color: #14ad33;"></i> Ayuda</a>
+                                            </div>
+                                            <!--end::Menu item-->
+                                            <!--begin::Menu item-->
+                                            <div class="menu-item px-3">
+                                                <a href="#" class="menu-link px-3 text-success" data-kt-operation="{{ $operation->id }}" data-kt-operation-action="show_details">Detalles</a>
+                                            </div>
+                                            <!--end::Menu item-->
+                                        </div>
+                                    @elseif( $operation->estado === 'FINALIZADO' )
+                                        <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-bold fs-7 w-125px py-4" data-kt-menu="true">
+                                            <!--begin::Menu item-->
+                                            <div class="menu-item px-3">
+                                                <a href="https://api.whatsapp.com/send?phone=51921867035&text=Hola%20necesito%20ayuda" target="_blank" class="menu-link px-3" ><i class="fab fa-whatsapp fs-4" style="margin-right: 5px;color: #14ad33;"></i> Ayuda</a>
+                                            </div>
+                                            <!--end::Menu item-->
+                                            <!--begin::Menu item-->
+                                            <div class="menu-item px-3">
+                                                <a href="#" class="menu-link px-3 text-success" data-kt-operation="{{ $operation->id }}" data-kt-operation-action="show_details">Detalles</a>
+                                            </div>
+                                            <div class="menu-item px-3">
+                                                <a href="#" class="menu-link px-3 text-primary" data-kt-operation="{{ $operation->id }}" data-kt-operation-action="show_receipt">Comprobante</a>
+                                            </div>
+                                            <!--end::Menu item-->
+                                        </div>
+                                    @else
+                                        <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-bold fs-7 w-125px py-4" data-kt-menu="true">
+                                            <!--begin::Menu item-->
+                                            <div class="menu-item px-3">
+                                                <a href="https://api.whatsapp.com/send?phone=51921867035&text=Hola%20necesito%20ayuda" target="_blank" class="menu-link px-3" ><i class="fab fa-whatsapp fs-4" style="margin-right: 5px;color: #14ad33;"></i> Ayuda</a>
+                                            </div>
+                                            <!--end::Menu item-->
+                                            <!--begin::Menu item-->
+                                            <div class="menu-item px-3">
+                                                <a href="#" class="menu-link px-3 text-success" data-kt-operation="{{ $operation->id }}" data-kt-operation-action="show_details">Detalles</a>
+                                            </div>
+                                            <div class="menu-item px-3">
+                                                <a href="#" class="menu-link px-3 text-danger" data-kt-operation="{{ $operation->id }}" data-kt-operation-action="show_refused">Motivo</a>
+                                            </div>
+                                            <!--end::Menu item-->
+                                        </div>
+                                    @endif
+                                    {{--<button class="p-0 btn btn-lg btn-flex btn-link btn-color-gray-800 right-aligned">Ver detalles <i class="p-2 fas fa-chevron-right"></i></button>--}}
+                                </div>
+                            </div>
+                        </div>
+                        @endif
+                    @endforeach
+                </div>
+                <div class="tab-pane fade" id="kt_table_widget_5_tab_2">
+                    @foreach( $operations as $operation )
+                        @if ( $operation->state == 'finished' )
+                            <div class="card mb-4">
+                                <div class="card-body p-5">
+                                    <div style="display: flex; justify-content: space-between;">
+                                        <span>N° de operación {{ $operation->code_operation }}</span>
+                                        <span class="right-aligned"> {{ $operation->estado}} </span>
+                                    </div>
+                                    <hr>
+                                    <table class="table custom-table">
+                                        <tbody>
+                                        <tr>
+                                            <td class="pb-1" style="display: flex; justify-content: space-between;">Enviado <span class="right-aligned">{{ $operation->send_amount_list }}</span></td>
+                                            <td class="pb-1">Tipo de Cambio </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="pt-1" style="display: flex; justify-content: space-between;">Recibido <span class="right-aligned">{{ $operation->get_amount_list }}</span></td>
+                                            <td class="pt-1">{{ $operation->type_change }}</td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                    <hr>
+                                    <div style="display: flex; justify-content: space-between;">
+
+                                        <span>{{ $operation->created_at->format('d/m/Y') }}</span>
+                                        <a href="#" class="btn btn-sm btn-light btn-active-light-primary right-aligned" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">Elegir
+                                            <!--begin::Svg Icon | path: icons/duotune/arrows/arr072.svg-->
+                                            <span class="svg-icon svg-icon-5 m-0">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                    <path d="M11.4343 12.7344L7.25 8.55005C6.83579 8.13583 6.16421 8.13584 5.75 8.55005C5.33579 8.96426 5.33579 9.63583 5.75 10.05L11.2929 15.5929C11.6834 15.9835 12.3166 15.9835 12.7071 15.5929L18.25 10.05C18.6642 9.63584 18.6642 8.96426 18.25 8.55005C17.8358 8.13584 17.1642 8.13584 16.75 8.55005L12.5657 12.7344C12.2533 13.0468 11.7467 13.0468 11.4343 12.7344Z" fill="black" />
+                                </svg>
+                            </span>
+                                            <!--end::Svg Icon--></a>
+                                        <!--begin::Menu-->
+                                        @if ( $operation->estado === 'PROCESANDO' )
+                                            <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-bold fs-7 w-125px py-4" data-kt-menu="true">
+                                                <!--begin::Menu item-->
+                                                <div class="menu-item px-3">
+                                                    <a href="https://api.whatsapp.com/send?phone=51921867035&text=Hola%20necesito%20ayuda" target="_blank" class="menu-link px-3" ><i class="fab fa-whatsapp fs-4" style="margin-right: 5px;color: #14ad33;"></i> Ayuda</a>
+                                                </div>
+                                                <!--end::Menu item-->
+                                                <!--begin::Menu item-->
+                                                <div class="menu-item px-3">
+                                                    <a href="#" class="menu-link px-3 text-success" data-kt-operation="{{ $operation->id }}" data-kt-operation-action="show_details">Detalles</a>
+                                                </div>
+                                                <!--end::Menu item-->
+                                            </div>
+                                        @elseif( $operation->estado === 'FINALIZADO' )
+                                            <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-bold fs-7 w-125px py-4" data-kt-menu="true">
+                                                <!--begin::Menu item-->
+                                                <div class="menu-item px-3">
+                                                    <a href="https://api.whatsapp.com/send?phone=51921867035&text=Hola%20necesito%20ayuda" target="_blank" class="menu-link px-3" ><i class="fab fa-whatsapp fs-4" style="margin-right: 5px;color: #14ad33;"></i> Ayuda</a>
+                                                </div>
+                                                <!--end::Menu item-->
+                                                <!--begin::Menu item-->
+                                                <div class="menu-item px-3">
+                                                    <a href="#" class="menu-link px-3 text-success" data-kt-operation="{{ $operation->id }}" data-kt-operation-action="show_details">Detalles</a>
+                                                </div>
+                                                <div class="menu-item px-3">
+                                                    <a href="#" class="menu-link px-3 text-primary" data-kt-operation="{{ $operation->id }}" data-kt-operation-action="show_receipt">Comprobante</a>
+                                                </div>
+                                                <!--end::Menu item-->
+                                            </div>
+                                        @else
+                                            <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-bold fs-7 w-125px py-4" data-kt-menu="true">
+                                                <!--begin::Menu item-->
+                                                <div class="menu-item px-3">
+                                                    <a href="https://api.whatsapp.com/send?phone=51921867035&text=Hola%20necesito%20ayuda" target="_blank" class="menu-link px-3" ><i class="fab fa-whatsapp fs-4" style="margin-right: 5px;color: #14ad33;"></i> Ayuda</a>
+                                                </div>
+                                                <!--end::Menu item-->
+                                                <!--begin::Menu item-->
+                                                <div class="menu-item px-3">
+                                                    <a href="#" class="menu-link px-3 text-success" data-kt-operation="{{ $operation->id }}" data-kt-operation-action="show_details">Detalles</a>
+                                                </div>
+                                                <div class="menu-item px-3">
+                                                    <a href="#" class="menu-link px-3 text-danger" data-kt-operation="{{ $operation->id }}" data-kt-operation-action="show_refused">Motivo</a>
+                                                </div>
+                                                <!--end::Menu item-->
+                                            </div>
+                                        @endif
+                                        {{--<button class="p-0 btn btn-lg btn-flex btn-link btn-color-gray-800 right-aligned">Ver detalles <i class="p-2 fas fa-chevron-right"></i></button>--}}
+                                    </div>
+                                </div>
+                            </div>
+                        @endif
+                    @endforeach
+                </div>
+                <div class="tab-pane fade" id="kt_table_widget_5_tab_3">
+                    @foreach( $operations as $operation )
+                        @if ( $operation->state == 'refused' )
+                            <div class="card mb-4">
+                                <div class="card-body p-5">
+                                    <div style="display: flex; justify-content: space-between;">
+                                        <span>N° de operación {{ $operation->code_operation }}</span>
+                                        <span class="right-aligned"> {{ $operation->estado}} </span>
+                                    </div>
+                                    <hr>
+                                    <table class="table custom-table">
+                                        <tbody>
+                                        <tr>
+                                            <td class="pb-1" style="display: flex; justify-content: space-between;">Enviado <span class="right-aligned">{{ $operation->send_amount_list }}</span></td>
+                                            <td class="pb-1">Tipo de Cambio </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="pt-1" style="display: flex; justify-content: space-between;">Recibido <span class="right-aligned">{{ $operation->get_amount_list }}</span></td>
+                                            <td class="pt-1">{{ $operation->type_change }}</td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                    <hr>
+                                    <div style="display: flex; justify-content: space-between;">
+
+                                        <span>{{ $operation->created_at->format('d/m/Y') }}</span>
+                                        <a href="#" class="btn btn-sm btn-light btn-active-light-primary right-aligned" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">Elegir
+                                            <!--begin::Svg Icon | path: icons/duotune/arrows/arr072.svg-->
+                                            <span class="svg-icon svg-icon-5 m-0">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                    <path d="M11.4343 12.7344L7.25 8.55005C6.83579 8.13583 6.16421 8.13584 5.75 8.55005C5.33579 8.96426 5.33579 9.63583 5.75 10.05L11.2929 15.5929C11.6834 15.9835 12.3166 15.9835 12.7071 15.5929L18.25 10.05C18.6642 9.63584 18.6642 8.96426 18.25 8.55005C17.8358 8.13584 17.1642 8.13584 16.75 8.55005L12.5657 12.7344C12.2533 13.0468 11.7467 13.0468 11.4343 12.7344Z" fill="black" />
+                                </svg>
+                            </span>
+                                            <!--end::Svg Icon--></a>
+                                        <!--begin::Menu-->
+                                        @if ( $operation->estado === 'PROCESANDO' )
+                                            <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-bold fs-7 w-125px py-4" data-kt-menu="true">
+                                                <!--begin::Menu item-->
+                                                <div class="menu-item px-3">
+                                                    <a href="https://api.whatsapp.com/send?phone=51921867035&text=Hola%20necesito%20ayuda" target="_blank" class="menu-link px-3" ><i class="fab fa-whatsapp fs-4" style="margin-right: 5px;color: #14ad33;"></i> Ayuda</a>
+                                                </div>
+                                                <!--end::Menu item-->
+                                                <!--begin::Menu item-->
+                                                <div class="menu-item px-3">
+                                                    <a href="#" class="menu-link px-3 text-success" data-kt-operation="{{ $operation->id }}" data-kt-operation-action="show_details">Detalles</a>
+                                                </div>
+                                                <!--end::Menu item-->
+                                            </div>
+                                        @elseif( $operation->estado === 'FINALIZADO' )
+                                            <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-bold fs-7 w-125px py-4" data-kt-menu="true">
+                                                <!--begin::Menu item-->
+                                                <div class="menu-item px-3">
+                                                    <a href="https://api.whatsapp.com/send?phone=51921867035&text=Hola%20necesito%20ayuda" target="_blank" class="menu-link px-3" ><i class="fab fa-whatsapp fs-4" style="margin-right: 5px;color: #14ad33;"></i> Ayuda</a>
+                                                </div>
+                                                <!--end::Menu item-->
+                                                <!--begin::Menu item-->
+                                                <div class="menu-item px-3">
+                                                    <a href="#" class="menu-link px-3 text-success" data-kt-operation="{{ $operation->id }}" data-kt-operation-action="show_details">Detalles</a>
+                                                </div>
+                                                <div class="menu-item px-3">
+                                                    <a href="#" class="menu-link px-3 text-primary" data-kt-operation="{{ $operation->id }}" data-kt-operation-action="show_receipt">Comprobante</a>
+                                                </div>
+                                                <!--end::Menu item-->
+                                            </div>
+                                        @else
+                                            <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-bold fs-7 w-125px py-4" data-kt-menu="true">
+                                                <!--begin::Menu item-->
+                                                <div class="menu-item px-3">
+                                                    <a href="https://api.whatsapp.com/send?phone=51921867035&text=Hola%20necesito%20ayuda" target="_blank" class="menu-link px-3" ><i class="fab fa-whatsapp fs-4" style="margin-right: 5px;color: #14ad33;"></i> Ayuda</a>
+                                                </div>
+                                                <!--end::Menu item-->
+                                                <!--begin::Menu item-->
+                                                <div class="menu-item px-3">
+                                                    <a href="#" class="menu-link px-3 text-success" data-kt-operation="{{ $operation->id }}" data-kt-operation-action="show_details">Detalles</a>
+                                                </div>
+                                                <div class="menu-item px-3">
+                                                    <a href="#" class="menu-link px-3 text-danger" data-kt-operation="{{ $operation->id }}" data-kt-operation-action="show_refused">Motivo</a>
+                                                </div>
+                                                <!--end::Menu item-->
+                                            </div>
+                                        @endif
+                                        {{--<button class="p-0 btn btn-lg btn-flex btn-link btn-color-gray-800 right-aligned">Ver detalles <i class="p-2 fas fa-chevron-right"></i></button>--}}
+                                    </div>
+                                </div>
+                            </div>
+                        @endif
+                    @endforeach
+                </div>
+            </div>
+        </div>
+        {{--@foreach( $operations as $operation )
         <div class="card mb-4">
             <div class="card-body p-5">
                 <div style="display: flex; justify-content: space-between;">
@@ -298,11 +584,11 @@
                             <!--end::Menu item-->
                         </div>
                     @endif
-                    {{--<button class="p-0 btn btn-lg btn-flex btn-link btn-color-gray-800 right-aligned">Ver detalles <i class="p-2 fas fa-chevron-right"></i></button>--}}
+                    --}}{{--<button class="p-0 btn btn-lg btn-flex btn-link btn-color-gray-800 right-aligned">Ver detalles <i class="p-2 fas fa-chevron-right"></i></button>--}}{{--
                 </div>
             </div>
         </div>
-        @endforeach
+        @endforeach--}}
     </div>
 
     <div class="modal fade" id="kt_modal_operation_details" aria-hidden="true">
