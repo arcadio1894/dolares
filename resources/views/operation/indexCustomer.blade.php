@@ -230,9 +230,9 @@
                     <li class="nav-item">
                         <a class="nav-link btn btn-sm btn-color-muted btn-active btn-active-dark fw-bolder px-4 me-1" data-bs-toggle="tab" href="#kt_table_widget_5_tab_2">Finalizadas</a>
                     </li>
-                    <li class="nav-item">
+                    {{--<li class="nav-item">
                         <a class="nav-link btn btn-sm btn-color-muted btn-active btn-active-dark fw-bolder px-4" data-bs-toggle="tab" href="#kt_table_widget_5_tab_3">Rechazadas</a>
-                    </li>
+                    </li>--}}
                 </ul>
             </div>
         </div>
@@ -241,7 +241,7 @@
             <div class="tab-content">
                 <div class="tab-pane fade active show" id="kt_table_widget_5_tab_1">
                     @foreach( $operations as $operation )
-                        @if ( $operation->state == 'processing' )
+                        @if ( $operation->state == 'processing' || $operation->state == 'refused' )
                         <div class="card mb-4">
                             <div class="card-body p-5">
                                 <div style="display: flex; justify-content: space-between;">
@@ -268,10 +268,10 @@
                                     <a href="#" class="btn btn-sm btn-light btn-active-light-primary right-aligned" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">Elegir
                                         <!--begin::Svg Icon | path: icons/duotune/arrows/arr072.svg-->
                                         <span class="svg-icon svg-icon-5 m-0">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                    <path d="M11.4343 12.7344L7.25 8.55005C6.83579 8.13583 6.16421 8.13584 5.75 8.55005C5.33579 8.96426 5.33579 9.63583 5.75 10.05L11.2929 15.5929C11.6834 15.9835 12.3166 15.9835 12.7071 15.5929L18.25 10.05C18.6642 9.63584 18.6642 8.96426 18.25 8.55005C17.8358 8.13584 17.1642 8.13584 16.75 8.55005L12.5657 12.7344C12.2533 13.0468 11.7467 13.0468 11.4343 12.7344Z" fill="black" />
-                                </svg>
-                            </span>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                                <path d="M11.4343 12.7344L7.25 8.55005C6.83579 8.13583 6.16421 8.13584 5.75 8.55005C5.33579 8.96426 5.33579 9.63583 5.75 10.05L11.2929 15.5929C11.6834 15.9835 12.3166 15.9835 12.7071 15.5929L18.25 10.05C18.6642 9.63584 18.6642 8.96426 18.25 8.55005C17.8358 8.13584 17.1642 8.13584 16.75 8.55005L12.5657 12.7344C12.2533 13.0468 11.7467 13.0468 11.4343 12.7344Z" fill="black" />
+                                            </svg>
+                                        </span>
                                         <!--end::Svg Icon--></a>
                                     <!--begin::Menu-->
                                     @if ( $operation->estado === 'PROCESANDO' )
@@ -356,10 +356,10 @@
                                         <a href="#" class="btn btn-sm btn-light btn-active-light-primary right-aligned" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">Elegir
                                             <!--begin::Svg Icon | path: icons/duotune/arrows/arr072.svg-->
                                             <span class="svg-icon svg-icon-5 m-0">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                    <path d="M11.4343 12.7344L7.25 8.55005C6.83579 8.13583 6.16421 8.13584 5.75 8.55005C5.33579 8.96426 5.33579 9.63583 5.75 10.05L11.2929 15.5929C11.6834 15.9835 12.3166 15.9835 12.7071 15.5929L18.25 10.05C18.6642 9.63584 18.6642 8.96426 18.25 8.55005C17.8358 8.13584 17.1642 8.13584 16.75 8.55005L12.5657 12.7344C12.2533 13.0468 11.7467 13.0468 11.4343 12.7344Z" fill="black" />
-                                </svg>
-                            </span>
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                                    <path d="M11.4343 12.7344L7.25 8.55005C6.83579 8.13583 6.16421 8.13584 5.75 8.55005C5.33579 8.96426 5.33579 9.63583 5.75 10.05L11.2929 15.5929C11.6834 15.9835 12.3166 15.9835 12.7071 15.5929L18.25 10.05C18.6642 9.63584 18.6642 8.96426 18.25 8.55005C17.8358 8.13584 17.1642 8.13584 16.75 8.55005L12.5657 12.7344C12.2533 13.0468 11.7467 13.0468 11.4343 12.7344Z" fill="black" />
+                                                </svg>
+                                            </span>
                                             <!--end::Svg Icon--></a>
                                         <!--begin::Menu-->
                                         @if ( $operation->estado === 'PROCESANDO' )
@@ -415,7 +415,7 @@
                         @endif
                     @endforeach
                 </div>
-                <div class="tab-pane fade" id="kt_table_widget_5_tab_3">
+                {{--<div class="tab-pane fade" id="kt_table_widget_5_tab_3">
                     @foreach( $operations as $operation )
                         @if ( $operation->state == 'refused' )
                             <div class="card mb-4">
@@ -444,10 +444,10 @@
                                         <a href="#" class="btn btn-sm btn-light btn-active-light-primary right-aligned" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">Elegir
                                             <!--begin::Svg Icon | path: icons/duotune/arrows/arr072.svg-->
                                             <span class="svg-icon svg-icon-5 m-0">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                    <path d="M11.4343 12.7344L7.25 8.55005C6.83579 8.13583 6.16421 8.13584 5.75 8.55005C5.33579 8.96426 5.33579 9.63583 5.75 10.05L11.2929 15.5929C11.6834 15.9835 12.3166 15.9835 12.7071 15.5929L18.25 10.05C18.6642 9.63584 18.6642 8.96426 18.25 8.55005C17.8358 8.13584 17.1642 8.13584 16.75 8.55005L12.5657 12.7344C12.2533 13.0468 11.7467 13.0468 11.4343 12.7344Z" fill="black" />
-                                </svg>
-                            </span>
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                                    <path d="M11.4343 12.7344L7.25 8.55005C6.83579 8.13583 6.16421 8.13584 5.75 8.55005C5.33579 8.96426 5.33579 9.63583 5.75 10.05L11.2929 15.5929C11.6834 15.9835 12.3166 15.9835 12.7071 15.5929L18.25 10.05C18.6642 9.63584 18.6642 8.96426 18.25 8.55005C17.8358 8.13584 17.1642 8.13584 16.75 8.55005L12.5657 12.7344C12.2533 13.0468 11.7467 13.0468 11.4343 12.7344Z" fill="black" />
+                                                </svg>
+                                            </span>
                                             <!--end::Svg Icon--></a>
                                         <!--begin::Menu-->
                                         @if ( $operation->estado === 'PROCESANDO' )
@@ -496,13 +496,13 @@
                                                 <!--end::Menu item-->
                                             </div>
                                         @endif
-                                        {{--<button class="p-0 btn btn-lg btn-flex btn-link btn-color-gray-800 right-aligned">Ver detalles <i class="p-2 fas fa-chevron-right"></i></button>--}}
+                                        --}}{{--<button class="p-0 btn btn-lg btn-flex btn-link btn-color-gray-800 right-aligned">Ver detalles <i class="p-2 fas fa-chevron-right"></i></button>--}}{{--
                                     </div>
                                 </div>
                             </div>
                         @endif
                     @endforeach
-                </div>
+                </div>--}}
             </div>
         </div>
         {{--@foreach( $operations as $operation )
