@@ -253,13 +253,13 @@
                                     <div class="row">
                                         <!--begin::Col-->
                                         <div class="col-lg-8 offset-lg-2">
-                                            <p class="text-muted text-gray-800 fw-bold fs-6">1. Transfiere <strong class="link-primary fw-bolder" id="amountSendOperation"> 00.00 moneda</strong> desde tu banco <strong class="link-primary fw-bolder" id="nameBankOperation">  </strong>. </p>
+                                            <p class="text-muted text-gray-800 fw-bold fs-6">1. Transfiere <strong class="link-dark fw-bolder" id="amountSendOperation"> 00.00 moneda</strong> desde tu banco <strong class="link-dark fw-bolder" id="nameBankOperation">  </strong>. </p>
                                             <p class="text-muted text-gray-800 fw-bold fs-6">2. Guarda el
                                                 <strong class="link-primary fw-bolder" >
                                                     <a href="#" id="showModalNumberOperation">número de tu operación</a>
                                                 </strong> para el segundo paso.
                                             </p>
-                                            <div class="col-sm-8 offset-sm-2 col-8 offset-2 bg-light-primary rounded border-primary border border-dashed p-6">
+                                            <div class="col-sm-10 offset-sm-1 col-10 offset-1 bg-light-primary rounded border-primary border border-dashed p-6">
                                                 <strong class="text-gray-900 ">Banco</strong>
                                                 <p class="text-gray-900 mb-1 ml-5" id="nameBankOperationDeposit">BCP</p>
                                                 <strong class="text-gray-900 ">Número de cuenta</strong>
@@ -828,13 +828,13 @@
                                     <div class="row">
                                         <!--begin::Col-->
                                         <div class="col-lg-8 offset-lg-2">
-                                            <p class="text-muted text-gray-800 fw-bold fs-6">1. Transfiere <strong class="link-primary fw-bolder" id="amountSendOperation"> 00.00 moneda</strong> desde tu banco <strong class="link-primary fw-bolder" id="nameBankOperation">  </strong> . </p>
+                                            <p class="text-muted text-gray-800 fw-bold fs-6">1. Transfiere <strong class="link-dark fw-bolder" id="amountSendOperation"> 00.00 moneda</strong> desde tu banco <strong class="link-dark fw-bolder" id="nameBankOperation">  </strong> . </p>
                                             <p class="text-muted text-gray-800 fw-bold fs-6">2. Guarda el
                                                 <strong class="link-primary fw-bolder" >
                                                     <a href="#" id="showModalNumberOperation">número de tu operación</a>
                                                 </strong> para el segundo paso.
                                             </p>
-                                            <div class="col-sm-8 offset-sm-2 col-8 offset-2 bg-light-primary rounded border-primary border border-dashed p-6">
+                                            <div class="col-sm-10 offset-sm-1 col-10 offset-1 bg-light-primary rounded border-primary border border-dashed p-6">
                                                 <strong class="text-gray-900 ">Banco</strong>
                                                 <p class="text-gray-900 mb-1 ml-5" id="nameBankOperationDeposit">BCP</p>
                                                 <strong class="text-gray-900 ">Número de cuenta</strong>

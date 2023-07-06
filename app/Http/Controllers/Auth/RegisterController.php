@@ -73,6 +73,7 @@ class RegisterController extends Controller
             'economic_activity' => ['required_if:account_type,corporate'],
             'economic_sector' => ['required_if:account_type,corporate'],
             'profession' => ['required_if:account_type,personal','string', 'max:255'],
+            'toc' => ['required']
         ])->addCustomAttributes([
             'first_name' => 'nombre',
             'last_name' => 'apellidos',

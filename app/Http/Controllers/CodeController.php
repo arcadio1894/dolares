@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\UserToken;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -13,7 +14,14 @@ class CodeController extends Controller
     public function index($url)
     {
         Session::forget('codigo_correcto');
-        return view('code.index', compact('url'));
+        $user = User::find(Auth::id());
+        $token = UserToken::where('user_id', $user->id)->first();
+        $flag = 0;
+        if ( isset($token) )
+        {
+            $flag = 1;
+        }
+        return view('code.index', compact('url', 'flag'));
     }
 
     public function verification(Request $request, $url)

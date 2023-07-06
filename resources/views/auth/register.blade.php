@@ -162,7 +162,7 @@
                         @enderror
                     </div>
                     <div class="col-xl-12 mt-3">
-                        <input class="form-control form-control-lg form-control-solid @error('direction') is-invalid @enderror" type="text" placeholder="" name="direction" autocomplete="off" required />
+                        <input class="form-control form-control-lg form-control-solid @error('direction') is-invalid @enderror" type="text" placeholder="Av. Perú #789" name="direction" autocomplete="off" required />
                         @error('direction')
                         <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -338,9 +338,9 @@
 
                 <div class="fv-row mb-10">
                     <label class="form-check form-check-custom form-check-solid form-check-inline">
-                        <input class="form-check-input" type="checkbox" name="toc" value="1" />
+                        <input class="form-check-input" type="checkbox" name="toc" value="1" required />
                         <span class="form-check-label fw-bold text-gray-700 fs-6">Estoy de acuerdo con los
-                            <a href="#" class="ms-1 link-primary">Términos y condiciones</a>.
+                            <a href="{{ route('term.and.conditions', 'DolarerosTC-2023.pdf') }}" target="_blank" class="ms-1 link-primary">Términos y condiciones</a>.
                         </span>
                     </label>
                 </div>

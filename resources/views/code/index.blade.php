@@ -46,7 +46,9 @@
                     <h1 class="text-dark mb-3">Ingrese contraseña segura</h1>
                     <!--end::Title-->
                     <!--begin::Sub-title-->
+                    @if( $flag == 0 )
                     <div class="text-muted fw-bold fs-5 mb-5">Si no tiene una contraseña, <a class="fw-bolder" href="{{ route('dashboard.profile.token') }}">ingrese aquí</a></div>
+                    @endif
                     <!--end::Sub-title-->
                 </div>
                 <!--end::Heading-->

@@ -44,31 +44,31 @@ var KTUsersUpdatePermission = function () {
                 });
                 t.querySelector('[data-kt-users-modal-action="close"]').addEventListener("click", (t => {
                     t.preventDefault(), Swal.fire({
-                        text: "Are you sure you would like to close?",
+                        text: "¿Estas seguro de cerrar?",
                         icon: "warning",
                         showCancelButton: !0,
                         buttonsStyling: !1,
-                        confirmButtonText: "Yes, close it!",
-                        cancelButtonText: "No, return",
+                        confirmButtonText: "Si, cerrar!",
+                        cancelButtonText: "No, regresar",
                         customClass: {confirmButton: "btn btn-primary", cancelButton: "btn btn-active-light"}
                     }).then((function (t) {
                         t.value && n.hide()
                     }))
                 })), t.querySelector('[data-kt-users-modal-action="cancel"]').addEventListener("click", (t => {
                     t.preventDefault(), Swal.fire({
-                        text: "Are you sure you would like to cancel?",
+                        text: "¿Estás segura de cancelar?",
                         icon: "warning",
                         showCancelButton: !0,
                         buttonsStyling: !1,
-                        confirmButtonText: "Yes, cancel it!",
-                        cancelButtonText: "No, return",
+                        confirmButtonText: "Sí, cancelar!",
+                        cancelButtonText: "No, regresar",
                         customClass: {confirmButton: "btn btn-primary", cancelButton: "btn btn-active-light"}
                     }).then((function (t) {
                         t.value ? (e.reset(), n.hide()) : "cancel" === t.dismiss && Swal.fire({
-                            text: "Your form has not been cancelled!.",
+                            text: "Tu formulario no ha sido enviado!.",
                             icon: "error",
                             buttonsStyling: !1,
-                            confirmButtonText: "Ok, got it!",
+                            confirmButtonText: "Ok, entendido!",
                             customClass: {confirmButton: "btn btn-primary"}
                         })
                     }))
@@ -142,10 +142,10 @@ var KTUsersUpdatePermission = function () {
                                     i.setAttribute("data-kt-indicator", "off"), i.disabled = 0
                                 },
                             })) : Swal.fire({
-                            text: "Sorry, looks like there are some errors detected, please try again.",
+                            text: "Lo sentimos, parece que se han detectado algunos errores, inténtalo de nuevo.",
                             icon: "error",
                             buttonsStyling: !1,
-                            confirmButtonText: "Ok, got it!",
+                            confirmButtonText: "Ok, entendido!",
                             customClass: {confirmButton: "btn btn-primary"}
                         })
                     }))

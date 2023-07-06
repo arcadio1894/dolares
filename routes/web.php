@@ -24,6 +24,10 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])
     ->middleware('permission:access_dashboard');
 Route::get('/preguntas/frecuentes', [App\Http\Controllers\LandingController::class, 'faqs'])
     ->name('faqs');
+Route::get('/terminos/condiciones/{filename}', [App\Http\Controllers\LandingController::class, 'termsAndConditions'])
+    ->name('term.and.conditions');
+Route::get('/politicas/privacidad/{filename}', [App\Http\Controllers\LandingController::class, 'privacyPolicy'])
+    ->name('privacy.policy');
 
 // TODO: Rutas extras de departamentos/Provincias/Distritos
 Route::get('/get/province/of/department/{department_id}', [App\Http\Controllers\UserController::class, 'getProvincesOfDepartment']);

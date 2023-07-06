@@ -368,7 +368,7 @@
                         <!--begin::Body-->
                         <div id="kt_job_9_1" class="collapse fs-6 ms-1">
                             <!--begin::Text-->
-                            <div class="mb-4 text-gray-600 fw-bold fs-6 ps-10">Infórmate de nuestro TyC aqui!</div>
+                            <div class="mb-4 text-gray-600 fw-bold fs-6 ps-10">Infórmate de nuestro TyC <a href="{{ route('term.and.conditions', 'DolarerosTC-2023.pdf') }}" target="_blank" class="link-primary fw-bolder">aqui!</a> </div>
                             <!--end::Text-->
                         </div>
                         <!--end::Content-->
@@ -410,7 +410,7 @@
                         <!--begin::Body-->
                         <div id="kt_job_9_2" class="collapse fs-6 ms-1">
                             <!--begin::Text-->
-                            <div class="mb-4 text-gray-600 fw-bold fs-6 ps-10">Conoce nuestra política de privacidad aquí!.</div>
+                            <div class="mb-4 text-gray-600 fw-bold fs-6 ps-10">Conoce nuestra política de privacidad <a href="{{ route('privacy.policy', 'DolarerosPoliticadePrivacidad_2023.pdf') }}" target="_blank" class="link-primary fw-bolder">aqui!</a>.</div>
                             <!--end::Text-->
                         </div>
                         <!--end::Content-->
