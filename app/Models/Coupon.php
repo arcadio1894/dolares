@@ -27,6 +27,7 @@ class Coupon extends Model
         'amountBuy',
         'amountSell',
         'status',
+        'special'
     ];
 
     protected $dates = ["created_at", "updated_at", "deleted_at"];

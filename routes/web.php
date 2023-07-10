@@ -283,6 +283,29 @@ Route::middleware('auth')->group(function (){
         // TODO: Ruta de verificacion de usuario al ingresar
         Route::get('/get/user/alert', [App\Http\Controllers\UserController::class, 'getUserAlert'])
             ->name('get.user.alert');
+
+        // TODO: Rutas BackOffice - Coupons
+        Route::get('/cupones', [App\Http\Controllers\CouponController::class, 'index'])
+            ->name('coupon.index')
+            ->middleware('permission:list_coupons');
+        Route::post('/coupon/store', [App\Http\Controllers\CouponController::class, 'store'])
+            ->name('coupon.store')
+            ->middleware('permission:create_coupons');
+        Route::post('/coupon/update', [App\Http\Controllers\CouponController::class, 'update'])
+            ->name('coupon.update')
+            ->middleware('permission:update_coupons');
+        Route::post('/coupon/destroy/{coupon_id}', [App\Http\Controllers\CouponController::class, 'destroy'])
+            ->name('coupon.destroy')
+            ->middleware('permission:destroy_coupons');
+        Route::post('/assign/coupon/user/{coupon_id}/{user_id}', [App\Http\Controllers\CouponController::class, 'assign'])
+            ->name('coupon.assign')
+            ->middleware('permission:assign_coupons');
+        Route::post('/coupon/update/status', [App\Http\Controllers\CouponController::class, 'updateStatus'])
+            ->name('coupon.update.status')
+            ->middleware('permission:update_coupons');
+        Route::post('/coupon/update/special', [App\Http\Controllers\CouponController::class, 'updateSpecial'])
+            ->name('coupon.update.special')
+            ->middleware('permission:update_coupons');
     });
 });
 Route::get('/data', [\App\Http\Controllers\DataController::class, 'getData']);
