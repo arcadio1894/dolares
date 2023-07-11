@@ -6,6 +6,7 @@ use App\Http\Requests\CouponDestroyRequest;
 use App\Http\Requests\CouponStoreRequest;
 use App\Http\Requests\CouponUpdateRequest;
 use App\Models\Coupon;
+use App\Models\User;
 use App\Models\UserCoupon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -135,21 +136,149 @@ class CouponController extends Controller
         ], 200);
     }
 
-    public function assign( $coupon_id, $user_id )
+    public function getUserCoupon($idCoupon)
     {
+        $coupon = Coupon::find($idCoupon);
+        if ( $coupon->special != 1 )
+        {
+            return response()->json(['message' => "No se puede asignar porque no es un cupón especial."], 422);
+        }
 
+        $users = User::all();
+
+        $arrayUsers = [];
+
+        foreach ( $users as $user )
+        {
+            $userCoupon = UserCoupon::where('user_id', $user->id)
+                ->where('coupon_id', $coupon->id)->first();
+            if (isset($userCoupon))
+            {
+                array_push($arrayUsers, [
+                    'name' => ($user->business_name == null) ? $user->first_name." ".$user->last_name:$user->business_name,
+                    'id' => $user->id,
+                    'assign' => 1
+                ]);
+            } else {
+                array_push($arrayUsers, [
+                    'name' => ($user->business_name == null) ? $user->first_name." ".$user->last_name:$user->business_name,
+                    'id' => $user->id,
+                    'assign' => 0
+                ]);
+            }
+        }
+
+        return response()->json([
+            'users' => $arrayUsers
+        ], 200);
+    }
+
+    public function getUserDocument(Request $request)
+    {
+        $document = $request->input('document');
+
+        $user = User::where('document', $document)->first();
+
+        if ( isset($user) )
+        {
+            if ($user->account_type == 'p')
+            {
+                $avatar = strtoupper(substr($user->first_name, 0, 1).substr($user->last_name, 0, 1));
+            } else {
+                $avatar = strtoupper(substr($user->business_name, 0, 1));
+            }
+
+            $data = [
+                'avatar' => $avatar,
+                'id' => $user->id,
+                'document' => $user->document,
+                'name' => ($user->business_name != null) ? $user->business_name : $user->first_name . " " . $user->last_name,
+                'phone' => $user->phone
+            ];
+        } else {
+            $data = [
+                'avatar' => 'NN',
+                'id' => null,
+                'document' => '000000000',
+                'name' => 'Usuario no encontrado',
+                'phone' => '00000000'
+            ];
+        }
+
+        return response()->json([
+            'user' => $data
+        ], 200);
+    }
+
+    public function getDataCoupon(Request $request)
+    {
+        $idCoupon = $request->input('idCoupon');
+
+        $coupon = Coupon::find($idCoupon);
+        if ( $coupon->special != 1 )
+        {
+            return response()->json(['message' => "No se puede asignar porque no es un cupón especial."], 422);
+        } else {
+            return response()->json([
+                'data' => true
+            ], 200);
+        }
+    }
+
+    public function getUserCouponAssign(Request $request)
+    {
+        $idCoupon = $request->input('idCoupon');
+
+        $coupon = Coupon::find($idCoupon);
+
+        $users = [];
+
+        if ( $coupon->special != 1 )
+        {
+            return response()->json(['message' => "No se puede asignar porque no es un cupón especial."], 422);
+        } else {
+            $userCoupons = UserCoupon::where('coupon_id', $coupon->id)->get();
+            foreach ( $userCoupons as $userCoupon )
+            {
+                $user = User::find($userCoupon->user_id);
+
+                if ($user->account_type == 'p')
+                {
+                    $avatar = strtoupper(substr($user->first_name, 0, 1).substr($user->last_name, 0, 1));
+                } else {
+                    $avatar = strtoupper(substr($user->business_name, 0, 1));
+                }
+
+                array_push($users, [
+                    'avatar' => $avatar,
+                    'id' => $user->id,
+                    'document' => $user->document,
+                    'name' => ($user->business_name != null) ? $user->business_name : $user->first_name . " " . $user->last_name,
+                    'phone' => $user->phone
+                ]);
+            }
+        }
+
+        return response()->json([
+            'users' => $users
+        ], 200);
+    }
+
+    public function assign( Request $request)
+    {
+        $user_id = $request->get('user_id');
+        $coupon_id = $request->get('coupon_id');
         DB::beginTransaction();
         try {
-
+            $user = User::find($user_id);
             $coupon = Coupon::find($coupon_id);
-            $user = Coupon::find($user_id);
 
             if ( $coupon->special == 0 )
             {
                 return response()->json(['message' => 'No se puede asignar el cupón porque no es especial.'], 422);
             }
 
-            UserCoupon::create([
+            UserCoupon::firstOrCreate([
                 'user_id' => $user->id,
                 'coupon_id' => $coupon->id,
             ]);

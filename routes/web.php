@@ -297,7 +297,7 @@ Route::middleware('auth')->group(function (){
         Route::post('/coupon/destroy/{coupon_id}', [App\Http\Controllers\CouponController::class, 'destroy'])
             ->name('coupon.destroy')
             ->middleware('permission:destroy_coupons');
-        Route::post('/assign/coupon/user/{coupon_id}/{user_id}', [App\Http\Controllers\CouponController::class, 'assign'])
+        Route::post('/assign/coupon/user', [App\Http\Controllers\CouponController::class, 'assign'])
             ->name('coupon.assign')
             ->middleware('permission:assign_coupons');
         Route::post('/coupon/update/status', [App\Http\Controllers\CouponController::class, 'updateStatus'])
@@ -306,6 +306,14 @@ Route::middleware('auth')->group(function (){
         Route::post('/coupon/update/special', [App\Http\Controllers\CouponController::class, 'updateSpecial'])
             ->name('coupon.update.special')
             ->middleware('permission:update_coupons');
+        Route::get('/get/user/coupon/{idCoupon}', [App\Http\Controllers\CouponController::class, 'getUserCoupon'])
+            ->name('get.user.coupon');
+        Route::get('/get/user/document', [App\Http\Controllers\CouponController::class, 'getUserDocument'])
+            ->name('get.user.document');
+        Route::get('/get/data/coupon', [App\Http\Controllers\CouponController::class, 'getDataCoupon'])
+            ->name('get.data.coupon');
+        Route::get('/get/user/assign/coupon', [App\Http\Controllers\CouponController::class, 'getUserCouponAssign'])
+            ->name('get.user.coupon.assign');
     });
 });
 Route::get('/data', [\App\Http\Controllers\DataController::class, 'getData']);
