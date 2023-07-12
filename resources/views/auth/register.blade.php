@@ -374,6 +374,29 @@
 @section('scripts')
     <script>
         $(document).ready(function(){
+            $('[name=phone]').on('blur', function() {
+                var phoneNumber = $(this).val();
+
+                Swal.fire({
+                    title: 'Confirmar teléfono',
+                    text: `¿El número de teléfono ingresado es ${phoneNumber}?`,
+                    icon: 'question',
+                    showCancelButton: true,
+                    confirmButtonText: 'Sí',
+                    cancelButtonText: 'No'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        Swal.fire({
+                            title: 'Teléfono confirmado',
+                            text: `El número de teléfono ingresado es: ${phoneNumber}`,
+                            icon: 'success'
+                        });
+                    } else if (result.dismiss === Swal.DismissReason.cancel) {
+                        $(this).val('');
+                        $(this).focus();
+                    }
+                });
+            });
             // Inputs a habilitar
             $('#type_document').html('DNI/CE');
             $('#type_direction').html('Dirección');

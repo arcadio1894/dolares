@@ -25,8 +25,15 @@ class UserController extends Controller
 {
     public function profile()
     {
+        $user = User::find(Auth::id());
         $token = UserToken::where('user_id', Auth::id())->first();
-        return view('user.profile', compact('token'));
+        if ($user->account_type == 'p')
+        {
+            $avatar = strtoupper(substr($user->first_name, 0, 1).substr($user->last_name, 0, 1));
+        } else {
+            $avatar = strtoupper(substr($user->business_name, 0, 1));
+        }
+        return view('user.profile', compact('token', 'avatar'));
     }
 
     public function token()

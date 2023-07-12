@@ -43,9 +43,11 @@
             <!--begin::Details-->
             <div class="d-flex flex-wrap flex-sm-nowrap mb-3">
                 <!--begin: Pic-->
-                <div class="me-7 mb-4">
-                    <div class="symbol symbol-100px symbol-lg-160px symbol-fixed position-relative">
-                        <img src="{{ asset('assets/media/avatars/150-26.jpg') }}" alt="image" />
+                <div class="me-7 mb-4 d-none d-sm-block">
+                    <div class="symbol symbol-circle symbol-50px overflow-hidden me-3">
+                        <a href="#">
+                            <div class="symbol-label fs-1 bg-light-danger text-danger">{{ $avatar }}</div>
+                        </a>
                     </div>
                 </div>
                 <!--end::Pic-->
@@ -71,7 +73,7 @@
                             </div>
                             <!--end::Name-->
                             <!--begin::Info-->
-                            <div class="d-flex flex-wrap fw-bold fs-6 mb-4 pe-2">
+                            {{--<div class="d-flex flex-wrap fw-bold fs-6 mb-4 pe-2">
                                 <a href="#" class="d-flex align-items-center text-gray-400 text-hover-primary me-5 mb-2">
                                     <!--begin::Svg Icon | path: icons/duotune/communication/com006.svg-->
                                     <span class="svg-icon svg-icon-4 me-1">
@@ -99,7 +101,7 @@
                                         </svg>
                                     </span>
                                     <!--end::Svg Icon-->max@kt.com</a>
-                            </div>
+                            </div>--}}
                             <!--end::Info-->
                         </div>
                         <!--end::User-->
@@ -199,7 +201,7 @@
             </div>
             <!--end::Card title-->
             <!--begin::Action-->
-            <button class="btn btn-primary align-self-center">Editar perfil</button>
+            {{--<button class="btn btn-primary align-self-center">Editar perfil</button>--}}
             <!--end::Action-->
         </div>
         <!--begin::Card header-->
@@ -427,7 +429,7 @@
                     </div>
                 @elseif (Auth::user()->flag_front === 1 && Auth::user()->flag_reverse === 1)
                     {{--<p>Las imágenes han sido validadas.</p>--}}
-                    <div class="notice d-flex bg-light-primary rounded border-primary border border-dashed p-3 mb-5">
+                    {{--<div class="notice d-flex bg-light-primary rounded border-primary border border-dashed p-3 mb-5">
                         <!--begin::Icon-->
                         <!--begin::Svg Icon | path: icons/duotune/general/gen044.svg-->
                         <span class="svg-icon svg-icon-2tx svg-icon-primary me-4">
@@ -451,7 +453,7 @@
                             <!--end::Content-->
                         </div>
                         <!--end::Wrapper-->
-                    </div>
+                    </div>--}}
                 @elseif (Auth::user()->flag_front === 0 && Auth::user()->flag_reverse === 0)
                     {{--<p>Ambas imágenes han sido rechazadas.</p>--}}
                     <div class="notice d-flex bg-light-danger rounded border-danger border border-dashed p-3 mb-5">
