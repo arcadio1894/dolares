@@ -1600,7 +1600,7 @@
                                     <h4> DETALLES DE LA OPERACIÓN </h4>
                                 </div>
                                 <div class="row">
-                                    <div class="col-sm-8 offset-sm-2 col-8 offset-2 border-dashed">
+                                    <div class="col-sm-8 offset-sm-2 col-8 offset-2 bg-light-primary rounded border-primary border-dashed">
                                         <strong class="text-gray-900 ">Banco Origen</strong>
                                         <p class="text-gray-900 mb-1 ml-5" id="nameBank"></p>
                                         <strong class="text-gray-900 ">Banco Destino</strong>
@@ -1663,7 +1663,7 @@
                                     <h4> DETALLES DE LA OPERACIÓN </h4>
                                 </div>
                                 <div class="row">
-                                    <div class="col-sm-8 offset-sm-2 col-8 offset-2 border-dashed">
+                                    <div class="col-sm-8 offset-sm-2 col-8 offset-2 bg-light-primary rounded border-primary border-dashed">
                                         <strong class="text-gray-900 ">Banco Origen</strong>
                                         <p class="text-gray-900 mb-1 ml-5" id="nameBank"></p>
                                         <strong class="text-gray-900 ">Banco Destino</strong>
