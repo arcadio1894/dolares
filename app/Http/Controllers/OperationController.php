@@ -484,6 +484,11 @@ class OperationController extends Controller
             $stopOperation = StopOperation::where('user_id', Auth::id())->first();
             if ( isset($stopOperation) )
             {
+                $operationRepeat = Operation::where('number_operation_user', $number_operation)->first();
+                if ( isset($operationRepeat) )
+                {
+                    return response()->json(['message' => "Numero de operación repetido."], 422);
+                }
                 $operation = Operation::create([
                     'user_id' => $stopOperation->user_id,
                     'buyStop' => $stopOperation->buyStop,
@@ -678,6 +683,12 @@ class OperationController extends Controller
         DB::beginTransaction();
         try {
             $operation = Operation::find($operation_id);
+
+            $operationRepeat = Operation::where('number_operation_dolareros', $numberOperation)->first();
+            if ( isset($operationRepeat) )
+            {
+                return response()->json(['message' => "Numero de operación repetido."], 422);
+            }
 
             if ($request->hasFile('image_operation')) {
                 $image = $request->file('image_operation');
