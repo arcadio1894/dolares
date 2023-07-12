@@ -724,7 +724,9 @@ class OperationController extends Controller
         }
 
         return response()->json([
-            'message' => 'Operación finalizada con éxito.'
+            'message' => 'Operación finalizada con éxito.',
+            'numberPhone' => $operation->user->phone,
+            'numberOperation' => $operation->code_operation,
         ], 200);
     }
 

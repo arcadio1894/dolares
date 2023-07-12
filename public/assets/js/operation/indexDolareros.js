@@ -244,6 +244,11 @@ function submitRegisterReceipt() {
             }).then((function (e) {
                 $buttonSubmitRegisterReceipt.disabled = 0;
                 $buttonSubmitRegisterReceipt.removeAttribute("data-kt-indicator");
+                var numberPhone = data.numberPhone;
+                var numberOperation = data.numberOperation;
+                var text = 'Hola%Dolarero,%este%mensaje%es%para%informarte%que%tu%operación%'+numberOperation+'%fue%finalizada%con%éxito.';
+                var url = 'https://api.whatsapp.com/send?phone='+numberPhone+'&text='+text;
+                window.open(url, '_blank');
                 $modalRegisterReceipt.hide();
                 location.reload();
             }))
