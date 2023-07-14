@@ -257,7 +257,7 @@
                     <div class="row pb-1 text-center px-4">
                         <h4> <strong id="first_text"> Hola Remso Rojas, estas a un solo paso de poder cambiar dolares de la manera más rápida y segura. </strong></h4>
                         <h5 class="text-muted"> Ingresa a tu PERFIL para que puedas completar el registro de tus documentos.</h5>
-                        <img class="img-fluid" src="{{ asset('assets/media/document/alert.png') }}" alt="">
+                        <img class="img-fluid" src="{{ (\Illuminate\Support\Facades\Auth::user()->account_type == 'b') ? asset('assets/media/document/ruc.png'):asset('assets/media/document/alert.png') }}" alt="">
                         <h5 class="text-muted"> Este proceso es muy rápido y ayudará a mantener tu cuenta más segura.</h5>
                     </div>
                 </div>

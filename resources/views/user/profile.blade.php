@@ -207,120 +207,10 @@
         <!--begin::Card header-->
         <!--begin::Card body-->
         <div class="card-body p-9">
-            <!--begin::Notice-->
-            @if (is_null(Auth::user()->front_image) && is_null(Auth::user()->reverse_image))
-                {{--<p>No ha ingresado ninguna imagen.</p>--}}
-                <div class="notice d-flex bg-light-warning rounded border-warning border border-dashed p-3 mb-5">
-                    <!--begin::Icon-->
-                    <!--begin::Svg Icon | path: icons/duotune/general/gen044.svg-->
-                    <span class="svg-icon svg-icon-2tx svg-icon-warning me-4">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                            <rect opacity="0.3" x="2" y="2" width="20" height="20" rx="10" fill="black" />
-                            <rect x="11" y="14" width="7" height="2" rx="1" transform="rotate(-90 11 14)" fill="black" />
-                            <rect x="11" y="17" width="2" height="2" rx="1" transform="rotate(-90 11 17)" fill="black" />
-                        </svg>
-                    </span>
-                    <!--end::Svg Icon-->
-                    <!--end::Icon-->
-                    <!--begin::Wrapper-->
-                    <div class="d-flex flex-stack flex-grow-1">
-                        <!--begin::Content-->
-                        <div class="fw-bold">
-                            <h4 class="text-gray-900 fw-bolder">Necesitamos tu atención!</h4>
-                            <div class="fs-6 text-gray-700">
-                                No ha ingresado ninguna imagen.
-                            </div>
-                        </div>
-                        <!--end::Content-->
-                    </div>
-                    <!--end::Wrapper-->
-                </div>
-            @else
-                @if (is_null(Auth::user()->flag_front) && is_null(Auth::user()->flag_reverse))
-                    @if (!is_null(Auth::user()->front_image) && is_null(Auth::user()->reverse_image))
-                        {{--<p>Estamos verificando la frontal y debe subir la reversa.</p>--}}
-                        <div class="notice d-flex bg-light-warning rounded border-warning border border-dashed p-3 mb-5">
-                            <!--begin::Icon-->
-                            <!--begin::Svg Icon | path: icons/duotune/general/gen044.svg-->
-                            <span class="svg-icon svg-icon-2tx svg-icon-warning me-4">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                    <rect opacity="0.3" x="2" y="2" width="20" height="20" rx="10" fill="black" />
-                                    <rect x="11" y="14" width="7" height="2" rx="1" transform="rotate(-90 11 14)" fill="black" />
-                                    <rect x="11" y="17" width="2" height="2" rx="1" transform="rotate(-90 11 17)" fill="black" />
-                                </svg>
-                            </span>
-                            <!--end::Svg Icon-->
-                            <!--end::Icon-->
-                            <!--begin::Wrapper-->
-                            <div class="d-flex flex-stack flex-grow-1">
-                                <!--begin::Content-->
-                                <div class="fw-bold">
-                                    <h4 class="text-gray-900 fw-bolder">Necesitamos tu atención!</h4>
-                                    <div class="fs-6 text-gray-700">
-                                        Estamos verificando la imagen frontal y debe subir la imagen de reverso.
-                                    </div>
-                                </div>
-                                <!--end::Content-->
-                            </div>
-                            <!--end::Wrapper-->
-                        </div>
-                    @elseif (!is_null(Auth::user()->reverse_image) && is_null(Auth::user()->front_image))
-                        {{--<p>Estamos verificando la reversa y debe subir la frontal.</p>--}}
-                        <div class="notice d-flex bg-light-warning rounded border-warning border border-dashed p-3 mb-5">
-                            <!--begin::Icon-->
-                            <!--begin::Svg Icon | path: icons/duotune/general/gen044.svg-->
-                            <span class="svg-icon svg-icon-2tx svg-icon-warning me-4">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                    <rect opacity="0.3" x="2" y="2" width="20" height="20" rx="10" fill="black" />
-                                    <rect x="11" y="14" width="7" height="2" rx="1" transform="rotate(-90 11 14)" fill="black" />
-                                    <rect x="11" y="17" width="2" height="2" rx="1" transform="rotate(-90 11 17)" fill="black" />
-                                </svg>
-                            </span>
-                            <!--end::Svg Icon-->
-                            <!--end::Icon-->
-                            <!--begin::Wrapper-->
-                            <div class="d-flex flex-stack flex-grow-1">
-                                <!--begin::Content-->
-                                <div class="fw-bold">
-                                    <h4 class="text-gray-900 fw-bolder">Necesitamos tu atención!</h4>
-                                    <div class="fs-6 text-gray-700">
-                                        Estamos verificando la imagen de reverso y debe subir la imagen frontal.
-                                    </div>
-                                </div>
-                                <!--end::Content-->
-                            </div>
-                            <!--end::Wrapper-->
-                        </div>
-                    @else
-                        {{--<p>Estamos verificando sus imágenes.</p>--}}
-                        <div class="notice d-flex bg-light-warning rounded border-warning border border-dashed p-3 mb-5">
-                            <!--begin::Icon-->
-                            <!--begin::Svg Icon | path: icons/duotune/general/gen044.svg-->
-                            <span class="svg-icon svg-icon-2tx svg-icon-warning me-4">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                    <rect opacity="0.3" x="2" y="2" width="20" height="20" rx="10" fill="black" />
-                                    <rect x="11" y="14" width="7" height="2" rx="1" transform="rotate(-90 11 14)" fill="black" />
-                                    <rect x="11" y="17" width="2" height="2" rx="1" transform="rotate(-90 11 17)" fill="black" />
-                                </svg>
-                            </span>
-                            <!--end::Svg Icon-->
-                            <!--end::Icon-->
-                            <!--begin::Wrapper-->
-                            <div class="d-flex flex-stack flex-grow-1">
-                                <!--begin::Content-->
-                                <div class="fw-bold">
-                                    <h4 class="text-gray-900 fw-bolder">Necesitamos tu atención!</h4>
-                                    <div class="fs-6 text-gray-700">
-                                        Estamos verificando sus imágenes.
-                                    </div>
-                                </div>
-                                <!--end::Content-->
-                            </div>
-                            <!--end::Wrapper-->
-                        </div>
-                    @endif
-                @elseif (is_null(Auth::user()->flag_front) && !is_null(Auth::user()->flag_reverse))
-                    {{--<p>Debe subir la frontal y estamos verificando la reversa.</p>--}}
+            @if ( Auth::user()->account_type == 'p' )
+                <!--begin::Notice-->
+                @if (is_null(Auth::user()->front_image) && is_null(Auth::user()->reverse_image))
+                    {{--<p>No ha ingresado ninguna imagen.</p>--}}
                     <div class="notice d-flex bg-light-warning rounded border-warning border border-dashed p-3 mb-5">
                         <!--begin::Icon-->
                         <!--begin::Svg Icon | path: icons/duotune/general/gen044.svg-->
@@ -339,142 +229,7 @@
                             <div class="fw-bold">
                                 <h4 class="text-gray-900 fw-bolder">Necesitamos tu atención!</h4>
                                 <div class="fs-6 text-gray-700">
-                                    Debe subir la imagen frontal y estamos verificando la imagen de reverso.
-                                </div>
-                            </div>
-                            <!--end::Content-->
-                        </div>
-                        <!--end::Wrapper-->
-                    </div>
-                @elseif (!is_null(Auth::user()->flag_front) && is_null(Auth::user()->flag_reverse))
-                    {{--<p>Debe subir la reversa y estamos verificando la frontal.</p>--}}
-                    <div class="notice d-flex bg-light-warning rounded border-warning border border-dashed p-3 mb-5">
-                        <!--begin::Icon-->
-                        <!--begin::Svg Icon | path: icons/duotune/general/gen044.svg-->
-                        <span class="svg-icon svg-icon-2tx svg-icon-warning me-4">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                <rect opacity="0.3" x="2" y="2" width="20" height="20" rx="10" fill="black" />
-                                <rect x="11" y="14" width="7" height="2" rx="1" transform="rotate(-90 11 14)" fill="black" />
-                                <rect x="11" y="17" width="2" height="2" rx="1" transform="rotate(-90 11 17)" fill="black" />
-                            </svg>
-                        </span>
-                        <!--end::Svg Icon-->
-                        <!--end::Icon-->
-                        <!--begin::Wrapper-->
-                        <div class="d-flex flex-stack flex-grow-1">
-                            <!--begin::Content-->
-                            <div class="fw-bold">
-                                <h4 class="text-gray-900 fw-bolder">Necesitamos tu atención!</h4>
-                                <div class="fs-6 text-gray-700">
-                                    Debe subir la imagen de reverso y estamos verificando la imagen frontal.
-                                </div>
-                            </div>
-                            <!--end::Content-->
-                        </div>
-                        <!--end::Wrapper-->
-                    </div>
-                @elseif (Auth::user()->flag_front === 1 && Auth::user()->flag_reverse === 0)
-                    {{--<p>Hemos aceptado la frontal y hemos rechazado la reversa.</p>--}}
-                    <div class="notice d-flex bg-light-warning rounded border-warning border border-dashed p-3 mb-5">
-                        <!--begin::Icon-->
-                        <!--begin::Svg Icon | path: icons/duotune/general/gen044.svg-->
-                        <span class="svg-icon svg-icon-2tx svg-icon-warning me-4">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                <rect opacity="0.3" x="2" y="2" width="20" height="20" rx="10" fill="black" />
-                                <rect x="11" y="14" width="7" height="2" rx="1" transform="rotate(-90 11 14)" fill="black" />
-                                <rect x="11" y="17" width="2" height="2" rx="1" transform="rotate(-90 11 17)" fill="black" />
-                            </svg>
-                        </span>
-                        <!--end::Svg Icon-->
-                        <!--end::Icon-->
-                        <!--begin::Wrapper-->
-                        <div class="d-flex flex-stack flex-grow-1">
-                            <!--begin::Content-->
-                            <div class="fw-bold">
-                                <h4 class="text-gray-900 fw-bolder">Necesitamos tu atención!</h4>
-                                <div class="fs-6 text-gray-700">
-                                    Hemos aceptado la imagen frontal y hemos rechazado la imagen de reverso.
-                                </div>
-                            </div>
-                            <!--end::Content-->
-                        </div>
-                        <!--end::Wrapper-->
-                    </div>
-                @elseif (Auth::user()->flag_front === 0 && Auth::user()->flag_reverse === 1)
-                    {{--<p>Hemos aceptado la reversa y hemos rechazado la frontal.</p>--}}
-                    <div class="notice d-flex bg-light-warning rounded border-warning border border-dashed p-3 mb-5">
-                        <!--begin::Icon-->
-                        <!--begin::Svg Icon | path: icons/duotune/general/gen044.svg-->
-                        <span class="svg-icon svg-icon-2tx svg-icon-warning me-4">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                <rect opacity="0.3" x="2" y="2" width="20" height="20" rx="10" fill="black" />
-                                <rect x="11" y="14" width="7" height="2" rx="1" transform="rotate(-90 11 14)" fill="black" />
-                                <rect x="11" y="17" width="2" height="2" rx="1" transform="rotate(-90 11 17)" fill="black" />
-                            </svg>
-                        </span>
-                        <!--end::Svg Icon-->
-                        <!--end::Icon-->
-                        <!--begin::Wrapper-->
-                        <div class="d-flex flex-stack flex-grow-1">
-                            <!--begin::Content-->
-                            <div class="fw-bold">
-                                <h4 class="text-gray-900 fw-bolder">Necesitamos tu atención!</h4>
-                                <div class="fs-6 text-gray-700">
-                                    Hemos aceptado la imagen de reverso0 y hemos rechazado la imagen frontal.
-                                </div>
-                            </div>
-                            <!--end::Content-->
-                        </div>
-                        <!--end::Wrapper-->
-                    </div>
-                @elseif (Auth::user()->flag_front === 1 && Auth::user()->flag_reverse === 1)
-                    {{--<p>Las imágenes han sido validadas.</p>--}}
-                    {{--<div class="notice d-flex bg-light-primary rounded border-primary border border-dashed p-3 mb-5">
-                        <!--begin::Icon-->
-                        <!--begin::Svg Icon | path: icons/duotune/general/gen044.svg-->
-                        <span class="svg-icon svg-icon-2tx svg-icon-primary me-4">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                <rect opacity="0.3" x="2" y="2" width="20" height="20" rx="10" fill="black" />
-                                <rect x="11" y="14" width="7" height="2" rx="1" transform="rotate(-90 11 14)" fill="black" />
-                                <rect x="11" y="17" width="2" height="2" rx="1" transform="rotate(-90 11 17)" fill="black" />
-                            </svg>
-                        </span>
-                        <!--end::Svg Icon-->
-                        <!--end::Icon-->
-                        <!--begin::Wrapper-->
-                        <div class="d-flex flex-stack flex-grow-1">
-                            <!--begin::Content-->
-                            <div class="fw-bold">
-                                <h4 class="text-gray-900 fw-bolder">Necesitamos tu atención!</h4>
-                                <div class="fs-6 text-gray-700">
-                                    Las imágenes han sido validadas.
-                                </div>
-                            </div>
-                            <!--end::Content-->
-                        </div>
-                        <!--end::Wrapper-->
-                    </div>--}}
-                @elseif (Auth::user()->flag_front === 0 && Auth::user()->flag_reverse === 0)
-                    {{--<p>Ambas imágenes han sido rechazadas.</p>--}}
-                    <div class="notice d-flex bg-light-danger rounded border-danger border border-dashed p-3 mb-5">
-                        <!--begin::Icon-->
-                        <!--begin::Svg Icon | path: icons/duotune/general/gen044.svg-->
-                        <span class="svg-icon svg-icon-2tx svg-icon-danger me-4">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                <rect opacity="0.3" x="2" y="2" width="20" height="20" rx="10" fill="black" />
-                                <rect x="11" y="14" width="7" height="2" rx="1" transform="rotate(-90 11 14)" fill="black" />
-                                <rect x="11" y="17" width="2" height="2" rx="1" transform="rotate(-90 11 17)" fill="black" />
-                            </svg>
-                        </span>
-                        <!--end::Svg Icon-->
-                        <!--end::Icon-->
-                        <!--begin::Wrapper-->
-                        <div class="d-flex flex-stack flex-grow-1">
-                            <!--begin::Content-->
-                            <div class="fw-bold">
-                                <h4 class="text-gray-900 fw-bolder">Necesitamos tu atención!</h4>
-                                <div class="fs-6 text-gray-700">
-                                    Ambas imágenes han sido rechazadas.
+                                    No ha ingresado ninguna imagen.
                                 </div>
                             </div>
                             <!--end::Content-->
@@ -482,10 +237,403 @@
                         <!--end::Wrapper-->
                     </div>
                 @else
-                    <p>Estado de verificación desconocido.</p>
+                    @if (is_null(Auth::user()->flag_front) && is_null(Auth::user()->flag_reverse))
+                        @if (!is_null(Auth::user()->front_image) && is_null(Auth::user()->reverse_image))
+                            {{--<p>Estamos verificando la frontal y debe subir la reversa.</p>--}}
+                            <div class="notice d-flex bg-light-warning rounded border-warning border border-dashed p-3 mb-5">
+                                <!--begin::Icon-->
+                                <!--begin::Svg Icon | path: icons/duotune/general/gen044.svg-->
+                                <span class="svg-icon svg-icon-2tx svg-icon-warning me-4">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                        <rect opacity="0.3" x="2" y="2" width="20" height="20" rx="10" fill="black" />
+                                        <rect x="11" y="14" width="7" height="2" rx="1" transform="rotate(-90 11 14)" fill="black" />
+                                        <rect x="11" y="17" width="2" height="2" rx="1" transform="rotate(-90 11 17)" fill="black" />
+                                    </svg>
+                                </span>
+                                <!--end::Svg Icon-->
+                                <!--end::Icon-->
+                                <!--begin::Wrapper-->
+                                <div class="d-flex flex-stack flex-grow-1">
+                                    <!--begin::Content-->
+                                    <div class="fw-bold">
+                                        <h4 class="text-gray-900 fw-bolder">Necesitamos tu atención!</h4>
+                                        <div class="fs-6 text-gray-700">
+                                            Estamos verificando la imagen frontal y debe subir la imagen de reverso.
+                                        </div>
+                                    </div>
+                                    <!--end::Content-->
+                                </div>
+                                <!--end::Wrapper-->
+                            </div>
+                        @elseif (!is_null(Auth::user()->reverse_image) && is_null(Auth::user()->front_image))
+                            {{--<p>Estamos verificando la reversa y debe subir la frontal.</p>--}}
+                            <div class="notice d-flex bg-light-warning rounded border-warning border border-dashed p-3 mb-5">
+                                <!--begin::Icon-->
+                                <!--begin::Svg Icon | path: icons/duotune/general/gen044.svg-->
+                                <span class="svg-icon svg-icon-2tx svg-icon-warning me-4">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                        <rect opacity="0.3" x="2" y="2" width="20" height="20" rx="10" fill="black" />
+                                        <rect x="11" y="14" width="7" height="2" rx="1" transform="rotate(-90 11 14)" fill="black" />
+                                        <rect x="11" y="17" width="2" height="2" rx="1" transform="rotate(-90 11 17)" fill="black" />
+                                    </svg>
+                                </span>
+                                <!--end::Svg Icon-->
+                                <!--end::Icon-->
+                                <!--begin::Wrapper-->
+                                <div class="d-flex flex-stack flex-grow-1">
+                                    <!--begin::Content-->
+                                    <div class="fw-bold">
+                                        <h4 class="text-gray-900 fw-bolder">Necesitamos tu atención!</h4>
+                                        <div class="fs-6 text-gray-700">
+                                            Estamos verificando la imagen de reverso y debe subir la imagen frontal.
+                                        </div>
+                                    </div>
+                                    <!--end::Content-->
+                                </div>
+                                <!--end::Wrapper-->
+                            </div>
+                        @else
+                            {{--<p>Estamos verificando sus imágenes.</p>--}}
+                            <div class="notice d-flex bg-light-warning rounded border-warning border border-dashed p-3 mb-5">
+                                <!--begin::Icon-->
+                                <!--begin::Svg Icon | path: icons/duotune/general/gen044.svg-->
+                                <span class="svg-icon svg-icon-2tx svg-icon-warning me-4">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                        <rect opacity="0.3" x="2" y="2" width="20" height="20" rx="10" fill="black" />
+                                        <rect x="11" y="14" width="7" height="2" rx="1" transform="rotate(-90 11 14)" fill="black" />
+                                        <rect x="11" y="17" width="2" height="2" rx="1" transform="rotate(-90 11 17)" fill="black" />
+                                    </svg>
+                                </span>
+                                <!--end::Svg Icon-->
+                                <!--end::Icon-->
+                                <!--begin::Wrapper-->
+                                <div class="d-flex flex-stack flex-grow-1">
+                                    <!--begin::Content-->
+                                    <div class="fw-bold">
+                                        <h4 class="text-gray-900 fw-bolder">Necesitamos tu atención!</h4>
+                                        <div class="fs-6 text-gray-700">
+                                            Estamos verificando sus imágenes.
+                                        </div>
+                                    </div>
+                                    <!--end::Content-->
+                                </div>
+                                <!--end::Wrapper-->
+                            </div>
+                        @endif
+                    @elseif (is_null(Auth::user()->flag_front) && !is_null(Auth::user()->flag_reverse))
+                        {{--<p>Debe subir la frontal y estamos verificando la reversa.</p>--}}
+                        <div class="notice d-flex bg-light-warning rounded border-warning border border-dashed p-3 mb-5">
+                            <!--begin::Icon-->
+                            <!--begin::Svg Icon | path: icons/duotune/general/gen044.svg-->
+                            <span class="svg-icon svg-icon-2tx svg-icon-warning me-4">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                    <rect opacity="0.3" x="2" y="2" width="20" height="20" rx="10" fill="black" />
+                                    <rect x="11" y="14" width="7" height="2" rx="1" transform="rotate(-90 11 14)" fill="black" />
+                                    <rect x="11" y="17" width="2" height="2" rx="1" transform="rotate(-90 11 17)" fill="black" />
+                                </svg>
+                            </span>
+                            <!--end::Svg Icon-->
+                            <!--end::Icon-->
+                            <!--begin::Wrapper-->
+                            <div class="d-flex flex-stack flex-grow-1">
+                                <!--begin::Content-->
+                                <div class="fw-bold">
+                                    <h4 class="text-gray-900 fw-bolder">Necesitamos tu atención!</h4>
+                                    <div class="fs-6 text-gray-700">
+                                        Debe subir la imagen frontal y estamos verificando la imagen de reverso.
+                                    </div>
+                                </div>
+                                <!--end::Content-->
+                            </div>
+                            <!--end::Wrapper-->
+                        </div>
+                    @elseif (!is_null(Auth::user()->flag_front) && is_null(Auth::user()->flag_reverse))
+                        {{--<p>Debe subir la reversa y estamos verificando la frontal.</p>--}}
+                        <div class="notice d-flex bg-light-warning rounded border-warning border border-dashed p-3 mb-5">
+                            <!--begin::Icon-->
+                            <!--begin::Svg Icon | path: icons/duotune/general/gen044.svg-->
+                            <span class="svg-icon svg-icon-2tx svg-icon-warning me-4">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                    <rect opacity="0.3" x="2" y="2" width="20" height="20" rx="10" fill="black" />
+                                    <rect x="11" y="14" width="7" height="2" rx="1" transform="rotate(-90 11 14)" fill="black" />
+                                    <rect x="11" y="17" width="2" height="2" rx="1" transform="rotate(-90 11 17)" fill="black" />
+                                </svg>
+                            </span>
+                            <!--end::Svg Icon-->
+                            <!--end::Icon-->
+                            <!--begin::Wrapper-->
+                            <div class="d-flex flex-stack flex-grow-1">
+                                <!--begin::Content-->
+                                <div class="fw-bold">
+                                    <h4 class="text-gray-900 fw-bolder">Necesitamos tu atención!</h4>
+                                    <div class="fs-6 text-gray-700">
+                                        Debe subir la imagen de reverso y estamos verificando la imagen frontal.
+                                    </div>
+                                </div>
+                                <!--end::Content-->
+                            </div>
+                            <!--end::Wrapper-->
+                        </div>
+                    @elseif (Auth::user()->flag_front === 1 && Auth::user()->flag_reverse === 0)
+                        {{--<p>Hemos aceptado la frontal y hemos rechazado la reversa.</p>--}}
+                        <div class="notice d-flex bg-light-warning rounded border-warning border border-dashed p-3 mb-5">
+                            <!--begin::Icon-->
+                            <!--begin::Svg Icon | path: icons/duotune/general/gen044.svg-->
+                            <span class="svg-icon svg-icon-2tx svg-icon-warning me-4">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                    <rect opacity="0.3" x="2" y="2" width="20" height="20" rx="10" fill="black" />
+                                    <rect x="11" y="14" width="7" height="2" rx="1" transform="rotate(-90 11 14)" fill="black" />
+                                    <rect x="11" y="17" width="2" height="2" rx="1" transform="rotate(-90 11 17)" fill="black" />
+                                </svg>
+                            </span>
+                            <!--end::Svg Icon-->
+                            <!--end::Icon-->
+                            <!--begin::Wrapper-->
+                            <div class="d-flex flex-stack flex-grow-1">
+                                <!--begin::Content-->
+                                <div class="fw-bold">
+                                    <h4 class="text-gray-900 fw-bolder">Necesitamos tu atención!</h4>
+                                    <div class="fs-6 text-gray-700">
+                                        Hemos aceptado la imagen frontal y hemos rechazado la imagen de reverso.
+                                    </div>
+                                </div>
+                                <!--end::Content-->
+                            </div>
+                            <!--end::Wrapper-->
+                        </div>
+                    @elseif (Auth::user()->flag_front === 0 && Auth::user()->flag_reverse === 1)
+                        {{--<p>Hemos aceptado la reversa y hemos rechazado la frontal.</p>--}}
+                        <div class="notice d-flex bg-light-warning rounded border-warning border border-dashed p-3 mb-5">
+                            <!--begin::Icon-->
+                            <!--begin::Svg Icon | path: icons/duotune/general/gen044.svg-->
+                            <span class="svg-icon svg-icon-2tx svg-icon-warning me-4">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                    <rect opacity="0.3" x="2" y="2" width="20" height="20" rx="10" fill="black" />
+                                    <rect x="11" y="14" width="7" height="2" rx="1" transform="rotate(-90 11 14)" fill="black" />
+                                    <rect x="11" y="17" width="2" height="2" rx="1" transform="rotate(-90 11 17)" fill="black" />
+                                </svg>
+                            </span>
+                            <!--end::Svg Icon-->
+                            <!--end::Icon-->
+                            <!--begin::Wrapper-->
+                            <div class="d-flex flex-stack flex-grow-1">
+                                <!--begin::Content-->
+                                <div class="fw-bold">
+                                    <h4 class="text-gray-900 fw-bolder">Necesitamos tu atención!</h4>
+                                    <div class="fs-6 text-gray-700">
+                                        Hemos aceptado la imagen de reverso0 y hemos rechazado la imagen frontal.
+                                    </div>
+                                </div>
+                                <!--end::Content-->
+                            </div>
+                            <!--end::Wrapper-->
+                        </div>
+                    @elseif (Auth::user()->flag_front === 1 && Auth::user()->flag_reverse === 1)
+                        {{--<p>Las imágenes han sido validadas.</p>--}}
+                        {{--<div class="notice d-flex bg-light-primary rounded border-primary border border-dashed p-3 mb-5">
+                            <!--begin::Icon-->
+                            <!--begin::Svg Icon | path: icons/duotune/general/gen044.svg-->
+                            <span class="svg-icon svg-icon-2tx svg-icon-primary me-4">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                    <rect opacity="0.3" x="2" y="2" width="20" height="20" rx="10" fill="black" />
+                                    <rect x="11" y="14" width="7" height="2" rx="1" transform="rotate(-90 11 14)" fill="black" />
+                                    <rect x="11" y="17" width="2" height="2" rx="1" transform="rotate(-90 11 17)" fill="black" />
+                                </svg>
+                            </span>
+                            <!--end::Svg Icon-->
+                            <!--end::Icon-->
+                            <!--begin::Wrapper-->
+                            <div class="d-flex flex-stack flex-grow-1">
+                                <!--begin::Content-->
+                                <div class="fw-bold">
+                                    <h4 class="text-gray-900 fw-bolder">Necesitamos tu atención!</h4>
+                                    <div class="fs-6 text-gray-700">
+                                        Las imágenes han sido validadas.
+                                    </div>
+                                </div>
+                                <!--end::Content-->
+                            </div>
+                            <!--end::Wrapper-->
+                        </div>--}}
+                    @elseif (Auth::user()->flag_front === 0 && Auth::user()->flag_reverse === 0)
+                        {{--<p>Ambas imágenes han sido rechazadas.</p>--}}
+                        <div class="notice d-flex bg-light-danger rounded border-danger border border-dashed p-3 mb-5">
+                            <!--begin::Icon-->
+                            <!--begin::Svg Icon | path: icons/duotune/general/gen044.svg-->
+                            <span class="svg-icon svg-icon-2tx svg-icon-danger me-4">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                    <rect opacity="0.3" x="2" y="2" width="20" height="20" rx="10" fill="black" />
+                                    <rect x="11" y="14" width="7" height="2" rx="1" transform="rotate(-90 11 14)" fill="black" />
+                                    <rect x="11" y="17" width="2" height="2" rx="1" transform="rotate(-90 11 17)" fill="black" />
+                                </svg>
+                            </span>
+                            <!--end::Svg Icon-->
+                            <!--end::Icon-->
+                            <!--begin::Wrapper-->
+                            <div class="d-flex flex-stack flex-grow-1">
+                                <!--begin::Content-->
+                                <div class="fw-bold">
+                                    <h4 class="text-gray-900 fw-bolder">Necesitamos tu atención!</h4>
+                                    <div class="fs-6 text-gray-700">
+                                        Ambas imágenes han sido rechazadas.
+                                    </div>
+                                </div>
+                                <!--end::Content-->
+                            </div>
+                            <!--end::Wrapper-->
+                        </div>
+                    @else
+                        <p>Estado de verificación desconocido.</p>
+                    @endif
                 @endif
+                <!--end::Notice-->
+            @else
+                <!--begin::Notice-->
+                @if (is_null(Auth::user()->front_image))
+                    {{--<p>No ha ingresado ninguna imagen.</p>--}}
+                    <div class="notice d-flex bg-light-warning rounded border-warning border border-dashed p-3 mb-5">
+                        <!--begin::Icon-->
+                        <!--begin::Svg Icon | path: icons/duotune/general/gen044.svg-->
+                        <span class="svg-icon svg-icon-2tx svg-icon-warning me-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <rect opacity="0.3" x="2" y="2" width="20" height="20" rx="10" fill="black" />
+                                <rect x="11" y="14" width="7" height="2" rx="1" transform="rotate(-90 11 14)" fill="black" />
+                                <rect x="11" y="17" width="2" height="2" rx="1" transform="rotate(-90 11 17)" fill="black" />
+                            </svg>
+                        </span>
+                        <!--end::Svg Icon-->
+                        <!--end::Icon-->
+                        <!--begin::Wrapper-->
+                        <div class="d-flex flex-stack flex-grow-1">
+                            <!--begin::Content-->
+                            <div class="fw-bold">
+                                <h4 class="text-gray-900 fw-bolder">Necesitamos tu atención!</h4>
+                                <div class="fs-6 text-gray-700">
+                                    No ha ingresado la imagen de la ficha de RUC.
+                                </div>
+                            </div>
+                            <!--end::Content-->
+                        </div>
+                        <!--end::Wrapper-->
+                    </div>
+                @else
+                    @if (is_null(Auth::user()->flag_front) )
+                        @if (!is_null(Auth::user()->front_image))
+                            {{--<p>Estamos verificando la frontal y debe subir la reversa.</p>--}}
+                            <div class="notice d-flex bg-light-warning rounded border-warning border border-dashed p-3 mb-5">
+                                <!--begin::Icon-->
+                                <!--begin::Svg Icon | path: icons/duotune/general/gen044.svg-->
+                                <span class="svg-icon svg-icon-2tx svg-icon-warning me-4">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                        <rect opacity="0.3" x="2" y="2" width="20" height="20" rx="10" fill="black" />
+                                        <rect x="11" y="14" width="7" height="2" rx="1" transform="rotate(-90 11 14)" fill="black" />
+                                        <rect x="11" y="17" width="2" height="2" rx="1" transform="rotate(-90 11 17)" fill="black" />
+                                    </svg>
+                                </span>
+                                <!--end::Svg Icon-->
+                                <!--end::Icon-->
+                                <!--begin::Wrapper-->
+                                <div class="d-flex flex-stack flex-grow-1">
+                                    <!--begin::Content-->
+                                    <div class="fw-bold">
+                                        <h4 class="text-gray-900 fw-bolder">Necesitamos tu atención!</h4>
+                                        <div class="fs-6 text-gray-700">
+                                            Estamos verificando la imagen de fichade RUC.
+                                        </div>
+                                    </div>
+                                    <!--end::Content-->
+                                </div>
+                                <!--end::Wrapper-->
+                            </div>
+                        @elseif (is_null(Auth::user()->front_image))
+                            {{--<p>Estamos verificando la reversa y debe subir la frontal.</p>--}}
+                            <div class="notice d-flex bg-light-warning rounded border-warning border border-dashed p-3 mb-5">
+                                <!--begin::Icon-->
+                                <!--begin::Svg Icon | path: icons/duotune/general/gen044.svg-->
+                                <span class="svg-icon svg-icon-2tx svg-icon-warning me-4">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                        <rect opacity="0.3" x="2" y="2" width="20" height="20" rx="10" fill="black" />
+                                        <rect x="11" y="14" width="7" height="2" rx="1" transform="rotate(-90 11 14)" fill="black" />
+                                        <rect x="11" y="17" width="2" height="2" rx="1" transform="rotate(-90 11 17)" fill="black" />
+                                    </svg>
+                                </span>
+                                <!--end::Svg Icon-->
+                                <!--end::Icon-->
+                                <!--begin::Wrapper-->
+                                <div class="d-flex flex-stack flex-grow-1">
+                                    <!--begin::Content-->
+                                    <div class="fw-bold">
+                                        <h4 class="text-gray-900 fw-bolder">Necesitamos tu atención!</h4>
+                                        <div class="fs-6 text-gray-700">
+                                            Debe subir la imagen frontal.
+                                        </div>
+                                    </div>
+                                    <!--end::Content-->
+                                </div>
+                                <!--end::Wrapper-->
+                            </div>
+                        @endif
+                    @elseif (Auth::user()->flag_front === 1 )
+                        {{--<p>Las imágenes han sido validadas.</p>--}}
+                        {{--<div class="notice d-flex bg-light-primary rounded border-primary border border-dashed p-3 mb-5">
+                            <!--begin::Icon-->
+                            <!--begin::Svg Icon | path: icons/duotune/general/gen044.svg-->
+                            <span class="svg-icon svg-icon-2tx svg-icon-primary me-4">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                    <rect opacity="0.3" x="2" y="2" width="20" height="20" rx="10" fill="black" />
+                                    <rect x="11" y="14" width="7" height="2" rx="1" transform="rotate(-90 11 14)" fill="black" />
+                                    <rect x="11" y="17" width="2" height="2" rx="1" transform="rotate(-90 11 17)" fill="black" />
+                                </svg>
+                            </span>
+                            <!--end::Svg Icon-->
+                            <!--end::Icon-->
+                            <!--begin::Wrapper-->
+                            <div class="d-flex flex-stack flex-grow-1">
+                                <!--begin::Content-->
+                                <div class="fw-bold">
+                                    <h4 class="text-gray-900 fw-bolder">Necesitamos tu atención!</h4>
+                                    <div class="fs-6 text-gray-700">
+                                        Las imágenes han sido validadas.
+                                    </div>
+                                </div>
+                                <!--end::Content-->
+                            </div>
+                            <!--end::Wrapper-->
+                        </div>--}}
+                    @elseif (Auth::user()->flag_front === 0)
+                        {{--<p>Ambas imágenes han sido rechazadas.</p>--}}
+                        <div class="notice d-flex bg-light-danger rounded border-danger border border-dashed p-3 mb-5">
+                            <!--begin::Icon-->
+                            <!--begin::Svg Icon | path: icons/duotune/general/gen044.svg-->
+                            <span class="svg-icon svg-icon-2tx svg-icon-danger me-4">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                    <rect opacity="0.3" x="2" y="2" width="20" height="20" rx="10" fill="black" />
+                                    <rect x="11" y="14" width="7" height="2" rx="1" transform="rotate(-90 11 14)" fill="black" />
+                                    <rect x="11" y="17" width="2" height="2" rx="1" transform="rotate(-90 11 17)" fill="black" />
+                                </svg>
+                            </span>
+                            <!--end::Svg Icon-->
+                            <!--end::Icon-->
+                            <!--begin::Wrapper-->
+                            <div class="d-flex flex-stack flex-grow-1">
+                                <!--begin::Content-->
+                                <div class="fw-bold">
+                                    <h4 class="text-gray-900 fw-bolder">Necesitamos tu atención!</h4>
+                                    <div class="fs-6 text-gray-700">
+                                        La imagen de su ficha RUC ha sido rechazada.
+                                    </div>
+                                </div>
+                                <!--end::Content-->
+                            </div>
+                            <!--end::Wrapper-->
+                        </div>
+                    @else
+                        <p>Estado de verificación desconocido.</p>
+                    @endif
+                @endif
+                <!--end::Notice-->
             @endif
-            <!--end::Notice-->
+
             <!--begin::Row-->
             @if ( Auth::user()->account_type == 'p' )
                 <div class="row mb-7">
@@ -1101,34 +1249,20 @@
                     <!--begin::Label-->
                     <!--begin::Label-->
                     <div class="col-lg-8">
-                    @if (empty(Auth::user()->front_image) && empty(Auth::user()->reverse_image))
+
+                    @if (is_null(Auth::user()->front_image))
+                        {{--<p>No ha ingresado ninguna imagen.</p>--}}
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="text-center notice d-flex bg-secondary rounded border-secondary border border-dashed p-3 mb-5">
                                     <div class="row">
-                                        <label class="col-lg-12 fw-bolder fs-7 text-gray-800">Imagen frontal del documento</label>
+                                        <label class="col-lg-12 fw-bolder fs-7 text-gray-800">Imagen de ficha RUC</label>
                                         <br>
-                                        <img class="img-fluid gray-image" src="{{ asset('assets/media/document/front.png') }}" alt="Imagen frontal de documento" width="40px">
+                                        <img class="img-fluid gray-image" src="{{ asset('assets/media/document/ruc.png') }}" alt="Imagen de ficha RUC" width="40px">
                                         <div class="form-group mt-3">
                                             <input type="file" class="form-control form-control-sm" id="front_image" placeholder="Imagen" accept=".jpg, .jpeg, .png, .pdf">
 
-                                            <button class="btn btn-bg-warning btn-sm col-lg-12 mt-2" type="button" id="btn_front_image" disabled data-url="{{ route('submit.image.front') }}">GUARDAR IMAGEN FRONTAL <i class="fas fa-save text-success fs-3"></i></button>
-
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="text-center notice d-flex bg-secondary rounded border-secondary border border-dashed p-3 mb-5">
-                                    <div class="row">
-                                        <label class="col-lg-12 fw-bolder fs-7 text-gray-800">Imagen reverso del documento</label>
-                                        <br>
-                                        <img class="img-fluid gray-image" src="{{ asset('assets/media/document/back.png') }}" alt="Imagen reverso de documento" width="40px">
-                                        <div class="form-group mt-3">
-                                            <input type="file" class="form-control form-control-sm" id="reverse_image" placeholder="Imagen" accept=".jpg, .jpeg, .png, .pdf">
-
-                                            <button class="btn btn-bg-warning btn-sm col-lg-12 mt-2" type="button" id="btn_reverse_image" disabled data-url="{{ route('submit.image.reverse') }}">GUARDAR IMAGEN POSTERIOR <i class="fas fa-save text-success fs-3"></i></button>
+                                            <button class="btn btn-bg-warning btn-sm col-lg-12 mt-2" type="button" id="btn_front_image" disabled data-url="{{ route('submit.image.front') }}">GUARDAR IMAGEN FICHA RUC <i class="fas fa-save text-success fs-3"></i></button>
 
                                         </div>
                                     </div>
@@ -1137,317 +1271,79 @@
                             </div>
                         </div>
                     @else
-                        @if (is_null(Auth::user()->flag_front) && is_null(Auth::user()->flag_reverse))
-                            @if (!is_null(Auth::user()->front_image) && is_null(Auth::user()->reverse_image))
+                        @if (is_null(Auth::user()->flag_front) )
+                            @if (!is_null(Auth::user()->front_image))
+                                {{--<p>Estamos verificando la frontal y debe subir la reversa.</p>--}}
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="text-center notice d-flex bg-light-warning rounded border-warning border border-dashed p-3 mb-5">
                                             <div class="row">
-                                                <label class="col-lg-12 fw-bolder fs-7 text-gray-800">Imagen frontal del documento</label>
+                                                <label class="col-lg-12 fw-bolder fs-7 text-gray-800">Imagen de ficha RUC</label>
                                                 <br>
-                                                <img class="img-fluid yellow-image" src="{{ asset('assets/media/document/front.png') }}" alt="Imagen frontal de documento" width="40px">
+                                                <img class="img-fluid yellow-image" src="{{ asset('assets/media/document/ruc.png') }}" alt="Imagen de ficha RUC" width="40px">
                                                 <br>
-                                                <label class="col-lg-12 fw-bolder fs-7 text-gray-800">Estamos validando sus documentos. Espere unos minutos</label>
+                                                <label class="col-lg-12 fw-bolder fs-7 text-gray-800">Estamos validando su documento. Espere unos minutos</label>
 
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="text-center notice d-flex bg-secondary rounded border-secondary border border-dashed p-3 mb-5">
-                                            <div class="row">
-                                                <label class="col-lg-12 fw-bolder fs-7 text-gray-800">Imagen reverso del documento</label>
-                                                <br>
-                                                <img class="img-fluid gray-image" src="{{ asset('assets/media/document/back.png') }}" alt="Imagen reverso de documento" width="40px">
-                                                <div class="form-group mt-3">
-                                                    <input type="file" class="form-control form-control-sm" id="reverse_image" placeholder="Imagen" accept=".jpg, .jpeg, .png, .pdf">
-
-                                                    <button class="btn btn-bg-warning btn-sm col-lg-12 mt-2" type="button" id="btn_reverse_image" disabled data-url="{{ route('submit.image.reverse') }}">GUARDAR IMAGEN POSTERIOR <i class="fas fa-save text-success fs-3"></i></button>
-
-                                                </div>
                                             </div>
 
                                         </div>
                                     </div>
                                 </div>
-                            @elseif (!is_null(Auth::user()->reverse_image) && is_null(Auth::user()->front_image))
+                            @elseif (is_null(Auth::user()->front_image))
                                 {{--<p>Estamos verificando la reversa y debe subir la frontal.</p>--}}
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="text-center notice d-flex bg-secondary rounded border-secondary border border-dashed p-3 mb-5">
                                             <div class="row">
-                                                <label class="col-lg-12 fw-bolder fs-7 text-gray-800">Imagen frontal del documento</label>
+                                                <label class="col-lg-12 fw-bolder fs-7 text-gray-800">Imagen de ficha RUC</label>
                                                 <br>
-                                                <img class="img-fluid gray-image" src="{{ asset('assets/media/document/front.png') }}" alt="Imagen frontal de documento" width="40px">
+                                                <img class="img-fluid gray-image" src="{{ asset('assets/media/document/ruc.png') }}" alt="Imagen de ficha RUC" width="40px">
                                                 <div class="form-group mt-3">
                                                     <input type="file" class="form-control form-control-sm" id="front_image" placeholder="Imagen" accept=".jpg, .jpeg, .png, .pdf">
 
-                                                    <button class="btn btn-bg-warning btn-sm col-lg-12 mt-2" type="button" id="btn_front_image" disabled data-url="{{ route('submit.image.front') }}">GUARDAR IMAGEN FRONTAL <i class="fas fa-save text-success fs-3"></i></button>
+                                                    <button class="btn btn-bg-warning btn-sm col-lg-12 mt-2" type="button" id="btn_front_image" disabled data-url="{{ route('submit.image.front') }}">GUARDAR IMAGEN FICHA RUC <i class="fas fa-save text-success fs-3"></i></button>
 
                                                 </div>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="text-center notice d-flex bg-light-warning rounded border-warning border border-dashed p-3 mb-5">
-                                            <div class="row">
-                                                <label class="col-lg-12 fw-bolder fs-7 text-gray-800">Imagen reverso del documento</label>
-                                                <br>
-                                                <img class="img-fluid yellow-image" src="{{ asset('assets/media/document/back.png') }}" alt="Imagen frontal de documento" width="40px">
-                                                <br>
-                                                <label class="col-lg-12 fw-bolder fs-7 text-gray-800">Estamos validando sus documentos. Espere unos minutos</label>
-
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-                            @else
-                                {{--<p>Estamos verificando sus imágenes.</p>--}}
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="text-center notice d-flex bg-light-warning rounded border-warning border border-dashed p-3 mb-5">
-                                            <div class="row">
-                                                <label class="col-lg-12 fw-bolder fs-7 text-gray-800">Imagen frontal del documento</label>
-                                                <br>
-                                                <img class="img-fluid yellow-image" src="{{ asset('assets/media/document/front.png') }}" alt="Imagen frontal de documento" width="40px">
-                                                <br>
-                                                <label class="col-lg-12 fw-bolder fs-7 text-gray-800">Estamos validando sus documentos. Espere unos minutos</label>
-
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="text-center notice d-flex bg-light-warning rounded border-warning border border-dashed p-3 mb-5">
-                                            <div class="row">
-                                                <label class="col-lg-12 fw-bolder fs-7 text-gray-800">Imagen reverso del documento</label>
-                                                <br>
-                                                <img class="img-fluid yellow-image" src="{{ asset('assets/media/document/back.png') }}" alt="Imagen frontal de documento" width="40px">
-                                                <br>
-                                                <label class="col-lg-12 fw-bolder fs-7 text-gray-800">Estamos validando sus documentos. Espere unos minutos</label>
-
                                             </div>
 
                                         </div>
                                     </div>
                                 </div>
                             @endif
-                        @elseif (Auth::user()->flag_front === 1 && is_null(Auth::user()->flag_reverse))
-                            {{--<p>Hemos aceptado la frontal y estamos ferificando la reversa.</p>--}}
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="text-center notice d-flex bg-light-primary rounded border-success border border-dashed p-3 mb-5">
-                                        <div class="row">
-                                            <label class="col-lg-12 fw-bolder fs-7 text-gray-800">Imagen frontal del documento</label>
-                                            <br>
-                                            <img class="img-fluid green-image" src="{{ asset('assets/media/document/front.png') }}" alt="Imagen frontal de documento" width="40px">
-                                            <br>
-                                            <label class="col-lg-12 fw-bolder fs-7 text-gray-800 mt-5">Validación correcta</label>
-
-                                        </div>
-
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="text-center notice d-flex bg-light-warning rounded border-warning border border-dashed p-3 mb-5">
-                                        <div class="row">
-                                            <label class="col-lg-12 fw-bolder fs-7 text-gray-800">Imagen reverso del documento</label>
-                                            <br>
-                                            <img class="img-fluid yellow-image" src="{{ asset('assets/media/document/back.png') }}" alt="Imagen frontal de documento" width="40px">
-                                            <br>
-                                            <label class="col-lg-12 fw-bolder fs-7 text-gray-800">Estamos validando sus documentos. Espere unos minutos</label>
-
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
-                        @elseif (Auth::user()->flag_front === 0 && is_null(Auth::user()->flag_reverse))
-                            {{--<p>Hemos rechazado la frontal y estamos ferificando la reversa.</p>--}}
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="text-center notice d-flex bg-light-danger rounded border-danger border border-dashed p-3 mb-5">
-                                        <div class="row">
-                                            <label class="col-lg-12 fw-bolder fs-7 text-gray-800">Imagen frontal del documento</label>
-                                            <br>
-                                            <img class="img-fluid red-image" src="{{ asset('assets/media/document/front.png') }}" alt="Imagen frontal de documento" width="40px">
-                                            <div class="form-group mt-3">
-                                                <input type="file" class="form-control form-control-sm" id="front_image" placeholder="Imagen" accept=".jpg, .jpeg, .png, .pdf">
-
-                                                <button class="btn btn-bg-warning btn-sm col-lg-12 mt-2" type="button" id="btn_front_image" disabled data-url="{{ route('submit.image.front') }}">GUARDAR IMAGEN FRONTAL <i class="fas fa-save text-success fs-3"></i></button>
-
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="text-center notice d-flex bg-light-warning rounded border-warning border border-dashed p-3 mb-5">
-                                        <div class="row">
-                                            <label class="col-lg-12 fw-bolder fs-7 text-gray-800">Imagen reverso del documento</label>
-                                            <br>
-                                            <img class="img-fluid yellow-image" src="{{ asset('assets/media/document/back.png') }}" alt="Imagen frontal de documento" width="40px">
-                                            <br>
-                                            <label class="col-lg-12 fw-bolder fs-7 text-gray-800">Estamos validando sus documentos. Espere unos minutos</label>
-
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
-                        @elseif (Auth::user()->flag_reverse === 1 && is_null(Auth::user()->flag_front))
-                            {{--<p>Hemos aceptado la reversa y estamos ferificando la frontal.</p>--}}
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="text-center notice d-flex bg-light-warning rounded border-warning border border-dashed p-3 mb-5">
-                                        <div class="row">
-                                            <label class="col-lg-12 fw-bolder fs-7 text-gray-800">Imagen frontal del documento</label>
-                                            <br>
-                                            <img class="img-fluid yellow-image" src="{{ asset('assets/media/document/front.png') }}" alt="Imagen frontal de documento" width="40px">
-                                            <br>
-                                            <label class="col-lg-12 fw-bolder fs-7 text-gray-800">Estamos validando sus documentos. Espere unos minutos</label>
-
-                                        </div>
-
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="text-center notice d-flex bg-light-primary rounded border-success border border-dashed p-3 mb-5">
-                                        <div class="row">
-                                            <label class="col-lg-12 fw-bolder fs-7 text-gray-800">Imagen reverso del documento</label>
-                                            <br>
-                                            <img class="img-fluid green-image" src="{{ asset('assets/media/document/back.png') }}" alt="Imagen frontal de documento" width="40px">
-                                            <br>
-                                            <label class="col-lg-12 fw-bolder fs-7 text-gray-800 mt-5">Validación correcta</label>
-
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
-                        @elseif (Auth::user()->flag_reverse === 0 && is_null(Auth::user()->flag_front))
-                            {{--<p>Hemos rechazado la reversa y estamos ferificando la frontal.</p>--}}
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="text-center notice d-flex bg-light-warning rounded border-warning border border-dashed p-3 mb-5">
-                                        <div class="row">
-                                            <label class="col-lg-12 fw-bolder fs-7 text-gray-800">Imagen frontal del documento</label>
-                                            <br>
-                                            <img class="img-fluid yellow-image" src="{{ asset('assets/media/document/front.png') }}" alt="Imagen frontal de documento" width="40px">
-                                            <br>
-                                            <label class="col-lg-12 fw-bolder fs-7 text-gray-800">Estamos validando sus documentos. Espere unos minutos</label>
-
-                                        </div>
-
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="text-center notice d-flex bg-light-danger rounded border-danger border border-dashed p-3 mb-5">
-                                        <div class="row">
-                                            <label class="col-lg-12 fw-bolder fs-7 text-gray-800">Imagen reverso del documento</label>
-                                            <br>
-                                            <img class="img-fluid red-image" src="{{ asset('assets/media/document/back.png') }}" alt="Imagen reverso de documento" width="40px">
-                                            <div class="form-group mt-3">
-                                                <input type="file" class="form-control form-control-sm" id="reverse_image" placeholder="Imagen" accept=".jpg, .jpeg, .png, .pdf">
-
-                                                <button class="btn btn-bg-warning btn-sm col-lg-12 mt-2" type="button" id="btn_reverse_image" disabled data-url="{{ route('submit.image.reverse') }}">GUARDAR IMAGEN POSTERIOR <i class="fas fa-save text-success fs-3"></i></button>
-
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
-                        @elseif (Auth::user()->flag_front === 1 && Auth::user()->flag_reverse === 0)
-                            {{--<p>Hemos aceptado la frontal y hemos rechazado la reversa.</p>--}}
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="text-center notice d-flex bg-light-primary rounded border-primary border border-dashed p-3 mb-5">
-                                        <div class="row">
-                                            <label class="col-lg-12 fw-bolder fs-7 text-gray-800">Imagen frontal del documento</label>
-                                            <br>
-                                            <img class="img-fluid green-image" src="{{ asset('assets/media/document/front.png') }}" alt="Imagen frontal de documento" width="40px">
-                                            <br>
-                                            <label class="col-lg-12 fw-bolder fs-7 text-gray-800 mt-5">Validación correcta</label>
-
-                                        </div>
-
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="text-center notice d-flex bg-light-danger rounded border-danger border border-dashed p-3 mb-5">
-                                        <div class="row">
-                                            <label class="col-lg-12 fw-bolder fs-7 text-gray-800">Imagen reverso del documento</label>
-                                            <br>
-                                            <img class="img-fluid red-image" src="{{ asset('assets/media/document/back.png') }}" alt="Imagen reverso de documento" width="40px">
-                                            <div class="form-group mt-3">
-                                                <input type="file" class="form-control form-control-sm" id="reverse_image" placeholder="Imagen" accept=".jpg, .jpeg, .png, .pdf">
-
-                                                <button class="btn btn-bg-warning btn-sm col-lg-12 mt-2" type="button" id="btn_reverse_image" disabled data-url="{{ route('submit.image.reverse') }}">GUARDAR IMAGEN POSTERIOR <i class="fas fa-save text-success fs-3"></i></button>
-
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
-                        @elseif (Auth::user()->flag_front === 0 && Auth::user()->flag_reverse === 1)
-                            {{--<p>Hemos aceptado la reversa y hemos rechazado la frontal.</p>--}}
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="text-center notice d-flex bg-light-danger rounded border-danger border border-dashed p-3 mb-5">
-                                        <div class="row">
-                                            <label class="col-lg-12 fw-bolder fs-7 text-gray-800">Imagen frontal del documento</label>
-                                            <br>
-                                            <img class="img-fluid red-image" src="{{ asset('assets/media/document/front.png') }}" alt="Imagen frontal de documento" width="40px">
-                                            <div class="form-group mt-3">
-                                                <input type="file" class="form-control form-control-sm" id="front_image" placeholder="Imagen" accept=".jpg, .jpeg, .png, .pdf">
-
-                                                <button class="btn btn-bg-warning btn-sm col-lg-12 mt-2" type="button" id="btn_front_image" disabled data-url="{{ route('submit.image.front') }}">GUARDAR IMAGEN FRONTAL <i class="fas fa-save text-success fs-3"></i></button>
-
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="text-center notice d-flex bg-light-primary rounded border-success border border-dashed p-3 mb-5">
-                                        <div class="row">
-                                            <label class="col-lg-12 fw-bolder fs-7 text-gray-800">Imagen frontal del documento</label>
-                                            <br>
-                                            <img class="img-fluid green-image" src="{{ asset('assets/media/document/back.png') }}" alt="Imagen frontal de documento" width="40px">
-                                            <br>
-                                            <label class="col-lg-12 fw-bolder fs-7 text-gray-800 mt-5">Validación correcta</label>
-
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
-                        @elseif (Auth::user()->flag_front === 1 && Auth::user()->flag_reverse === 1)
+                        @elseif (Auth::user()->flag_front === 1 )
                             {{--<p>Las imágenes han sido validadas.</p>--}}
+                            {{--<div class="notice d-flex bg-light-primary rounded border-primary border border-dashed p-3 mb-5">
+                                <!--begin::Icon-->
+                                <!--begin::Svg Icon | path: icons/duotune/general/gen044.svg-->
+                                <span class="svg-icon svg-icon-2tx svg-icon-primary me-4">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                        <rect opacity="0.3" x="2" y="2" width="20" height="20" rx="10" fill="black" />
+                                        <rect x="11" y="14" width="7" height="2" rx="1" transform="rotate(-90 11 14)" fill="black" />
+                                        <rect x="11" y="17" width="2" height="2" rx="1" transform="rotate(-90 11 17)" fill="black" />
+                                    </svg>
+                                </span>
+                                <!--end::Svg Icon-->
+                                <!--end::Icon-->
+                                <!--begin::Wrapper-->
+                                <div class="d-flex flex-stack flex-grow-1">
+                                    <!--begin::Content-->
+                                    <div class="fw-bold">
+                                        <h4 class="text-gray-900 fw-bolder">Necesitamos tu atención!</h4>
+                                        <div class="fs-6 text-gray-700">
+                                            Las imágenes han sido validadas.
+                                        </div>
+                                    </div>
+                                    <!--end::Content-->
+                                </div>
+                                <!--end::Wrapper-->
+                            </div>--}}
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="text-center notice d-flex bg-light-primary rounded border-success border border-dashed p-3 mb-5">
                                         <div class="row">
-                                            <label class="col-lg-12 fw-bolder fs-7 text-gray-800">Imagen frontal del documento</label>
+                                            <label class="col-lg-12 fw-bolder fs-7 text-gray-800">Imagen de ficha RUC</label>
                                             <br>
-                                            <img class="img-fluid green-image" src="{{ asset('assets/media/document/front.png') }}" alt="Imagen frontal de documento" width="40px">
-                                            <br>
-                                            <label class="col-lg-12 fw-bolder fs-7 text-gray-800 mt-5">Validación correcta</label>
-
-                                        </div>
-
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="text-center notice d-flex bg-light-primary rounded border-success border border-dashed p-3 mb-5">
-                                        <div class="row">
-                                            <label class="col-lg-12 fw-bolder fs-7 text-gray-800">Imagen reverso del documento</label>
-                                            <br>
-                                            <img class="img-fluid green-image" src="{{ asset('assets/media/document/back.png') }}" alt="Imagen frontal de documento" width="40px">
+                                            <img class="img-fluid green-image" src="{{ asset('assets/media/document/ruc.png') }}" alt="Imagen de ficha RUC" width="40px">
                                             <br>
                                             <label class="col-lg-12 fw-bolder fs-7 text-gray-800 mt-5">Validación correcta</label>
 
@@ -1456,35 +1352,20 @@
                                     </div>
                                 </div>
                             </div>
-                        @elseif (Auth::user()->flag_front === 0 && Auth::user()->flag_reverse === 0)
+                        @elseif (Auth::user()->flag_front === 0)
                             {{--<p>Ambas imágenes han sido rechazadas.</p>--}}
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="text-center notice d-flex bg-light-danger rounded border-danger border border-dashed p-3 mb-5">
                                         <div class="row">
-                                            <label class="col-lg-12 fw-bolder fs-7 text-gray-800">Imagen frontal del documento</label>
+                                            <label class="col-lg-12 fw-bolder fs-7 text-gray-800">Imagen de la ficha RUC</label>
                                             <br>
-                                            <img class="img-fluid red-image" src="{{ asset('assets/media/document/front.png') }}" alt="Imagen frontal de documento" width="40px">
+                                            <img class="img-fluid red-image" src="{{ asset('assets/media/document/ruc.png') }}" alt="Imagen de la ficha RUC" width="40px">
                                             <div class="form-group mt-3">
                                                 <input type="file" class="form-control form-control-sm" id="front_image" placeholder="Imagen" accept=".jpg, .jpeg, .png, .pdf">
 
-                                                <button class="btn btn-bg-warning btn-sm col-lg-12 mt-2" type="button" id="btn_front_image" disabled data-url="{{ route('submit.image.front') }}">GUARDAR IMAGEN FRONTAL <i class="fas fa-save text-success fs-3"></i></button>
+                                                <button class="btn btn-bg-warning btn-sm col-lg-12 mt-2" type="button" id="btn_front_image" disabled data-url="{{ route('submit.image.front') }}">GUARDAR IMAGEN FICHA RUC <i class="fas fa-save text-success fs-3"></i></button>
 
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="text-center notice d-flex bg-light-danger rounded border-danger border border-dashed p-3 mb-5">
-                                        <div class="row">
-                                            <label class="col-lg-12 fw-bolder fs-7 text-gray-800">Imagen reverso del documento</label>
-                                            <br>
-                                            <img class="img-fluid red-image" src="{{ asset('assets/media/document/back.png') }}" alt="Imagen reverso de documento" width="40px">
-                                            <div class="form-group mt-3">
-                                                <input type="file" class="form-control form-control-sm" id="reverse_image" placeholder="Imagen" accept=".jpg, .jpeg, .png, .pdf">
-
-                                                <button class="btn btn-bg-warning btn-sm col-lg-12 mt-2" type="button" id="btn_reverse_image" disabled data-url="{{ route('submit.image.reverse') }}">GUARDAR IMAGEN POSTERIOR <i class="fas fa-save text-success fs-3"></i></button>
                                             </div>
                                         </div>
 

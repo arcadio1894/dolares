@@ -59,7 +59,7 @@ function submitFrontImage() {
                 button.parent().parent().parent().removeClass('border-danger');
                 button.parent().parent().parent().addClass('bg-light-warning');
                 button.parent().parent().parent().addClass('border-warning');
-                button.parent().prev().after('<label class="col-lg-12 fw-bolder fs-7 text-gray-800">Estamos validando sus documentos. Espere unos minutos</label>');
+                button.parent().prev().after('<label class="col-lg-12 fw-bolder fs-7 text-gray-800">Estamos validando su documento. Espere unos minutos</label>');
                 button.parent().remove();
             }))
 
@@ -146,7 +146,7 @@ function submitReverseImage() {
                 button.parent().parent().parent().removeClass('border-danger');
                 button.parent().parent().parent().addClass('bg-light-warning');
                 button.parent().parent().parent().addClass('border-warning');
-                button.parent().prev().after('<label class="col-lg-12 fw-bolder fs-7 text-gray-800">Estamos validando sus documentos. Espere unos minutos</label>');
+                button.parent().prev().after('<label class="col-lg-12 fw-bolder fs-7 text-gray-800">Estamos validando su documento. Espere unos minutos</label>');
                 button.parent().remove();
             }))
 
