@@ -144,7 +144,8 @@ function sendDataFinalStep() {
                     });
             }
 
-            $buttonSubmit2.disabled = 0;
+            $buttonSubmit4.disabled = 0;
+            $buttonSubmit4.removeAttribute("data-kt-indicator");
         },
     });
     /*Swal.fire({

@@ -1274,7 +1274,7 @@
                                             <label class="required fs-6 fw-bold mb-2">Número de cuenta</label>
                                             <!--end::Label-->
                                             <!--begin::Input-->
-                                            <input type="text" class="form-control form-control-solid" placeholder="Número de cuenta" name="numberAccount" value="" />
+                                            <input type="number" class="form-control form-control-solid" placeholder="Número de cuenta" name="numberAccount" value="" />
                                             <!--end::Input-->
                                         </div>
                                         <!--end::Input group-->
@@ -1463,7 +1463,7 @@
                                             <label class="required fs-6 fw-bold mb-2">Número de cuenta</label>
                                             <!--end::Label-->
                                             <!--begin::Input-->
-                                            <input type="text" class="form-control form-control-solid" placeholder="Número de cuenta" name="numberAccount" value="" />
+                                            <input type="number" class="form-control form-control-solid" placeholder="Número de cuenta" name="numberAccount" value="" />
                                             <!--end::Input-->
                                         </div>
                                         <!--end::Input group-->

@@ -2,6 +2,15 @@
 
 @section('title', 'Crear cuenta')
 
+@section('styles')
+    <style>
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            display: none;
+        }
+    </style>
+@endsection
+
 @section('content')
 <div class="d-flex flex-column flex-lg-row-fluid py-10">
     <!--begin::Content-->
@@ -103,7 +112,7 @@
                 <div class="row fv-row mb-7">
                     <div class="col-xl-6">
                         <label class="form-label fw-bolder text-dark fs-6">Celular (9 dígitos) </label>
-                        <input class="form-control form-control-lg form-control-solid @error('phone') is-invalid @enderror" type="text" placeholder="999999999" name="phone" autocomplete="off" required />
+                        <input class="form-control form-control-lg form-control-solid @error('phone') is-invalid @enderror" type="number" placeholder="999999999" name="phone" autocomplete="off" required />
                         @error('phone')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
@@ -113,7 +122,7 @@
                     <div class="col-xl-6">
                         <label class="form-label fw-bolder text-dark fs-6" id="type_document">DNI/CE</label>
 
-                        <input class="form-control form-control-lg form-control-solid @error('document') is-invalid @enderror" type="text" placeholder="" name="document" autocomplete="off" required />
+                        <input class="form-control form-control-lg form-control-solid @error('document') is-invalid @enderror" type="number" placeholder="" name="document" autocomplete="off" required />
                         @error('document')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
@@ -186,7 +195,7 @@
                 <div class="row fv-row mb-7" id="dni_legal_representative_div" {{--style="display: none"--}}>
                     <div class="col-xl-12">
                         <label class="form-label fw-bolder text-dark fs-6">DNI del representante legal</label>
-                        <input class="form-control form-control-lg form-control-solid @error('dni_legal_representative') is-invalid @enderror" type="text" placeholder="" name="dni_legal_representative" id="dni_legal_representative" autocomplete="off" required />
+                        <input class="form-control form-control-lg form-control-solid @error('dni_legal_representative') is-invalid @enderror" type="number" placeholder="" name="dni_legal_representative" id="dni_legal_representative" autocomplete="off" required />
                         @error('dni_legal_representative')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
