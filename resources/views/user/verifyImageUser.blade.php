@@ -48,7 +48,11 @@
                 <div class="col-lg-6">
                     <div class="text-center notice d-flex bg-light-primary rounded border-success border border-dashed p-3 mb-5">
                         <div class="row text-center">
-                            <label class="col-lg-12 fw-bolder fs-7 text-gray-800">Imagen frontal del documento</label>
+                            @if ( $user->account_type == 'p' )
+                                <label class="col-lg-12 fw-bolder fs-7 text-gray-800">Imagen frontal del documento</label>
+                            @else
+                                <label class="col-lg-12 fw-bolder fs-7 text-gray-800">Imagen de ficha de RUC</label>
+                            @endif
                             <br>
                             @if ( substr($user->front_image,-3) === 'pdf' )
                                 <div class="col-lg-12">
@@ -70,6 +74,7 @@
 
                     </div>
                 </div>
+                @if ( $user->account_type == 'p' )
                 <div class="col-lg-6">
                     <div class="text-center notice d-flex bg-light-primary rounded border-success border border-dashed p-3 mb-5">
                         <div class="row">
@@ -97,7 +102,7 @@
 
                     </div>
                 </div>
-
+                @endif
             </div>
         </div>
         <!--end::Card body-->

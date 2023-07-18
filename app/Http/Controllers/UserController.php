@@ -553,13 +553,34 @@ class UserController extends Controller
 
     public function indexUserVerificationImages()
     {
-        $users = User::whereNotNull('front_image')
+        /*$users = User::where('account_type', 'p')
+            ->whereNotNull('front_image')
             ->whereNotNull('reverse_image')
             ->whereNull('flag_front')
             ->orWhere('flag_front', 0)
             ->whereNull('flag_reverse')
             ->orWhere('flag_reverse', 0)
             ->get();
+
+        $users2 = User::where('account_type', 'b')
+            ->whereNotNull('front_image')
+            ->whereNull('flag_front')
+            ->orWhere('flag_front', 0)
+            ->get();*/
+        $users = User::where(function ($query) {
+            $query->where('account_type', 'p')
+                ->whereNotNull('front_image')
+                ->whereNotNull('reverse_image')
+                ->whereNull('flag_front')
+                ->orWhere('flag_front', 0)
+                ->whereNull('flag_reverse')
+                ->orWhere('flag_reverse', 0);
+        })->orWhere(function ($query) {
+                $query->where('account_type', 'b')
+                    ->whereNotNull('front_image')
+                    ->whereNull('flag_front')
+                    ->orWhere('flag_front', 0);
+        })->get();
 
         $arrayUsers = [];
 
