@@ -71,7 +71,7 @@
                     <div class="col-xl-6">
                         <label class="form-label fw-bolder text-dark fs-6">Nombres</label>
                         <input class="form-control form-control-lg form-control-solid @error('first_name') is-invalid @enderror" type="text" placeholder="" name="first_name" id="first_name" autocomplete="off" required />
-                        @error('name')
+                        @error('first_name')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>
@@ -80,7 +80,7 @@
                     <div class="col-xl-6">
                         <label class="form-label fw-bolder text-dark fs-6">Apellidos</label>
                         <input class="form-control form-control-lg form-control-solid @error('last_name') is-invalid @enderror" type="text" placeholder="" name="last_name" id="last_name" autocomplete="off" required />
-                        @error('name')
+                        @error('last_name')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>
@@ -102,8 +102,8 @@
 
                 <div class="row fv-row mb-7">
                     <div class="col-xl-6">
-                        <label class="form-label fw-bolder text-dark fs-6">Teléfono</label>
-                        <input class="form-control form-control-lg form-control-solid @error('phone') is-invalid @enderror" type="text" placeholder="" name="phone" autocomplete="off" required />
+                        <label class="form-label fw-bolder text-dark fs-6">Celular (9 dígitos) </label>
+                        <input class="form-control form-control-lg form-control-solid @error('phone') is-invalid @enderror" type="text" placeholder="999999999" name="phone" autocomplete="off" required />
                         @error('phone')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
@@ -207,23 +207,6 @@
                     </div>
                 </div>
 
-                <div class="row fv-row mb-7" id="economic_activity_div" {{--style="display: none"--}}>
-                    <div class="col-xl-12">
-                        <label class="form-label fw-bolder text-dark fs-6">Actividad económica</label>
-                        <select name="economic_activity" id="economic_activity" class="form-select form-select-solid @error('economic_activity') is-invalid @enderror" data-control="select2" data-hide-search="true" data-placeholder="Actividad económica" required>
-                            <option></option>
-                            @foreach ($activities as $activity)
-                            <option value="{{$activity->id}}">{{ $activity->description }}</option>
-                            @endforeach
-                        </select>
-                        @error('economic_activity')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                        @enderror
-                    </div>
-                </div>
-
                 <div class="row fv-row mb-7" id="economic_sector_div" {{--style="display: none"--}}>
                     <div class="col-xl-12">
                         <label class="form-label fw-bolder text-dark fs-6">Sector económico</label>
@@ -235,6 +218,21 @@
                         </select>
                         @error('economic_sector')
                         <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                        @enderror
+                    </div>
+                </div>
+
+                <div class="row fv-row mb-7" id="economic_activity_div" {{--style="display: none"--}}>
+                    <div class="col-xl-12">
+                        <label class="form-label fw-bolder text-dark fs-6">Actividad económica</label>
+                        <select name="economic_activity" disabled id="economic_activity" class="form-select form-select-solid @error('economic_activity') is-invalid @enderror" data-control="select2" data-hide-search="true" data-placeholder="Actividad económica" required>
+                            <option></option>
+
+                        </select>
+                        @error('economic_activity')
+                        <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>
                         @enderror
@@ -244,11 +242,6 @@
                 <div class="row fv-row mb-7" id="constitution_date" {{--style="display: none"--}}>
                     <div class="col-xl-6">
                         <label class="form-label fw-bolder text-dark fs-6">Fecha de constitución</label>
-                        @error('constitution_date')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                        @enderror
                         <div class="position-relative d-flex align-items-center">
                             <!--begin::Datepicker-->
                             <input class="form-control form-control-white fw-bolder pe-5 @error('constitution_date') is-invalid @enderror" placeholder="Seleccione fecha" name="constitution_date" id="const_date" required/>
@@ -263,7 +256,11 @@
                             <!--end::Svg Icon-->
                             <!--end::Icon-->
                         </div>
-
+                        @error('constitution_date')
+                        <span class="text-danger" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                        @enderror
                     </div>
                     <div class="col-xl-6">
                         <div class="d-flex flex-stack">
@@ -347,8 +344,11 @@
                 <!--end::Input group-->
                 <!--begin::Actions-->
                 <div class="text-center">
-                    <button type="submit" id="kt_sign_up_submit" class="btn btn-lg btn-primary">
+                    <button type="button" id="kt_sign_up_submit" class="btn btn-lg btn-primary">
                         <span class="indicator-label">Crear cuenta</span>
+                        <span class="indicator-progress">Por favor espere...
+                            <span class="spinner-border spinner-border-sm align-middle ms-2"></span>
+                        </span>
                     </button>
                 </div>
                 <!--end::Actions-->
@@ -374,7 +374,8 @@
 @section('scripts')
     <script>
         $(document).ready(function(){
-            $('[name=phone]').on('blur', function() {
+            $("#kt_sign_up_submit").on('click', createAccount);
+            /*$('[name=phone]').on('blur', function() {
                 var phoneNumber = $(this).val();
 
                 Swal.fire({
@@ -396,7 +397,7 @@
                         $(this).focus();
                     }
                 });
-            });
+            });*/
             // Inputs a habilitar
             $('#type_document').html('DNI/CE');
             $('#type_direction').html('Dirección');
@@ -562,9 +563,101 @@
                 });
 
             });
+
+            $selectSectors = $('#economic_sector');
+            $selectActivities = $('#economic_activity');
+
+            $selectSectors.val(null);
+
+            $selectSectors.change(function () {
+                var sector =  $selectSectors.val();
+
+                $selectActivities.attr('disabled', 'disabled');
+
+                $selectActivities.empty();
+                $selectActivities.val('');
+
+                $.get( "/get/activities/of/sector/"+sector, function( data ) {
+                    $selectActivities.append($("<option>", {
+                        value: '',
+                        text: ''
+                    }));
+                    for ( var i=0; i<data.length; i++ )
+                    {
+                        $selectActivities.append($("<option>", {
+                            value: data[i].id,
+                            text: data[i].description
+                        }));
+                    }
+
+                    $selectActivities.removeAttr('disabled');
+                });
+
+            });
+
+            $formCreate = document.querySelector("#formRegister");
+            $buttonSubmit2 = $formCreate.querySelector("#kt_sign_up_submit");
         });
+        var $selectSectors;
+        var $selectActivities;
         var $selectDepartments;
         var $selectProvince;
         var $selectDistrict;
+        var $formCreate;
+
+        function createAccount() {
+            var button = $(this);
+            $buttonSubmit2.setAttribute("data-kt-indicator", "on");
+            $buttonSubmit2.disabled = 1;
+            var phoneNumber = $('[name=phone]').val();
+
+            if ( phoneNumber == "" )
+            {
+                toastr.error("Ingrese un número correcto", 'Error',
+                    {
+                        "closeButton": true,
+                        "debug": false,
+                        "newestOnTop": false,
+                        "progressBar": true,
+                        "positionClass": "toast-top-right",
+                        "preventDuplicates": false,
+                        "onclick": null,
+                        "showDuration": "300",
+                        "hideDuration": "1000",
+                        "timeOut": "2000",
+                        "extendedTimeOut": "1000",
+                        "showEasing": "swing",
+                        "hideEasing": "linear",
+                        "showMethod": "fadeIn",
+                        "hideMethod": "fadeOut"
+                    });
+                $buttonSubmit2.removeAttribute("data-kt-indicator");
+                $buttonSubmit2.disabled = 0;
+                return;
+            }
+
+            Swal.fire({
+                title: 'Confirmar teléfono',
+                text: `¿El número de teléfono ingresado es ${phoneNumber}?`,
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonText: 'Sí',
+                cancelButtonText: 'No'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire({
+                        title: 'Teléfono confirmado',
+                        text: `El número de teléfono ingresado es: ${phoneNumber}`,
+                        icon: 'success'
+                    });
+                    $('#formRegister').submit();
+                } else if (result.dismiss === Swal.DismissReason.cancel) {
+                    $('[name=phone]').val('');
+                    $('[name=phone]').focus();
+                    $buttonSubmit2.removeAttribute("data-kt-indicator");
+                    $buttonSubmit2.disabled = 0;
+                }
+            });
+        }
     </script>
 @endsection

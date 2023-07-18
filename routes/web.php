@@ -32,6 +32,8 @@ Route::get('/politicas/privacidad/{filename}', [App\Http\Controllers\LandingCont
 // TODO: Rutas extras de departamentos/Provincias/Distritos
 Route::get('/get/province/of/department/{department_id}', [App\Http\Controllers\UserController::class, 'getProvincesOfDepartment']);
 Route::get('/get/district/of/province/{province_id}', [App\Http\Controllers\UserController::class, 'getDistrictsOfProvince']);
+// TODO: Rutas extras de actividades y sectores
+Route::get('/get/activities/of/sector/{sector_id}', [App\Http\Controllers\UserController::class, 'getActivitiesOfSector']);
 
 Route::middleware('auth')->group(function (){
     Route::prefix('dashboard')->group(function (){

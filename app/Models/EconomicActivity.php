@@ -21,6 +21,12 @@ class EconomicActivity extends Model
 
     protected $fillable = [
         'description',
+        'sector_id'
     ];
+
+    public function sector()
+    {
+        return $this->belongsTo('App\Models\EconomicSector', 'sector_id', 'id');
+    }
 
 }

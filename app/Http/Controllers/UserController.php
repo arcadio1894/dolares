@@ -6,6 +6,7 @@ use App\Http\Requests\DeleteUserRequest;
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
 use App\Models\District;
+use App\Models\EconomicActivity;
 use App\Models\Operation;
 use App\Models\Province;
 use App\Models\StopData;
@@ -367,6 +368,13 @@ class UserController extends Controller
         $districts = District::where('province_id', $province_id)->get();
 
         return $districts;
+    }
+
+    public function getActivitiesOfSector($sector_id)
+    {
+        $activities = EconomicActivity::where('sector_id', $sector_id)->get();
+
+        return $activities;
     }
 
     public function submitImageFront( Request $request )
