@@ -59,7 +59,7 @@ class RegisterController extends Controller
             'last_name' => ['required_if:account_type,personal','string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'phone' => ['required', 'numeric', 'max:9'],
+            'phone' => ['required', 'numeric', 'digits:9'],
             'document' => ['required', 'numeric'],
             'account_type' => ['required'],
             'business_name' => ['required_if:account_type,corporate','string', 'max:255'],
