@@ -93,6 +93,7 @@ class RegisterController extends Controller
             'economic_activity' => 'actividad económica',
             'economic_sector' => 'sector económico',
             'profession' => 'profesión',
+            'toc' => 'términos y condiciones'
         ]);
     }
 

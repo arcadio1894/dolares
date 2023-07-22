@@ -349,6 +349,11 @@
                             <a href="{{ route('term.and.conditions', 'DolarerosTC-2023.pdf') }}" target="_blank" class="ms-1 link-primary">Términos y condiciones</a>.
                         </span>
                     </label>
+                    @error('toc')
+                    <span class="text-danger" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                    @enderror
                 </div>
                 <!--end::Input group-->
                 <!--begin::Actions-->
@@ -654,11 +659,11 @@
                 cancelButtonText: 'No'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    Swal.fire({
+                    /*Swal.fire({
                         title: 'Teléfono confirmado',
                         text: `El número de teléfono ingresado es: ${phoneNumber}`,
                         icon: 'success'
-                    });
+                    });*/
                     $('#formRegister').submit();
                 } else if (result.dismiss === Swal.DismissReason.cancel) {
                     $('[name=phone]').val('');
