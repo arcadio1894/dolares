@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ScheduleDestroyRequest;
 use App\Http\Requests\ScheduleStoreRequest;
 use App\Http\Requests\ScheduleUpdateRequest;
+use App\Models\DataGeneral;
 use App\Models\Schedule;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -21,9 +22,12 @@ class ScheduleController extends Controller
     {
         $schedules = Schedule::orderBy('day')->get();
 
+        $buttonTurnOff = DataGeneral::where('name', 'buttonTurnOff')->first();
+
         return view('schedule.index', [
             'schedules' => $schedules,
-            'daysOfWeek' => $this->daysOfWeek
+            'daysOfWeek' => $this->daysOfWeek,
+            'buttonTurnOff' => $buttonTurnOff
         ]);
     }
 
@@ -122,6 +126,20 @@ class ScheduleController extends Controller
 
         return response()->json([
             'message' => 'Estado actualizado con éxito'
+        ], 200);
+    }
+
+    public function buttonTurnOffUpdate( Request $request )
+    {
+        $data_id = $request->get('data_id');
+        $status = $request->get('status');
+
+        $data = DataGeneral::find($data_id);
+        $data->valueNumber = $status;
+        $data->save();
+
+        return response()->json([
+            'message' => 'Sistema apagado con éxito'
         ], 200);
     }
 }

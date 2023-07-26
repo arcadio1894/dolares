@@ -333,6 +333,9 @@ Route::middleware('auth')->group(function (){
         Route::post('/schedule/update', [App\Http\Controllers\ScheduleController::class, 'update'])
             ->name('schedule.update')
             ->middleware('permission:update_schedule');
+        Route::post('/button/turn/off/update', [App\Http\Controllers\ScheduleController::class, 'buttonTurnOffUpdate'])
+            ->name('button.turn.off.update')
+            ->middleware('permission:update_schedule');
     });
 });
 Route::get('/data', [\App\Http\Controllers\DataController::class, 'getData']);

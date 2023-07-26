@@ -38,6 +38,39 @@
 @endsection
 
 @section('content')
+    <div class="notice d-flex @if( $buttonTurnOff->valueNumber == 1 ) bg-light-primary @else bg-light-danger @endif rounded @if( $buttonTurnOff->valueNumber == 1 ) border-primary @else border-danger @endif border border-dashed p-6 mb-4">
+        <!--begin::Icon-->
+        <!--begin::Svg Icon | path: icons/duotune/general/gen044.svg-->
+        <span class="svg-icon svg-icon-2tx @if( $buttonTurnOff->valueNumber == 1 ) svg-icon-primary @else svg-icon-danger @endif me-4">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <rect opacity="0.3" x="2" y="2" width="20" height="20" rx="10" fill="black" />
+                <rect x="11" y="14" width="7" height="2" rx="1" transform="rotate(-90 11 14)" fill="black" />
+                <rect x="11" y="17" width="2" height="2" rx="1" transform="rotate(-90 11 17)" fill="black" />
+            </svg>
+        </span>
+        <!--end::Svg Icon-->
+        <!--end::Icon-->
+        <!--begin::Wrapper-->
+        <div class="d-flex flex-stack flex-grow-1">
+            <!--begin::Content-->
+            <div class="fw-bold">
+                <h4 class="text-gray-900 fw-bolder">Botón de apagado de emergencia!</h4>
+                <label class="form-check form-switch form-check-custom form-check-solid float-end">
+                    <!--begin::Input-->
+                    <input class="form-check-input" type="checkbox" value="{{ $buttonTurnOff->valueNumber }}" {{ ($buttonTurnOff->valueNumber == 1) ? 'checked':''  }} data-kt-action="{{ route('button.turn.off.update') }}" data-kt-button-turn-off-status="{{ $buttonTurnOff->id }}" />
+                    <!--end::Input-->
+                </label>
+                <div class="fs-6 text-gray-700">
+                    <span class="left">Si apaga el sistema, los clientes no podrán realizar ninguna operación</span>
+
+                </div>
+
+            </div>
+            <!--end::Content-->
+        </div>
+        <!--end::Wrapper-->
+    </div>
+
     <!--begin::Card-->
     <div class="card">
         <!--begin::Card header-->

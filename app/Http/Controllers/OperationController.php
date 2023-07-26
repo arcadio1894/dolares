@@ -85,6 +85,17 @@ class OperationController extends Controller
 
         $user = User::find(Auth::id());
 
+        $buttonTurnOff = DataGeneral::where('name', 'buttonTurnOff')->first();
+
+        if ( $buttonTurnOff->valueNumber == 0 )
+        {
+            return response()->json([
+                'error' => 'Lo sentimos. Estamos experimentando problemas, intentalo mas tarde.',
+                'flag' => false,
+                'type' => 'schedule'
+            ], 200);
+        }
+
         if ( $user->front_image == null && $user->reverse_image==null )
         {
             $ruta = route("dashboard.profile");
