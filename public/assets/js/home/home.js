@@ -85,16 +85,30 @@ function generateOperation() {
 
             if ( response.flag == false )
             {
-                Swal.fire({
-                    text: response.error,
-                    icon: "error",
-                    buttonsStyling: !1,
-                    confirmButtonText: "Ok, entendido!",
-                    customClass: {confirmButton: "btn btn-primary"}
-                }).then((function (e) {
-                    button.prop("disabled", false);
-                    location.href = response.url;
-                }))
+                if ( response.type == 'schedule' )
+                {
+                    Swal.fire({
+                        text: response.error,
+                        icon: "error",
+                        buttonsStyling: !1,
+                        confirmButtonText: "Ok, entendido!",
+                        customClass: {confirmButton: "btn btn-primary"}
+                    }).then((function (e) {
+                        button.prop("disabled", false);
+                    }))
+                } else {
+                    Swal.fire({
+                        text: response.error,
+                        icon: "error",
+                        buttonsStyling: !1,
+                        confirmButtonText: "Ok, entendido!",
+                        customClass: {confirmButton: "btn btn-primary"}
+                    }).then((function (e) {
+                        button.prop("disabled", false);
+                        location.href = response.url;
+                    }))
+                }
+
             } else {
                 toastr.success(response.message, 'Éxito',
                     {

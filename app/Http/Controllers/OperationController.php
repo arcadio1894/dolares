@@ -10,11 +10,13 @@ use App\Models\DataGeneral;
 use App\Models\Department;
 use App\Models\Operation;
 use App\Models\Rejection;
+use App\Models\Schedule;
 use App\Models\SourceFund;
 use App\Models\StopData;
 use App\Models\StopOperation;
 use App\Models\User;
 use App\Models\UserCoupon;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -89,6 +91,7 @@ class OperationController extends Controller
             return response()->json([
                 'error' => 'Falta completar tus datos, dirígete a tu perfil para continuar.',
                 'flag' => false,
+                'type' => 'info',
                 'url' => $ruta
             ], 200);
         }
@@ -99,8 +102,72 @@ class OperationController extends Controller
             return response()->json([
                 'error' => 'Estamos validando tu información personal, éste paso sólo nos tomará unos minutos, Dirígete a tu perfil para dar seguimiento a tu solicitud.',
                 'flag' => false,
+                'type' => 'info',
                 'url' => $ruta
             ], 200);
+        }
+
+        $currentDate = Carbon::now('America/Lima');
+
+        $dayOfWeek = $currentDate->dayOfWeek;
+
+        if ($dayOfWeek >= 1 && $dayOfWeek <= 5) {
+            // Acción para días de semana (Lunes a Viernes)
+            $schedule = Schedule::where('day', 1)->first();
+            if ($schedule) {
+                // Obtener la hora actual
+                $currentTime = Carbon::now('America/Lima')->format('H:i:s');
+                $start = Carbon::createFromFormat('H:i:s', $schedule->hourStart)->format('H:i:s');
+                $end = Carbon::createFromFormat('H:i:s', $schedule->hourEnd)->format('H:i:s');
+
+                // Verificar si la hora actual está dentro del rango
+                if (!($currentTime >= $start && $currentTime <= $end)) {
+                    // La hora actual está fuera del horario
+                    return response()->json([
+                        'error' => 'Lo sentimos en estos momentos no estamos dentro del horario de atención.',
+                        'flag' => false,
+                        'type' => 'schedule'
+                    ], 200);
+                }
+            }
+        } elseif ($dayOfWeek === 6) {
+            // Acción para Sábado
+            $schedule = Schedule::where('day', 6)->first();
+            if ($schedule) {
+                // Obtener la hora actual
+                $currentTime = Carbon::now('America/Lima')->format('H:i:s');
+                $start = Carbon::createFromFormat('H:i:s', $schedule->hourStart)->format('H:i:s');
+                $end = Carbon::createFromFormat('H:i:s', $schedule->hourEnd)->format('H:i:s');
+
+                // Verificar si la hora actual está dentro del rango
+                if (!($currentTime >= $start && $currentTime <= $end)) {
+                    // La hora actual está fuera del horario
+                    return response()->json([
+                        'error' => 'Lo sentimos en estos momentos no estamos dentro del horario de atención.',
+                        'flag' => false,
+                        'type' => 'schedule'
+                    ], 200);
+                }
+            }
+        } else {
+            // Acción para Domingo
+            $schedule = Schedule::where('day', 7)->first();
+            if ($schedule) {
+                // Obtener la hora actual
+                $currentTime = Carbon::now('America/Lima')->format('H:i:s');
+                $start = Carbon::createFromFormat('H:i:s', $schedule->hourStart)->format('H:i:s');
+                $end = Carbon::createFromFormat('H:i:s', $schedule->hourEnd)->format('H:i:s');
+
+                // Verificar si la hora actual está dentro del rango
+                if (!($currentTime >= $start && $currentTime <= $end)) {
+                    // La hora actual está fuera del horario
+                    return response()->json([
+                        'error' => 'Lo sentimos en estos momentos no estamos dentro del horario de atención.',
+                        'flag' => false,
+                        'type' => 'schedule'
+                    ], 200);
+                }
+            }
         }
 
         DB::beginTransaction();
