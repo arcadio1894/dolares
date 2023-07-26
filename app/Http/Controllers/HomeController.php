@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Coupon;
+use App\Models\Schedule;
 use App\Models\StopData;
 use App\Models\UserCoupon;
 use App\Models\UserToken;
@@ -96,7 +97,8 @@ class HomeController extends Controller
             return view('home', compact('stopData', 'respError'));
         }
         //dd();
-        return view('home', compact('stopData', 'respError'));
+        $schedules = Schedule::orderBy('day')->get();
+        return view('home', compact('stopData', 'respError', 'schedules'));
     }
 
     public function applyCoupon(Request $request)

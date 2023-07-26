@@ -244,7 +244,17 @@
 
     </div>
 
+    <div class="card card-xl-stretch mb-xl-8 mt-3" >
+        <!--begin::Body-->
+        <div class="card-body text-center">
+            <h3>Horario de Atención</h3>
+            @foreach( $schedules as $schedule )
+            <h4>{{$schedule->nameDay}}: {{date('g:i a', strtotime($schedule->hourStart))}} - {{date('g:i a', strtotime($schedule->hourEnd))}}</h4>
+            @endforeach
+        </div>
+        <!--end::Body-->
 
+    </div>
     <!--end::Action-->
 </div>
 

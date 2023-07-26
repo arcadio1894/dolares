@@ -316,6 +316,23 @@ Route::middleware('auth')->group(function (){
             ->name('get.data.coupon');
         Route::get('/get/user/assign/coupon', [App\Http\Controllers\CouponController::class, 'getUserCouponAssign'])
             ->name('get.user.coupon.assign');
+
+        // TODO: Schedule
+        Route::get('/horario/atencion', [App\Http\Controllers\ScheduleController::class, 'index'])
+            ->name('schedule.index')
+            ->middleware('permission:list_schedule');
+        Route::post('/schedule/store', [App\Http\Controllers\ScheduleController::class, 'store'])
+            ->name('schedule.store')
+            ->middleware('permission:create_schedule');
+        Route::post('/schedule/update/active', [App\Http\Controllers\ScheduleController::class, 'updateStatus'])
+            ->name('schedule.update.active')
+            ->middleware('permission:update_schedule');
+        Route::post('/schedule/destroy/{schedule_id}', [App\Http\Controllers\ScheduleController::class, 'destroy'])
+            ->name('schedule.destroy')
+            ->middleware('permission:destroy_schedule');
+        Route::post('/schedule/update', [App\Http\Controllers\ScheduleController::class, 'update'])
+            ->name('schedule.update')
+            ->middleware('permission:update_schedule');
     });
 });
 Route::get('/data', [\App\Http\Controllers\DataController::class, 'getData']);
