@@ -53,11 +53,11 @@ function changeStatusTurnOff() {
     }
 
     Swal.fire({
-        text: "¿Estás seguro de apagar el sistema?",
+        text: "¿Estás seguro de cambiar el estado el sistema?",
         icon: "warning",
         showCancelButton: !0,
         buttonsStyling: !1,
-        confirmButtonText: "Si, apagar!",
+        confirmButtonText: "Si, cambiar!",
         cancelButtonText: "No, regresar",
         customClass: {confirmButton: "btn btn-primary", cancelButton: "btn btn-active-light"}
     }).then((function (t) {

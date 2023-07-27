@@ -336,6 +336,17 @@ Route::middleware('auth')->group(function (){
         Route::post('/button/turn/off/update', [App\Http\Controllers\ScheduleController::class, 'buttonTurnOffUpdate'])
             ->name('button.turn.off.update')
             ->middleware('permission:update_schedule');
+
+        // TODO: TypeExchange
+        Route::get('/configurar/tipo/cambio', [App\Http\Controllers\TypeExchangeController::class, 'index'])
+            ->name('typeExchange.index')
+            ->middleware('permission:enable_typeExchange');
+        Route::post('/typeExchange/store', [App\Http\Controllers\TypeExchangeController::class, 'store'])
+            ->name('typeExchange.store')
+            ->middleware('permission:save_typeExchange');
+        Route::post('/typeExchange/tcManual/update', [App\Http\Controllers\TypeExchangeController::class, 'updateTcManual'])
+            ->name('typeExchange.tcManual.update')
+            ->middleware('permission:change_typeExchange');
     });
 });
 Route::get('/data', [\App\Http\Controllers\DataController::class, 'getData']);
