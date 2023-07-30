@@ -24,7 +24,7 @@ class AccountDolareroStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'numberAccount' => 'required|numeric|max:255|unique:account_dolareros,numberAccount',
+            'numberAccount' => 'required|numeric|unique:account_dolareros,numberAccount',
             'bank_id' => 'required|exists:banks,id',
             'department_id' => 'required|exists:departments,id',
             'currency' => 'required',
