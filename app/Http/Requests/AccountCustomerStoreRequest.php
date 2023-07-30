@@ -26,7 +26,7 @@ class AccountCustomerStoreRequest extends FormRequest
     {
         return [
             'numberAccount' => 'required|numeric|unique:account_customers,numberAccount',
-            'nameAccount' => 'required|string|max:255|unique:account_customers,nameAccount,'.Auth::id().',id,users_id,'.Auth::id(),
+            'nameAccount' => 'required|string|max:255|unique:account_customers,nameAccount,'.Auth::id().',id,user_id,'.Auth::id(),
             'bank_id' => 'required|exists:banks,id',
             'department_id' => 'required|exists:departments,id',
             'currency' => 'required',
