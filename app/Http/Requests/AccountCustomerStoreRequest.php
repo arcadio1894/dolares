@@ -24,6 +24,7 @@ class AccountCustomerStoreRequest extends FormRequest
      */
     public function rules()
     {
+
         return [
             'numberAccount' => 'required|numeric|unique:account_customers,numberAccount',
             'nameAccount' => 'required|string|max:255|unique:account_customers,nameAccount,'.Auth::id().',id,user_id,'.Auth::id(),
