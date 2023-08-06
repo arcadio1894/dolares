@@ -28,6 +28,9 @@ class AccountDolarero extends Model
         'currency',
         'status',
         'department_id',
+        'number_interbank',
+        'balance',
+        'apply_interbank'
     ];
 
     protected $dates = ["created_at", "updated_at", "deleted_at"];

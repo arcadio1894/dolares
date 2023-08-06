@@ -39,6 +39,8 @@ class AccountDolareroController extends Controller
                 'bank_id' => $request->get('bank_id'),
                 'numberAccount' => $request->get('numberAccount'),
                 'currency' => $request->get('currency'),
+                'number_interbank' => $request->get('number_interbank'),
+                'balance' => $request->get('balance')
             ]);
 
             DB::commit();
@@ -78,6 +80,8 @@ class AccountDolareroController extends Controller
             $account->numberAccount = $request->get('numberAccount');
             $account->currency = $request->get('currency');
             $account->status = ($request->get('statusAccount') == 1) ? 1:0;
+            $account->number_interbank = $request->get('number_interbank');
+            $account->balance = $request->get('balance');
             $account->save();
 
             DB::commit();
@@ -99,6 +103,20 @@ class AccountDolareroController extends Controller
 
         $account = AccountDolarero::find($account_id);
         $account->status = $statusAccount;
+        $account->save();
+
+        return response()->json([
+            'message' => 'Estado actualizado con éxito'
+        ], 200);
+    }
+
+    public function updateApplyInterbank( Request $request )
+    {
+        $account_id = $request->get('account_id');
+        $statusAccount = $request->get('statusAccount');
+
+        $account = AccountDolarero::find($account_id);
+        $account->apply_interbank = $statusAccount;
         $account->save();
 
         return response()->json([

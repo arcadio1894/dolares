@@ -28,7 +28,9 @@ class AccountDolareroUpdateRequest extends FormRequest
             'department_id' => 'required|exists:departments,id',
             'bank_id' => 'required|exists:banks,id',
             'numberAccount' => 'required|numeric|unique:account_dolareros,numberAccount,'.$this->get('account_id'),
-            'currency' => 'required'
+            'currency' => 'required',
+            'number_interbank' => 'numeric|unique:account_dolareros,number_interbank,'.$this->get('account_id'),
+            'balance' => 'numeric'
         ];
     }
 
@@ -39,7 +41,9 @@ class AccountDolareroUpdateRequest extends FormRequest
             'bank_id' => 'ID del banco',
             'department_id' => 'ID del departmento',
             'numberAccount' => 'número de la cuenta',
-            'currency' => 'moneda de la cuenta'
+            'currency' => 'moneda de la cuenta',
+            'number_interbank' => 'número interbancario',
+            'balance' => 'balance'
         ];
     }
 }

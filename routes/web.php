@@ -86,6 +86,9 @@ Route::middleware('auth')->group(function (){
         Route::post('/account/update/status', [App\Http\Controllers\AccountDolareroController::class, 'updateStatus'])
             ->name('accounts.update.status')
             ->middleware('permission:update_accountDolareros');
+        Route::post('/account/update/apply/interbank', [App\Http\Controllers\AccountDolareroController::class, 'updateApplyInterbank'])
+            ->name('accounts.update.apply.interbank')
+            ->middleware('permission:update_accountDolareros');
         Route::post('/account/destroy/{account_id}', [App\Http\Controllers\AccountDolareroController::class, 'destroy'])
             ->name('accounts.destroy')
             ->middleware('permission:destroy_accountDolareros');

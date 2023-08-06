@@ -43,7 +43,7 @@ $(document).ready(function () {
 
     $(document).on('click', '[data-kt-account-action="update_row"]', showModalEdit);
     $(document).on('click', '[data-kt-account-active]', changeStatusAccount);
-
+    $(document).on('click', '[data-kt-account-interbank]', changeStatusInterbank);
 
     $buttonSubmit.addEventListener("click", updateBank);
 
@@ -59,6 +59,112 @@ var $buttonSubmit;
 var $buttonCancel;
 var $buttonClose;
 var $formValidation;
+
+function changeStatusInterbank() {
+    event.preventDefault();
+    let button = $(this);
+    let account_id = $(this).attr('data-kt-account-interbank');
+    let statusAccount;
+    if ($(this).is(':checked')) {
+        statusAccount = 1;
+    } else {
+        statusAccount = 0;
+    }
+
+    Swal.fire({
+        text: "¿Estás seguro de modificar cambiar a interbancario?",
+        icon: "warning",
+        showCancelButton: !0,
+        buttonsStyling: !1,
+        confirmButtonText: "Si, cambiar!",
+        cancelButtonText: "No, regresar",
+        customClass: {confirmButton: "btn btn-primary", cancelButton: "btn btn-active-light"}
+    }).then((function (t) {
+        t.value ? (
+            $.ajax({
+                url: button.attr('data-kt-action'),
+                method: 'POST',
+                headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                data: JSON.stringify({ statusAccount: statusAccount, account_id:account_id}),
+                processData:false,
+                contentType:'application/json; charset=utf-8',
+                success: function (data) {
+                    console.log(data);
+                    setTimeout((function () {
+                        Swal.fire({
+                            text: data.message,
+                            icon: "success",
+                            buttonsStyling: !1,
+                            confirmButtonText: "Ok, entendido!",
+                            customClass: {confirmButton: "btn btn-primary"}
+                        }).then((function () {
+                            //window.location = redirect;
+                            if ( statusAccount == 1 )
+                            {
+                                // Check #x
+                                button.prop( "checked", true );
+                            } else {
+                                // Uncheck #x
+                                button.prop( "checked", false );
+                            }
+
+
+                        }))
+                    }), 2e3)
+                },
+                error: function (data) {
+                    if( data.responseJSON.message && !data.responseJSON.errors )
+                    {
+                        toastr.error(data.responseJSON.message, 'Error',
+                            {
+                                "closeButton": true,
+                                "debug": false,
+                                "newestOnTop": false,
+                                "progressBar": true,
+                                "positionClass": "toast-top-right",
+                                "preventDuplicates": false,
+                                "onclick": null,
+                                "showDuration": "300",
+                                "hideDuration": "1000",
+                                "timeOut": "2000",
+                                "extendedTimeOut": "1000",
+                                "showEasing": "swing",
+                                "hideEasing": "linear",
+                                "showMethod": "fadeIn",
+                                "hideMethod": "fadeOut"
+                            });
+                    }
+                    for ( var property in data.responseJSON.errors ) {
+                        toastr.error(data.responseJSON.errors[property], 'Error',
+                            {
+                                "closeButton": true,
+                                "debug": false,
+                                "newestOnTop": false,
+                                "progressBar": true,
+                                "positionClass": "toast-top-right",
+                                "preventDuplicates": false,
+                                "onclick": null,
+                                "showDuration": "300",
+                                "hideDuration": "1000",
+                                "timeOut": "2000",
+                                "extendedTimeOut": "1000",
+                                "showEasing": "swing",
+                                "hideEasing": "linear",
+                                "showMethod": "fadeIn",
+                                "hideMethod": "fadeOut"
+                            });
+                    }
+                },
+            })
+        ) : "cancel" === t.dismiss && Swal.fire({
+            text: "La información no ha sido enviada!.",
+            icon: "error",
+            buttonsStyling: !1,
+            confirmButtonText: "Ok, entendido!",
+            customClass: {confirmButton: "btn btn-primary"}
+        })
+    }));
+}
 
 function changeStatusAccount() {
     event.preventDefault();
@@ -205,15 +311,17 @@ function showModalEdit() {
     let statusAccount = $(this).attr('data-kt-status');
     let numberAccount = $(this).attr('data-kt-numberAccount');
     let currency = $(this).attr('data-kt-currency');
+    let numberInterbank = $(this).attr('data-kt-numberInterbank');
+    let balance = $(this).attr('data-kt-balance');
     let idAccount = $(this).attr('data-kt-account');
 
     $formEdit.querySelector('[name="account_id"]').value = idAccount;
 
     $formEdit.querySelector('[name="numberAccount"]').value = numberAccount;
 
-    //$formEdit.querySelector('[name="bank_id"]').value = idBank;
+    $formEdit.querySelector('[name="number_interbank"]').value = numberInterbank;
 
-    //$formEdit.querySelector('[name="currency"]').value = 'USD';
+    $formEdit.querySelector('[name="balance"]').value = balance;
 
     let c = $('#currency').select2({
         minimumResultsForSearch: Infinity,

@@ -80,98 +80,114 @@
         <!--end::Card header-->
         <!--begin::Card body-->
         <div class="card-body pt-0">
-            <!--begin::Table-->
-            <table class="table align-middle table-row-dashed fs-6 gy-5" id="kt_customers_table">
-                <!--begin::Table head-->
-                <thead>
-                <!--begin::Table row-->
-                <tr class="text-start text-gray-400 fw-bolder fs-7 text-uppercase gs-0">
-                    {{--<th class="w-10px pe-2">
-                        <div class="form-check form-check-sm form-check-custom form-check-solid me-3">
-                            <input class="form-check-input" type="checkbox" data-kt-check="true" data-kt-check-target="#kt_customers_table .form-check-input" value="1" />
-                        </div>
-                    </th>--}}
-                    <th class="min-w-125px">Banco</th>
-                    <th class="min-w-125px">Cuenta</th>
-                    <th class="min-w-125px">Departamento</th>
-                    <th class="min-w-125px">Moneda</th>
-                    <th class="min-w-125px">Estado</th>
-                    <th class="text-end min-w-70px">Actions</th>
-                </tr>
-                <!--end::Table row-->
-                </thead>
-                <!--end::Table head-->
-                <!--begin::Table body-->
-                <tbody class="fw-bold text-gray-600">
-                @foreach( $accounts as $account )
-                    <tr>
-                        <!--begin::Checkbox-->
-                    {{--<td>
-                        <div class="form-check form-check-sm form-check-custom form-check-solid">
-                            <input class="form-check-input" type="checkbox" value="{{ $bank->id }}" />
-                        </div>
-                    </td>--}}
-                    <!--end::Checkbox-->
-                        <!--begin::Name=-->
-                        <td>
-                            <img src="{{ asset('assets/images/banks/'.$account->bank->imageBank) }}" alt="{{ $account->bank->name }}" class="img-fluid" style="max-width: 30px;"> {{ $account->bank->name }}
-                        </td>
-                        <td>
-                            {{ $account->numberAccount }}
-                        </td>
-                        <td>
-                            {{ $account->department->name }}
-                        </td>
-                        <td>
-                            {{ ($account->currency == 'PEN') ? 'Soles':'Dólares' }}
-                        </td>
-                        <!--end::Name=-->
-                        <!--begin::Status=-->
-                        <td>
-                            <!--begin::Switch-->
-                            <label class="form-check form-switch form-check-custom form-check-solid">
-                                <!--begin::Input-->
-                                <input class="form-check-input" name="status" type="checkbox" value="{{ $account->status }}" {{ ($account->status == 1) ? 'checked':''  }} data-kt-action="{{ route('accounts.update.status') }}" data-kt-account-active="{{ $account->id }}" />
-                                <!--end::Input-->
-                                <!--begin::Label-->
-                                <span class="form-check-label fw-bold text-muted" >Activo</span>
-                                <!--end::Label-->
-                            </label>
-                            <!--end::Switch-->
-                        </td>
-                        <!--end::Status=-->
-                        <!--begin::Action=-->
-                        <td class="text-end">
-                            <a href="#" class="btn btn-sm btn-light btn-active-light-primary" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">Actions
-                                <!--begin::Svg Icon | path: icons/duotune/arrows/arr072.svg-->
-                                <span class="svg-icon svg-icon-5 m-0">
+            <div class="table-responsive">
+                <!--begin::Table-->
+                <table class="table align-middle table-row-dashed fs-6 gy-5" id="kt_customers_table">
+                    <!--begin::Table head-->
+                    <thead>
+                    <!--begin::Table row-->
+                    <tr class="text-start text-gray-400 fw-bolder fs-7 text-uppercase gs-0">
+                        {{--<th class="w-10px pe-2">
+                            <div class="form-check form-check-sm form-check-custom form-check-solid me-3">
+                                <input class="form-check-input" type="checkbox" data-kt-check="true" data-kt-check-target="#kt_customers_table .form-check-input" value="1" />
+                            </div>
+                        </th>--}}
+                        <th class="min-w-125px">Banco</th>
+                        <th class="min-w-125px">Cuenta</th>
+                        <th class="min-w-125px">Departamento</th>
+                        <th class="min-w-125px">Moneda</th>
+                        <th class="min-w-125px">Estado</th>
+                        <th class="min-w-125px">Interbank</th>
+                        <th class="text-end min-w-70px">Actions</th>
+                    </tr>
+                    <!--end::Table row-->
+                    </thead>
+                    <!--end::Table head-->
+                    <!--begin::Table body-->
+                    <tbody class="fw-bold text-gray-600">
+                    @foreach( $accounts as $account )
+                        <tr>
+                            <!--begin::Checkbox-->
+                        {{--<td>
+                            <div class="form-check form-check-sm form-check-custom form-check-solid">
+                                <input class="form-check-input" type="checkbox" value="{{ $bank->id }}" />
+                            </div>
+                        </td>--}}
+                        <!--end::Checkbox-->
+                            <!--begin::Name=-->
+                            <td>
+                                <img src="{{ asset('assets/images/banks/'.$account->bank->imageBank) }}" alt="{{ $account->bank->name }}" class="img-fluid" style="max-width: 30px;"> {{ $account->bank->name }}
+                            </td>
+                            <td>
+                                {{ $account->numberAccount }}
+                            </td>
+                            <td>
+                                {{ $account->department->name }}
+                            </td>
+                            <td>
+                                {{ ($account->currency == 'PEN') ? 'Soles':'Dólares' }}
+                            </td>
+                            <!--end::Name=-->
+                            <!--begin::Status=-->
+                            <td>
+                                <!--begin::Switch-->
+                                <label class="form-check form-switch form-check-custom form-check-solid">
+                                    <!--begin::Input-->
+                                    <input class="form-check-input" name="status" type="checkbox" value="{{ $account->status }}" {{ ($account->status == 1) ? 'checked':''  }} data-kt-action="{{ route('accounts.update.status') }}" data-kt-account-active="{{ $account->id }}" />
+                                    <!--end::Input-->
+                                    <!--begin::Label-->
+                                    <span class="form-check-label fw-bold text-muted" >Activo</span>
+                                    <!--end::Label-->
+                                </label>
+                                <!--end::Switch-->
+                            </td>
+                            <td>
+                                <!--begin::Switch-->
+                                <label class="form-check form-switch form-check-custom form-check-solid">
+                                    <!--begin::Input-->
+                                    <input class="form-check-input" name="apply_interbank" type="checkbox" value="{{ $account->apply_interbank }}" {{ ($account->apply_interbank == 1) ? 'checked':''  }} data-kt-action="{{ route('accounts.update.apply.interbank') }}" data-kt-account-interbank="{{ $account->id }}" />
+                                    <!--end::Input-->
+                                    <!--begin::Label-->
+                                    <span class="form-check-label fw-bold text-muted" >Activo</span>
+                                    <!--end::Label-->
+                                </label>
+                                <!--end::Switch-->
+                            </td>
+                            <!--end::Status=-->
+                            <!--begin::Action=-->
+                            <td class="text-end">
+                                <a href="#" class="btn btn-sm btn-light btn-active-light-primary" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">Actions
+                                    <!--begin::Svg Icon | path: icons/duotune/arrows/arr072.svg-->
+                                    <span class="svg-icon svg-icon-5 m-0">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                                     <path d="M11.4343 12.7344L7.25 8.55005C6.83579 8.13583 6.16421 8.13584 5.75 8.55005C5.33579 8.96426 5.33579 9.63583 5.75 10.05L11.2929 15.5929C11.6834 15.9835 12.3166 15.9835 12.7071 15.5929L18.25 10.05C18.6642 9.63584 18.6642 8.96426 18.25 8.55005C17.8358 8.13584 17.1642 8.13584 16.75 8.55005L12.5657 12.7344C12.2533 13.0468 11.7467 13.0468 11.4343 12.7344Z" fill="black" />
                                 </svg>
                             </span>
-                                <!--end::Svg Icon--></a>
-                            <!--begin::Menu-->
-                            <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-bold fs-7 w-125px py-4" data-kt-menu="true">
-                                <!--begin::Menu item-->
-                                <div class="menu-item px-3">
-                                    <a href="#" class="menu-link px-3" data-kt-account="{{ $account->id }}" data-kt-bank="{{ $account->bank->id }}" data-kt-nameBank="{{ $account->bank->nameBank }}" data-kt-department="{{ $account->department->id }}" data-kt-status="{{ $account->status }}" data-kt-numberAccount="{{ $account->numberAccount }}" data-kt-currency="{{ $account->currency }}" data-kt-account-action="update_row">Editar</a>
+                                    <!--end::Svg Icon--></a>
+                                <!--begin::Menu-->
+                                <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-bold fs-7 w-125px py-4" data-kt-menu="true">
+                                    <!--begin::Menu item-->
+                                    <div class="menu-item px-3">
+                                        <a href="#" class="menu-link px-3" data-kt-account="{{ $account->id }}" data-kt-bank="{{ $account->bank->id }}" data-kt-nameBank="{{ $account->bank->nameBank }}" data-kt-department="{{ $account->department->id }}" data-kt-status="{{ $account->status }}" data-kt-numberAccount="{{ $account->numberAccount }}" data-kt-currency="{{ $account->currency }}" data-kt-numberInterbank="{{ $account->number_interbank }}" data-kt-balance="{{ $account->balance }}" data-kt-account-action="update_row">Editar</a>
+                                    </div>
+                                    <!--end::Menu item-->
+                                    <!--begin::Menu item-->
+                                    <div class="menu-item px-3">
+                                        <a href="#" class="menu-link px-3 text-danger" data-kt-account="{{ $account->id }}" data-kt-customer-table-filter="delete_row">Eliminar</a>
+                                    </div>
+                                    <!--end::Menu item-->
                                 </div>
-                                <!--end::Menu item-->
-                                <!--begin::Menu item-->
-                                <div class="menu-item px-3">
-                                    <a href="#" class="menu-link px-3 text-danger" data-kt-account="{{ $account->id }}" data-kt-customer-table-filter="delete_row">Eliminar</a>
-                                </div>
-                                <!--end::Menu item-->
-                            </div>
-                            <!--end::Menu-->
-                        </td>
-                        <!--end::Action=-->
-                    </tr>
-                @endforeach
-                </tbody>
-                <!--end::Table body-->
-            </table>
-            <!--end::Table-->
+                                <!--end::Menu-->
+                            </td>
+                            <!--end::Action=-->
+                        </tr>
+                    @endforeach
+                    </tbody>
+                    <!--end::Table body-->
+                </table>
+                <!--end::Table-->
+            </div>
+
         </div>
         <!--end::Card body-->
     </div>
@@ -216,7 +232,7 @@
                                         <label class="required fs-6 fw-bold mb-2">Número de cuenta</label>
                                         <!--end::Label-->
                                         <!--begin::Input-->
-                                        <input type="text" class="form-control form-control-solid" placeholder="Número de cuenta" name="numberAccount" value="" />
+                                        <input type="number" class="form-control form-control-solid" placeholder="Número de cuenta" name="numberAccount" value="" />
                                         <!--end::Input-->
                                     </div>
                                     <!--end::Input group-->
@@ -277,6 +293,31 @@
                                 </div>
                             </div>
 
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="fv-row mb-7">
+                                        <!--begin::Label-->
+                                        <label class="fs-6 fw-bold mb-2">Número Interbancario</label>
+                                        <!--end::Label-->
+                                        <!--begin::Input-->
+                                        <input type="number" class="form-control form-control-solid" placeholder="Número Interbancario" name="number_interbank" value="" />
+                                        <!--end::Input-->
+                                    </div>
+                                    <!--end::Input group-->
+                                </div>
+                                <div class="col-lg-6">
+                                    <!--begin::Input group-->
+                                    <div class="fv-row mb-7">
+                                        <!--begin::Label-->
+                                        <label class="fs-6 fw-bold mb-2">Monto inicial</label>
+                                        <!--end::Label-->
+                                        <!--begin::Input-->
+                                        <input type="number" class="form-control form-control-solid" placeholder="Monto inicial" name="balance" value="" />
+                                        <!--end::Input-->
+                                    </div>
+                                    <!--end::Input group-->
+                                </div>
+                            </div>
                         </div>
                         <!--end::Scroll-->
 
@@ -396,6 +437,32 @@
                                             <option value="PEN">Soles</option>
                                             <option value="USD">Dolares</option>
                                         </select>
+                                        <!--end::Input-->
+                                    </div>
+                                    <!--end::Input group-->
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="fv-row mb-7">
+                                        <!--begin::Label-->
+                                        <label class="fs-6 fw-bold mb-2">Número Interbancario</label>
+                                        <!--end::Label-->
+                                        <!--begin::Input-->
+                                        <input type="number" class="form-control form-control-solid" placeholder="Número Interbancario" name="number_interbank" value="" />
+                                        <!--end::Input-->
+                                    </div>
+                                    <!--end::Input group-->
+                                </div>
+                                <div class="col-lg-6">
+                                    <!--begin::Input group-->
+                                    <div class="fv-row mb-7">
+                                        <!--begin::Label-->
+                                        <label class="fs-6 fw-bold mb-2">Monto inicial</label>
+                                        <!--end::Label-->
+                                        <!--begin::Input-->
+                                        <input type="number" class="form-control form-control-solid" placeholder="Monto inicial" name="balance" value="" />
                                         <!--end::Input-->
                                     </div>
                                     <!--end::Input group-->

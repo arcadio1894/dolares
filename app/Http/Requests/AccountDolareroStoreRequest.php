@@ -28,6 +28,8 @@ class AccountDolareroStoreRequest extends FormRequest
             'bank_id' => 'required|exists:banks,id',
             'department_id' => 'required|exists:departments,id',
             'currency' => 'required',
+            'number_interbank' => 'numeric|unique:account_dolareros,number_interbank',
+            'balance' => 'numeric'
         ];
     }
 
@@ -43,6 +45,8 @@ class AccountDolareroStoreRequest extends FormRequest
             'bank_id' => 'banco de la cuenta',
             'department_id' => 'departemento de la cuenta',
             'currency' => 'moneda de la cuenta',
+            'number_interbank' => 'número interbancario',
+            'balance' => 'balance'
         ];
     }
 }
