@@ -34,7 +34,8 @@ class StopOperation extends Model
         'nameBankDolarero',
         'account_customer_id',
         'source_fund_id',
-        'ahorro'
+        'ahorro',
+        'account_dolarero_real_id',
     ];
 
     protected $dates = ["created_at", "updated_at"];
@@ -52,6 +53,11 @@ class StopOperation extends Model
     public function account_dolarero()
     {
         return $this->belongsTo('App\Models\AccountDolarero', 'account_dolarero_id', 'id');
+    }
+
+    public function account_dolarero_real()
+    {
+        return $this->belongsTo('App\Models\AccountDolarero', 'account_dolarero_real_id', 'id');
     }
 
     public function account_customer()

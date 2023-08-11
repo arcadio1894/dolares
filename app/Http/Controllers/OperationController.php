@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\AccountCustomer;
 use App\Models\AccountDolarero;
+use App\Models\Accounting;
 use App\Models\Bank;
 use App\Models\Coupon;
 use App\Models\DataGeneral;
@@ -238,6 +239,19 @@ class OperationController extends Controller
         $bankCustomer = $accountsDolarero->bank->name;
         $amountSend = 0;
 
+        $nameBankOperationDeposit = $bankAccount;
+        $title = "Número de cuenta";
+        if ( $accountsDolarero->apply_interbank == 1 )
+        {
+            $banco = Bank::find(7);
+            $nameBankOperationDeposit = $banco->name;
+            $title = "Número de cuenta interbancario";
+            $cuentaDeposit = AccountDolarero::where('currency', $currency)
+                ->where('bank_id', $banco->id)
+                ->first();
+            $numberAccount = $cuentaDeposit->number_interbank;
+        }
+
         DB::beginTransaction();
         try {
 
@@ -245,6 +259,22 @@ class OperationController extends Controller
             $stopOperation = StopOperation::where('user_id', Auth::id())->first();
             if ( isset($stopOperation) )
             {
+                $cuentaDolarero = AccountDolarero::where('currency', $accountsCustomer->currency)
+                    ->where('bank_id', $accountsCustomer->bank->id)
+                    ->first();
+                if ( isset($cuentaDeposit) ) // Osea es BBVA
+                {
+                    if ( $cuentaDolarero->balance < $stopOperation->getAmount )
+                    {
+                        return response()->json(['message' => "Lo sentimos, no podemos continuar con esta operación por el momento"], 422);
+                    }
+                } else {
+                    if ( $cuentaDolarero->balance < $stopOperation->getAmount )
+                    {
+                        return response()->json(['message' => "Lo sentimos, no podemos continuar con esta operación por el momento"], 422);
+                    }
+
+                }
                 ///$stopOperation->delete();
                 $amountSend = number_format($stopOperation->sendAmount, 2, '.', ' ');
                 //$stopData = StopData::where('user_id', Auth::id())->first();
@@ -252,6 +282,7 @@ class OperationController extends Controller
                 $stopOperation->nameBankDolarero = $bancoOrigen;
                 $stopOperation->account_customer_id = $cuentaDestinoId;
                 $stopOperation->source_fund_id = $sourceId;
+                $stopOperation->account_dolarero_real_id = (isset($cuentaDeposit)) ? $cuentaDeposit->id: null;
                 $stopOperation->save();
 
             } else {
@@ -274,6 +305,7 @@ class OperationController extends Controller
                     'nameBankDolarero' => $bancoOrigen,
                     'account_customer_id' => $cuentaDestinoId,
                     'source_fund_id' => $sourceId,
+                    'account_dolarero_real_id' => (isset($cuentaDeposit)) ? $cuentaDeposit->id: null,
                 ]);
 
                 $amountSend = number_format($newStopOperation->sendAmount, 2, '.', ' ');
@@ -296,7 +328,9 @@ class OperationController extends Controller
             'numberAccount' => $numberAccount,
             'currencyAccount' => $currencyAccount,
             'amountSend' => $amountSend,
-            'bankCustomer' => $bankCustomer
+            'bankCustomer' => $bankCustomer,
+            'nameBankOperationDeposit' => $nameBankOperationDeposit,
+            'title' => $title
         ], 200);
     }
 
@@ -567,6 +601,20 @@ class OperationController extends Controller
                 {
                     return response()->json(['message' => "Numero de operación repetido."], 422);
                 }
+
+                $account_dolarero_send_id = null;
+
+                $cuentaCliente = AccountCustomer::find($stopOperation->account_customer_id);
+
+                $banco_id = $cuentaCliente->bank_id;
+                $moneda = $cuentaCliente->currency;
+
+                $cuentaDolareroSend = AccountDolarero::where('currency', $moneda)
+                    ->where('bank_id', $banco_id)
+                    ->first();
+
+                $account_dolarero_send_id = $cuentaDolareroSend->id;
+
                 $operation = Operation::create([
                     'user_id' => $stopOperation->user_id,
                     'buyStop' => $stopOperation->buyStop,
@@ -584,7 +632,9 @@ class OperationController extends Controller
                     'source_fund_id' => $stopOperation->source_fund_id,
                     'ahorro' => $stopOperation->ahorro,
                     'number_operation_user' => $number_operation,
-                    'code_operation' => $code_operation
+                    'code_operation' => $code_operation,
+                    'account_dolarero_real_id' => $stopOperation->account_dolarero_real_id,
+                    'account_dolarero_send_id' => $account_dolarero_send_id
                 ]);
 
                 // TODO: Asignar el cupon en user_coupons
@@ -642,16 +692,31 @@ class OperationController extends Controller
 
         if ( isset($operation) )
         {
-            return response()->json([
-                'fechaOperacion' => $operation->created_at->format('d/m/Y'),
-                'numeroOperacion' => $operation->number_operation_user,
-                'tipoCambio' => $operation->type_change,
-                'montoEnviado' => $operation->send_amount_list,
-                'montoRecibido' => $operation->get_amount_list,
-                'cuentaDolareros' => $operation->account_dolarero->numberAccount,
-                'cuentaDestino' => $operation->account_customer->numberAccount,
-                'estadoOperacion' => $operation->estado
-            ], 200);
+            if ( $operation->account_dolarero_real_id == null )
+            {
+                return response()->json([
+                    'fechaOperacion' => $operation->created_at->format('d/m/Y'),
+                    'numeroOperacion' => $operation->number_operation_user,
+                    'tipoCambio' => $operation->type_change,
+                    'montoEnviado' => $operation->send_amount_list,
+                    'montoRecibido' => $operation->get_amount_list,
+                    'cuentaDolareros' => $operation->account_dolarero->numberAccount,
+                    'cuentaDestino' => $operation->account_customer->numberAccount,
+                    'estadoOperacion' => $operation->estado
+                ], 200);
+            } else {
+                return response()->json([
+                    'fechaOperacion' => $operation->created_at->format('d/m/Y'),
+                    'numeroOperacion' => $operation->number_operation_user,
+                    'tipoCambio' => $operation->type_change,
+                    'montoEnviado' => $operation->send_amount_list,
+                    'montoRecibido' => $operation->get_amount_list,
+                    'cuentaDolareros' => $operation->account_dolarero_real->number_interbank,
+                    'cuentaDestino' => $operation->account_customer->numberAccount,
+                    'estadoOperacion' => $operation->estado
+                ], 200);
+            }
+
         } else {
             return response()->json(['message' => "No encontramos la operación indicada."], 422);
         }
@@ -795,6 +860,75 @@ class OperationController extends Controller
             $operation->state = 'finished';
             $operation->save();
 
+            // Actualizar los balances
+            if ( $operation->account_dolarero_real_id == null )
+            {
+                $cuentaDolareroAumentar = AccountDolarero::find($operation->account_dolarero_id);
+            } else {
+                $cuentaDolareroAumentar = AccountDolarero::find($operation->account_dolarero_real_id);
+            }
+
+            $cuentaDolareroDisminuir = AccountDolarero::find($operation->account_dolarero_send_id);
+
+            // Crear la tabla de accountings
+            $type_exchange = 0;
+
+            if ( $operation->coupon_id != null )
+            {
+                $coupon = Coupon::find($operation->coupon_id);
+                if ( $operation->type == 'buy' )
+                {
+                    $type_exchange = $operation->buyStop+$coupon->amountBuy;
+                } else {
+                    $type_exchange = $operation->sellStop-$coupon->amountSell;
+                }
+            } else {
+                if ( $operation->type == 'buy' )
+                {
+                    $type_exchange = $operation->buyStop;
+                } else {
+                    $type_exchange = $operation->sellStop;
+                }
+            }
+
+            $entry = Accounting::create([
+                'operation_id' => $operation->id,
+                'bank_id' => $cuentaDolareroAumentar->bank_id,
+                'account_dolarero_id' => $cuentaDolareroAumentar->id,
+                'document_customer' => $operation->user->document,
+                'type_operation' => $operation->type,
+                'type_exchange' => $type_exchange,
+                'code_operation_customer' => $operation->number_operation_user,
+                'code_operation_dolarero' => $operation->number_operation_dolareros,
+                'balance_prev' => $cuentaDolareroAumentar->balance,
+                'balance_next' => $cuentaDolareroAumentar->balance + $operation->sendAmount,
+                'type' => 'entry',
+                'date' => Carbon::now('America/Lima'),
+                'observation' => ($operation->account_dolarero_real_id != null) ? 'Interbancario BBVA':'',
+            ]);
+
+            $output = Accounting::create([
+                'operation_id' => $operation->id,
+                'bank_id' => $cuentaDolareroDisminuir->bank_id,
+                'account_dolarero_id' => $cuentaDolareroDisminuir->id,
+                'document_customer' => $operation->user->document,
+                'type_operation' => $operation->type,
+                'type_exchange' => $type_exchange,
+                'code_operation_customer' => $operation->number_operation_user,
+                'code_operation_dolarero' => $operation->number_operation_dolareros,
+                'balance_prev' => $cuentaDolareroDisminuir->balance,
+                'balance_next' => $cuentaDolareroDisminuir->balance - $operation->getAmount,
+                'type' => 'output',
+                'date' => Carbon::now('America/Lima'),
+                'observation' => ($operation->account_dolarero_real_id != null) ? 'Interbancario BBVA':'',
+            ]);
+
+            $cuentaDolareroAumentar->balance = $cuentaDolareroAumentar->balance + $operation->sendAmount;
+            $cuentaDolareroDisminuir->balance = $cuentaDolareroDisminuir->balance - $operation->getAmount;
+
+            $cuentaDolareroAumentar->save();
+            $cuentaDolareroDisminuir->save();
+
             DB::commit();
         } catch ( \Throwable $e ) {
             DB::rollBack();
@@ -858,5 +992,31 @@ class OperationController extends Controller
         return response()->json([
             'message' => 'Operación finalizada con éxito.'
         ], 200);
+    }
+
+    public function getDataContabilidad()
+    {
+        $accountings = Accounting::with('operation', 'bank', 'account_dolarero')
+            ->get();
+
+
+
+        // Nueva tabla
+        /*
+         * id
+         * operation_id
+         * bank
+         * document_customer
+         * type_operation
+         * type_exchange (buy/sell + coupon/n)
+         * code_customer
+         * code_dolarero
+         * balance_soles_prev
+         * balance_soles_next
+         * balance_dollar_prev
+         * balance_dollar_next
+         * date
+         * observation
+         * */
     }
 }

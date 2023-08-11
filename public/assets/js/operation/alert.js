@@ -4,7 +4,9 @@ $(document).ready(function () {
     $.get('/dashboard/get/operation/pending', function(data) {
         // Función de éxito, se ejecuta cuando la solicitud GET es exitosa
         console.log(data);
-        stopAllAndShowModal(data);
+        console.log("Antes del stopAllAndShowModal");
+        stopAllAndShowModal2(data);
+        console.log("Despues del stopAllAndShowModal");
     }).fail(function(jqXHR, textStatus, errorThrown) {
         // Función de error, se ejecuta cuando la solicitud GET falla
         console.error(textStatus, errorThrown);
@@ -121,9 +123,11 @@ var $buttonSubmit2;
 var $buttonCancel2;
 var $stepper2;
 
-function stopAllAndShowModal(data) {
+function stopAllAndShowModal2(data) {
+    console.log("Entre al stopAllAndShowModal");
     if ( data.stopOperation != null )
     {
+        console.log("Entre al if");
         Swal.fire({
             allowOutsideClick: false,
             allowEscapeKey: false,

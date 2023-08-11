@@ -5000,7 +5000,7 @@
 <script src="{{ asset('assets/js/custom/modals/upgrade-plan.js') }}"></script>
 @unless(Route::is('operation.create'))
     <script src="{{ asset('assets/js/operation/alert.js') }}"></script>
-@endif
+@endunless
 
 <!--end::Page Custom Javascript-->
 @yield('scripts')

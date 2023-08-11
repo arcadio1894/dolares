@@ -350,13 +350,14 @@ function goToSecondStep() {
             }).then((function (e) {
                 console.log($stepper2);
 
-                $("#nameBankOperationDeposit").html(data.bankAccount);
+                $("#nameBankOperationDeposit").html(data.nameBankOperationDeposit);
                 $("#nameAccountOperationDeposit").html(data.numberAccount);
                 $("#rucOperationDeposit").html(data.companyRUC);
                 $("#ownerAccountOperationDeposit").html(data.companyName);
                 $("#typeAccountOperationDeposit").html(data.typeAccount);
                 $("#amountSendOperation").html(data.amountSend + " " +data.currencyAccount);
                 $("#nameBankOperation").html(data.bankCustomer);
+                $("#title").html(data.title);
 
                 $modalEdit2.hide();
                 $stepper2.goTo(2);

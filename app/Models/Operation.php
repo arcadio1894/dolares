@@ -40,7 +40,9 @@ class Operation extends Model
         'number_operation_dolareros',
         'code_operation',
         'rejection_id',
-        'image_receipt'
+        'image_receipt',
+        'account_dolarero_real_id',
+        'account_dolarero_send_id'
     ];
 
     protected $dates = ["created_at", "updated_at"];
@@ -63,6 +65,16 @@ class Operation extends Model
     public function account_dolarero()
     {
         return $this->belongsTo('App\Models\AccountDolarero', 'account_dolarero_id', 'id');
+    }
+
+    public function account_dolarero_real()
+    {
+        return $this->belongsTo('App\Models\AccountDolarero', 'account_dolarero_real_id', 'id');
+    }
+
+    public function account_dolarero_send()
+    {
+        return $this->belongsTo('App\Models\AccountDolarero', 'account_dolarero_send_id', 'id');
     }
 
     public function account_customer()

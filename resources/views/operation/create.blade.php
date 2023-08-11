@@ -262,7 +262,7 @@
                                             <div class="col-sm-10 offset-sm-1 col-10 offset-1 bg-light-primary rounded border-primary border border-dashed p-6">
                                                 <strong class="text-gray-900 ">Banco</strong>
                                                 <p class="text-gray-900 mb-1 ml-5" id="nameBankOperationDeposit">BCP</p>
-                                                <strong class="text-gray-900 ">Número de cuenta</strong>
+                                                <strong class="text-gray-900 " id="title">Número de cuenta</strong>
                                                 <p class="text-gray-900 mb-1 ml-5" id="nameAccountOperationDeposit">1111 1111 1111 1111</p>
                                                 <strong class="text-gray-900 ">RUC</strong>
                                                 <p class="text-gray-900 mb-1 ml-5" id="rucOperationDeposit">123456789123</p>
@@ -837,7 +837,7 @@
                                             <div class="col-sm-10 offset-sm-1 col-10 offset-1 bg-light-primary rounded border-primary border border-dashed p-6">
                                                 <strong class="text-gray-900 ">Banco</strong>
                                                 <p class="text-gray-900 mb-1 ml-5" id="nameBankOperationDeposit">BCP</p>
-                                                <strong class="text-gray-900 ">Número de cuenta</strong>
+                                                <strong class="text-gray-900 " id="title">Número de cuenta</strong>
                                                 <p class="text-gray-900 mb-1 ml-5" id="nameAccountOperationDeposit">1111 1111 1111 1111</p>
                                                 <strong class="text-gray-900 ">RUC</strong>
                                                 <p class="text-gray-900 mb-1 ml-5" id="rucOperationDeposit">123456789123</p>
