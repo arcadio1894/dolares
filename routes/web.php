@@ -249,7 +249,12 @@ Route::middleware('auth')->group(function (){
             ->middleware('permission:destroy_role');
 
         // TODO: Rutas BackOffice - Users
-        Route::get('/usuarios/activos', [App\Http\Controllers\UserController::class, 'index'])
+        Route::get('/get/data/users/{numberPage}', [App\Http\Controllers\UserController::class, 'getDataUser'])
+            ->middleware('permission:list_user');
+        Route::get('/lista/usuarios', [App\Http\Controllers\UserController::class, 'listUsers'])
+            ->name('users.list')
+            ->middleware('permission:list_user');
+        Route::get('/usuarios/activos', [App\Http\Controllers\UserController::class, 'listUsers'])
             ->name('users.index')
             ->middleware('permission:list_user');
         Route::post('/user/store', [App\Http\Controllers\UserController::class, 'store'])
@@ -350,6 +355,12 @@ Route::middleware('auth')->group(function (){
         Route::post('/typeExchange/tcManual/update', [App\Http\Controllers\TypeExchangeController::class, 'updateTcManual'])
             ->name('typeExchange.tcManual.update')
             ->middleware('permission:change_typeExchange');
+
+        // TODO: Rutas Contabilidad
+        Route::get('/get/data/accounting/{numberPage}', [App\Http\Controllers\AccountingController::class, 'getDataContabilidad']);
+        Route::get('/modulo/contabilidad', [App\Http\Controllers\AccountingController::class, 'index'])
+            ->name('accounting.index')
+            ->middleware('permission:enable_typeExchange');
     });
 });
 Route::get('/data', [\App\Http\Controllers\DataController::class, 'getData']);

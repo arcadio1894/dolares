@@ -999,7 +999,26 @@ class OperationController extends Controller
         $accountings = Accounting::with('operation', 'bank', 'account_dolarero')
             ->get();
 
+        $arrayAccounting = [];
 
+        foreach ( $accountings as $accounting )
+        {
+            array_push($arrayAccounting, [
+                "id" => $accounting->operation->code_operation,
+                "banco" => $accounting->bank->name,
+                "docIndentidadCliente" => $accounting->document_customer,
+                "tipoOperacion" => ($accounting->type_operation == 'buy') ? 'COMPRA':'VENTA',
+                "codOperacionEntrante" => $accounting->code_operation_customer,
+                "codOperacionSaliente" => $accounting->code_operation_dolarero,
+                "moneda" => $accounting->account_dolarero->currency,
+                "monto_previo" => number_format($accounting->balance_prev, 3),
+                "monto_nuevo" => number_format($accounting->balance_next, 3),
+                "fecha" => ($accounting->type == 'entry') ? $accounting->operation->created_at->format('d/m/Y'): $accounting->date->format('d/m/Y'),
+                "observacion" => $accounting->observation
+            ]);
+        }
+
+        dump($arrayAccounting);
 
         // Nueva tabla
         /*

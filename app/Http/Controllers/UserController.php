@@ -21,6 +21,7 @@ use Illuminate\Support\Facades\DB;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Role;
+use Yajra\DataTables\DataTables;
 
 class UserController extends Controller
 {
@@ -211,6 +212,110 @@ class UserController extends Controller
         }
 
         return view('user.index', compact("arrayUsers", "roles"));
+    }
+
+    public function getDataUser(Request $request, $pageNumber = 1)
+    {
+        $perPage = 10;
+
+        $documentCliente = $request->input('document_cliente');
+        $nombreCliente = $request->input('nombre_cliente');
+        $roleId = $request->input('role_id');
+
+        $query = User::with('department');
+
+        // Aplicar filtros si se proporcionan
+        if ($documentCliente) {
+            $query->where('document', $documentCliente);
+        }
+
+        if ($nombreCliente) {
+            $query->where('first_name', 'LIKE', $nombreCliente);
+        }
+
+        if ($roleId) {
+            $query->whereHas('roles', function ($subquery) use ($roleId) {
+                $subquery->where('name', $roleId);
+            });
+        }
+
+        $totalFilteredRecords = $query->count();
+        $totalPages = ceil($totalFilteredRecords / $perPage);
+
+        $startRecord = ($pageNumber - 1) * $perPage + 1;
+        $endRecord = min($totalFilteredRecords, $pageNumber * $perPage);
+
+        $users = $query->skip(($pageNumber - 1) * $perPage)
+            ->take($perPage)
+            ->get();
+
+        $arrayUsers = [];
+
+        foreach ( $users as $user )
+        {
+            $rol = $user->getRoleNames()->first();
+            $role = Role::where('name', $rol)->first();
+            if (!$rol)
+            {
+                $rol = "Sin Rol";
+            }
+
+            $diferencia = "";
+            if ( isset($user->last_login) )
+            {
+                $fechaBD = Carbon::parse($user->last_login);
+
+                $diferencia = $fechaBD->diffForHumans();
+            }
+
+            if ($user->account_type == 'p')
+            {
+                $avatar = strtoupper(substr($user->first_name, 0, 1).substr($user->last_name, 0, 1));
+            } else {
+                $avatar = strtoupper(substr($user->business_name, 0, 1));
+            }
+
+            if ($user->account_type == 'p')
+            {
+                $name = $user->first_name . " " . $user->last_name;
+            } else {
+                $name = $user->business_name;
+            }
+
+            array_push($arrayUsers, [
+                "name" => $name,
+                "first_name" => $user->first_name,
+                "last_name" => $user->last_name,
+                "email" => $user->email,
+                "avatar" => $avatar,
+                "role_name" => $rol,
+                "last_login" => $diferencia,
+                "joined_date" => $user->created_at->format('d M Y, g:i a'),
+                "id" => $user->id,
+                "phone" => $user->phone,
+                "document" => $user->document,
+                "role_id" => (isset($role)) ? $role->name:"",
+                "role_description" => (isset($role)) ? $role->description:"Sin rol"
+            ]);
+        }
+
+        $pagination = [
+            'currentPage' => (int)$pageNumber,
+            'totalPages' => (int)$totalPages,
+            'startRecord' => $startRecord,
+            'endRecord' => $endRecord,
+            'totalRecords' => $totalFilteredRecords,
+            'totalFilteredRecords' => $totalFilteredRecords
+        ];
+
+        return ['data' => $arrayUsers, 'pagination' => $pagination];
+    }
+
+    public function listUsers()
+    {
+        $roles = Role::all();
+
+        return view('user.index2', compact('roles'));
     }
 
     public function store(StoreUserRequest $request)
