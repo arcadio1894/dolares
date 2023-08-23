@@ -324,16 +324,44 @@
                             <!--end::Card title-->
                             <!--begin::Card toolbar-->
                             <div class="card-toolbar">
-                                <button type="button" class="btn btn-light-primary btn-sm" data-bs-toggle="modal" data-bs-target="#kt_modal_add_schedule">
+                                {{--<button type="button" class="btn btn-light-primary btn-sm" data-bs-toggle="modal" data-bs-target="#kt_modal_add_schedule">
                                     <!--SVG file not found: media/icons/duotune/art/art008.svg-->
-                                    Agregar Cuenta</button>
+                                    Agregar Cuenta</button>--}}
                             </div>
                             <!--end::Card toolbar-->
                         </div>
                         <!--end::Card header-->
                         <!--begin::Card body-->
                         <div class="card-body p-9 pt-4">
+                            <input type="hidden" value="{{ $userData['id'] }}" id="user_id">
+                            <div class="table-responsive">
+                                <table class="table table-row-bordered table-row-dashed align-middle table-sm">
+                                    <!--begin::Head-->
+                                    <thead class="fs-7 text-gray-400 text-uppercase">
+                                    <tr>
+                                        <th class="min-w-60px">Banco</th>
+                                        <th class="min-w-90px">Nombre</th>
+                                        <th class="min-w-90px">Cuenta</th>
+                                        <th class="min-w-90px">Moneda</th>
+                                        <th class="min-w-90px">Tipo</th>
+                                    </tr>
+                                    </thead>
+                                    <!--end::Head-->
+                                    <!--begin::Body-->
+                                    <tbody class="fs-7" id="body-table">
 
+                                    </tbody>
+                                    <!--end::Body-->
+                                </table>
+                            </div>
+
+                            <div class="d-flex justify-content-center align-items-center pt-1">
+                                <!--begin::Pages-->
+                                <ul class="pagination" style="margin-right: 30px" id="pagination">
+
+                                </ul>
+                                <!--end::Pages-->
+                            </div>
                         </div>
                         <!--end::Card body-->
                     </div>
@@ -356,7 +384,37 @@
                         <!--end::Card header-->
                         <!--begin::Card body-->
                         <div class="card-body p-9 pt-4">
+                            <div class="table-responsive">
+                                <table class="table table-row-bordered table-row-dashed align-middle table-sm">
+                                    <!--begin::Head-->
+                                    <thead class="fs-7 text-gray-400 text-uppercase">
+                                    <tr>
+                                        <th class="min-w-60px">Código</th>
+                                        <th class="min-w-90px">N° Op. Usuario</th>
+                                        <th class="min-w-90px">N° Op. Dolarero</th>
+                                        <th class="min-w-90px">Enviado</th>
+                                        <th class="min-w-90px">Recibido</th>
+                                        <th class="min-w-90px">Cambio</th>
+                                        <th class="min-w-90px">Fecha</th>
+                                        <th class="min-w-90px">Estado</th>
+                                    </tr>
+                                    </thead>
+                                    <!--end::Head-->
+                                    <!--begin::Body-->
+                                    <tbody class="fs-7" id="body-table-operations">
 
+                                    </tbody>
+                                    <!--end::Body-->
+                                </table>
+                            </div>
+
+                            <div class="d-flex justify-content-center align-items-center pt-1">
+                                <!--begin::Pages-->
+                                <ul class="pagination" style="margin-right: 30px" id="pagination-operations">
+
+                                </ul>
+                                <!--end::Pages-->
+                            </div>
                         </div>
                         <!--end::Card body-->
                     </div>
@@ -386,9 +444,25 @@
                                     <tbody class="fs-6 fw-bold text-gray-600">
                                     <tr>
                                         <td>Email</td>
-                                        <td>e.smith@kpmg.com.au</td>
+                                        <td>{{ $userData['email'] }}</td>
                                         <td class="text-end">
-                                            <button type="button" class="btn btn-icon btn-active-light-primary w-30px h-30px ms-auto" data-bs-toggle="modal" data-bs-target="#kt_modal_update_email">
+                                            {{--<button type="button" class="btn btn-icon btn-active-light-primary w-30px h-30px ms-auto" data-bs-toggle="modal" data-bs-target="#kt_modal_update_email">
+                                                <!--begin::Svg Icon | path: icons/duotune/art/art005.svg-->
+                                                <span class="svg-icon svg-icon-3">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                                        <path opacity="0.3" d="M21.4 8.35303L19.241 10.511L13.485 4.755L15.643 2.59595C16.0248 2.21423 16.5426 1.99988 17.0825 1.99988C17.6224 1.99988 18.1402 2.21423 18.522 2.59595L21.4 5.474C21.7817 5.85581 21.9962 6.37355 21.9962 6.91345C21.9962 7.45335 21.7817 7.97122 21.4 8.35303ZM3.68699 21.932L9.88699 19.865L4.13099 14.109L2.06399 20.309C1.98815 20.5354 1.97703 20.7787 2.03189 21.0111C2.08674 21.2436 2.2054 21.4561 2.37449 21.6248C2.54359 21.7934 2.75641 21.9115 2.989 21.9658C3.22158 22.0201 3.4647 22.0084 3.69099 21.932H3.68699Z" fill="black" />
+                                                        <path d="M5.574 21.3L3.692 21.928C3.46591 22.0032 3.22334 22.0141 2.99144 21.9594C2.75954 21.9046 2.54744 21.7864 2.3789 21.6179C2.21036 21.4495 2.09202 21.2375 2.03711 21.0056C1.9822 20.7737 1.99289 20.5312 2.06799 20.3051L2.696 18.422L5.574 21.3ZM4.13499 14.105L9.891 19.861L19.245 10.507L13.489 4.75098L4.13499 14.105Z" fill="black" />
+                                                    </svg>
+                                                </span>
+                                                <!--end::Svg Icon-->
+                                            </button>--}}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Token de 4 dígitos</td>
+                                        <td>{{ ($userData['token'] == true) ? "*****": "" }}</td>
+                                        <td class="text-end">
+                                            <button type="button" data-name="{{ $userData['name'] }}" data-id="{{ $userData['id'] }}" id="btn-reset_password" class="btn btn-icon btn-active-light-primary w-30px h-30px ms-auto">
                                                 <!--begin::Svg Icon | path: icons/duotune/art/art005.svg-->
                                                 <span class="svg-icon svg-icon-3">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -401,10 +475,10 @@
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>Password</td>
-                                        <td>******</td>
+                                        <td>Rol</td>
+                                        <td>{{ $userData['role_description'] }}</td>
                                         <td class="text-end">
-                                            <button type="button" class="btn btn-icon btn-active-light-primary w-30px h-30px ms-auto" data-bs-toggle="modal" data-bs-target="#kt_modal_update_password">
+                                            {{--<button type="button" class="btn btn-icon btn-active-light-primary w-30px h-30px ms-auto" data-bs-toggle="modal" data-bs-target="#kt_modal_update_role">
                                                 <!--begin::Svg Icon | path: icons/duotune/art/art005.svg-->
                                                 <span class="svg-icon svg-icon-3">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -413,23 +487,7 @@
                                                     </svg>
                                                 </span>
                                                 <!--end::Svg Icon-->
-                                            </button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Role</td>
-                                        <td>Administrator</td>
-                                        <td class="text-end">
-                                            <button type="button" class="btn btn-icon btn-active-light-primary w-30px h-30px ms-auto" data-bs-toggle="modal" data-bs-target="#kt_modal_update_role">
-                                                <!--begin::Svg Icon | path: icons/duotune/art/art005.svg-->
-                                                <span class="svg-icon svg-icon-3">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                                        <path opacity="0.3" d="M21.4 8.35303L19.241 10.511L13.485 4.755L15.643 2.59595C16.0248 2.21423 16.5426 1.99988 17.0825 1.99988C17.6224 1.99988 18.1402 2.21423 18.522 2.59595L21.4 5.474C21.7817 5.85581 21.9962 6.37355 21.9962 6.91345C21.9962 7.45335 21.7817 7.97122 21.4 8.35303ZM3.68699 21.932L9.88699 19.865L4.13099 14.109L2.06399 20.309C1.98815 20.5354 1.97703 20.7787 2.03189 21.0111C2.08674 21.2436 2.2054 21.4561 2.37449 21.6248C2.54359 21.7934 2.75641 21.9115 2.989 21.9658C3.22158 22.0201 3.4647 22.0084 3.69099 21.932H3.68699Z" fill="black" />
-                                                        <path d="M5.574 21.3L3.692 21.928C3.46591 22.0032 3.22334 22.0141 2.99144 21.9594C2.75954 21.9046 2.54744 21.7864 2.3789 21.6179C2.21036 21.4495 2.09202 21.2375 2.03711 21.0056C1.9822 20.7737 1.99289 20.5312 2.06799 20.3051L2.696 18.422L5.574 21.3ZM4.13499 14.105L9.891 19.861L19.245 10.507L13.489 4.75098L4.13499 14.105Z" fill="black" />
-                                                    </svg>
-                                                </span>
-                                                <!--end::Svg Icon-->
-                                            </button>
+                                            </button>--}}
                                         </td>
                                     </tr>
                                     </tbody>
@@ -848,6 +906,116 @@
         </div>
         <!--end::Content-->
     </div>
+
+    <template id="previous-page">
+        <li class="page-item previous">
+            <a href="#" class="page-link" data-item>
+                <i class="previous"></i>
+            </a>
+        </li>
+    </template>
+
+    <template id="item-page">
+        <li class="page-item" data-active>
+            <a href="#" class="page-link" data-item="">5</a>
+        </li>
+    </template>
+
+    <template id="next-page">
+        <li class="page-item next">
+            <a href="#" class="page-link" data-item>
+                <i class="next"></i>
+            </a>
+        </li>
+    </template>
+
+    <template id="disabled-page">
+        <li class="page-item disabled">
+            <span class="page-link">...</span>
+        </li>
+    </template>
+
+    <template id="previous-page-operations">
+        <li class="page-item previous">
+            <a href="#" class="page-link" data-item-operations>
+                <i class="previous"></i>
+            </a>
+        </li>
+    </template>
+
+    <template id="item-page-operations">
+        <li class="page-item" data-active>
+            <a href="#" class="page-link" data-item-operations="">5</a>
+        </li>
+    </template>
+
+    <template id="next-page-operations">
+        <li class="page-item next">
+            <a href="#" class="page-link" data-item-operations>
+                <i class="next"></i>
+            </a>
+        </li>
+    </template>
+
+    <template id="disabled-page-operations">
+        <li class="page-item disabled">
+            <span class="page-link">...</span>
+        </li>
+    </template>
+
+    <template id="item-table">
+        <!--begin::Col-->
+        <tr>
+            <td>
+                <img data-bank src="" alt="" class="img-fluid" style="max-width: 30px;">
+            </td>
+            <td data-name_account>
+
+            </td>
+            <td data-number_account>
+
+            </td>
+            <td data-currency>
+
+            </td>
+            <td data-type>
+
+            </td>
+        </tr>
+        <!--end::Col-->
+    </template>
+
+    <template id="item-table-operations">
+        <!--begin::Col-->
+        <tr>
+            <td data-code>
+
+            </td>
+            <td data-operation_user>
+
+            </td>
+            <td data-operation_dolarero>
+
+            </td>
+            <td data-amount_send>
+
+            </td>
+            <td data-amount_get>
+
+            </td>
+            <td data-type_exchange>
+
+            </td>
+            <td data-date>
+
+            </td>
+            <td data-state>
+
+            </td>
+
+        </tr>
+        <!--end::Col-->
+    </template>
 @endsection
 
 @section('scripts')
@@ -857,50 +1025,255 @@
     <!--begin::Page Custom Javascript(used by this page)-->
     <script>
         $(document).ready(function(){
+            $("#btn-reset_password").on('click', resetPassword);
+            getDataAccounts(1);
+
+            $(document).on('click', '[data-item]', showData);
+
+            getDataOperations(1);
+
+            $(document).on('click', '[data-item-operations]', showDataOperations);
             /*$(document).on('click', '[data-kt-users-table-filter="update_row"]', showModalEdit);
             $(document).on('click', '[data-kt-users-table-filter="delete_row"]', showModalDelete);*/
         });
-        /*function showModalEdit() {
+        function getDataAccounts($numberPage) {
 
-            $('input[name="role_edit"]').each(function() {
-                $(this).prop('checked', false);
-            });
+            $("#body-table").html('');
+            $("#pagination").html('');
+            var user_id = $("#user_id").val();
+            $.get('/dashboard/get/data/account/'+user_id+'/'+$numberPage, function(data) {
+                renderDataAccount(data);
 
-            let user_id = $(this).attr('data-users-id');
-            let first_name = $(this).attr('data-users-first_name');
-            let last_name = $(this).attr('data-users-last_name');
-            let email = $(this).attr('data-users-email');
-            let phone = $(this).attr('data-users-phone');
-            let document = $(this).attr('data-users-document');
-            let role_id = $(this).attr('data-users-role_id');
-
-            console.log(role_id);
-
-            $("#user_id_edit").val(user_id);
-            $("#first_name_edit").val(first_name);
-            $("#last_name_edit").val(last_name);
-            $("#email_edit").val(email);
-            $("#phone_edit").val(phone);
-            $("#document_edit").val(document);
-
-            $('input[name="role_edit"]').each(function() {
-                console.log("Entre");
-                if ($(this).val() === role_id) {
-                    console.log("Encontre");
-                    $(this).prop('checked', true);
-                    return false;
+            }).fail(function(jqXHR, textStatus, errorThrown) {
+                // Función de error, se ejecuta cuando la solicitud GET falla
+                console.error(textStatus, errorThrown);
+                if (jqXHR.responseJSON.message && !jqXHR.responseJSON.errors) {
+                    toastr.error(jqXHR.responseJSON.message, 'Error', {
+                        "closeButton": true,
+                        "debug": false,
+                        "newestOnTop": false,
+                        "progressBar": true,
+                        "positionClass": "toast-top-right",
+                        "preventDuplicates": false,
+                        "onclick": null,
+                        "showDuration": "300",
+                        "hideDuration": "1000",
+                        "timeOut": "2000",
+                        "extendedTimeOut": "1000",
+                        "showEasing": "swing",
+                        "hideEasing": "linear",
+                        "showMethod": "fadeIn",
+                        "hideMethod": "fadeOut"
+                    });
                 }
-            });
+                for (var property in jqXHR.responseJSON.errors) {
+                    toastr.error(jqXHR.responseJSON.errors[property], 'Error', {
+                        "closeButton": true,
+                        "debug": false,
+                        "newestOnTop": false,
+                        "progressBar": true,
+                        "positionClass": "toast-top-right",
+                        "preventDuplicates": false,
+                        "onclick": null,
+                        "showDuration": "300",
+                        "hideDuration": "1000",
+                        "timeOut": "2000",
+                        "extendedTimeOut": "1000",
+                        "showEasing": "swing",
+                        "hideEasing": "linear",
+                        "showMethod": "fadeIn",
+                        "hideMethod": "fadeOut"
+                    });
+                }
+            }, 'json')
+                .done(function() {
+                    // Configuración de encabezados
+                    var headers = {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+                    };
 
-            $("#kt_modal_update_user").modal('show');
+                    $.ajaxSetup({
+                        headers: headers
+                    });
+                });
         }
 
-        function showModalDelete() {
+        function showData() {
+            var numberPage = $(this).attr('data-item');
+            console.log(numberPage);
+            getDataAccounts(numberPage)
+        }
+
+        function showDataOperations() {
+            var numberPage = $(this).attr('data-item-operations');
+            console.log(numberPage);
+            getDataOperations(numberPage)
+        }
+
+        function getDataOperations($numberPage) {
+
+            $("#body-table-operations").html('');
+            $("#pagination-operations").html('');
+            var user_id = $("#user_id").val();
+            $.get('/dashboard/get/data/operation/'+user_id+'/'+$numberPage, function(data) {
+                renderDataOperation(data);
+
+            }).fail(function(jqXHR, textStatus, errorThrown) {
+                // Función de error, se ejecuta cuando la solicitud GET falla
+                console.error(textStatus, errorThrown);
+                if (jqXHR.responseJSON.message && !jqXHR.responseJSON.errors) {
+                    toastr.error(jqXHR.responseJSON.message, 'Error', {
+                        "closeButton": true,
+                        "debug": false,
+                        "newestOnTop": false,
+                        "progressBar": true,
+                        "positionClass": "toast-top-right",
+                        "preventDuplicates": false,
+                        "onclick": null,
+                        "showDuration": "300",
+                        "hideDuration": "1000",
+                        "timeOut": "2000",
+                        "extendedTimeOut": "1000",
+                        "showEasing": "swing",
+                        "hideEasing": "linear",
+                        "showMethod": "fadeIn",
+                        "hideMethod": "fadeOut"
+                    });
+                }
+                for (var property in jqXHR.responseJSON.errors) {
+                    toastr.error(jqXHR.responseJSON.errors[property], 'Error', {
+                        "closeButton": true,
+                        "debug": false,
+                        "newestOnTop": false,
+                        "progressBar": true,
+                        "positionClass": "toast-top-right",
+                        "preventDuplicates": false,
+                        "onclick": null,
+                        "showDuration": "300",
+                        "hideDuration": "1000",
+                        "timeOut": "2000",
+                        "extendedTimeOut": "1000",
+                        "showEasing": "swing",
+                        "hideEasing": "linear",
+                        "showMethod": "fadeIn",
+                        "hideMethod": "fadeOut"
+                    });
+                }
+            }, 'json')
+                .done(function() {
+                    // Configuración de encabezados
+                    var headers = {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+                    };
+
+                    $.ajaxSetup({
+                        headers: headers
+                    });
+                });
+        }
+
+        function renderDataAccount(data) {
+            var dataUser = data.data;
+            var pagination = data.pagination;
+            console.log(dataUser);
+            console.log(pagination);
+
+            for (let j = 0; j < dataUser.length ; j++) {
+                renderDataTableCard(dataUser[j]);
+            }
+
+            if (pagination.currentPage > 1)
+            {
+                renderPreviousPage(pagination.currentPage-1);
+            }
+
+            if (pagination.totalPages > 1)
+            {
+                if (pagination.currentPage > 3)
+                {
+                    renderItemPage(1);
+
+                    if (pagination.currentPage > 4) {
+                        renderDisabledPage();
+                    }
+                }
+
+                for (var i = Math.max(1, pagination.currentPage - 2); i <= Math.min(pagination.totalPages, pagination.currentPage + 2); i++)
+                {
+                    renderItemPage(i, pagination.currentPage);
+                }
+
+                if (pagination.currentPage < pagination.totalPages - 2)
+                {
+                    if (pagination.currentPage < pagination.totalPages - 3)
+                    {
+                        renderDisabledPage();
+                    }
+                    renderItemPage(i, pagination.currentPage);
+                }
+
+            }
+
+            if (pagination.currentPage < pagination.totalPages)
+            {
+                renderNextPage(pagination.currentPage+1);
+            }
+        }
+
+        function renderDataOperation(data) {
+            var dataUser = data.data;
+            var pagination = data.pagination;
+            console.log(dataUser);
+            console.log(pagination);
+
+            for (let j = 0; j < dataUser.length ; j++) {
+                renderDataTableOperations(dataUser[j]);
+            }
+
+            if (pagination.currentPage > 1)
+            {
+                renderPreviousPageOperation(pagination.currentPage-1);
+            }
+
+            if (pagination.totalPages > 1)
+            {
+                if (pagination.currentPage > 3)
+                {
+                    renderItemPageOperation(1);
+
+                    if (pagination.currentPage > 4) {
+                        renderDisabledPageOperation();
+                    }
+                }
+
+                for (var i = Math.max(1, pagination.currentPage - 2); i <= Math.min(pagination.totalPages, pagination.currentPage + 2); i++)
+                {
+                    renderItemPageOperation(i, pagination.currentPage);
+                }
+
+                if (pagination.currentPage < pagination.totalPages - 2)
+                {
+                    if (pagination.currentPage < pagination.totalPages - 3)
+                    {
+                        renderDisabledPageOperation();
+                    }
+                    renderItemPageOperation(i, pagination.currentPage);
+                }
+
+            }
+
+            if (pagination.currentPage < pagination.totalPages)
+            {
+                renderNextPageOperation(pagination.currentPage+1);
+            }
+        }
+
+        function resetPassword() {
             var button = $(this);
-            var user_id = button.attr('data-users-id');
-            var name = button.attr('data-users-name');
+            var user_id = button.attr('data-id');
+            var name = button.attr('data-name');
             Swal.fire({
-                text: "¿Está seguro de eliminar al usuario " + name + "?",
+                text: "¿Está seguro de resetear el token de digital de " + name + "?",
                 icon: "warning",
                 showCancelButton: !0,
                 buttonsStyling: !1,
@@ -915,7 +1288,7 @@
                 e.value ? (
                     //console.log(button.attributes[2].value),
                     $.ajax({
-                        url: '/dashboard/user/destroy/'+user_id,
+                        url: '/dashboard/user/reset/token/secret/'+user_id,
                         method: 'POST',
                         headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
                         data: JSON.stringify({ user_id: user_id }),
@@ -979,14 +1352,109 @@
                         },
                     })
                 ) : "cancel" === e.dismiss && Swal.fire({
-                    text: description + " no fue eliminado.",
+                    text: "No fue reseteado el token secreto.",
                     icon: "error",
                     buttonsStyling: !1,
                     confirmButtonText: "Ok, entendido!",
                     customClass: {confirmButton: "btn fw-bold btn-primary"}
                 })
             }))
-        }*/
+        }
+
+        function renderDataTableCard(data) {
+            var clone = activateTemplate('#item-table');
+            var enlaceCompleto = origin + "/assets/images/banks/"+data.image_bank;
+            clone.querySelector("[data-bank]").setAttribute('src', enlaceCompleto);
+            clone.querySelector("[data-bank]").setAttribute('alt', data.complete_bank);
+            clone.querySelector("[data-name_account]").innerHTML = data.name_account;
+            clone.querySelector("[data-number_account]").innerHTML = data.number_account;
+            clone.querySelector("[data-currency]").innerHTML = data.currency;
+            clone.querySelector("[data-type]").innerHTML = data.type;
+            $("#body-table").append(clone);
+        }
+
+        function renderDataTableOperations(data) {
+            var clone = activateTemplate('#item-table-operations');
+            clone.querySelector("[data-code]").innerHTML = data.code;
+            clone.querySelector("[data-operation_user]").innerHTML = data.operation_user;
+            clone.querySelector("[data-operation_dolarero]").innerHTML = data.operation_dolarero;
+            clone.querySelector("[data-amount_send]").innerHTML = data.amount_send;
+            clone.querySelector("[data-amount_get]").innerHTML = data.amount_get;
+            clone.querySelector("[data-type_exchange]").innerHTML = data.type_exchange;
+            clone.querySelector("[data-date]").innerHTML = data.date;
+            clone.querySelector("[data-state]").innerHTML = data.state;
+            $("#body-table-operations").append(clone);
+        }
+
+        function renderPreviousPage($numberPage) {
+            var clone = activateTemplate('#previous-page');
+            clone.querySelector("[data-item]").setAttribute('data-item', $numberPage);
+            $("#pagination").append(clone);
+        }
+
+        function renderDisabledPage() {
+            var clone = activateTemplate('#disabled-page');
+            $("#pagination").append(clone);
+        }
+
+        function renderItemPage($numberPage, $currentPage) {
+            var clone = activateTemplate('#item-page');
+            if ( $numberPage == $currentPage )
+            {
+                clone.querySelector("[data-item]").setAttribute('data-item', $numberPage);
+                clone.querySelector("[data-active]").setAttribute('class', 'page-item active');
+                clone.querySelector("[data-item]").innerHTML = $numberPage;
+            } else {
+                clone.querySelector("[data-item]").setAttribute('data-item', $numberPage);
+                clone.querySelector("[data-item]").innerHTML = $numberPage;
+            }
+
+            $("#pagination").append(clone);
+        }
+
+        function renderNextPage($numberPage) {
+            var clone = activateTemplate('#next-page');
+            clone.querySelector("[data-item]").setAttribute('data-item', $numberPage);
+            $("#pagination").append(clone);
+        }
+
+        function renderPreviousPageOperation($numberPage) {
+            var clone = activateTemplate('#previous-page-operations');
+            clone.querySelector("[data-item-operations]").setAttribute('data-item-operations', $numberPage);
+            $("#pagination-operations").append(clone);
+        }
+
+        function renderDisabledPageOperation() {
+            var clone = activateTemplate('#disabled-page-operations');
+            $("#pagination-operations").append(clone);
+        }
+
+        function renderItemPageOperation($numberPage, $currentPage) {
+            var clone = activateTemplate('#item-page-operations');
+            if ( $numberPage == $currentPage )
+            {
+                clone.querySelector("[data-item-operations]").setAttribute('data-item-operations', $numberPage);
+                clone.querySelector("[data-active]").setAttribute('class', 'page-item active');
+                clone.querySelector("[data-item-operations]").innerHTML = $numberPage;
+            } else {
+                clone.querySelector("[data-item-operations]").setAttribute('data-item-operations', $numberPage);
+                clone.querySelector("[data-item-operations]").innerHTML = $numberPage;
+            }
+
+            $("#pagination-operations").append(clone);
+        }
+
+        function renderNextPageOperation($numberPage) {
+            var clone = activateTemplate('#next-page-operations');
+            clone.querySelector("[data-item-operations]").setAttribute('data-item-operations', $numberPage);
+            $("#pagination-operations").append(clone);
+        }
+
+        function activateTemplate(id) {
+            var t = document.querySelector(id);
+            return document.importNode(t.content, true);
+        }
+
 
     </script>
     {{--<script src="{{ asset('assets/js/user/list.js') }}"></script>

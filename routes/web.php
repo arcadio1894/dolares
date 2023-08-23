@@ -269,6 +269,13 @@ Route::middleware('auth')->group(function (){
         Route::get('/usuario/detalles/{user_id}', [App\Http\Controllers\UserController::class, 'show'])
             ->name('users.show')
             ->middleware('permission:list_user');
+        Route::post('/user/reset/token/secret/{user_id}', [App\Http\Controllers\UserController::class, 'resetTokenSecret'])
+            ->name('users.reset.token.secret')
+            ->middleware('permission:update_user');
+        Route::get('/get/data/account/{user_id}/{numberPage}', [App\Http\Controllers\UserController::class, 'getDataAccountUsers'])
+            ->middleware('permission:update_user');
+        Route::get('/get/data/operation/{user_id}/{numberPage}', [App\Http\Controllers\UserController::class, 'getDataOperationUsers'])
+            ->middleware('permission:update_user');
 
         // TODO: Rutas de Imagenes de documentos de Usuarios
         Route::post('/submit/image/front/', [App\Http\Controllers\UserController::class, 'submitImageFront'])

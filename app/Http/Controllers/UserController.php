@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\DeleteUserRequest;
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
+use App\Models\AccountCustomer;
 use App\Models\District;
 use App\Models\EconomicActivity;
 use App\Models\Operation;
@@ -390,6 +391,119 @@ class UserController extends Controller
 
     }
 
+    public function resetTokenSecret(Request $request)
+    {
+        DB::beginTransaction();
+        try {
+            $user = User::find($request->get('user_id'));
+
+            $user_token = UserToken::where('user_id', $user->id)->first();
+
+            if (isset($user_token))
+            {
+                $user_token->delete();
+            } else {
+                return response()->json(['message' => "El usuario no tiene un token de seguridad"], 422);
+            }
+
+            DB::commit();
+        } catch ( \Throwable $e ) {
+            DB::rollBack();
+            return response()->json(['message' => $e->getMessage()], 422);
+        }
+
+        return response()->json([
+            'message' => 'Imagen frontal guardada con éxito.'
+        ], 200);
+    }
+
+    public function getDataAccountUsers($user_id, $pageNumber = 1)
+{
+    $perPage = 10;
+
+    $query = AccountCustomer::with(['bank'])->where('user_id', $user_id);
+
+    $totalFilteredRecords = $query->count();
+    $totalPages = ceil($totalFilteredRecords / $perPage);
+
+    $startRecord = ($pageNumber - 1) * $perPage + 1;
+    $endRecord = min($totalFilteredRecords, $pageNumber * $perPage);
+
+    $accounts = $query->skip(($pageNumber - 1) * $perPage)
+        ->take($perPage)
+        ->get();
+
+    $arrayAccounts = [];
+
+    foreach ( $accounts as $account )
+    {
+        array_push($arrayAccounts, [
+            "image_bank" => $account->bank->imageBank,
+            "name_bank" => $account->bank->name,
+            "complete_bank" => $account->bank->nameBank,
+            "name_account" => $account->nameAccount,
+            "number_account" => $account->numberAccount,
+            "currency" => ($account->currency == 'USD') ? 'Dólares':'Soles',
+            "type" => ($account->type_account == 'c') ? 'Corriente':'Ahorros'
+        ]);
+    }
+
+    $pagination = [
+        'currentPage' => (int)$pageNumber,
+        'totalPages' => (int)$totalPages,
+        'startRecord' => $startRecord,
+        'endRecord' => $endRecord,
+        'totalRecords' => $totalFilteredRecords,
+        'totalFilteredRecords' => $totalFilteredRecords
+    ];
+
+    return ['data' => $arrayAccounts, 'pagination' => $pagination];
+}
+
+    public function getDataOperationUsers($user_id, $pageNumber = 1)
+    {
+        $perPage = 10;
+
+        $query = Operation::where('user_id', $user_id);
+
+        $totalFilteredRecords = $query->count();
+        $totalPages = ceil($totalFilteredRecords / $perPage);
+
+        $startRecord = ($pageNumber - 1) * $perPage + 1;
+        $endRecord = min($totalFilteredRecords, $pageNumber * $perPage);
+
+        $operations = $query->skip(($pageNumber - 1) * $perPage)
+            ->take($perPage)
+            ->get();
+
+        $arrayOperations = [];
+
+        foreach ( $operations as $operation )
+        {
+            array_push($arrayOperations, [
+                "code" => $operation->code_operation,
+                "operation_user" => $operation->number_operation_user,
+                "operation_dolarero" => $operation->number_operation_dolareros,
+                "amount_send" => $operation->send_amount_list,
+                "amount_get" => $operation->get_amount_list,
+                "type_exchange" => $operation->type_change,
+                "date" => $operation->created_at->format('d/m/Y'),
+                "state" => $operation->estado,
+            ]);
+        }
+
+        $pagination = [
+            'currentPage' => (int)$pageNumber,
+            'totalPages' => (int)$totalPages,
+            'startRecord' => $startRecord,
+            'endRecord' => $endRecord,
+            'totalRecords' => $totalFilteredRecords,
+            'totalFilteredRecords' => $totalFilteredRecords
+        ];
+
+        return ['data' => $arrayOperations, 'pagination' => $pagination];
+    }
+
     public function show( $user_id )
     {
         $user = User::find($user_id);
@@ -429,6 +543,13 @@ class UserController extends Controller
             $name = $user->business_name;
         }
 
+        $user_token = UserToken::where('user_id', $user->id)->first();
+        $token = false;
+        if (isset($user_token))
+        {
+            $token = true;
+        }
+
         $userData = [
             "name" => $name,
             "first_name" => $user->first_name,
@@ -455,7 +576,8 @@ class UserController extends Controller
             "cantFinish" => count($operationsFinish),
             "cantRefuse" => count($operationsRefuse),
             "imageFront" => ($user->front_image == null) ? 'front.png': $user->front_image,
-            "imageReverse" => ($user->reverse_image == null) ? 'back.png': $user->reverse_image
+            "imageReverse" => ($user->reverse_image == null) ? 'back.png': $user->reverse_image,
+            "token" => $token
         ];
 
         return view('user.show', compact('userData'));
