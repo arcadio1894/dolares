@@ -172,6 +172,62 @@ License: For each use you must have a valid license purchased only from above li
         .highSize {
             font-size: 1.55rem !important;
         }
+        .image-banner {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            z-index: 9999;
+        }
+
+        .close-banner {
+            color: white;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+
+        .image-slider {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .prev,
+        .next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            font-size: 36px;
+            color: white;
+            text-decoration: none;
+        }
+
+        .prev {
+            left: 20px;
+        }
+
+        .next {
+            right: 20px;
+        }
+        .center-image {
+            max-width: 100%;
+            max-height: 100%;
+            display: block;
+            margin: 0 auto;
+            position: absolute;
+            top: 0; /* Alinear desde la parte superior */
+            left: 0; /* Alinear desde la izquierda */
+            right: 0; /* Alinear desde la derecha */
+            bottom: 0; /* Alinear desde la parte inferior */
+        }
     </style>
 </head>
 <!--end::Head-->
@@ -867,6 +923,19 @@ License: For each use you must have a valid license purchased only from above li
         <!--end::Scrolltop-->
     </div>
 </div>
+
+<div id="imageBanner" class="image-banner">
+    <span class="close-banner" id="closeBanner">&times;</span>
+    <div id="imageSlider" class="slider-container">
+        <div class="slider-content">
+            <!-- Las imágenes se agregarán aquí dinámicamente -->
+        </div>
+    </div>
+    @if($count > 1)
+    <a class="prev" id="prevSlide">&#10094;</a>
+    <a class="next" id="nextSlide">&#10095;</a>
+    @endif
+</div>
 <!--end::Main-->
 <script>var hostUrl = "{{ asset('assets/') }}";</script>
 <!--begin::Javascript-->
@@ -880,11 +949,81 @@ License: For each use you must have a valid license purchased only from above li
 <!--end::Page Vendors Javascript-->
 <!--begin::Page Custom Javascript(used by this page)-->
 <script src="{{ asset('assets/js/custom/landing.js') }}"></script>
-<script src="{{ asset('assets/js/custom/pages/company/pricing.js') }}"></script>
+{{--<script src="{{ asset('assets/js/custom/pages/company/pricing.js') }}"></script>--}}
 
 
 <script src="{{ asset('assets/js/welcome/welcome.js') }}"></script>
+<script>
+    var $currentImageIndex = 0;
 
+    $(document).ready(function() {
+        $.ajax({
+            url: '/dashboard/get/data/informations',
+            method: 'GET',
+            success: function(response) {
+                var images = response.images;
+                loadImages(images);
+
+                $('#imageBanner').fadeIn();
+
+                $('#closeBanner').on('click', function() {
+                    $('#imageBanner').fadeOut();
+                });
+            }
+        });
+
+        $('.prev').on('click', function() {
+            console.log("prev");
+            if ($currentImageIndex > 0) {
+                var ant = $currentImageIndex;
+                $currentImageIndex--;
+                updateSlider(ant,$currentImageIndex);
+            }
+        });
+
+        $('.next').on('click', function() {
+            var totalImages = $('.slider-content .slider-item').length;
+
+            if ($currentImageIndex < totalImages - 1) {
+                var ant = $currentImageIndex;
+                $currentImageIndex++;
+                updateSlider(ant,$currentImageIndex);
+            }
+        });
+
+    });
+
+    function loadImages(images) {
+        var imageSlider = $('.slider-content'); // Cambia el selector a la clase adecuada
+        imageSlider.empty();
+
+        var windowHeight = $(window).height();
+
+        images.forEach(function(image, index) {
+            var imgElement = $('<img>').attr('src', image.url).addClass('center-image').addClass('slider-item').css({
+                'max-width': '100%',
+                'max-height': '300px', // Ajusta el valor según tus necesidades
+                'top': (windowHeight / 2) - 150 + 'px' // Centrar verticalmente
+            });
+
+            if (index === 0) {
+                imgElement.addClass('active');
+            }
+            imageSlider.append(imgElement);
+        });
+
+    }
+
+    function updateSlider(anterior, nuevo) {
+        var sliderItems = $('.slider-content .slider-item');
+        sliderItems.removeClass('active');
+        $(sliderItems[$currentImageIndex]).addClass('active');
+        console.log("Nueva visualizacion");
+        console.log($(sliderItems[$currentImageIndex]).addClass('active'));
+        $(sliderItems[anterior]).hide();
+        $(sliderItems[nuevo]).show();
+    }
+</script>
 <!--end::Page Custom Javascript-->
 <!--end::Javascript-->
 </body>

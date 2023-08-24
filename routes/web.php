@@ -14,7 +14,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    $informations = \App\Models\Information::where('active', 1)->get();
+    $count = $informations->count();
+    return view('welcome', compact('count'));
 });
 
 Auth::routes();
@@ -276,6 +278,8 @@ Route::middleware('auth')->group(function (){
             ->middleware('permission:update_user');
         Route::get('/get/data/operation/{user_id}/{numberPage}', [App\Http\Controllers\UserController::class, 'getDataOperationUsers'])
             ->middleware('permission:update_user');
+
+        Route::get('/get/data/informations', [App\Http\Controllers\InformationController::class, 'getDataInformations']);
 
         // TODO: Rutas de Imagenes de documentos de Usuarios
         Route::post('/submit/image/front/', [App\Http\Controllers\UserController::class, 'submitImageFront'])

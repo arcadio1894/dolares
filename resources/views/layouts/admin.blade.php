@@ -24,6 +24,65 @@
     <link href="{{ asset('assets/plugins/global/plugins.bundle.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('assets/css/style.bundle.css') }}" rel="stylesheet" type="text/css" />
     <!--end::Global Stylesheets Bundle-->
+    {{--<style>
+        .image-banner {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            z-index: 9999;
+        }
+
+        .close-banner {
+            color: white;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+
+        .image-slider {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .prev,
+        .next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            font-size: 36px;
+            color: white;
+            text-decoration: none;
+        }
+
+        .prev {
+            left: 20px;
+        }
+
+        .next {
+            right: 20px;
+        }
+        .center-image {
+            max-width: 100%;
+            max-height: 100%;
+            display: block;
+            margin: 0 auto;
+            position: absolute;
+            top: 0; /* Alinear desde la parte superior */
+            left: 0; /* Alinear desde la izquierda */
+            right: 0; /* Alinear desde la derecha */
+            bottom: 0; /* Alinear desde la parte inferior */
+        }
+    </style>--}}
+
     @yield('styles')
 </head>
 <!--end::Head-->
@@ -5000,6 +5059,17 @@
 </div>
 <!--end::Modal - Upgrade plan-->
 <!--end::Modals-->
+{{--<div id="imageBanner" class="image-banner">
+    <span class="close-banner" id="closeBanner">&times;</span>
+    <div id="imageSlider" class="slider-container">
+        <div class="slider-content">
+            <!-- Las imágenes se agregarán aquí dinámicamente -->
+        </div>
+    </div>
+    <a class="prev" id="prevSlide">&#10094;</a>
+    <a class="next" id="nextSlide">&#10095;</a>
+</div>--}}
+
 <!--begin::Scrolltop-->
 <div id="kt_scrolltop" class="scrolltop" data-kt-scrolltop="true">
     <!--begin::Svg Icon | path: icons/duotune/arrows/arr066.svg-->
@@ -5030,7 +5100,84 @@
 @unless(Route::is('operation.create'))
     <script src="{{ asset('assets/js/operation/alert.js') }}"></script>
 @endunless
+{{--
+<script>
+    var $currentImageIndex = 0;
 
+    $(document).ready(function() {
+        $.ajax({
+            url: '/dashboard/get/data/informations',
+            method: 'GET',
+            success: function(response) {
+                var images = response.images;
+                loadImages(images);
+
+                $('#imageBanner').fadeIn();
+
+                $('#closeBanner').on('click', function() {
+                    $('#imageBanner').fadeOut();
+                });
+            }
+        });
+        function loadImages(images) {
+            var imageSlider = $('.slider-content'); // Cambia el selector a la clase adecuada
+            imageSlider.empty();
+
+            var windowHeight = $(window).height();
+
+            images.forEach(function(image, index) {
+                console.log("image");
+                console.log(image);
+                console.log("index");
+                console.log(index);
+                var imgElement = $('<img>').attr('src', image.url).addClass('center-image').addClass('slider-item').css({
+                    'max-width': '100%',
+                    'max-height': '300px', // Ajusta el valor según tus necesidades
+                    'top': (windowHeight / 2) - 150 + 'px' // Centrar verticalmente
+                });
+
+                if (index === 0) {
+                    console.log("Entre");
+                    console.log(index);
+                    imgElement.addClass('active');
+                }
+                imageSlider.append(imgElement);
+            });
+
+            $('.prev').on('click', function() {
+                console.log("prev");
+                if ($currentImageIndex > 0) {
+                    console.log("Entre");
+                    $currentImageIndex--;
+                    updateSlider($currentImageIndex+1,$currentImageIndex);
+                }
+            });
+
+            $('.next').on('click', function() {
+                console.log("next");
+                var totalImages = $('.slider-content .slider-item').length;
+
+                if ($currentImageIndex < totalImages - 1) {
+                    console.log("Entre");
+                    $currentImageIndex++;
+                    updateSlider($currentImageIndex-1,$currentImageIndex);
+                }
+            });
+        }
+
+        function updateSlider(anterior, nuevo) {
+            var sliderItems = $('.slider-content .slider-item');
+            sliderItems.removeClass('active');
+            $(sliderItems[$currentImageIndex]).addClass('active');
+            console.log("Nueva visualizacion");
+            console.log($(sliderItems[$currentImageIndex]).addClass('active'));
+            $(sliderItems[anterior]).hide();
+            $(sliderItems[nuevo]).show();
+        }
+    });
+
+
+</script>--}}
 <!--end::Page Custom Javascript-->
 @yield('scripts')
 <!--end::Javascript-->
