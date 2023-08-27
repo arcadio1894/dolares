@@ -932,7 +932,7 @@ License: For each use you must have a valid license purchased only from above li
         </div>
     </div>
     @if($count > 1)
-    <a class="prev" id="prevSlide">&#10094;</a>
+    {{--<a class="prev" id="prevSlide">&#10094;</a>--}}
     <a class="next" id="nextSlide">&#10095;</a>
     @endif
 </div>
@@ -954,21 +954,26 @@ License: For each use you must have a valid license purchased only from above li
 
 <script src="{{ asset('assets/js/welcome/welcome.js') }}"></script>
 <script>
-    var $currentImageIndex = 0;
+    var $currentImageIndex;
 
     $(document).ready(function() {
         $.ajax({
-            url: '/dashboard/get/data/informations',
+            url: '/get/data/informations',
             method: 'GET',
             success: function(response) {
                 var images = response.images;
-                loadImages(images);
+                $currentImageIndex = images.length;
+                if (images.length > 0)
+                {
+                    loadImages(images);
 
-                $('#imageBanner').fadeIn();
+                    $('#imageBanner').fadeIn();
 
-                $('#closeBanner').on('click', function() {
-                    $('#imageBanner').fadeOut();
-                });
+                    $('#closeBanner').on('click', function() {
+                        $('#imageBanner').fadeOut();
+                    });
+                }
+
             }
         });
 
@@ -978,16 +983,25 @@ License: For each use you must have a valid license purchased only from above li
                 var ant = $currentImageIndex;
                 $currentImageIndex--;
                 updateSlider(ant,$currentImageIndex);
+            } else {
+                var ant2 = $currentImageIndex;
+                $currentImageIndex++;
+                updateSlider(ant2,$currentImageIndex);
             }
         });
 
         $('.next').on('click', function() {
             var totalImages = $('.slider-content .slider-item').length;
 
-            if ($currentImageIndex < totalImages - 1) {
+            if ($currentImageIndex < totalImages) {
+                console.log("Entre");
                 var ant = $currentImageIndex;
                 $currentImageIndex++;
                 updateSlider(ant,$currentImageIndex);
+            } else {
+                var ant2 = $currentImageIndex;
+                $currentImageIndex--;
+                updateSlider(ant2,$currentImageIndex);
             }
         });
 
@@ -1016,12 +1030,15 @@ License: For each use you must have a valid license purchased only from above li
 
     function updateSlider(anterior, nuevo) {
         var sliderItems = $('.slider-content .slider-item');
-        sliderItems.removeClass('active');
+        console.log($(sliderItems));
+        console.log($(sliderItems[anterior-1]));
+        console.log($(sliderItems[nuevo]));
+        /*sliderItems.removeClass('active');
         $(sliderItems[$currentImageIndex]).addClass('active');
         console.log("Nueva visualizacion");
-        console.log($(sliderItems[$currentImageIndex]).addClass('active'));
-        $(sliderItems[anterior]).hide();
-        $(sliderItems[nuevo]).show();
+        console.log($(sliderItems[$currentImageIndex]).addClass('active'));*/
+        $(sliderItems[anterior-1]).hide();
+        $(sliderItems[nuevo-1]).show();
     }
 </script>
 <!--end::Page Custom Javascript-->
