@@ -962,7 +962,7 @@ License: For each use you must have a valid license purchased only from above li
             method: 'GET',
             success: function(response) {
                 var images = response.images;
-                $currentImageIndex = images.length;
+                $currentImageIndex = images.length-1;
                 if (images.length > 0)
                 {
                     loadImages(images);
@@ -977,32 +977,19 @@ License: For each use you must have a valid license purchased only from above li
             }
         });
 
-        $('.prev').on('click', function() {
-            console.log("prev");
-            if ($currentImageIndex > 0) {
-                var ant = $currentImageIndex;
-                $currentImageIndex--;
-                updateSlider(ant,$currentImageIndex);
-            } else {
-                var ant2 = $currentImageIndex;
-                $currentImageIndex++;
-                updateSlider(ant2,$currentImageIndex);
-            }
-        });
-
         $('.next').on('click', function() {
             var totalImages = $('.slider-content .slider-item').length;
-
-            if ($currentImageIndex < totalImages) {
-                console.log("Entre");
-                var ant = $currentImageIndex;
-                $currentImageIndex++;
-                updateSlider(ant,$currentImageIndex);
-            } else {
-                var ant2 = $currentImageIndex;
-                $currentImageIndex--;
-                updateSlider(ant2,$currentImageIndex);
+            console.log("$currentImageIndex "+ ($currentImageIndex));
+            if ( $currentImageIndex === 0 )
+            {
+                $currentImageIndex = totalImages;
             }
+
+            //console.log("Retrocedo");
+            $currentImageIndex--;
+            //console.log("$currentImageIndex "+$currentImageIndex);
+            updateSlider($currentImageIndex);
+
         });
 
     });
@@ -1025,20 +1012,21 @@ License: For each use you must have a valid license purchased only from above li
             }
             imageSlider.append(imgElement);
         });
-
+        var sliderItems = $('.slider-content .slider-item');
+        sliderItems.hide();
+        $(sliderItems[(images.length)-1]).show();
     }
 
-    function updateSlider(anterior, nuevo) {
+    function updateSlider(nuevo) {
         var sliderItems = $('.slider-content .slider-item');
-        console.log($(sliderItems));
-        console.log($(sliderItems[anterior-1]));
-        console.log($(sliderItems[nuevo]));
-        /*sliderItems.removeClass('active');
-        $(sliderItems[$currentImageIndex]).addClass('active');
+        console.log("Imagen mostrada "+(nuevo));
+        sliderItems.hide();
+        /*$(sliderItems[$currentImageIndex]).addClass('active');
         console.log("Nueva visualizacion");
         console.log($(sliderItems[$currentImageIndex]).addClass('active'));*/
-        $(sliderItems[anterior-1]).hide();
-        $(sliderItems[nuevo-1]).show();
+        //$(sliderItems[anterior-1]).hide();
+        $(sliderItems[nuevo]).show();
+
     }
 </script>
 <!--end::Page Custom Javascript-->
