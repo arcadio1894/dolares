@@ -373,6 +373,20 @@ Route::middleware('auth')->group(function (){
         Route::get('/modulo/contabilidad', [App\Http\Controllers\AccountingController::class, 'index'])
             ->name('accounting.index')
             ->middleware('permission:enable_typeExchange');
+
+        // TODO: Rutas BackOffice - Informations
+        Route::get('/noticias', [App\Http\Controllers\InformationController::class, 'index'])
+            ->name('information.index')
+            ->middleware('permission:list_informations');
+        Route::post('/information/store', [App\Http\Controllers\InformationController::class, 'store'])
+            ->name('information.store')
+            ->middleware('permission:create_informations');
+        Route::post('/information/destroy/{information_id}', [App\Http\Controllers\InformationController::class, 'destroy'])
+            ->name('information.destroy')
+            ->middleware('permission:destroy_informations');
+        Route::post('/information/update/status', [App\Http\Controllers\InformationController::class, 'updateStatus'])
+            ->name('information.update.status')
+            ->middleware('permission:update_informations');
     });
 });
 Route::get('/data', [\App\Http\Controllers\DataController::class, 'getData']);
