@@ -104,7 +104,7 @@
                         <td>
                             <label class="form-check form-switch form-check-custom form-check-solid">
                                 <!--begin::Input-->
-                                <input class="form-check-input" name="active" type="checkbox" value="{{ $information->active }}" {{ ($information->active == 1) ? 'checked':''  }} data-kt-action="{{ route('information.update.status') }}" data-kt-coupon-status="{{ $information->id }}" />
+                                <input class="form-check-input" name="active" type="checkbox" value="{{ $information->active }}" {{ ($information->active == 1) ? 'checked':''  }} data-kt-action="{{ route('information.update.status') }}" data-kt-information-status="{{ $information->id }}" />
                                 <!--end::Input-->
                                 <!--begin::Label-->
                                 <span class="form-check-label fw-bold text-muted" >Activo</span>
@@ -224,5 +224,6 @@
     <!--end::Page Vendors Javascript-->
     <!--begin::Page Custom Javascript(used by this page)-->
     <script src="{{ asset('assets/js/information/list.js') }}"></script>
+    <script src="{{ asset('assets/js/information/edit.js') }}"></script>
     <script src="{{ asset('assets/js/information/add.js') }}"></script>
 @endsection

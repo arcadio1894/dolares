@@ -30,7 +30,7 @@ class InformationController extends Controller
 
     public function index()
     {
-        $informations = Information::where('active', 1)->get();
+        $informations = Information::all();
 
         return view('information.index', compact('informations'));
     }
