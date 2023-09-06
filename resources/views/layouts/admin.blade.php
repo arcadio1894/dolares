@@ -2268,7 +2268,7 @@
                             <!--begin::Menu wrapper-->
                             <div class="btn btn-icon btn-primary w-40px h-40px pulse pulse-white">
                                 <!--begin::Svg Icon | path: icons/duotune/communication/com012.svg-->
-                                <a href="https://api.whatsapp.com/send?phone=51921867035&text=Hola%20necesito%20ayuda" target="_blank">
+                                <a href="https://api.whatsapp.com/send?phone=51906343258&text=Hola%20necesito%20ayuda" target="_blank">
                                     <span class="svg-icon svg-icon-2">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                                             <path opacity="0.3" d="M20 3H4C2.89543 3 2 3.89543 2 5V16C2 17.1046 2.89543 18 4 18H4.5C5.05228 18 5.5 18.4477 5.5 19V21.5052C5.5 22.1441 6.21212 22.5253 6.74376 22.1708L11.4885 19.0077C12.4741 18.3506 13.6321 18 14.8167 18H20C21.1046 18 22 17.1046 22 16V5C22 3.89543 21.1046 3 20 3Z" fill="black" />
