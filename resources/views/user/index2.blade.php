@@ -277,8 +277,8 @@
                     <a href="#" class="fs-4 text-gray-800 text-hover-primary fw-bolder mb-0 text-center" data-name></a>
                     <!--end::Name-->
                     <!--begin::Position-->
-                    <div class="fw-bold text-gray-400 mb-6" data-role_description></div>
-                    <div class="fw-bold text-gray-400 mb-6" data-email></div>
+                    <div class="fw-bold text-gray-400 mb-1" data-role_description></div>
+                    <div class="fw-bold text-gray-400 mb-1" data-email></div>
                     <!--end::Position-->
                     <!--begin::Info-->
                     <div class="d-flex flex-center flex-wrap">
@@ -365,17 +365,17 @@
                 <!--begin::User details-->
                 <div class="d-flex flex-column">
                     <a href="#" class="text-gray-800 text-hover-primary mb-1" data-name></a>
-                    <span data-email></span>
+                    <span class="text-gray-500" data-email></span>
                 </div>
                 <!--begin::User details-->
             </td>
-            <td data-role_description>
+            <td class="text-gray-700" data-role_description>
 
             </td>
             <td>
                 <div class="badge badge-light fw-bolder" data-last_login></div>
             </td>
-            <td data-joined_date></td>
+            <td class="text-gray-700" data-joined_date></td>
             <!--end::Status=-->
             <!--begin::Action=-->
             <td class="text-end">
