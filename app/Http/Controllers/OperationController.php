@@ -765,15 +765,101 @@ class OperationController extends Controller
         }
     }
 
+    public function getDataOperations(Request $request, $pageNumber = 1)
+    {
+        $perPage = 10;
+
+        $documentCliente = $request->input('document_cliente');
+        $codigoOperacion = $request->input('codigo_operacion');
+        $bancoId = $request->input('banco_id');
+
+        $query = Operation::with('account_dolarero', 'user')->orderBy('state')
+        ->orderBy('created_at', 'DESC');
+
+        // Aplicar filtros si se proporcionan
+        if ($documentCliente) {
+            /*$query->where('document_customer', $documentCliente);*/
+            $query->whereHas('user', function ($subquery) use ($documentCliente) {
+                $subquery->where('document', $documentCliente);
+            });
+        }
+
+        if ($codigoOperacion) {
+            $query->where('code_operation', $codigoOperacion);
+            /*$query->whereHas('operation', function ($subquery) use ($codigoOperacion) {
+                $subquery->where('code_operation', $codigoOperacion);
+            });*/
+        }
+
+        if ($bancoId) {
+            $query->whereHas('account_dolarero', function ($subquery) use ($bancoId) {
+                $subquery->where('bank_id', $bancoId);
+            });
+        }
+
+        $totalFilteredRecords = $query->count();
+        $totalPages = ceil($totalFilteredRecords / $perPage);
+
+        $startRecord = ($pageNumber - 1) * $perPage + 1;
+        $endRecord = min($totalFilteredRecords, $pageNumber * $perPage);
+
+        $operations = $query->skip(($pageNumber - 1) * $perPage)
+            ->take($perPage)
+            ->get();
+
+        $arrayOperations = [];
+
+        foreach ( $operations as $operation )
+        {
+            if ( $operation->estado == 'RECHAZADO' )
+            {
+                $text = '<span class="badge badge-light-danger">'.$operation->estado.'</span>';
+            } elseif ( $operation->estado == 'PROCESANDO' )
+            {
+                $text = '<span class="badge badge-light-warning">'.$operation->estado.'</span>';
+            } else {
+                $text = '<span class="badge badge-light-primary">'.$operation->estado.'</span>';
+            }
+            array_push($arrayOperations, [
+                "id" => $operation->id,
+                "bank" => $operation->account_dolarero->bank->name,
+                "numOperation" => $operation->code_operation,
+                "numOperationUser" => ($operation->number_operation_user == null) ? 'Pendiente': $operation->number_operation_user,
+                "enviado" => $operation->send_amount_list,
+                "recibido" => $operation->get_amount_list,
+                "tipoCambio" => $operation->type_change,
+                "fecha" => $operation->created_at->format('d/m/Y'),
+                "estado" => $text,
+                "state" => $operation->estado,
+                "image_receipt" => $operation->image_receipt,
+                "number_operation_dolareros" => $operation->number_operation_dolareros
+            ]);
+        }
+
+        $pagination = [
+            'currentPage' => (int)$pageNumber,
+            'totalPages' => (int)$totalPages,
+            'startRecord' => $startRecord,
+            'endRecord' => $endRecord,
+            'totalRecords' => $totalFilteredRecords,
+            'totalFilteredRecords' => $totalFilteredRecords
+        ];
+
+        return ['data' => $arrayOperations, 'pagination' => $pagination];
+
+    }
+
     public function indexDolareros()
     {
-        $operations = Operation::orderBy('state')
+        /*$operations = Operation::orderBy('state')
             ->orderBy('created_at', 'DESC')
-            ->get();
+            ->get();*/
 
         $rejections = Rejection::all();
 
-        return view('operation.indexDolareros', compact('operations', 'rejections'));
+        $banks = Bank::all();
+
+        return view('operation.indexDolareros', compact('rejections', 'banks'));
 
     }
 

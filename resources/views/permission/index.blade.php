@@ -37,7 +37,7 @@
 
 @section('content')
     <!--begin::Card-->
-    <div class="card">
+    <div class="card d-none d-sm-block">
         <!--begin::Card header-->
         <div class="card-header border-0 pt-6">
             <!--begin::Card title-->
@@ -145,6 +145,67 @@
             <!--end::Table-->
         </div>
         <!--end::Card body-->
+    </div>
+
+    <div class="d-sm-none">
+        <div class="card-header border-0 mb-5">
+            <h3 class="card-title align-items-start flex-column">
+            </h3>
+            <div class="card-toolbar">
+                <button type="button" class="btn btn-light-primary" data-bs-toggle="modal" data-bs-target="#kt_modal_add_permission">
+                    <!--begin::Svg Icon | path: icons/duotune/general/gen035.svg-->
+                    <span class="svg-icon svg-icon-3">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <rect opacity="0.3" x="2" y="2" width="20" height="20" rx="5" fill="black" />
+                            <rect x="10.8891" y="17.8033" width="12" height="2" rx="1" transform="rotate(-90 10.8891 17.8033)" fill="black" />
+                            <rect x="6.01041" y="10.9247" width="12" height="2" rx="1" fill="black" />
+                        </svg>
+                    </span>
+                    <!--end::Svg Icon-->Add Permission
+                </button>
+            </div>
+        </div>
+        <div class="card-body py-3">
+            <div class="tab-content">
+                <div class="tab-pane fade active show" id="kt_table_widget_5_tab_1">
+                    @foreach( $permissions as $permission )
+                        <div class="card mb-4">
+                            <div class="card-body d-flex flex-center flex-column pt-12 p-9">
+                                <!--begin::Name-->
+                                <a href="#" class="fs-4 text-gray-800 text-hover-primary fw-bolder mb-0 text-center" data-name>{{ $permission->description }}</a>
+                                <!--end::Name-->
+                                <div class="fw-bold text-gray-600 mb-1" data-role_description>{{ $permission->name }}</div>
+                                <!--begin::Info-->
+                                <div class="d-flex justify-content-end flex-shrink-0">
+                                    <button class="btn btn-icon btn-active-light-primary w-30px h-30px me-3" data-permission_id="{{ $permission->id }}" data-permission_name="{{ $permission->name }}" data-permission_description="{{ $permission->description }}" data-kt-permissions-action="update_row" {{--data-bs-toggle="modal" data-bs-target="#kt_modal_update_permission"--}}>
+                                        <!--begin::Svg Icon | path: icons/duotune/general/gen019.svg-->
+                                        <span class="svg-icon svg-icon-3">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                                <path d="M17.5 11H6.5C4 11 2 9 2 6.5C2 4 4 2 6.5 2H17.5C20 2 22 4 22 6.5C22 9 20 11 17.5 11ZM15 6.5C15 7.9 16.1 9 17.5 9C18.9 9 20 7.9 20 6.5C20 5.1 18.9 4 17.5 4C16.1 4 15 5.1 15 6.5Z" fill="black" />
+                                                <path opacity="0.3" d="M17.5 22H6.5C4 22 2 20 2 17.5C2 15 4 13 6.5 13H17.5C20 13 22 15 22 17.5C22 20 20 22 17.5 22ZM4 17.5C4 18.9 5.1 20 6.5 20C7.9 20 9 18.9 9 17.5C9 16.1 7.9 15 6.5 15C5.1 15 4 16.1 4 17.5Z" fill="black" />
+                                            </svg>
+                                        </span>
+                                        <!--end::Svg Icon-->
+                                    </button>
+                                    <button class="btn btn-icon btn-active-light-primary w-30px h-30px" data-permission_id="{{ $permission->id }}" data-permission_name="{{ $permission->name }}" data-permission_description="{{ $permission->description }}" data-kt-permissions-action="delete_row">
+                                        <!--begin::Svg Icon | path: icons/duotune/general/gen027.svg-->
+                                        <span class="svg-icon svg-icon-3">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                                <path d="M5 9C5 8.44772 5.44772 8 6 8H18C18.5523 8 19 8.44772 19 9V18C19 19.6569 17.6569 21 16 21H8C6.34315 21 5 19.6569 5 18V9Z" fill="black" />
+                                                <path opacity="0.5" d="M5 5C5 4.44772 5.44772 4 6 4H18C18.5523 4 19 4.44772 19 5V5C19 5.55228 18.5523 6 18 6H6C5.44772 6 5 5.55228 5 5V5Z" fill="black" />
+                                                <path opacity="0.5" d="M9 4C9 3.44772 9.44772 3 10 3H14C14.5523 3 15 3.44772 15 4V4H9V4Z" fill="black" />
+                                            </svg>
+                                        </span>
+                                        <!--end::Svg Icon-->
+                                    </button>
+                                </div>
+                                <!--end::Info-->
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+        </div>
     </div>
     <!--begin::Modals-->
     <!--begin::Modal - Add permissions-->
@@ -350,6 +411,7 @@
         $(document).ready(function(){
             $(document).on('click', '[data-kt-permissions-action="update_row"]', showModalEdit);
             $(document).on('click', '[data-kt-permissions-action="delete_row"]', showModalDelete);
+            /*$(document).on('click', '[data-btn_delete]', deletePermissionDolarero);*/
         });
         function showModalEdit() {
 
@@ -457,6 +519,97 @@
             }))
         }
 
+        function deletePermissionDolarero() {
+            var source_id = $(this).attr('data-kt-source');
+            var source_name = $(this).attr('data-kt-description');
+            Swal.fire({
+                text: "¿Está seguro de eliminar el origen " + source_name + "?",
+                icon: "warning",
+                showCancelButton: !0,
+                buttonsStyling: !1,
+                confirmButtonText: "Si, eliminar!",
+                cancelButtonText: "No, cancelar",
+                customClass: {
+                    confirmButton: "btn fw-bold btn-danger",
+                    cancelButton: "btn fw-bold btn-active-light-primary"
+                }
+            }).then((function (e) {
+                //console.log(button.attributes[2].value);
+                e.value ? (
+                    //console.log(button.attributes[2].value),
+                    $.ajax({
+                        url: '/dashboard/sourceFund/destroy/'+source_id,
+                        method: 'POST',
+                        headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                        data: JSON.stringify({ account_id: button.attributes[2].value }),
+                        processData:false,
+                        contentType:'application/json; charset=utf-8',
+                        success: function (data) {
+                            console.log(data);
+                            Swal.fire({
+                                text: "Has eliminado " + source_name + "!.",
+                                icon: "success",
+                                buttonsStyling: !1,
+                                confirmButtonText: "Ok, entenedido!",
+                                customClass: {confirmButton: "btn fw-bold btn-primary"}
+                            }).then((function () {
+                                t.row($(o)).remove().draw();
+                            }))
+
+                        },
+                        error: function (data) {
+                            if( data.responseJSON.message && !data.responseJSON.errors )
+                            {
+                                toastr.error(data.responseJSON.message, 'Error',
+                                    {
+                                        "closeButton": true,
+                                        "debug": false,
+                                        "newestOnTop": false,
+                                        "progressBar": true,
+                                        "positionClass": "toast-top-right",
+                                        "preventDuplicates": false,
+                                        "onclick": null,
+                                        "showDuration": "300",
+                                        "hideDuration": "1000",
+                                        "timeOut": "2000",
+                                        "extendedTimeOut": "1000",
+                                        "showEasing": "swing",
+                                        "hideEasing": "linear",
+                                        "showMethod": "fadeIn",
+                                        "hideMethod": "fadeOut"
+                                    });
+                            }
+                            for ( var property in data.responseJSON.errors ) {
+                                toastr.error(data.responseJSON.errors[property], 'Error',
+                                    {
+                                        "closeButton": true,
+                                        "debug": false,
+                                        "newestOnTop": false,
+                                        "progressBar": true,
+                                        "positionClass": "toast-top-right",
+                                        "preventDuplicates": false,
+                                        "onclick": null,
+                                        "showDuration": "300",
+                                        "hideDuration": "1000",
+                                        "timeOut": "2000",
+                                        "extendedTimeOut": "1000",
+                                        "showEasing": "swing",
+                                        "hideEasing": "linear",
+                                        "showMethod": "fadeIn",
+                                        "hideMethod": "fadeOut"
+                                    });
+                            }
+                        },
+                    })
+                ) : "cancel" === e.dismiss && Swal.fire({
+                    text: source_name + " no fue eliminado.",
+                    icon: "error",
+                    buttonsStyling: !1,
+                    confirmButtonText: "Ok, entendido!",
+                    customClass: {confirmButton: "btn fw-bold btn-primary"}
+                })
+            }));
+        }
     </script>
     <script src="{{ asset('assets/js/permission/list.js') }}"></script>
     <script src="{{ asset('assets/js/permission/add-permission.js') }}"></script>

@@ -38,7 +38,7 @@
 
 @section('content')
     <!--begin::Card-->
-    <div class="card">
+    <div class="card d-none d-sm-block">
         <!--begin::Card header-->
         <div class="card-header border-0 pt-6">
             <!--begin::Card title-->
@@ -172,6 +172,81 @@
             <!--end::Table-->
         </div>
         <!--end::Card body-->
+    </div>
+
+    <div class="d-sm-none">
+        <div class="card-header border-0 mb-5">
+            <h3 class="card-title align-items-start flex-column">
+            </h3>
+            <div class="card-toolbar">
+                <div class="d-flex justify-content-end" data-kt-customer-table-toolbar="base">
+                    <!--begin::Add customer-->
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#kt_modal_add_customer">Agregar banco</button>
+                    <!--end::Add customer-->
+                </div>
+            </div>
+        </div>
+        <div class="card-body py-3">
+            <div class="tab-content">
+                <div class="tab-pane fade active show" id="kt_table_widget_5_tab_1">
+                    @foreach( $banks as $bank )
+                        <div class="card mb-4">
+                            <div class="card-body d-flex flex-center flex-column pt-12 p-9">
+                                <!--begin::Avatar-->
+                                <img src="{{ asset('assets/images/banks/'.$bank->imageBank) }}" alt="{{ $bank->nameBank }}" class="img-fluid symbol symbol-65px symbol-circle mb-5" style="max-width: 50px;">
+
+                                <!--end::Avatar-->
+                                <!--begin::Name-->
+                                <a href="#" class="fs-4 text-gray-800 text-hover-primary fw-bolder mb-0 text-center" data-name>{{ $bank->nameBank }}</a>
+                                <!--end::Name-->
+                                <!--begin::Info-->
+                                <div class="d-flex flex-center flex-wrap">
+                                    <!--begin::Stats-->
+                                    <div class="border border-gray-300 border-dashed rounded min-w-80px py-2 px-2">
+                                        <div class="fs-6 fw-bolder text-gray-700" data-document>
+                                            <label class="form-check form-switch form-check-custom form-check-solid">
+                                                <!--begin::Input-->
+                                                <input class="form-check-input" name="status" type="checkbox" value="{{ $bank->status }}" {{ ($bank->status == 1) ? 'checked':''  }} data-kt-action="{{ route('banks.update.status') }}" data-kt-bank-active="{{ $bank->id }}" data-kt-redirect="{{route('banks.index')}}" />
+                                                <!--end::Input-->
+                                                <!--begin::Label-->
+                                                <span class="form-check-label fw-bold text-muted" >Activo</span>
+                                                <!--end::Label-->
+                                            </label>
+                                        </div>
+                                        <div class="fw-bold text-gray-500">Estado</div>
+                                    </div>
+                                    <!--end::Stats-->
+                                </div>
+                                <div class="d-flex justify-content-end flex-shrink-0">
+                                    <a href="#" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1" data-kt-bank="{{ $bank->id }}" data-kt-name="{{ $bank->nameBank }}" data-kt-status="{{ $bank->status }}" data-kt-image="{{ $bank->imageBank }}" data-kt-bank-action="update_row">
+                                        <!--begin::Svg Icon | path: icons/duotune/art/art005.svg-->
+                                        <span class="svg-icon svg-icon-3">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                                <path opacity="0.3" d="M21.4 8.35303L19.241 10.511L13.485 4.755L15.643 2.59595C16.0248 2.21423 16.5426 1.99988 17.0825 1.99988C17.6224 1.99988 18.1402 2.21423 18.522 2.59595L21.4 5.474C21.7817 5.85581 21.9962 6.37355 21.9962 6.91345C21.9962 7.45335 21.7817 7.97122 21.4 8.35303ZM3.68699 21.932L9.88699 19.865L4.13099 14.109L2.06399 20.309C1.98815 20.5354 1.97703 20.7787 2.03189 21.0111C2.08674 21.2436 2.2054 21.4561 2.37449 21.6248C2.54359 21.7934 2.75641 21.9115 2.989 21.9658C3.22158 22.0201 3.4647 22.0084 3.69099 21.932H3.68699Z" fill="black"></path>
+                                                <path d="M5.574 21.3L3.692 21.928C3.46591 22.0032 3.22334 22.0141 2.99144 21.9594C2.75954 21.9046 2.54744 21.7864 2.3789 21.6179C2.21036 21.4495 2.09202 21.2375 2.03711 21.0056C1.9822 20.7737 1.99289 20.5312 2.06799 20.3051L2.696 18.422L5.574 21.3ZM4.13499 14.105L9.891 19.861L19.245 10.507L13.489 4.75098L4.13499 14.105Z" fill="black"></path>
+                                            </svg>
+                                        </span>
+                                        <!--end::Svg Icon-->
+                                    </a>
+                                    <a href="#" data-btn_delete data-kt-name="{{ $bank->nameBank }}" data-kt-bank="{{ $bank->id }}" data-kt-customer-table-filter="delete_row" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm">
+                                        <!--begin::Svg Icon | path: icons/duotune/general/gen027.svg-->
+                                        <span class="svg-icon svg-icon-3">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                                <path d="M5 9C5 8.44772 5.44772 8 6 8H18C18.5523 8 19 8.44772 19 9V18C19 19.6569 17.6569 21 16 21H8C6.34315 21 5 19.6569 5 18V9Z" fill="black"></path>
+                                                <path opacity="0.5" d="M5 5C5 4.44772 5.44772 4 6 4H18C18.5523 4 19 4.44772 19 5V5C19 5.55228 18.5523 6 18 6H6C5.44772 6 5 5.55228 5 5V5Z" fill="black"></path>
+                                                <path opacity="0.5" d="M9 4C9 3.44772 9.44772 3 10 3H14C14.5523 3 15 3.44772 15 4V4H9V4Z" fill="black"></path>
+                                            </svg>
+                                        </span>
+                                        <!--end::Svg Icon-->
+                                    </a>
+                                </div>
+                                <!--end::Info-->
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+        </div>
     </div>
     <!--end::Card-->
     <!--begin::Modals-->
@@ -376,6 +451,104 @@
     <!--begin::Page Vendors Javascript(used by this page)-->
     <script src="{{ asset('assets/plugins/custom/datatables/datatables.bundle.js') }}"></script>
     <!--end::Page Vendors Javascript-->
+    <script>
+        $(document).ready(function(){
+
+            $(document).on('click', '[data-btn_delete]', deleteAccountDolarero)
+        });
+
+        function deleteAccountDolarero() {
+            var bank_id = $(this).attr('data-kt-bank');
+            var bank_name = $(this).attr('data-kt-name');
+            Swal.fire({
+                text: "¿Está seguro de eliminar el banco " + bank_name + "?",
+                icon: "warning",
+                showCancelButton: !0,
+                buttonsStyling: !1,
+                confirmButtonText: "Si, eliminar!",
+                cancelButtonText: "No, cancelar",
+                customClass: {
+                    confirmButton: "btn fw-bold btn-danger",
+                    cancelButton: "btn fw-bold btn-active-light-primary"
+                }
+            }).then((function (e) {
+                //console.log(button.attributes[2].value);
+                e.value ? (
+                    //console.log(button.attributes[2].value),
+                    $.ajax({
+                        url: '/dashboard/bank/destroy/'+bank_id,
+                        method: 'POST',
+                        headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                        data: JSON.stringify({ bank_id: bank_id }),
+                        processData:false,
+                        contentType:'application/json; charset=utf-8',
+                        success: function (data) {
+                            console.log(data);
+                            Swal.fire({
+                                text: "Has eliminado " + bank_name + "!.",
+                                icon: "success",
+                                buttonsStyling: !1,
+                                confirmButtonText: "Ok, entenedido!",
+                                customClass: {confirmButton: "btn fw-bold btn-primary"}
+                            }).then((function () {
+                                t.row($(o)).remove().draw();
+                            }))
+
+                        },
+                        error: function (data) {
+                            if( data.responseJSON.message && !data.responseJSON.errors )
+                            {
+                                toastr.error(data.responseJSON.message, 'Error',
+                                    {
+                                        "closeButton": true,
+                                        "debug": false,
+                                        "newestOnTop": false,
+                                        "progressBar": true,
+                                        "positionClass": "toast-top-right",
+                                        "preventDuplicates": false,
+                                        "onclick": null,
+                                        "showDuration": "300",
+                                        "hideDuration": "1000",
+                                        "timeOut": "2000",
+                                        "extendedTimeOut": "1000",
+                                        "showEasing": "swing",
+                                        "hideEasing": "linear",
+                                        "showMethod": "fadeIn",
+                                        "hideMethod": "fadeOut"
+                                    });
+                            }
+                            for ( var property in data.responseJSON.errors ) {
+                                toastr.error(data.responseJSON.errors[property], 'Error',
+                                    {
+                                        "closeButton": true,
+                                        "debug": false,
+                                        "newestOnTop": false,
+                                        "progressBar": true,
+                                        "positionClass": "toast-top-right",
+                                        "preventDuplicates": false,
+                                        "onclick": null,
+                                        "showDuration": "300",
+                                        "hideDuration": "1000",
+                                        "timeOut": "2000",
+                                        "extendedTimeOut": "1000",
+                                        "showEasing": "swing",
+                                        "hideEasing": "linear",
+                                        "showMethod": "fadeIn",
+                                        "hideMethod": "fadeOut"
+                                    });
+                            }
+                        },
+                    })
+                ) : "cancel" === e.dismiss && Swal.fire({
+                    text: bank_name + " no fue eliminado.",
+                    icon: "error",
+                    buttonsStyling: !1,
+                    confirmButtonText: "Ok, entendido!",
+                    customClass: {confirmButton: "btn fw-bold btn-primary"}
+                })
+            }));
+        }
+    </script>
     <!--begin::Page Custom Javascript(used by this page)-->
     {{--<script src="{{ asset('assets/js/bank/export.js') }}"></script>--}}
     <script src="{{ asset('assets/js/bank/list.js') }}"></script>

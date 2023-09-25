@@ -38,7 +38,7 @@
 
 @section('content')
     <!--begin::Card-->
-    <div class="card">
+    <div class="card d-none d-sm-block">
         <!--begin::Card header-->
         <div class="card-header border-0 pt-6">
             <!--begin::Card title-->
@@ -142,6 +142,67 @@
         </div>
         <!--end::Card body-->
     </div>
+
+    <div class="d-sm-none">
+        <div class="card-header border-0 mb-5">
+            <h3 class="card-title align-items-start flex-column">
+            </h3>
+            <div class="card-toolbar">
+                <div class="d-flex justify-content-end" data-kt-customer-table-toolbar="base">
+                    <!--begin::Add customer-->
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#kt_modal_add_coupon">Agregar noticia</button>
+                    <!--end::Add customer-->
+                </div>
+            </div>
+        </div>
+        <div class="card-body py-3">
+            <div class="tab-content">
+                <div class="tab-pane fade active show" id="kt_table_widget_5_tab_1">
+                    @foreach( $informations as $information )
+                        <div class="card mb-4">
+                            <div class="card-body d-flex flex-center flex-column pt-12 p-9">
+                                <!--begin::Name-->
+                                <img src="{{ asset('/assets/images/information/'. $information->image )}}" alt="" class="img-fluid symbol symbol-65px symbol-circle mb-5" style="max-width: 100px;" >
+                                <div class="d-flex flex-center flex-wrap">
+                                    <!--begin::Stats-->
+                                    <div class="border border-gray-300 border-dashed rounded min-w-80px py-2 px-2">
+                                        <div class="fs-6 fw-bolder text-gray-700" data-document>
+                                            <label class="form-check form-switch form-check-custom form-check-solid">
+                                                <!--begin::Input-->
+                                                <input class="form-check-input" name="active" type="checkbox" value="{{ $information->active }}" {{ ($information->active == 1) ? 'checked':''  }} data-kt-action="{{ route('information.update.status') }}" data-kt-information-status="{{ $information->id }}" />
+                                                <!--end::Input-->
+                                                <!--begin::Label-->
+                                                <span class="form-check-label fw-bold text-muted" >Activo</span>
+                                                <!--end::Label-->
+                                            </label>
+                                        </div>
+                                        <div class="fw-bold text-gray-400">Estado</div>
+                                    </div>
+                                    <!--end::Stats-->
+                                </div>
+                                <!--end::Name-->
+                                <!--begin::Info-->
+                                <div class="d-flex justify-content-end flex-shrink-0">
+                                    <a href="#" data-btn_delete data-kt-information="{{ $information->id }}" data-kt-information-table-filter="delete_row" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm">
+                                        <!--begin::Svg Icon | path: icons/duotune/general/gen027.svg-->
+                                        <span class="svg-icon svg-icon-3">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                                <path d="M5 9C5 8.44772 5.44772 8 6 8H18C18.5523 8 19 8.44772 19 9V18C19 19.6569 17.6569 21 16 21H8C6.34315 21 5 19.6569 5 18V9Z" fill="black"></path>
+                                                <path opacity="0.5" d="M5 5C5 4.44772 5.44772 4 6 4H18C18.5523 4 19 4.44772 19 5V5C19 5.55228 18.5523 6 18 6H6C5.44772 6 5 5.55228 5 5V5Z" fill="black"></path>
+                                                <path opacity="0.5" d="M9 4C9 3.44772 9.44772 3 10 3H14C14.5523 3 15 3.44772 15 4V4H9V4Z" fill="black"></path>
+                                            </svg>
+                                        </span>
+                                        <!--end::Svg Icon-->
+                                    </a>
+                                </div>
+                                <!--end::Info-->
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+        </div>
+    </div>
     <!--end::Card-->
     <!--begin::Modals-->
     <!--begin::Modal - Customers - Add-->
@@ -222,6 +283,103 @@
     <!--begin::Page Vendors Javascript(used by this page)-->
     <script src="{{ asset('assets/plugins/custom/datatables/datatables.bundle.js') }}"></script>
     <!--end::Page Vendors Javascript-->
+    <script>
+        $(document).ready(function(){
+
+            $(document).on('click', '[data-btn_delete]', deleteInformationDolarero)
+        });
+
+        function deleteInformationDolarero() {
+            var information_id = $(this).attr('data-kt-information');
+            Swal.fire({
+                text: "¿Está seguro de eliminar la noticia",
+                icon: "warning",
+                showCancelButton: !0,
+                buttonsStyling: !1,
+                confirmButtonText: "Si, eliminar!",
+                cancelButtonText: "No, cancelar",
+                customClass: {
+                    confirmButton: "btn fw-bold btn-danger",
+                    cancelButton: "btn fw-bold btn-active-light-primary"
+                }
+            }).then((function (e) {
+                //console.log(button.attributes[2].value);
+                e.value ? (
+                    //console.log(button.attributes[2].value),
+                    $.ajax({
+                        url: '/dashboard/information/destroy/'+information_id,
+                        method: 'POST',
+                        headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                        data: JSON.stringify({ information_id: information_id }),
+                        processData:false,
+                        contentType:'application/json; charset=utf-8',
+                        success: function (data) {
+                            console.log(data);
+                            Swal.fire({
+                                text: "Has eliminado la noticia correctamente!.",
+                                icon: "success",
+                                buttonsStyling: !1,
+                                confirmButtonText: "Ok, entenedido!",
+                                customClass: {confirmButton: "btn fw-bold btn-primary"}
+                            }).then((function () {
+                                t.row($(o)).remove().draw();
+                            }))
+
+                        },
+                        error: function (data) {
+                            if( data.responseJSON.message && !data.responseJSON.errors )
+                            {
+                                toastr.error(data.responseJSON.message, 'Error',
+                                    {
+                                        "closeButton": true,
+                                        "debug": false,
+                                        "newestOnTop": false,
+                                        "progressBar": true,
+                                        "positionClass": "toast-top-right",
+                                        "preventDuplicates": false,
+                                        "onclick": null,
+                                        "showDuration": "300",
+                                        "hideDuration": "1000",
+                                        "timeOut": "2000",
+                                        "extendedTimeOut": "1000",
+                                        "showEasing": "swing",
+                                        "hideEasing": "linear",
+                                        "showMethod": "fadeIn",
+                                        "hideMethod": "fadeOut"
+                                    });
+                            }
+                            for ( var property in data.responseJSON.errors ) {
+                                toastr.error(data.responseJSON.errors[property], 'Error',
+                                    {
+                                        "closeButton": true,
+                                        "debug": false,
+                                        "newestOnTop": false,
+                                        "progressBar": true,
+                                        "positionClass": "toast-top-right",
+                                        "preventDuplicates": false,
+                                        "onclick": null,
+                                        "showDuration": "300",
+                                        "hideDuration": "1000",
+                                        "timeOut": "2000",
+                                        "extendedTimeOut": "1000",
+                                        "showEasing": "swing",
+                                        "hideEasing": "linear",
+                                        "showMethod": "fadeIn",
+                                        "hideMethod": "fadeOut"
+                                    });
+                            }
+                        },
+                    })
+                ) : "cancel" === e.dismiss && Swal.fire({
+                    text: "La noticia no fue eliminado.",
+                    icon: "error",
+                    buttonsStyling: !1,
+                    confirmButtonText: "Ok, entendido!",
+                    customClass: {confirmButton: "btn fw-bold btn-primary"}
+                })
+            }));
+        }
+    </script>
     <!--begin::Page Custom Javascript(used by this page)-->
     <script src="{{ asset('assets/js/information/list.js') }}"></script>
     <script src="{{ asset('assets/js/information/edit.js') }}"></script>

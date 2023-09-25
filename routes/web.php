@@ -218,6 +218,9 @@ Route::middleware('auth')->group(function (){
             ->name('update.receipt.operation')
             ->middleware('permission:changeReceiptOperation_manageOperations');
 
+        Route::get('/get/data/operations/{numberPage}', [App\Http\Controllers\OperationController::class, 'getDataOperations']);
+
+
         // TODO: Rutas BackOffice - Permissions
         Route::get('/permisos', [App\Http\Controllers\PermissionController::class, 'index'])
             ->name('permissions.index')
