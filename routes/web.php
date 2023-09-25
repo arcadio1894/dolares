@@ -292,6 +292,8 @@ Route::middleware('auth')->group(function (){
             ->name('submit.image.reverse');
 
         // TODO: Rutas BackOffice - Verification Images
+        Route::get('/get/data/users/no/verify/{numberPage}', [App\Http\Controllers\UserController::class, 'getIndexUserVerificationImages'])
+            ->name('get.data.users.no.verify');
         Route::get('/usuarios/no/verificados', [App\Http\Controllers\UserController::class, 'indexUserVerificationImages'])
             ->name('verification.images.users');
         Route::get('/verificar/usuarios/imagenes/{user_id}', [App\Http\Controllers\UserController::class, 'userVerificationImages'])

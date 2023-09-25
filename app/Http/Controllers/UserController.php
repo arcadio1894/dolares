@@ -418,47 +418,47 @@ class UserController extends Controller
     }
 
     public function getDataAccountUsers($user_id, $pageNumber = 1)
-{
-    $perPage = 10;
-
-    $query = AccountCustomer::with(['bank'])->where('user_id', $user_id);
-
-    $totalFilteredRecords = $query->count();
-    $totalPages = ceil($totalFilteredRecords / $perPage);
-
-    $startRecord = ($pageNumber - 1) * $perPage + 1;
-    $endRecord = min($totalFilteredRecords, $pageNumber * $perPage);
-
-    $accounts = $query->skip(($pageNumber - 1) * $perPage)
-        ->take($perPage)
-        ->get();
-
-    $arrayAccounts = [];
-
-    foreach ( $accounts as $account )
     {
-        array_push($arrayAccounts, [
-            "image_bank" => $account->bank->imageBank,
-            "name_bank" => $account->bank->name,
-            "complete_bank" => $account->bank->nameBank,
-            "name_account" => $account->nameAccount,
-            "number_account" => $account->numberAccount,
-            "currency" => ($account->currency == 'USD') ? 'Dólares':'Soles',
-            "type" => ($account->type_account == 'c') ? 'Corriente':'Ahorros'
-        ]);
+        $perPage = 10;
+
+        $query = AccountCustomer::with(['bank'])->where('user_id', $user_id);
+
+        $totalFilteredRecords = $query->count();
+        $totalPages = ceil($totalFilteredRecords / $perPage);
+
+        $startRecord = ($pageNumber - 1) * $perPage + 1;
+        $endRecord = min($totalFilteredRecords, $pageNumber * $perPage);
+
+        $accounts = $query->skip(($pageNumber - 1) * $perPage)
+            ->take($perPage)
+            ->get();
+
+        $arrayAccounts = [];
+
+        foreach ( $accounts as $account )
+        {
+            array_push($arrayAccounts, [
+                "image_bank" => $account->bank->imageBank,
+                "name_bank" => $account->bank->name,
+                "complete_bank" => $account->bank->nameBank,
+                "name_account" => $account->nameAccount,
+                "number_account" => $account->numberAccount,
+                "currency" => ($account->currency == 'USD') ? 'Dólares':'Soles',
+                "type" => ($account->type_account == 'c') ? 'Corriente':'Ahorros'
+            ]);
+        }
+
+        $pagination = [
+            'currentPage' => (int)$pageNumber,
+            'totalPages' => (int)$totalPages,
+            'startRecord' => $startRecord,
+            'endRecord' => $endRecord,
+            'totalRecords' => $totalFilteredRecords,
+            'totalFilteredRecords' => $totalFilteredRecords
+        ];
+
+        return ['data' => $arrayAccounts, 'pagination' => $pagination];
     }
-
-    $pagination = [
-        'currentPage' => (int)$pageNumber,
-        'totalPages' => (int)$totalPages,
-        'startRecord' => $startRecord,
-        'endRecord' => $endRecord,
-        'totalRecords' => $totalFilteredRecords,
-        'totalFilteredRecords' => $totalFilteredRecords
-    ];
-
-    return ['data' => $arrayAccounts, 'pagination' => $pagination];
-}
 
     public function getDataOperationUsers($user_id, $pageNumber = 1)
     {
@@ -778,23 +778,123 @@ class UserController extends Controller
         return $randomString;
     }
 
-    public function indexUserVerificationImages()
+    public function getIndexUserVerificationImages(Request $request, $pageNumber = 1)
     {
-        /*$users = User::where('account_type', 'p')
-            ->whereNotNull('front_image')
-            ->whereNotNull('reverse_image')
-            ->whereNull('flag_front')
-            ->orWhere('flag_front', 0)
-            ->whereNull('flag_reverse')
-            ->orWhere('flag_reverse', 0)
+        $perPage = 10;
+
+        $documentCliente = $request->input('document_cliente');
+        $nombreCliente = $request->input('nombre_cliente');
+
+        $query = User::where(function ($query) {
+            $query->where('account_type', 'p')
+                ->whereNotNull('front_image')
+                ->whereNotNull('reverse_image')
+                ->whereNull('flag_front')
+                ->orWhere('flag_front', 0)
+                ->whereNull('flag_reverse')
+                ->orWhere('flag_reverse', 0);
+        })->orWhere(function ($query) {
+            $query->where('account_type', 'b')
+                ->whereNotNull('front_image')
+                ->whereNull('flag_front')
+                ->orWhere('flag_front', 0);
+        });
+
+        // Aplicar filtros si se proporcionan
+        if ($documentCliente) {
+            $query->where('document', $documentCliente);
+        }
+
+        if ($nombreCliente) {
+            $query->where('first_name', 'LIKE', $nombreCliente);
+        }
+
+        $totalFilteredRecords = $query->count();
+        $totalPages = ceil($totalFilteredRecords / $perPage);
+
+        $startRecord = ($pageNumber - 1) * $perPage + 1;
+        $endRecord = min($totalFilteredRecords, $pageNumber * $perPage);
+
+        $users = $query->skip(($pageNumber - 1) * $perPage)
+            ->take($perPage)
             ->get();
 
-        $users2 = User::where('account_type', 'b')
-            ->whereNotNull('front_image')
-            ->whereNull('flag_front')
-            ->orWhere('flag_front', 0)
-            ->get();*/
-        $users = User::where(function ($query) {
+        $arrayUsers = [];
+
+        foreach ( $users as $user )
+        {
+            $rol = $user->getRoleNames()->first();
+            $role = Role::where('name', $rol)->first();
+            if (!$rol)
+            {
+                $rol = "Sin Rol";
+            }
+
+            $diferencia = "";
+            if ( isset($user->last_login) )
+            {
+                $fechaBD = Carbon::parse($user->last_login);
+
+                $diferencia = $fechaBD->diffForHumans();
+            }
+
+            if ($user->account_type == 'p')
+            {
+                $avatar = strtoupper(substr($user->first_name, 0, 1).substr($user->last_name, 0, 1));
+            } else {
+                $avatar = strtoupper(substr($user->business_name, 0, 1));
+            }
+
+            if ($user->account_type == 'p')
+            {
+                $name = $user->first_name . " " . $user->last_name;
+            } else {
+                $name = $user->business_name;
+            }
+
+            array_push($arrayUsers, [
+                "name" => $name,
+                "first_name" => $user->first_name,
+                "last_name" => $user->last_name,
+                "email" => $user->email,
+                "avatar" => $avatar,
+                "role_name" => $rol,
+                "last_login" => $diferencia,
+                "joined_date" => $user->created_at->format('d M Y, g:i a'),
+                "id" => $user->id,
+                "phone" => $user->phone,
+                "document" => $user->document,
+                "role_id" => (isset($role)) ? $role->name:"",
+                "role_description" => (isset($role)) ? $role->description:"Sin rol",
+                "direction" => $user->department->name . ','. $user->province->name . ',' . $user->district->name . ' ' . $user->direction,
+                "profession" => $user->profession,
+                "name_legal_representative" => $user->name_legal_representative,
+                "dni_legal_representative" => $user->dni_legal_representative,
+                "economic_sector" => ($user->economic_sector_id == null) ? null: $user->economic_sector->description,
+                "economic_activity" => ($user->economic_activity_id == null) ? null:$user->economic_activity->description,
+                "constitution_date" => ($user->constitution_date == null) ? null: $user->constitution_date->format('d/m/Y'),
+                "state_company" => ($user->state_company == 1) ? 'SI': 'NO',
+                "imageFront" => ($user->front_image == null) ? 'front.png': $user->front_image,
+                "imageReverse" => ($user->reverse_image == null) ? 'back.png': $user->reverse_image
+            ]);
+        }
+
+        $pagination = [
+            'currentPage' => (int)$pageNumber,
+            'totalPages' => (int)$totalPages,
+            'startRecord' => $startRecord,
+            'endRecord' => $endRecord,
+            'totalRecords' => $totalFilteredRecords,
+            'totalFilteredRecords' => $totalFilteredRecords
+        ];
+
+        return ['data' => $arrayUsers, 'pagination' => $pagination];
+
+    }
+
+    public function indexUserVerificationImages()
+    {
+        /*$users = User::where(function ($query) {
             $query->where('account_type', 'p')
                 ->whereNotNull('front_image')
                 ->whereNotNull('reverse_image')
@@ -867,9 +967,9 @@ class UserController extends Controller
                 "imageFront" => ($user->front_image == null) ? 'front.png': $user->front_image,
                 "imageReverse" => ($user->reverse_image == null) ? 'back.png': $user->reverse_image
             ]);
-        }
+        }*/
 
-        return view('user.verifyImages', compact('arrayUsers'));
+        return view('user.verifyImages');
     }
 
     public function userVerificationImages($user_id)
