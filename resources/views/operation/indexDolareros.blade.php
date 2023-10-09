@@ -184,8 +184,8 @@
                                 <th class="min-w-125px">Código</th>
                                 <th class="min-w-125px">Banco Dolarero</th>
                                 <th class="min-w-125px">N° de Op. Usuario</th>
-                                <th class="min-w-125px">Enviado</th>
-                                <th class="min-w-125px">Recibido</th>
+                                <th class="min-w-125px">Por Recibir</th>
+                                <th class="min-w-125px">Por Enviar</th>
                                 <th class="min-w-125px">Tipo de cambio</th>
                                 <th class="min-w-125px">Fecha</th>
                                 <th class="min-w-125px">Estado</th>
@@ -261,9 +261,9 @@
                     <h5 class="fw-bold text-gray-400 mb-6" data-numOperation></h5>
                     <h4 class="fs-4 text-gray-800 text-hover-primary fw-bolder mb-0">N° Oper. Usuario</h4>
                     <h5 class="fw-bold text-gray-400 mb-6" data-numOperationUser></h5>
-                    <h4 class="fs-4 text-gray-800 text-hover-primary fw-bolder mb-0">Monto enviado</h4>
+                    <h4 class="fs-4 text-gray-800 text-hover-primary fw-bolder mb-0">Por Recibir</h4>
                     <h5 class="fw-bold text-gray-400 mb-6" data-enviado></h5>
-                    <h4 class="fs-4 text-gray-800 text-hover-primary fw-bolder mb-0">Monto Recibido</h4>
+                    <h4 class="fs-4 text-gray-800 text-hover-primary fw-bolder mb-0">Por Enviar</h4>
                     <h5 class="fw-bold text-gray-400 mb-6" data-recibido></h5>
                     <h4 class="fs-4 text-gray-800 text-hover-primary fw-bolder mb-0">Tipo de Cambio</h4>
                     <h5 class="fw-bold text-gray-400 mb-6" data-tipoCambio></h5>
@@ -598,10 +598,10 @@
                                 <h5 class="text-gray-700 text-start">Tipo de cambio</h5> <h4 class="text-gray-900 fw-bolder text-end" id="tipoCambio"> </h4>
                             </div>
                             <div class="d-flex justify-content-between">
-                                <h5 class="text-gray-700 text-start">Monto enviado</h5> <h5 class="text-gray-900 fw-bolder text-end" id="montoEnviado"> </h5>
+                                <h5 class="text-gray-700 text-start">Por Recibir</h5> <h5 class="text-gray-900 fw-bolder text-end" id="montoEnviado"> </h5>
                             </div>
                             <div class="d-flex justify-content-between">
-                                <h5 class="text-gray-700 text-start">Monto recibido</h5> <h5 class="text-gray-900 fw-bolder text-end" id="montoRecibido"> </h5>
+                                <h5 class="text-gray-700 text-start">Por Enviar</h5> <h5 class="text-gray-900 fw-bolder text-end" id="montoRecibido"> </h5>
                             </div>
                             <div class="d-flex justify-content-between">
                                 <h5 class="text-gray-700 text-start">Cuenta Dolareros</h5> <h5 class="text-gray-900 fw-bolder text-end" id="cuentaDolareros"> </h5>

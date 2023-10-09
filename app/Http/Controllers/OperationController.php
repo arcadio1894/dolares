@@ -740,8 +740,8 @@ class OperationController extends Controller
                     'tipoCambio' => $operation->type_change,
                     'montoEnviado' => $operation->send_amount_list,
                     'montoRecibido' => $operation->get_amount_list,
-                    'cuentaDolareros' => $operation->account_dolarero->numberAccount,
-                    'cuentaDestino' => $operation->account_customer->numberAccount,
+                    'cuentaDolareros' => $operation->account_dolarero->bank->name.' - '.$operation->account_dolarero->numberAccount,
+                    'cuentaDestino' => $operation->account_customer->bank->name.' - '.$operation->account_customer->numberAccount,
                     'estadoOperacion' => $operation->estado
                 ], 200);
             } else {
@@ -751,8 +751,8 @@ class OperationController extends Controller
                     'tipoCambio' => $operation->type_change,
                     'montoEnviado' => $operation->send_amount_list,
                     'montoRecibido' => $operation->get_amount_list,
-                    'cuentaDolareros' => $operation->account_dolarero_real->number_interbank,
-                    'cuentaDestino' => $operation->account_customer->numberAccount,
+                    'cuentaDolareros' => $operation->account_dolarero_real->bank->name.' - '.$operation->account_dolarero_real->number_interbank,
+                    'cuentaDestino' => $operation->account_customer->bank->name.' - '.$operation->account_customer->numberAccount,
                     'estadoOperacion' => $operation->estado
                 ], 200);
             }
