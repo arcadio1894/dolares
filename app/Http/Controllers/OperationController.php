@@ -285,6 +285,16 @@ class OperationController extends Controller
                 $stopOperation->account_dolarero_real_id = (isset($cuentaDeposit)) ? $cuentaDeposit->id: null;
                 $stopOperation->save();
 
+                if ($stopOperation->account_dolarero_id == 15)
+                {
+                    $isYape = true;
+                    $data = DataGeneral::where('name', 'qrYape')->first();
+                    $qrYape = $data->valueText;
+                } else {
+                    $isYape = false;
+                    $qrYape = '';
+                }
+
             } else {
 
                 $stopData = StopData::where('user_id', Auth::id())->first();
@@ -310,6 +320,15 @@ class OperationController extends Controller
 
                 $amountSend = number_format($newStopOperation->sendAmount, 2, '.', ' ');
 
+                if ($newStopOperation->account_dolarero_id == 15)
+                {
+                    $isYape = true;
+                    $data = DataGeneral::where('name', 'qrYape')->first();
+                    $qrYape = $data->valueText;
+                } else {
+                    $isYape = false;
+                    $qrYape = '';
+                }
             }
 
             DB::commit();
@@ -330,7 +349,9 @@ class OperationController extends Controller
             'amountSend' => $amountSend,
             'bankCustomer' => $bankCustomer,
             'nameBankOperationDeposit' => $nameBankOperationDeposit,
-            'title' => $title
+            'title' => $title,
+            'isYape' => $isYape,
+            'qrYape' => $qrYape
         ], 200);
     }
 
@@ -398,9 +419,18 @@ class OperationController extends Controller
                 // Sell
                 // TODO: Traer las cuentas de Dolareros en Soles
                 // TODO: Traer las cuentas del cliente en Dolares
-                $accountDolareros = AccountDolarero::where('currency', 'PEN')
-                    ->where('status', 1)
-                    ->get();
+                if ( $stopData->sendAmount < 500 ) {
+                    $accountDolareros = AccountDolarero::where('currency', 'PEN')
+                        ->where('status', 1)
+                        ->get();
+                } else {
+                    $accountDolareros = AccountDolarero::where('currency', 'PEN')
+                        ->where('status', 1)
+                        ->where('bank_id', '<>',15)
+                        ->get();
+                }
+
+
                 $accountCustomers = AccountCustomer::where('currency', 'USD')
                     ->where('status', 1)
                     ->where('user_id', Auth::id())
@@ -496,9 +526,19 @@ class OperationController extends Controller
                 // Sell
                 // TODO: Traer las cuentas de Dolareros en Soles
                 // TODO: Traer las cuentas del cliente en Dolares
-                $accountDolareros = AccountDolarero::where('currency', 'PEN')
+                if ( $stopOperation->sendAmount < 500 ) {
+                    $accountDolareros = AccountDolarero::where('currency', 'PEN')
+                        ->where('status', 1)
+                        ->get();
+                } else {
+                    $accountDolareros = AccountDolarero::where('currency', 'PEN')
+                        ->where('status', 1)
+                        ->where('bank_id', '<>',15)
+                        ->get();
+                }
+                /*$accountDolareros = AccountDolarero::where('currency', 'PEN')
                     ->where('status', 1)
-                    ->get();
+                    ->get();*/
                 $accountCustomers = AccountCustomer::where('currency', 'USD')
                     ->where('status', 1)
                     ->where('user_id', Auth::id())

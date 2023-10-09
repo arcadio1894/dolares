@@ -294,7 +294,16 @@ function closeModalSecondStep($buttonSubmit3) {
 }
 
 function showModalOperation() {
-    $modalNumberOperation.modal('show');
+    if ( $(this).data('image') == "" )
+    {
+        $modalNumberOperation.modal('show');
+    } else {
+        $("#imageNumberOperation").attr('src', '');
+        var url = $(this).data('image');
+        $("#imageNumberOperation").attr('src', url);
+        $modalNumberOperation.modal('show');
+    }
+
 }
 
 function closeModalSummary($buttonSubmit2) {
@@ -350,14 +359,37 @@ function goToSecondStep() {
             }).then((function (e) {
                 console.log($stepper2);
 
-                $("#nameBankOperationDeposit").html(data.nameBankOperationDeposit);
-                $("#nameAccountOperationDeposit").html(data.numberAccount);
-                $("#rucOperationDeposit").html(data.companyRUC);
-                $("#ownerAccountOperationDeposit").html(data.companyName);
-                $("#typeAccountOperationDeposit").html(data.typeAccount);
-                $("#amountSendOperation").html(data.amountSend + " " +data.currencyAccount);
-                $("#nameBankOperation").html(data.bankCustomer);
-                $("#title").html(data.title);
+                if ( data.isYape )
+                {
+                    $("#typeAccountOperationDeposit").css('display', 'none');
+                    $("#ownerAccountOperationDeposit").css('display', 'none');
+                    $("#rucOperationDeposit").css('display', 'none');
+                    $("#nameAccountOperationDeposit").css('display', 'none');
+                    $("#imgYape").css('display', '');
+                    $("#nameBankOperationDeposit").html(data.nameBankOperationDeposit);
+                    var url = "";
+                    //url = url + document.location.origin+ '/dashboard/download/image/operation/'+operation_id;
+                    url = url + document.location.origin+ '/assets/images/banks/'+data.qrYape;
+                    var url2 = "";
+                    //url = url + document.location.origin+ '/dashboard/download/image/operation/'+operation_id;
+                    url2 = url2 + document.location.origin+ '/assets/images/operation/numberOperationYape.png';
+                    $("#imgYape").attr('src', url);
+                    $("#title").css('display', 'none');
+                    $("#titleRUC").css('display', 'none');
+                    $("#titleTitular").css('display', 'none');
+                    $("#titleTipoCuenta").css('display', 'none');
+                    $("#showModalNumberOperation").attr('data-image', url2);
+                    $("#showModalNumberOperation2").attr('data-image', url2);
+                } else {
+                    $("#nameBankOperationDeposit").html(data.nameBankOperationDeposit);
+                    $("#nameAccountOperationDeposit").html(data.numberAccount);
+                    $("#rucOperationDeposit").html(data.companyRUC);
+                    $("#ownerAccountOperationDeposit").html(data.companyName);
+                    $("#typeAccountOperationDeposit").html(data.typeAccount);
+                    $("#amountSendOperation").html(data.amountSend + " " +data.currencyAccount);
+                    $("#nameBankOperation").html(data.bankCustomer);
+                    $("#title").html(data.title);
+                }
 
                 $modalEdit2.hide();
                 $stepper2.goTo(2);

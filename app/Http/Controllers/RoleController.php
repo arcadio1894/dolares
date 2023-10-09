@@ -27,7 +27,11 @@ class RoleController extends Controller
         'sourceFunds' => 'ORIGEN DE FONDOS',
         'manageOperations' => 'GESTOR DE OPERACIONES',
         'myAccounts' => 'CUENTAS',
-        'myOperations' => 'OPERACIONES'
+        'myOperations' => 'OPERACIONES',
+        'coupons' => 'CUPONES',
+        'schedule' => 'HORARIO DE ATENCIÓN',
+        'typeExchange' => 'TIPO DE CAMBIO',
+        'informations' => 'NOTICIAS'
     ];
 
     public function index()

@@ -256,19 +256,20 @@
                                             <p class="text-muted text-gray-800 fw-bold fs-6">1. Transfiere <strong class="link-dark fw-bolder" id="amountSendOperation"> 00.00 moneda</strong> desde tu banco <strong class="link-dark fw-bolder" id="nameBankOperation">  </strong>. </p>
                                             <p class="text-muted text-gray-800 fw-bold fs-6">2. Guarda el
                                                 <strong class="link-primary fw-bolder" >
-                                                    <a href="#" id="showModalNumberOperation">número de tu operación</a>
+                                                    <a href="#" id="showModalNumberOperation" data-image="">número de tu operación</a>
                                                 </strong> para el segundo paso.
                                             </p>
                                             <div class="col-sm-10 offset-sm-1 col-10 offset-1 bg-light-primary rounded border-primary border border-dashed p-6">
                                                 <strong class="text-gray-900 ">Banco</strong>
                                                 <p class="text-gray-900 mb-1 ml-5" id="nameBankOperationDeposit">BCP</p>
+                                                <img src="" alt="" id="imgYape" style="display: none" class="img-fluid">
                                                 <strong class="text-gray-900 " id="title">Número de cuenta</strong>
                                                 <p class="text-gray-900 mb-1 ml-5" id="nameAccountOperationDeposit">1111 1111 1111 1111</p>
-                                                <strong class="text-gray-900 ">RUC</strong>
+                                                <strong class="text-gray-900 " id="titleRUC">RUC</strong>
                                                 <p class="text-gray-900 mb-1 ml-5" id="rucOperationDeposit">123456789123</p>
-                                                <strong class="text-gray-900 ">Titular de la cuenta</strong>
+                                                <strong class="text-gray-900 " id="titleTitular">Titular de la cuenta</strong>
                                                 <p class="text-gray-900 mb-1 ml-5" id="ownerAccountOperationDeposit">Dolareros SAC</p>
-                                                <strong class="text-gray-900 ">Tipo de la cuenta</strong>
+                                                <strong class="text-gray-900 " id="titleTipoCuenta">Tipo de la cuenta</strong>
                                                 <p class="text-gray-900 mb-1 ml-5" id="typeAccountOperationDeposit">Cuenta Corriente - Soles</p>
                                             </div>
                                             <br>
@@ -558,9 +559,9 @@
                                     <!--begin::Alert-->
                                     <!--begin::Notice-->
                                     <div class="fv-row mb-7">
-                                        <input type="number" pattern="[\d]*" autocomplete="off" class="form-control form-control-lg form-control-solid bg-light-primary rounded border-primary border border-dashed text-center" name="number_operation" id="number_operation" placeholder="" value="" />
+                                        <input type="text" autocomplete="off" class="form-control form-control-lg form-control-solid bg-light-primary rounded border-primary border border-dashed text-center" name="number_operation" id="number_operation" placeholder="" value="" />
                                     </div>
-                                    <div class="fs-6 text-gray-800 mt-3 mb-3 text-center">¿Dónde encuentro el <a href="#" id="showModalNumberOperation2" class="link-primary fw-bolder">número de operación</a>?</div>
+                                    <div class="fs-6 text-gray-800 mt-3 mb-3 text-center">¿Dónde encuentro el <a href="#" id="showModalNumberOperation2" data-image="" class="link-primary fw-bolder">número de operación</a>?</div>
                                     <div class="fs-6 text-gray-800 mt-10 text-center">Verificaremos tu operación para transferir <strong id="amountSendOperationConstancia">{{ ($stopOperation->type == 'buy') ? 'PEN ':'USD ' }} {{ number_format($stopOperation->getAmount, 2, '.', '') }} </strong> a tu cuenta.</div>
 
                                     <!--end::Notice-->
@@ -837,6 +838,7 @@
                                             <div class="col-sm-10 offset-sm-1 col-10 offset-1 bg-light-primary rounded border-primary border border-dashed p-6">
                                                 <strong class="text-gray-900 ">Banco</strong>
                                                 <p class="text-gray-900 mb-1 ml-5" id="nameBankOperationDeposit">BCP</p>
+                                                <img src="" alt="" id="imgYape" style="display: none">
                                                 <strong class="text-gray-900 " id="title">Número de cuenta</strong>
                                                 <p class="text-gray-900 mb-1 ml-5" id="nameAccountOperationDeposit">1111 1111 1111 1111</p>
                                                 <strong class="text-gray-900 ">RUC</strong>
@@ -1134,7 +1136,7 @@
                                     <!--begin::Alert-->
                                     <!--begin::Notice-->
                                     <div class="fv-row mb-7">
-                                        <input type="number" pattern="[\d]*" autocomplete="off" class="form-control form-control-lg form-control-solid bg-light-primary rounded border-primary border border-dashed text-center" name="number_operation" id="number_operation" placeholder="" value="" />
+                                        <input type="text" autocomplete="off" class="form-control form-control-lg form-control-solid bg-light-primary rounded border-primary border border-dashed text-center" name="number_operation" id="number_operation" placeholder="" value="" />
                                     </div>
                                     <div class="fs-6 text-gray-800 mt-3 mb-3 text-center">¿Dónde encuentro el <a href="#" id="showModalNumberOperation2" class="link-primary fw-bolder">número de operación</a>?</div>
                                     <div class="fs-6 text-gray-800 mt-10 text-center">Verificaremos tu operación para transferir <strong id="amountSendOperationConstancia">{{ ($stopData->type == 'buy') ? 'PEN ':'USD ' }} {{ number_format($stopData->getAmount, 2, '.', '') }} </strong> a tu cuenta.</div>
@@ -1778,7 +1780,7 @@
                         <div class="row">
                             <div class="col-sm-8 offset-sm-2 col-8 offset-2">
                                 <div class="d-flex justify-content-center">
-                                    <img class="img-fluid center" style="height: 100%;max-height: 325px"  src="{{ asset('assets/images/operation/numeroOperacion.jpeg') }}" alt="">
+                                    <img class="img-fluid center" style="height: 100%;max-height: 325px"  src="{{ asset('assets/images/operation/numeroOperacion.jpeg') }}" alt="" id="imageNumberOperation">
 
                                 </div>
                             </div>
