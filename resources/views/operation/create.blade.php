@@ -838,14 +838,14 @@
                                             <div class="col-sm-10 offset-sm-1 col-10 offset-1 bg-light-primary rounded border-primary border border-dashed p-6">
                                                 <strong class="text-gray-900 ">Banco</strong>
                                                 <p class="text-gray-900 mb-1 ml-5" id="nameBankOperationDeposit">BCP</p>
-                                                <img src="" alt="" id="imgYape" style="display: none">
+                                                <img src="" alt="" id="imgYape" style="display: none" class="img-fluid">
                                                 <strong class="text-gray-900 " id="title">Número de cuenta</strong>
                                                 <p class="text-gray-900 mb-1 ml-5" id="nameAccountOperationDeposit">1111 1111 1111 1111</p>
-                                                <strong class="text-gray-900 ">RUC</strong>
+                                                <strong class="text-gray-900 " id="titleRUC">RUC</strong>
                                                 <p class="text-gray-900 mb-1 ml-5" id="rucOperationDeposit">123456789123</p>
-                                                <strong class="text-gray-700 ">Titular de la cuenta</strong>
+                                                <strong class="text-gray-700 " id="titleTitular">Titular de la cuenta</strong>
                                                 <p class="text-gray-900 mb-1 ml-5" id="ownerAccountOperationDeposit">Dolareros SAC</p>
-                                                <strong class="text-gray-700 ">Tipo de la cuenta</strong>
+                                                <strong class="text-gray-700 " id="titleTipoCuenta">Tipo de la cuenta</strong>
                                                 <p class="text-gray-900 mb-1 ml-5" id="typeAccountOperationDeposit">Cuenta Corriente - Soles</p>
                                             </div>
                                             <br>
