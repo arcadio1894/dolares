@@ -367,6 +367,7 @@ function goToSecondStep() {
                     $("#nameAccountOperationDeposit").css('display', 'none');
                     $("#imgYape").css('display', '');
                     $("#nameBankOperationDeposit").html(data.nameBankOperationDeposit);
+                    $("#amountSendOperation").html(data.amountSend + " " +data.currencyAccount);
                     var url = "";
                     //url = url + document.location.origin+ '/dashboard/download/image/operation/'+operation_id;
                     url = url + document.location.origin+ '/assets/images/banks/'+data.qrYape;
