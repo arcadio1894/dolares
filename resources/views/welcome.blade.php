@@ -778,14 +778,14 @@ License: For each use you must have a valid license purchased only from above li
                                 <!--begin::Text-->
                                 <span class="fw-normal fs-4 text-gray-700">Contactanos a
                                         <!--<a href="https://keenthemes.com/support" class="text-white opacity-50 text-hover-primary">support@dolareros.com</a></span>-->
-                                        <a href="#" class="text-white opacity-50 text-hover-primary">support@dolareros.com</a></span>
+                                        <a href="#" class="text-white opacity-50 text-hover-primary">contacto@dolareros.com</a></span>
                                 <!--end::Text-->
                             </div>
                             <!--end::Block-->
                             <!--begin::Block-->
                             <div class="rounded landing-dark-border p-9">
                                 <!--begin::Title-->
-                                <h2 class="text-white">Dolareros S.A.C - RUC 20602155596</h2>
+                                <h2 class="text-white">Dolareros S.A.C - RUC 20611718081</h2>
                                 <!--end::Title-->
                                 <!--begin::Text-->
                                 <span class="fw-normal fs-4 text-gray-700">Jr Manuel Candamo 820 - Lince - Lima</span>
